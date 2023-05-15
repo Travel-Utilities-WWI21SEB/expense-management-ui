@@ -27,6 +27,24 @@ pnpm run build
 
 You can preview the production build with `pnpm run preview`.
 
+For production we containerize the app using Docker. To build the Docker image run the following command:
+
+```bash
+pnpm run docker:build
+```
+
+To run the Docker image run the following command:
+
+```bash
+pnpm run docker:run
+```
+
+To stop the Docker image run the following command:
+
+```bash
+pnpm run docker:stop
+```
+
 ## Contributing
 
 To contribute to this template, clone this repository locally and commit your code on a separate branch. Try using conventional commits. When you're ready to make a commit, run the following command to check if your changes meet the standards:
