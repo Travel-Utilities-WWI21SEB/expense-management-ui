@@ -1,0 +1,12 @@
+.github/
+
+.eslintignore
+.eslintrc.cjs
+.gitignore
+.prettierrc
+.prettierignore
+node_modules/
+.zshrc
+README.md
+renovate.json
+LICENSE
