@@ -2,10 +2,11 @@
 
 If you cloned the repository locally run `corepack enable` to setup the correct version of the package manager. After running `corepack enable` you can use `pnpm` to install dependencies and run scripts.
 
-First, install the dependencies:
+First, install the dependencies and build the css-files:
 
 ```bash
-pnpm install
+pnpm run install
+pnpm run prepare
 ```
 
 Then, run the development server:
@@ -15,7 +16,10 @@ pnpm run dev
 
 # or start the server and open the app in a new browser tab
 pnpm run dev -- --open
+# exposed on port 5173
 ```
+
+For every change you make in the scss-files, you have to run `pnpm run prepare` again.
 
 ## Building
 
@@ -25,7 +29,7 @@ To create a production version of your app:
 pnpm run build
 ```
 
-You can preview the production build with `pnpm run preview`.
+You can preview the production build on port 4173 with `pnpm run preview`.
 
 For production we containerize the app using Docker. To build the Docker image run the following command:
 
