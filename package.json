@@ -19,9 +19,15 @@
 		"prep-pr": "pnpm check && pnpm lint && pnpm build",
 		"docker:build": "docker build -t expense-ui .",
 		"docker:run": "docker run -d -p 4174:3000 --name expense-ui-container expense-ui",
-		"docker:stop": "docker stop expense-ui-container && docker rm expense-ui-container"
+		"docker:stop": "docker stop expense-ui-container && docker rm expense-ui-container",
+		"prepare": "pnpm run smui-theme-light && pnpm run smui-theme-dark",
+		"smui-theme-light": "smui-theme compile static/smui.css -i src/theme -i ./node_modules",
+		"smui-theme-dark": "smui-theme compile static/smui-dark.css -i src/theme/dark -i ./node_modules"
 	},
 	"devDependencies": {
+		"@smui/button": "7.0.0-beta.8",
+		"@smui/icon-button": "7.0.0-beta.8",
+		"@smui/top-app-bar": "7.0.0-beta.8",
 		"@sveltejs/adapter-node": "^1.2.4",
 		"@sveltejs/kit": "^1.5.0",
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
@@ -31,6 +37,7 @@
 		"eslint-plugin-svelte": "^2.26.0",
 		"prettier": "^2.8.0",
 		"prettier-plugin-svelte": "^2.8.1",
+		"smui-theme": "7.0.0-beta.8",
 		"svelte": "^3.54.0",
 		"svelte-check": "^3.0.1",
 		"tslib": "^2.4.1",
