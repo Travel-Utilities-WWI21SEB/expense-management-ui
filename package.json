@@ -25,13 +25,18 @@
 		"smui-theme-dark": "smui-theme compile static/smui-dark.css -i src/theme/dark -i ./node_modules"
 	},
 	"devDependencies": {
+		"@material/typography": "^14.0.0",
 		"@smui/button": "7.0.0-beta.8",
+		"@smui/card": "7.0.0-beta.8",
 		"@smui/drawer": "7.0.0-beta.8",
 		"@smui/icon-button": "7.0.0-beta.8",
 		"@smui/list": "7.0.0-beta.8",
+		"@smui/menu": "7.0.0-beta.8",
+		"@smui/menu-surface": "7.0.0-beta.8",
 		"@smui/top-app-bar": "7.0.0-beta.8",
 		"@sveltejs/adapter-node": "^1.2.4",
 		"@sveltejs/kit": "^1.5.0",
+		"@types/node": "^20.2.1",
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
 		"@typescript-eslint/parser": "^5.45.0",
 		"eslint": "^8.28.0",

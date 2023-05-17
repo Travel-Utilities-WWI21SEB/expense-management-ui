@@ -1,7 +1,13 @@
 lockfileVersion: '6.0'
 
 devDependencies:
+  '@material/typography':
+    specifier: ^14.0.0
+    version: 14.0.0
   '@smui/button':
+    specifier: 7.0.0-beta.8
+    version: 7.0.0-beta.8(svelte@3.59.1)(typescript@5.0.4)
+  '@smui/card':
     specifier: 7.0.0-beta.8
     version: 7.0.0-beta.8(svelte@3.59.1)(typescript@5.0.4)
   '@smui/drawer':
@@ -13,6 +19,12 @@ devDependencies:
   '@smui/list':
     specifier: 7.0.0-beta.8
     version: 7.0.0-beta.8(svelte@3.59.1)(typescript@5.0.4)
+  '@smui/menu':
+    specifier: 7.0.0-beta.8
+    version: 7.0.0-beta.8(svelte@3.59.1)(typescript@5.0.4)
+  '@smui/menu-surface':
+    specifier: 7.0.0-beta.8
+    version: 7.0.0-beta.8(svelte@3.59.1)(typescript@5.0.4)
   '@smui/top-app-bar':
     specifier: 7.0.0-beta.8
     version: 7.0.0-beta.8(svelte@3.59.1)(typescript@5.0.4)
@@ -22,6 +34,9 @@ devDependencies:
   '@sveltejs/kit':
     specifier: ^1.5.0
     version: 1.16.3(svelte@3.59.1)(vite@4.3.5)
+  '@types/node':
+    specifier: ^20.2.1
+    version: 20.2.1
   '@typescript-eslint/eslint-plugin':
     specifier: ^5.45.0
     version: 5.59.5(@typescript-eslint/parser@5.59.5)(eslint@8.40.0)(typescript@5.0.4)
@@ -60,7 +75,7 @@ devDependencies:
     version: 5.0.4
   vite:
     specifier: ^4.3.0
-    version: 4.3.5
+    version: 4.3.5(@types/node@20.2.1)
 
 packages:
 
@@ -369,6 +384,19 @@ packages:
       tslib: 2.5.0
     dev: true
 
+  /@material/card@14.0.0:
+    resolution: {integrity: sha512-SnpYWUrCb92meGYLXV7qa/k40gnHR6rPki6A1wz0OAyG2twY48f0HLscAqxBLvbbm1LuRaqjz0RLKGH3VzxZHw==}
+    dependencies:
+      '@material/dom': 14.0.0
+      '@material/elevation': 14.0.0
+      '@material/feature-targeting': 14.0.0
+      '@material/ripple': 14.0.0
+      '@material/rtl': 14.0.0
+      '@material/shape': 14.0.0
+      '@material/theme': 14.0.0
+      tslib: 2.5.0
+    dev: true
+
   /@material/density@14.0.0:
     resolution: {integrity: sha512-NlxXBV5XjNsKd8UXF4K/+fOXLxoFNecKbsaQO6O2u+iG8QBfFreKRmkhEBb2hPPwC3w8nrODwXX0lHV+toICQw==}
     dependencies:
@@ -452,6 +480,34 @@ packages:
       '@material/shape': 14.0.0
       '@material/theme': 14.0.0
       '@material/typography': 14.0.0
+      tslib: 2.5.0
+    dev: true
+
+  /@material/menu-surface@14.0.0:
+    resolution: {integrity: sha512-wRz3UCrhJ4kRrijJEbvIPRa0mqA5qkQmKXjBH4Xu1ApedZruP+OM3Qb2Bj4XugCA3eCXpiohg+gdyTAX3dVQyw==}
+    dependencies:
+      '@material/animation': 14.0.0
+      '@material/base': 14.0.0
+      '@material/elevation': 14.0.0
+      '@material/feature-targeting': 14.0.0
+      '@material/rtl': 14.0.0
+      '@material/shape': 14.0.0
+      '@material/theme': 14.0.0
+      tslib: 2.5.0
+    dev: true
+
+  /@material/menu@14.0.0:
+    resolution: {integrity: sha512-oU6GjbYnkG6a5nX9HUSege5OQByf6yUteEij8fpf0ci3f5BWf/gr39dnQ+rfl+q119cW0WIEmVK2YJ/BFxMzEQ==}
+    dependencies:
+      '@material/base': 14.0.0
+      '@material/dom': 14.0.0
+      '@material/elevation': 14.0.0
+      '@material/feature-targeting': 14.0.0
+      '@material/list': 14.0.0
+      '@material/menu-surface': 14.0.0
+      '@material/ripple': 14.0.0
+      '@material/rtl': 14.0.0
+      '@material/theme': 14.0.0
       tslib: 2.5.0
     dev: true
 
@@ -633,6 +689,20 @@ packages:
       - typescript
     dev: true
 
+  /@smui/card@7.0.0-beta.8(svelte@3.59.1)(typescript@5.0.4):
+    resolution: {integrity: sha512-dcSvlEIV7gaqr4AJuAvRvHeerb90yZgTw3xh/X69Pm6fVt+1kYI9tRm6oMmqS/eY+EbvHU7zYQI9AGR/r9PGnA==}
+    dependencies:
+      '@material/card': 14.0.0
+      '@smui/button': 7.0.0-beta.8(svelte@3.59.1)(typescript@5.0.4)
+      '@smui/common': 7.0.0-beta.8(svelte@3.59.1)(typescript@5.0.4)
+      '@smui/icon-button': 7.0.0-beta.8(svelte@3.59.1)(typescript@5.0.4)
+      '@smui/ripple': 7.0.0-beta.8(svelte@3.59.1)(typescript@5.0.4)
+      svelte2tsx: 0.6.14(svelte@3.59.1)(typescript@5.0.4)
+    transitivePeerDependencies:
+      - svelte
+      - typescript
+    dev: true
+
   /@smui/common@7.0.0-beta.8(svelte@3.59.1)(typescript@5.0.4):
     resolution: {integrity: sha512-IeU7KqE+EcvEm3fkEKuvHY2MkNJm1hpl1sHlnVWFSrS8D1+NypwpuQWnOPDgLYRq/5zhm8ZCDkvX1G1ZiXUC7A==}
     dependencies:
@@ -676,6 +746,32 @@ packages:
       '@material/list': 14.0.0
       '@smui/common': 7.0.0-beta.8(svelte@3.59.1)(typescript@5.0.4)
       '@smui/ripple': 7.0.0-beta.8(svelte@3.59.1)(typescript@5.0.4)
+      svelte2tsx: 0.6.14(svelte@3.59.1)(typescript@5.0.4)
+    transitivePeerDependencies:
+      - svelte
+      - typescript
+    dev: true
+
+  /@smui/menu-surface@7.0.0-beta.8(svelte@3.59.1)(typescript@5.0.4):
+    resolution: {integrity: sha512-VrdxJD1OyXVrho/BYfykc5pwENkPjpFS3nhTuYZLnPQiAPVKzI2JXMfDOCcB5yKwS5DcBnz36ICWngZ93wCXjQ==}
+    dependencies:
+      '@material/animation': 14.0.0
+      '@material/menu-surface': 14.0.0
+      '@smui/common': 7.0.0-beta.8(svelte@3.59.1)(typescript@5.0.4)
+      svelte2tsx: 0.6.14(svelte@3.59.1)(typescript@5.0.4)
+    transitivePeerDependencies:
+      - svelte
+      - typescript
+    dev: true
+
+  /@smui/menu@7.0.0-beta.8(svelte@3.59.1)(typescript@5.0.4):
+    resolution: {integrity: sha512-n3yRf/F5pc2Rpu73OufoFDlv/IX4pWM7Espn1uUfVSXsWIG52Or7+br1piJHooeK8zxz22mko0eYisjhQosdSQ==}
+    dependencies:
+      '@material/dom': 14.0.0
+      '@material/menu': 14.0.0
+      '@smui/common': 7.0.0-beta.8(svelte@3.59.1)(typescript@5.0.4)
+      '@smui/list': 7.0.0-beta.8(svelte@3.59.1)(typescript@5.0.4)
+      '@smui/menu-surface': 7.0.0-beta.8(svelte@3.59.1)(typescript@5.0.4)
       svelte2tsx: 0.6.14(svelte@3.59.1)(typescript@5.0.4)
     transitivePeerDependencies:
       - svelte
@@ -741,7 +837,7 @@ packages:
       svelte: 3.59.1
       tiny-glob: 0.2.9
       undici: 5.22.1
-      vite: 4.3.5
+      vite: 4.3.5(@types/node@20.2.1)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -759,7 +855,7 @@ packages:
       magic-string: 0.30.0
       svelte: 3.59.1
       svelte-hmr: 0.15.1(svelte@3.59.1)
-      vite: 4.3.5
+      vite: 4.3.5(@types/node@20.2.1)
       vitefu: 0.2.4(vite@4.3.5)
     transitivePeerDependencies:
       - supports-color
@@ -775,6 +871,10 @@ packages:
 
   /@types/json-schema@7.0.11:
     resolution: {integrity: sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==}
+    dev: true
+
+  /@types/node@20.2.1:
+    resolution: {integrity: sha512-DqJociPbZP1lbZ5SQPk4oag6W7AyaGMO6gSfRwq3PWl4PXTwJpRQJhDq4W0kzrg3w6tJ1SwlvGZ5uKFHY13LIg==}
     dev: true
 
   /@types/pug@2.0.6:
@@ -2325,7 +2425,7 @@ packages:
       punycode: 2.3.0
     dev: true
 
-  /vite@4.3.5:
+  /vite@4.3.5(@types/node@20.2.1):
     resolution: {integrity: sha512-0gEnL9wiRFxgz40o/i/eTBwm+NEbpUeTWhzKrZDSdKm6nplj+z4lKz8ANDgildxHm47Vg8EUia0aicKbawUVVA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -2350,6 +2450,7 @@ packages:
       terser:
         optional: true
     dependencies:
+      '@types/node': 20.2.1
       esbuild: 0.17.19
       postcss: 8.4.23
       rollup: 3.21.6
@@ -2365,7 +2466,7 @@ packages:
       vite:
         optional: true
     dependencies:
-      vite: 4.3.5
+      vite: 4.3.5(@types/node@20.2.1)
     dev: true
 
   /webidl-conversions@3.0.1:
