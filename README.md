@@ -5,7 +5,7 @@ If you cloned the repository locally run `corepack enable` to setup the correct 
 First, install the dependencies and build the css-files:
 
 ```bash
-pnpm run install
+pnpm install
 pnpm run prepare
 ```
 
