@@ -7,10 +7,13 @@
 		Title as DrawerTitle,
 		Subtitle
 	} from '@smui/drawer';
-	import List, { Item, Graphic, Separator, Subheader, Text } from '@smui/list';
 	import IconButton from '@smui/icon-button';
+	import List, { Item, Graphic, Separator, Subheader, Text } from '@smui/list';
+	import { UserCard } from '$components';
+	import type MenuSurface from '@smui/menu-surface';
 
 	let topAppBar: TopAppBar;
+	let surface: MenuSurface;
 	let drawerOpened = false;
 	$: menuIcon = drawerOpened ? 'menu_open' : 'menu';
 
@@ -47,11 +50,11 @@
 			<Title>Expense Management</Title>
 		</Section>
 		<Section align="end" toolbar>
-			<IconButton class="material-icons" aria-label="account_icon">account_circle</IconButton>
 			<IconButton class="material-icons" aria-label="theme_icon" on:click={switchTheme}
 				>{themeIcon}
-			</IconButton>&nbsp;{themeLabel}
-			<IconButton class="material-icons" aria-label="settings_icon">settings</IconButton>
+			</IconButton>
+			<p class="mdc-typography--button">{themeLabel}</p>
+			<UserCard {surface} />
 		</Section>
 	</Row>
 </TopAppBar>
@@ -65,19 +68,33 @@
 			</Header>
 			<Content>
 				<Separator />
-				<Subheader tag="h6">Allgemein</Subheader>
+				<Subheader tag="h6">General</Subheader>
 				<List>
-					<Item href="/cost" on:click={() => (drawerOpened = !drawerOpened)}>
-						<Graphic class="material-icons">payments</Graphic>
-						<Text>Cost-Overview</Text>
-					</Item>
-					<Item href="/trip" on:click={() => (drawerOpened = !drawerOpened)}>
-						<Graphic class="material-icons">connecting_airports</Graphic>
-						<Text>Trip-Overview</Text>
+					<Item href="/" on:click={() => (drawerOpened = !drawerOpened)}>
+						<Graphic class="material-icons">home</Graphic>
+						<Text class="mdc-typography--button">Home</Text>
 					</Item>
 				</List>
 				<Separator />
-				<Subheader tag="h6">Sonstiges</Subheader>
+				<Subheader tag="h6">Overviews</Subheader>
+				<List>
+					<Item href="/cost" on:click={() => (drawerOpened = !drawerOpened)}>
+						<Graphic class="material-icons">payments</Graphic>
+						<Text class="mdc-typography--button">Costs</Text>
+					</Item>
+					<Item href="/trip" on:click={() => (drawerOpened = !drawerOpened)}>
+						<Graphic class="material-icons">connecting_airports</Graphic>
+						<Text class="mdc-typography--button">Trips</Text>
+					</Item>
+				</List>
+				<Separator />
+				<Subheader tag="h6">Miscellaneous</Subheader>
+				<List>
+					<Item on:click={() => (drawerOpened = !drawerOpened)}>
+						<Graphic class="material-icons">history</Graphic>
+						<Text class="mdc-typography--button">History</Text>
+					</Item>
+				</List>
 			</Content>
 		</Drawer>
 
@@ -88,7 +105,6 @@
 		</AppContent>
 	</div>
 </AutoAdjust>
-```
 
 <style>
 	.drawer-container {
