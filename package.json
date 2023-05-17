@@ -26,7 +26,9 @@
 	},
 	"devDependencies": {
 		"@smui/button": "7.0.0-beta.8",
+		"@smui/drawer": "7.0.0-beta.8",
 		"@smui/icon-button": "7.0.0-beta.8",
+		"@smui/list": "7.0.0-beta.8",
 		"@smui/top-app-bar": "7.0.0-beta.8",
 		"@sveltejs/adapter-node": "^1.2.4",
 		"@sveltejs/kit": "^1.5.0",
