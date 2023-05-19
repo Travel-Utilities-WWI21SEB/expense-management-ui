@@ -4,6 +4,15 @@
     "config:base",
     "schedule:weekly"
   ],
-  "postUpdateOptions": ["pnpmDedupe"],
+  "packageRules": [
+    {
+      "matchManagers": ["npm"],
+      "matchFiles": ["^pnpm-lock.yaml$"],
+      "lockFileMaintenance": {
+        "enabled": true
+      },
+      "postUpdateOptions": ["pnpmDedupe"]
+    }
+  ],
   "reviewers": ["team:renovate-reviewer"]
 }
