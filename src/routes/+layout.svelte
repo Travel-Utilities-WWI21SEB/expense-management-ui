@@ -169,7 +169,7 @@
 		overflow: hidden;
 		z-index: 0;
 		height: 100vh;
-		width: 100%;
+		width: max-content;
 	}
 
 	* :global(.app-content) {

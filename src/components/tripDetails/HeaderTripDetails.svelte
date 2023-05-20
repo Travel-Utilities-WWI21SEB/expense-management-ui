@@ -1,50 +1,54 @@
 <script lang="ts">
+	import Tooltip, { Wrapper } from '@smui/tooltip';
 	import Card, { Content } from '@smui/card';
-	import Fab, { Icon } from '@smui/fab';
-	import { Graphic } from '@smui/list';
 
 	export let trip_name: String;
 	export let time: String;
-	export let people: Array<{ name: String }>;
-
-	let clicked = 0;
+	export let people: Array<{ name: string }>;
 </script>
 
-<Card variant="outlined" class="card">
+<link
+	rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+/>
+
+<Card variant="outlined">
 	<Content>
-		<h1>{trip_name}</h1>
-		<h6>{time}</h6>
-		<div />
-		<div class="people">
-			{#each people as person}
-				<div class="person">
-					<Fab on:click={() => clicked++}>
-						<Icon class="material-icons">
-							person
-							<!-- <Graphic
-							style="background-image: url(https://placehold.co/40x40?text={person.name
-								.split(' ')
-								.map((val) => val.substring(0, 1))
-								.join('')});"
-						/> -->
-						</Icon>
-					</Fab>
-				</div>
-			{/each}
+		<div class="alignleft">
+			<h1>{trip_name}</h1>
+			<h6>{time}</h6>
+		</div>
+		<div class="alignright">
+			<div class="people">
+				{#each people as person}
+					<div class="person">
+						<span class="material-symbols-outlined"> account_circle </span>
+					</div>
+				{/each}
+			</div>
 		</div>
 	</Content>
 </Card>
 
 <style>
-	div {
-		display: flexbox;
-	}
-
 	.people {
 		display: flex;
 	}
 
 	.person {
 		padding: 0.1rem;
+	}
+
+	.alignleft {
+		float: left;
+		padding: 1rem;
+	}
+	.alignright {
+		float: right;
+		padding: 1rem;
+	}
+
+	.material-symbols-outlined {
+		font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 0, 'opsz' 48;
 	}
 </style>
