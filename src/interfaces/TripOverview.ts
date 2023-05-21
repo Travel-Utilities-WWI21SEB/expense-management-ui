@@ -9,6 +9,7 @@ export interface chartData {
 }
 
 export interface travelData {
+    id: string
     name: string,
     costcategories: Array<costcategories>,
     data: chartData | undefined,

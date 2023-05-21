@@ -3,8 +3,10 @@
 	import LayoutGrid, { Cell } from '@smui/layout-grid';
 	import { DonutChart } from '$components';
 	import type { chartData, travelData } from '../../interfaces/TripOverview';
+	import { goto } from '$app/navigation';
 	let travelData: Array<travelData> = [
 		{
+			id: 'ABCD-01',
 			name: 'Die epische Reise',
 			costcategories: [
 				{ name: 'Food', amount: 100, color: '#F7464A' },
@@ -19,6 +21,7 @@
 			location: 'Palo Alto'
 		},
 		{
+			id: 'ZYX-99',
 			name: 'Die guten alten Zeiten',
 			costcategories: [
 				{ name: 'Food', amount: 150, color: '#F7464A' },
@@ -62,37 +65,43 @@
 	{#each travelData as trip}
 		<Cell spanDevices={{ desktop: 6, tablet: 4, phone: 12 }}>
 			<Card variant="outlined" padded>
-				<PrimaryAction>
-					<h2 class="mdc-typography--headline3" style="display: flex; justify-content: center;">
-						{trip.name}
-					</h2>
-					<div />
+				<PrimaryAction
+					on:click={() => {
+						goto(`/trip/${trip.id}`);
+					}}
+				>
 					<LayoutGrid>
-						<Cell span={4}>
+						<Cell span={12}>
+							<h2 class="mdc-typography--headline3" style="display: flex; justify-content: center;">
+								{trip.name}
+							</h2>
+						</Cell>
+						<Cell
+							spanDevices={{ desktop: 6, tablet: 12, phone: 12 }}
+							style="display: flex; justify-content: center; flex-direction:column"
+						>
 							<h2 class="mdc-typography--subtitle1" style="padding: 0.5rem;">
 								Start Date: {trip.startDate.toDateString()}
 							</h2>
-						</Cell>
-						<Cell span={4}>
 							<h2 class="mdc-typography--subtitle1" style="padding: 0.5rem;">
 								End Date: {trip.endDate.toDateString()}
 							</h2>
-						</Cell>
-						<Cell span={4}>
 							<h2 class="mdc-typography--subtitle1" style="padding: 0.5rem;">
 								Location: {trip.location}
 							</h2>
 						</Cell>
+						{#if trip.data && trip.totalCost}
+							<Cell spanDevices={{ desktop: 6, tablet: 12, phone: 12 }}>
+								<h2
+									class="mdc-typography--headline6"
+									style="padding: 1rem; display: flex; justify-content: center;"
+								>
+									Total cost: {trip.totalCost}$
+								</h2>
+								<DonutChart data={trip.data} />
+							</Cell>
+						{/if}
 					</LayoutGrid>
-					{#if trip.data && trip.totalCost}
-						<h2
-							class="mdc-typography--headline6"
-							style="padding: 1rem; display: flex; justify-content: center;"
-						>
-							Total cost: {trip.totalCost}$
-						</h2>
-						<DonutChart data={trip.data} />
-					{/if}
 				</PrimaryAction>
 			</Card>
 		</Cell>
