@@ -21,7 +21,7 @@
 			<div class="people">
 				{#each people as person}
 					<div class="person">
-						<span id={person.name} class="material-symbols-outlined"> account_circle </span>
+						<!-- <span id={person.name} class="material-symbols-outlined"> account_circle </span> -->
 					</div>
 				{/each}
 			</div>
