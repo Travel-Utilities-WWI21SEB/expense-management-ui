@@ -1,6 +1,9 @@
 lockfileVersion: '6.0'
 
 devDependencies:
+  '@material/typography':
+    specifier: ^14.0.0
+    version: 14.0.0
   '@smui/button':
     specifier: 7.0.0-beta.8
     version: 7.0.0-beta.8(svelte@3.59.1)(typescript@5.0.4)
@@ -43,6 +46,9 @@ devDependencies:
   '@sveltejs/kit':
     specifier: ^1.5.0
     version: 1.16.3(svelte@3.59.1)(vite@4.3.5)
+  '@types/node':
+    specifier: ^20.2.1
+    version: 20.2.1
   '@typescript-eslint/eslint-plugin':
     specifier: ^5.45.0
     version: 5.59.5(@typescript-eslint/parser@5.59.5)(eslint@8.40.0)(typescript@5.0.4)
@@ -81,7 +87,7 @@ devDependencies:
     version: 5.0.4
   vite:
     specifier: ^4.3.0
-    version: 4.3.5
+    version: 4.3.5(@types/node@20.2.1)
 
 packages:
 
@@ -917,7 +923,7 @@ packages:
       svelte: 3.59.1
       tiny-glob: 0.2.9
       undici: 5.22.1
-      vite: 4.3.5
+      vite: 4.3.5(@types/node@20.2.1)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -935,7 +941,7 @@ packages:
       magic-string: 0.30.0
       svelte: 3.59.1
       svelte-hmr: 0.15.1(svelte@3.59.1)
-      vite: 4.3.5
+      vite: 4.3.5(@types/node@20.2.1)
       vitefu: 0.2.4(vite@4.3.5)
     transitivePeerDependencies:
       - supports-color
@@ -951,6 +957,10 @@ packages:
 
   /@types/json-schema@7.0.11:
     resolution: {integrity: sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==}
+    dev: true
+
+  /@types/node@20.2.1:
+    resolution: {integrity: sha512-DqJociPbZP1lbZ5SQPk4oag6W7AyaGMO6gSfRwq3PWl4PXTwJpRQJhDq4W0kzrg3w6tJ1SwlvGZ5uKFHY13LIg==}
     dev: true
 
   /@types/pug@2.0.6:
@@ -2501,7 +2511,7 @@ packages:
       punycode: 2.3.0
     dev: true
 
-  /vite@4.3.5:
+  /vite@4.3.5(@types/node@20.2.1):
     resolution: {integrity: sha512-0gEnL9wiRFxgz40o/i/eTBwm+NEbpUeTWhzKrZDSdKm6nplj+z4lKz8ANDgildxHm47Vg8EUia0aicKbawUVVA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -2526,6 +2536,7 @@ packages:
       terser:
         optional: true
     dependencies:
+      '@types/node': 20.2.1
       esbuild: 0.17.19
       postcss: 8.4.23
       rollup: 3.21.6
@@ -2541,7 +2552,7 @@ packages:
       vite:
         optional: true
     dependencies:
-      vite: 4.3.5
+      vite: 4.3.5(@types/node@20.2.1)
     dev: true
 
   /webidl-conversions@3.0.1:

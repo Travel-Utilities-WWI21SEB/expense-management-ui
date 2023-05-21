@@ -1,2 +1,2 @@
-<h1>Welcome to the Expense Management Tool of WWI21SEB!</h1>
+<h3>Welcome to the Expense Management Tool of WWI21SEB!</h3>
 <p>Homepage</p>
