@@ -7,14 +7,14 @@
 
 	let trip_name = 'Reise A';
 	let costs = [
-		{ name: 'Kostenpunkt Aiai' },
-		{ name: 'Kostenpunkt Jojo' },
-		{ name: 'Kostenpunkt Jojo' },
-		{ name: 'Kostenpunkt Jojo' },
-		{ name: 'Kostenpunkt Jojo' },
-		{ name: 'Kostenpunkt Jojo' },
-		{ name: 'Kostenpunkt Jojo' },
-		{ name: 'Kostenpunkt Jojo' }
+		{ name: 'Kostenpunkt Aiai', description: 'nlasivugablsiödnf' },
+		{ name: 'Kostenpunkt Jojo', description: 'nlasivugablsiödnf' },
+		{ name: 'Kostenpunkt Jojo', description: 'nlasivugablsiödnf' },
+		{ name: 'Kostenpunkt Jojo', description: 'nlasivugablsiödnf' },
+		{ name: 'Kostenpunkt Jojo', description: 'nlasivugablsiödnf' },
+		{ name: 'Kostenpunkt Jojo', description: 'nlasivugablsiödnf' },
+		{ name: 'Kostenpunkt Jojo', description: 'nlasivugablsiödnf' },
+		{ name: 'Kostenpunkt Jojo', description: 'nlasivugablsiödnf' }
 	];
 	let people = [
 		{ name: 'Aidan Zimmer' },
