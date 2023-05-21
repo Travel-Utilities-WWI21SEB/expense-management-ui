@@ -2,7 +2,7 @@
 	import Button from '@smui/button/src/Button.svelte';
 	import Card, { Content } from '@smui/card';
 	import Fab from '@smui/fab';
-	import LayoutGrid, { InnerGrid } from '@smui/layout-grid';
+	import LayoutGrid from '@smui/layout-grid';
 	import Cell from '@smui/layout-grid/src/Cell.svelte';
 	import { HeaderTripDetailsLayout } from '$components';
 

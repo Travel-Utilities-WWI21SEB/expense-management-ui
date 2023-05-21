@@ -1,8 +1,10 @@
 <script lang="ts">
 	import Card from '@smui/card/src/Card.svelte';
-	import List, { Graphic, Item, Meta, PrimaryText, SecondaryText, Text } from '@smui/list';
+	import List from '@smui/list';
+	import type { Cost } from '../../interfaces/TripDetails';
+	import { TripDetailsCostItem } from '$components';
 
-	export let costs: Array<{ name: string; description: string }>;
+	export let costs: Array<Cost>;
 
 	let list: InstanceType<typeof List>;
 
@@ -10,7 +12,7 @@
 </script>
 
 <Card variant="outlined" padded>
-	<h1>Costs</h1>
+	<div class="mdc-typography--headline4">Costs</div>
 	<List
 		class="demo-list"
 		bind:this={list}
@@ -20,25 +22,12 @@
 		selectedIndex={selectionIndex}
 	>
 		{#each costs as cost, i}
-			<Item on:SMUI:action={() => (selectionIndex = i)} selected={selectionIndex === i}>
-				<Graphic
-					style="background-image: url(https://placehold.co/40x40?text={cost.name
-						.split(' ')
-						.map((val) => val.substring(0, 1))
-						.join('')});"
-				/>
-				<Text>
-					<PrimaryText>{cost.name}</PrimaryText>
-					<SecondaryText>{cost.description}</SecondaryText>
-				</Text>
-				<Meta class="material-icons">info</Meta>
-			</Item>
-		{/each}
+			<TripDetailsCostItem {cost} {i} {selectionIndex} />{/each}
 	</List>
 </Card>
 
 <style>
-	* :global(.demo-list) {
-		max-width: 600px;
+	* :global(mdc-typography--headline6) {
+		color: #56e639;
 	}
 </style>

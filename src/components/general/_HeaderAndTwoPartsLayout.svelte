@@ -9,12 +9,12 @@
 				<slot name="header" />
 			</div>
 		</Cell>
-		<Cell spanDevices={{ desktop: 6, tablet: 6, phone: 12 }}>
+		<Cell spanDevices={{ desktop: 6, tablet: 8, phone: 12 }}>
 			<div class="element">
 				<slot name="left_element" />
 			</div>
 		</Cell>
-		<Cell spanDevices={{ desktop: 6, tablet: 6, phone: 12 }}>
+		<Cell spanDevices={{ desktop: 6, tablet: 8, phone: 12 }}>
 			<div class="element">
 				<slot name="rigth_element" />
 			</div>
@@ -23,6 +23,9 @@
 </div>
 
 <style>
+	.element {
+		width: 100%;
+	}
 	.wrapper {
 		width: 98vw;
 	}

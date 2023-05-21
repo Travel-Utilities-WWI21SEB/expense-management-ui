@@ -11,5 +11,5 @@
 	options={{
 		responsive: true
 	}}
-	style="max-height: 20rem"
+	style="max-height: 20rem max-width: 20rem"
 />
