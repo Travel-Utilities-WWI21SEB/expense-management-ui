@@ -1,8 +1,6 @@
 <script lang="ts">
 	import { PrimaryAction } from '@smui/card';
 	import Card from '@smui/card/src/Card.svelte';
-	import { stringify } from 'querystring';
-
 	export let costs: Array<{ name: string }>;
 </script>
 

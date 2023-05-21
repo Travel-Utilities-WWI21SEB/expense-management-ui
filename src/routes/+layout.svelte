@@ -111,21 +111,20 @@
 		position: relative;
 		display: flex;
 		border: 1px solid var(--mdc-theme-text-hint-on-background, rgba(0, 0, 0, 0.1));
-		overflow: hidden;
+		overflow: auto;
 		z-index: 0;
-		height: 100vh;
+		height: 93vh;
 	}
 
 	* :global(.app-content) {
 		flex: auto;
-		overflow: auto;
 		position: relative;
 		flex-grow: 1;
 	}
 
 	.main-content {
-		overflow: auto;
 		padding: 16px;
 		box-sizing: border-box;
+		width: 99vw;
 	}
 </style>

@@ -1,72 +1,100 @@
 <script lang="ts">
 	import Card, { Content, PrimaryAction } from '@smui/card';
-	import { Doughnut } from 'svelte-chartjs';
+	import LayoutGrid, { Cell } from '@smui/layout-grid';
+	import { DonutChart } from '$components';
+	import type { chartData, travelData } from '../../interfaces/TripOverview';
+	let travelData: Array<travelData> = [
+		{
+			name: 'Die epische Reise',
+			costcategories: [
+				{ name: 'Food', amount: 100, color: '#F7464A' },
+				{ name: 'Real Estate', amount: 400, color: '#949FB1' },
+				{ name: 'Mobility', amount: 200, color: '#46BFBD' }
+			],
 
-	import { Chart as ChartJS, Title, Tooltip, Legend, ArcElement, CategoryScale } from 'chart.js';
+			data: undefined,
+			endDate: new Date('2023-07-12'),
+			startDate: new Date('2023-06-12'),
+			totalCost: undefined,
+			location: 'Palo Alto'
+		},
+		{
+			name: 'Die guten alten Zeiten',
+			costcategories: [
+				{ name: 'Food', amount: 150, color: '#F7464A' },
+				{ name: 'Real Estate', amount: 500, color: '#949FB1' },
+				{ name: 'Mobility', amount: 250, color: '#46BFBD' },
+				{ name: 'Skiing', amount: 350, color: '#D3D3D3' }
+			],
 
-	let data = {
-		labels: ['Red', 'Green', 'Yellow', 'Grey', 'Dark Grey'],
-		datasets: [
-			{
-				data: [300, 50, 100, 40, 120],
-				backgroundColor: ['#F7464A', '#46BFBD', '#FDB45C', '#949FB1', '#4D5360']
-			}
-		]
-	};
+			data: undefined,
+			endDate: new Date('2024-04-02'),
+			startDate: new Date('2024-03-19'),
+			totalCost: undefined,
+			location: 'Vals Schweiz'
+		}
+	];
 
-	let sum = data.datasets[0].data.reduce((partialSum, a) => partialSum + a, 0);
-
-	ChartJS.register(Title, Tooltip, ArcElement);
+	travelData.map((trip) => {
+		let tripChartData: chartData = {
+			labels: [],
+			datasets: [
+				{
+					data: [],
+					backgroundColor: []
+				}
+			]
+		};
+		trip.costcategories.map((category) => {
+			tripChartData.labels.push(category.name);
+			tripChartData.datasets[0].data.push(category.amount);
+			tripChartData.datasets[0].backgroundColor.push(category.color);
+			return category;
+		});
+		trip.data = tripChartData;
+		trip.totalCost = tripChartData.datasets[0].data.reduce((partialSum, a) => partialSum + a, 0);
+		return trip;
+	});
 </script>
 
-<h2 class="mdc-typography--headline6" style="margin: 0;">All Trips</h2>
-<Card variant="outlined" style="max-width: 38rem">
-	<div class="flex-box">
-		<div class="flex-diagram">
-			<Doughnut
-				{data}
-				options={{
-					responsive: true,
-					plugins: {
-						title: {
-							display: true,
-							text: 'Total Cost: ' + sum + '$',
-							color: '#ff0000'
-						}
-					}
-				}}
-			/>
-		</div>
-		<div class="flex-action">
-			<PrimaryAction>
-				<Content class="mdc-typography--body2">
-					And some info text. And the media and info text are a primary action for the card.
-				</Content>
-			</PrimaryAction>
-		</div>
-	</div>
-</Card>
-
-<style>
-	.flex-diagram {
-		flex: 0;
-		width: fit-content;
-	}
-	.flex-action {
-		flex: 0;
-		min-width: 20rem;
-	}
-	.flex-box {
-		display: flex;
-		flex-direction: row;
-	}
-
-	@media (max-width: 680px) {
-		.flex-box {
-		display: flex;
-		flex-direction: column;
-	}
-	}
-
-
-</style>
+<h2 class="mdc-typography--headline4" style="margin: 0;">Get an Overview of all your Trips</h2>
+<LayoutGrid>
+	{#each travelData as trip}
+		<Cell spanDevices={{ desktop: 6, tablet: 4, phone: 12 }}>
+			<Card variant="outlined" padded>
+				<PrimaryAction>
+					<h2 class="mdc-typography--headline3" style="display: flex; justify-content: center;">
+						{trip.name}
+					</h2>
+					<div />
+					<LayoutGrid>
+						<Cell span={4}>
+							<h2 class="mdc-typography--subtitle1" style="padding: 0.5rem;">
+								Start Date: {trip.startDate.toDateString()}
+							</h2>
+						</Cell>
+						<Cell span={4}>
+							<h2 class="mdc-typography--subtitle1" style="padding: 0.5rem;">
+								End Date: {trip.endDate.toDateString()}
+							</h2>
+						</Cell>
+						<Cell span={4}>
+							<h2 class="mdc-typography--subtitle1" style="padding: 0.5rem;">
+								Location: {trip.location}
+							</h2>
+						</Cell>
+					</LayoutGrid>
+					{#if trip.data && trip.totalCost}
+						<h2
+							class="mdc-typography--headline6"
+							style="padding: 1rem; display: flex; justify-content: center;"
+						>
+							Total cost: {trip.totalCost}$
+						</h2>
+						<DonutChart data={trip.data} />
+					{/if}
+				</PrimaryAction>
+			</Card>
+		</Cell>
+	{/each}
+</LayoutGrid>
