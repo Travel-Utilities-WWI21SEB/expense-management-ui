@@ -29,9 +29,9 @@
 		<HeaderTripDetails {people} {trip_name} {time} />
 	</span>
 	<span slot="left_element">
-		<CostsOverviewTripDetails {costs} {trip_name} />
+		<CostsOverviewTripDetails {costs} />
 	</span>
 	<span slot="rigth_element">
-		<CostsOverviewTripDetails {costs} {trip_name} />
+		<CostsOverviewTripDetails {costs} />
 	</span>
 </HeaderAndTwoPartsLayout>

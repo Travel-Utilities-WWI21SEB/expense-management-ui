@@ -1,9 +1,8 @@
 <script lang="ts">
-	import Tooltip, { Wrapper } from '@smui/tooltip';
 	import Card, { Content } from '@smui/card';
 
-	export let trip_name: String;
-	export let time: String;
+	export let trip_name: string;
+	export let time: string;
 	export let people: Array<{ name: string }>;
 </script>
 
@@ -22,7 +21,7 @@
 			<div class="people">
 				{#each people as person}
 					<div class="person">
-						<span class="material-symbols-outlined"> account_circle </span>
+						<span id={person.name} class="material-symbols-outlined"> account_circle </span>
 					</div>
 				{/each}
 			</div>
