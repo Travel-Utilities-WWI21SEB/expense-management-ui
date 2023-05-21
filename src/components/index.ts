@@ -3,3 +3,4 @@ export { default as TripDetailsHeader } from './tripDetails/_HeaderTripDetails.s
 export { default as TripDetailsCostOverview } from './tripDetails/_CostsOverviewTripDetails.svelte';
 export { default as HeaderAndTwoPartsLayout } from './general/_HeaderAndTwoPartsLayout.svelte';
 export { default as DonutChart } from './tripOverview/_DonutChart.svelte';
+export { default as TripCard } from './tripOverview/_TripCard.svelte';
