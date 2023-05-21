@@ -4,6 +4,7 @@
 	import Fab from '@smui/fab';
 	import LayoutGrid, { InnerGrid } from '@smui/layout-grid';
 	import Cell from '@smui/layout-grid/src/Cell.svelte';
+	import { HeaderTripDetailsLayout } from '$components';
 
 	export let trip_name: string;
 	export let time: string;
@@ -12,12 +13,12 @@
 
 <Card variant="outlined">
 	<Content>
-		<LayoutGrid>
-			<Cell spanDevices={{ desktop: 8, tablet: 12, phone: 12 }}>
+		<HeaderTripDetailsLayout>
+			<span slot="main_details">
 				<h1>{trip_name}</h1>
 				<h6>{time}</h6>
-			</Cell>
-			<Cell spanDevices={{ desktop: 4, tablet: 12, phone: 12 }}>
+			</span>
+			<span slot="people">
 				<LayoutGrid align="left">
 					{#each people as person}
 						<Cell spanDevices={{ desktop: 2, tablet: 1, phone: 1 }}>
@@ -33,7 +34,7 @@
 						</Cell>
 					{/each}
 				</LayoutGrid>
-			</Cell>
-		</LayoutGrid>
+			</span>
+		</HeaderTripDetailsLayout>
 	</Content>
 </Card>
