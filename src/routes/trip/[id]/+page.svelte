@@ -1,7 +1,9 @@
 <script>
-	import HeaderAndTwoPartsLayout from '../../../components/general/HeaderAndTwoPartsLayout.svelte';
-	import CostsOverviewTripDetails from '../../../components/tripDetails/CostsOverviewTripDetails.svelte';
-	import HeaderTripDetails from '../../../components/tripDetails/HeaderTripDetails.svelte';
+	import {
+		HeaderAndTwoPartsLayout,
+		CostsOverviewTripDetails,
+		HeaderTripDetails
+	} from '$components';
 
 	let trip_name = 'Reise A';
 	let costs = [

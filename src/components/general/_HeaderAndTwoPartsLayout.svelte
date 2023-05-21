@@ -2,20 +2,6 @@
 	import LayoutGrid, { Cell } from '@smui/layout-grid';
 </script>
 
-<!-- <div class="wrapper">
-	<div class="header">
-		<slot name="header" />
-	</div>
-	<div class="row">
-		<div class="element">
-			<slot name="left_element" />
-		</div>
-		<div class="element">
-			<slot name="rigth_element" />
-		</div>
-	</div>
-</div> -->
-
 <div class="wrapper">
 	<LayoutGrid>
 		<Cell spanDevices={{ desktop: 12, tablet: 12, phone: 12 }}>
