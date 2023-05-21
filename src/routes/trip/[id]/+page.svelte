@@ -1,9 +1,5 @@
 <script>
-	import {
-		HeaderAndTwoPartsLayout,
-		CostsOverviewTripDetails,
-		HeaderTripDetails
-	} from '$components';
+	import { TripDetailsHeader, TripDetailsCostOverview, HeaderAndTwoPartsLayout } from '$components';
 
 	let trip_name = 'Reise A';
 	let costs = [
@@ -28,12 +24,12 @@
 
 <HeaderAndTwoPartsLayout>
 	<span slot="header">
-		<HeaderTripDetails {people} {trip_name} {time} />
+		<TripDetailsHeader {people} {trip_name} {time} />
 	</span>
 	<span slot="left_element">
-		<CostsOverviewTripDetails {costs} />
+		<TripDetailsCostOverview {costs} />
 	</span>
 	<span slot="rigth_element">
-		<CostsOverviewTripDetails {costs} />
+		<TripDetailsCostOverview {costs} />
 	</span>
 </HeaderAndTwoPartsLayout>
