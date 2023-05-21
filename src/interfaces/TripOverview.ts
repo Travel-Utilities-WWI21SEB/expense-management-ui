@@ -1,4 +1,4 @@
-export interface chartData {
+export interface ChartData {
     labels: Array<string>,
     datasets: Array<
         {
@@ -8,18 +8,18 @@ export interface chartData {
     >
 }
 
-export interface travelData {
+export interface TravelData {
     id: string
     name: string,
-    costcategories: Array<costcategories>,
-    data: chartData | undefined,
+    costcategories: Array<Costcategories>,
+    data: ChartData | undefined,
     startDate: Date,
     endDate: Date,
     totalCost: number | undefined,
     location: string
 }
 
-export interface costcategories {
+export interface Costcategories {
     name: string,
     amount: number,
     color: string

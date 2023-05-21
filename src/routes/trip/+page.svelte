@@ -1,10 +1,10 @@
 <script lang="ts">
 	import Card, { PrimaryAction } from '@smui/card';
 	import LayoutGrid, { Cell } from '@smui/layout-grid';
-	import type { chartData, travelData } from '../../interfaces/TripOverview';
+	import type { ChartData, TravelData } from '../../interfaces/TripOverview';
 	import { goto } from '$app/navigation';
 	import TripCard from '../../components/tripOverview/_TripCard.svelte';
-	let travelData: Array<travelData> = [
+	let travelData: Array<TravelData> = [
 		{
 			id: 'ABCD-01',
 			name: 'Die epische Reise',
@@ -39,7 +39,7 @@
 	];
 
 	travelData.map((trip) => {
-		let tripChartData: chartData = {
+		let tripChartData: ChartData = {
 			labels: [],
 			datasets: [
 				{
