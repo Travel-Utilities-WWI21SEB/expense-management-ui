@@ -1,8 +1,8 @@
 <script lang="ts">
 	import LayoutGrid, { Cell } from '@smui/layout-grid';
 	import { DonutChart } from '$components';
-	import type { travelData } from '../../interfaces/TripOverview';
-	export let trip: travelData;
+	import type { TravelData } from '../../interfaces/TripOverview';
+	export let trip: TravelData;
 </script>
 
 <LayoutGrid>
