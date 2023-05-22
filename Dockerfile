@@ -1,5 +1,5 @@
 # Node Base Image
-FROM node:19.9.0-alpine3.17 as build
+FROM node:20.2.0-alpine3.17 as build
 
 RUN corepack enable
 
@@ -16,7 +16,7 @@ RUN pnpm run prepare
 RUN pnpm run build
 
 # Serve the app with a minimal node image
-FROM node:19.9.0-slim as serve
+FROM node:20.2.0-slim as serve
 
 WORKDIR /svelte/app
 # Copy the app from the build stage
