@@ -21,15 +21,6 @@ pnpm run dev -- --open
 
 For every change you make in the scss-files, you have to run `pnpm run prepare` again.
 
-### Prepare your branch/Pull Request for Pipeline
-Check if the code style is correct with:
-```bash
-pnpm run lint
-```
-If there are issues occuring try using the following command to fix your style issues:
-```bash
-pnpm run format
-```
 ## Building
 
 To create a production version of your app:
