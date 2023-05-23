@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Card from '@smui/card/src/Card.svelte';
 	import List from '@smui/list';
-	import type { Cost } from '../../interfaces/TripDetails';
+	import type { Cost } from '../../interfaces/Trips';
 	import { TripDetailsCostItem } from '$components';
 
 	export let costs: Array<Cost>;
@@ -9,6 +9,10 @@
 	let list: InstanceType<typeof List>;
 
 	let selectionIndex = -1;
+
+	const handleSelectItem = (event: any) => {
+		selectionIndex = event.detail.index;
+	};
 </script>
 
 <Card variant="outlined" padded>
@@ -22,7 +26,13 @@
 		selectedIndex={selectionIndex}
 	>
 		{#each costs as cost, i}
-			<TripDetailsCostItem {cost} {i} {selectionIndex} />{/each}
+			<TripDetailsCostItem
+				on:select_item={(e) => handleSelectItem(e)}
+				{cost}
+				{i}
+				{selectionIndex}
+			/>
+		{/each}
 	</List>
 </Card>
 

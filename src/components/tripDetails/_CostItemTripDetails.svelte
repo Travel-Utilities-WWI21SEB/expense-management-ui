@@ -1,14 +1,23 @@
 <script lang="ts">
 	import { Graphic, Item, Meta, PrimaryText, SecondaryText, Text } from '@smui/list';
-	import type { Cost } from '../../interfaces/TripDetails';
+	import type { Cost } from '../../interfaces/Trips';
+	import { createEventDispatcher } from 'svelte';
 
 	export let cost: Cost;
 	export let i: number;
 	export let selectionIndex: number;
+
+	const dispatch = createEventDispatcher();
+
+	function selectListItem(i: number) {
+		dispatch('select_item', {
+			index: i
+		});
+	}
 </script>
 
 <Item
-	on:SMUI:action={() => (selectionIndex = i)}
+	on:SMUI:action={() => selectListItem(i)}
 	selected={selectionIndex === i}
 	onloadstart={() => {}}
 >

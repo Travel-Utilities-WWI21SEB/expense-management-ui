@@ -16,7 +16,7 @@
 		<HeaderTripDetailsLayout>
 			<span slot="main_details">
 				<h1>{trip_name}</h1>
-				<h6>{time}</h6>
+				<h6 style="padding: 1rem">{time}</h6>
 			</span>
 			<span slot="people">
 				<LayoutGrid align="left">
