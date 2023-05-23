@@ -1,8 +1,8 @@
 <script lang="ts">
 	import LayoutGrid, { Cell } from '@smui/layout-grid';
-	import { DonutChart, ParticipantIcon } from '$components';
+	import { DonutChart, ParticipantIcon, UserPaymentOverview } from '$components';
 	import type { TravelData } from '$tripDomain';
-	import { calculateDate } from '$utils';
+	import { TripInfos } from '$components';
 
 	export let trip: TravelData;
 </script>
@@ -17,18 +17,11 @@
 		spanDevices={{ desktop: 6, tablet: 12, phone: 12 }}
 		style="display: flex; justify-content: center; flex-direction:column"
 	>
-		<h2 class="mdc-typography--subtitle1" style="padding: 0.5rem;">
-			Start Date: {calculateDate(trip.startDate)}
-		</h2>
-		<h2 class="mdc-typography--subtitle1" style="padding: 0.5rem;">
-			End Date: {calculateDate(trip.endDate)}
-		</h2>
-		<h2 class="mdc-typography--subtitle1" style="padding: 0.5rem;">
-			Location: {trip.location}
-		</h2>
-		<LayoutGrid align="left">
+		<TripInfos {trip} />
+		<UserPaymentOverview {trip} />
+		<LayoutGrid style="margin-top: 2rem">
 			{#each trip.participants as participant}
-				<Cell spanDevices={{ desktop: 2, tablet: 1, phone: 1 }}>
+				<Cell spanDevices={{ desktop: 1, tablet: 1, phone: 1 }}>
 					<ParticipantIcon {participant} />
 				</Cell>
 			{/each}
@@ -40,7 +33,7 @@
 				class="mdc-typography--headline6"
 				style="padding: 1rem; display: flex; justify-content: center;"
 			>
-				Total cost: {trip.totalCost}$
+				Total cost: {trip.totalCost}€
 			</h2>
 			<DonutChart data={trip.data} />
 		</Cell>

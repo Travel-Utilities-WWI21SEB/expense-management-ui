@@ -22,7 +22,9 @@ const testTravelData: Array<TravelData> = [
 			{ name: 'Kevin Rieger' },
 			{ name: 'lisa Reß-Park' },
 			{ name: 'Luca Chmielarski' }
-		]
+		],
+		userDept: 200,
+		userGets: 120
 	},
 	{
 		id: 'ZYX-99',
@@ -39,7 +41,9 @@ const testTravelData: Array<TravelData> = [
 		startDate: new Date('2024-03-19'),
 		totalCost: undefined,
 		location: 'Vals Schweiz',
-		participants: [{ name: 'Aidan Zimmer' }, { name: 'Johanna Deike' }]
+		participants: [{ name: 'Aidan Zimmer' }, { name: 'Johanna Deike' }],
+		userDept: 300,
+		userGets: 50
 	}
 ];
 

@@ -7,7 +7,7 @@ export function calculateDate(date: Date) {
 		dd = '0' + dd;
 	}
 	if (mm < 10) {
-		mm = '0' + mm.toString();
+		mm = '0' + mm;
 	}
 
 	return dd + '.' + mm + '.' + yyyy;

@@ -32,7 +32,7 @@
 
 <HeaderAndTwoPartsLayout>
 	<span slot="header">
-		<TripDetailsHeader participants={trip.participants} trip_name={trip.name} {time} />
+		<TripDetailsHeader {trip} />
 	</span>
 	<span slot="left_element">
 		<TripDetailsCostOverview {costs} />

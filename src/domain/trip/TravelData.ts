@@ -6,10 +6,12 @@ export interface TravelData {
 	id: string;
 	name: string;
 	costCategories: Array<CostCategory>;
-	data: ChartData | undefined;
+	data?: ChartData;
 	startDate: Date;
 	endDate: Date;
-	totalCost: number | undefined;
+	totalCost?: number;
 	location: string;
 	participants: Array<User>;
+	userDept: number;
+	userGets: number;
 }
