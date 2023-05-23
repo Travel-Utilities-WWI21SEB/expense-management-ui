@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store';
 import type { TravelData } from '../interfaces/Trips';
 
-let testTravelData: Array<TravelData> = [
+const testTravelData: Array<TravelData> = [
 	{
 		id: 'ABCD-01',
 		name: 'Die epische Reise',

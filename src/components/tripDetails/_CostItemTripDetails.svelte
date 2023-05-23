@@ -16,11 +16,7 @@
 	}
 </script>
 
-<Item
-	on:SMUI:action={() => selectListItem(i)}
-	selected={selectionIndex === i}
-	onloadstart={() => {}}
->
+<Item on:SMUI:action={() => selectListItem(i)} selected={selectionIndex === i}>
 	<Graphic
 		style="background-image: url(https://placehold.co/40x40/${cost.costCategory
 			.color}/ffffff?text={cost.costCategory.name

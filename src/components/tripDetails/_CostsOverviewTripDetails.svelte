@@ -10,7 +10,7 @@
 
 	let selectionIndex = -1;
 
-	const handleSelectItem = (event: any) => {
+	const handleSelectItem = (event: CustomEvent<any>) => {
 		selectionIndex = event.detail.index;
 	};
 </script>
