@@ -1,7 +1,8 @@
 <script lang="ts">
 	import LayoutGrid, { Cell } from '@smui/layout-grid';
 	import { DonutChart } from '$components';
-	import type { TravelData } from '../../interfaces/TripOverview';
+	import type { TravelData } from '../../interfaces/Trips';
+	import { calculateDate } from '../../modules/general.svelte';
 	export let trip: TravelData;
 </script>
 
@@ -16,10 +17,10 @@
 		style="display: flex; justify-content: center; flex-direction:column"
 	>
 		<h2 class="mdc-typography--subtitle1" style="padding: 0.5rem;">
-			Start Date: {trip.startDate.toDateString()}
+			Start Date: {calculateDate(trip.startDate)}
 		</h2>
 		<h2 class="mdc-typography--subtitle1" style="padding: 0.5rem;">
-			End Date: {trip.endDate.toDateString()}
+			End Date: {calculateDate(trip.endDate)}
 		</h2>
 		<h2 class="mdc-typography--subtitle1" style="padding: 0.5rem;">
 			Location: {trip.location}
