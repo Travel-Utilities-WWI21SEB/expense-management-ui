@@ -1,14 +1,33 @@
 <script lang="ts">
-	import { PrimaryAction } from '@smui/card';
 	import Card from '@smui/card/src/Card.svelte';
-	export let costs: Array<{ name: string }>;
+	import List from '@smui/list';
+	import type { Cost } from '../../interfaces/TripDetails';
+	import { TripDetailsCostItem } from '$components';
+
+	export let costs: Array<Cost>;
+
+	let list: InstanceType<typeof List>;
+
+	let selectionIndex = -1;
 </script>
 
 <Card variant="outlined" padded>
-	<h1>Costs</h1>
-	{#each costs as cost, i}
-		<PrimaryAction id={i.toString()}>
-			<Card padded variant="outlined">{cost.name}</Card>
-		</PrimaryAction>
-	{/each}
+	<div class="mdc-typography--headline4">Costs</div>
+	<List
+		class="demo-list"
+		bind:this={list}
+		twoLine
+		avatarList
+		singleSelection
+		selectedIndex={selectionIndex}
+	>
+		{#each costs as cost, i}
+			<TripDetailsCostItem {cost} {i} {selectionIndex} />{/each}
+	</List>
 </Card>
+
+<style>
+	* :global(mdc-typography--headline6) {
+		color: #56e639;
+	}
+</style>

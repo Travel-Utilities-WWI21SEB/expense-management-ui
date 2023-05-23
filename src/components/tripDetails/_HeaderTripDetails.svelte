@@ -1,53 +1,40 @@
 <script lang="ts">
+	import Button from '@smui/button/src/Button.svelte';
 	import Card, { Content } from '@smui/card';
+	import Fab from '@smui/fab';
+	import LayoutGrid from '@smui/layout-grid';
+	import Cell from '@smui/layout-grid/src/Cell.svelte';
+	import { HeaderTripDetailsLayout } from '$components';
 
 	export let trip_name: string;
 	export let time: string;
 	export let people: Array<{ name: string }>;
 </script>
 
-<link
-	rel="stylesheet"
-	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-/>
-
 <Card variant="outlined">
 	<Content>
-		<div class="alignleft">
-			<h1>{trip_name}</h1>
-			<h6>{time}</h6>
-		</div>
-		<div class="alignright">
-			<div class="people">
-				{#each people as person}
-					<div class="person">
-						<span id={person.name} class="material-symbols-outlined"> account_circle </span>
-					</div>
-				{/each}
-			</div>
-		</div>
+		<HeaderTripDetailsLayout>
+			<span slot="main_details">
+				<h1>{trip_name}</h1>
+				<h6>{time}</h6>
+			</span>
+			<span slot="people">
+				<LayoutGrid align="left">
+					{#each people as person}
+						<Cell spanDevices={{ desktop: 2, tablet: 1, phone: 1 }}>
+							<Button disabled>
+								<Fab
+									ripple={false}
+									style="background-image: url(https://placehold.co/58x58/a8e3f1/white?text={person.name
+										.split(' ')
+										.map((val) => val.substring(0, 1))
+										.join('')});"
+								/>
+							</Button>
+						</Cell>
+					{/each}
+				</LayoutGrid>
+			</span>
+		</HeaderTripDetailsLayout>
 	</Content>
 </Card>
-
-<style>
-	.people {
-		display: flex;
-	}
-
-	.person {
-		padding: 0.1rem;
-	}
-
-	.alignleft {
-		float: left;
-		padding: 1rem;
-	}
-	.alignright {
-		float: right;
-		padding: 1rem;
-	}
-
-	.material-symbols-outlined {
-		font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 0, 'opsz' 48;
-	}
-</style>
