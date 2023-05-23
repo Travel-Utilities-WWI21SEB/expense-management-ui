@@ -21,13 +21,6 @@
 		id: '982734592873465'
 	};
 	let costs = [cost, cost, cost, cost, cost, cost, cost, cost, cost, cost, cost, cost];
-	let people = [
-		{ name: 'Aidan Zimmer' },
-		{ name: 'Johanna Deike' },
-		{ name: 'Kevin Rieger' },
-		{ name: 'lisa Reß-Park' },
-		{ name: 'Luca Chmielarski' }
-	];
 	let time: string;
 
 	let trip: TravelData;
@@ -39,7 +32,7 @@
 
 <HeaderAndTwoPartsLayout>
 	<span slot="header">
-		<TripDetailsHeader {people} trip_name={trip.name} {time} />
+		<TripDetailsHeader participants={trip.participants} trip_name={trip.name} {time} />
 	</span>
 	<span slot="left_element">
 		<TripDetailsCostOverview {costs} />

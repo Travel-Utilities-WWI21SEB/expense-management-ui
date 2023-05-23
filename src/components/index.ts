@@ -7,6 +7,7 @@ export { default as TripDetailsCostOverview } from './tripDetails/_CostsOverview
 export { default as HeaderAndTwoPartsLayout } from './general/_HeaderAndTwoPartsLayout.svelte';
 export { default as TripDetailsCostItem } from './tripDetails/_CostItemTripDetails.svelte';
 export { default as TripDetailsDashboard } from './tripDetails/_DashboardTripDetails.svelte';
+export { default as ParticipantIcon } from './tripDetails/_ParticipantIcon.svelte';
 
 export { default as DonutChart } from './tripOverview/_DonutChart.svelte';
 export { default as TripCard } from './tripOverview/_TripCard.svelte';

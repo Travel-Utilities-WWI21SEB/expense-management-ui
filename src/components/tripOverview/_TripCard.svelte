@@ -1,6 +1,6 @@
 <script lang="ts">
 	import LayoutGrid, { Cell } from '@smui/layout-grid';
-	import { DonutChart } from '$components';
+	import { DonutChart, ParticipantIcon } from '$components';
 	import type { TravelData } from '../../interfaces/Trips';
 	import { calculateDate } from '../../modules/general.svelte';
 	export let trip: TravelData;
@@ -25,6 +25,13 @@
 		<h2 class="mdc-typography--subtitle1" style="padding: 0.5rem;">
 			Location: {trip.location}
 		</h2>
+		<LayoutGrid align="left">
+			{#each trip.participants as participant}
+				<Cell spanDevices={{ desktop: 2, tablet: 1, phone: 1 }}>
+					<ParticipantIcon {participant} />
+				</Cell>
+			{/each}
+		</LayoutGrid>
 	</Cell>
 	{#if trip.data && trip.totalCost}
 		<Cell spanDevices={{ desktop: 6, tablet: 12, phone: 12 }}>

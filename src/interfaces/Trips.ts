@@ -15,6 +15,11 @@ export interface TravelData {
 	endDate: Date;
 	totalCost: number | undefined;
 	location: string;
+	participants: Array<User>;
+}
+
+export interface User {
+	name: string;
 }
 
 export interface CostCategory {

@@ -15,7 +15,14 @@ let testTravelData: Array<TravelData> = [
 		endDate: new Date('2023-07-12'),
 		startDate: new Date('2023-06-12'),
 		totalCost: undefined,
-		location: 'Palo Alto'
+		location: 'Palo Alto',
+		participants: [
+			{ name: 'Aidan Zimmer' },
+			{ name: 'Johanna Deike' },
+			{ name: 'Kevin Rieger' },
+			{ name: 'lisa Reß-Park' },
+			{ name: 'Luca Chmielarski' }
+		]
 	},
 	{
 		id: 'ZYX-99',
@@ -31,7 +38,8 @@ let testTravelData: Array<TravelData> = [
 		endDate: new Date('2024-04-02'),
 		startDate: new Date('2024-03-19'),
 		totalCost: undefined,
-		location: 'Vals Schweiz'
+		location: 'Vals Schweiz',
+		participants: [{ name: 'Aidan Zimmer' }, { name: 'Johanna Deike' }]
 	}
 ];
 
