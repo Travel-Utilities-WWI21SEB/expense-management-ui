@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { DonutChart } from '$components';
 	import Card, { Content } from '@smui/card';
-	import type { TravelData } from '../../interfaces/Trips';
+	import type { TravelData } from '$tripDomain';
 
 	export let trip: TravelData;
 </script>

@@ -1,11 +1,11 @@
 import { writable } from 'svelte/store';
-import type { TravelData } from '../interfaces/Trips';
+import type { TravelData } from '$tripDomain';
 
 const testTravelData: Array<TravelData> = [
 	{
 		id: 'ABCD-01',
 		name: 'Die epische Reise',
-		costcategories: [
+		costCategories: [
 			{ name: 'Food', totalAmount: 100, color: '#F7464A', icon: 'unicode' },
 			{ name: 'Real Estate', totalAmount: 400, color: '#949FB1', icon: 'unicode' },
 			{ name: 'Mobility', totalAmount: 200, color: '#46BFBD', icon: 'unicode' }
@@ -27,7 +27,7 @@ const testTravelData: Array<TravelData> = [
 	{
 		id: 'ZYX-99',
 		name: 'Die guten alten Zeiten',
-		costcategories: [
+		costCategories: [
 			{ name: 'Food', totalAmount: 150, color: '#F7464A', icon: 'unicode' },
 			{ name: 'Real Estate', totalAmount: 500, color: '#949FB1', icon: 'unicode' },
 			{ name: 'Mobility', totalAmount: 250, color: '#46BFBD', icon: 'unicode' },

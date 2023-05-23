@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { Doughnut } from 'svelte-chartjs';
 	import { Chart as ChartJS, Title, Tooltip, ArcElement } from 'chart.js';
-	export let data: import('../../interfaces/Trips').ChartData;
+	import type { ChartData } from '$tripDomain';
+
+	export let data: ChartData;
 
 	ChartJS.register(Title, Tooltip, ArcElement);
 </script>

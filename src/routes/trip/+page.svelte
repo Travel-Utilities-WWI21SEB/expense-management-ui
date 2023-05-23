@@ -1,10 +1,11 @@
 <script lang="ts">
 	import Card, { PrimaryAction } from '@smui/card';
 	import LayoutGrid, { Cell } from '@smui/layout-grid';
-	import type { ChartData, TravelData } from '../../interfaces/Trips';
+	import type { ChartData, TravelData } from '$tripDomain';
 	import { goto } from '$app/navigation';
-	import TripCard from '../../components/tripOverview/_TripCard.svelte';
-	import { allTrips, currentTrip } from '../../stores/tripsStore';
+	import { TripCard } from '$components';
+	import { allTrips, currentTrip } from '$stores';
+
 	let tripData: Array<TravelData>;
 
 	allTrips.subscribe((storeData) => {
@@ -19,7 +20,7 @@
 					}
 				]
 			};
-			trip.costcategories.map((category) => {
+			trip.costCategories.map((category) => {
 				tripChartData.labels.push(category.name);
 				tripChartData.datasets[0].data.push(category.totalAmount);
 				tripChartData.datasets[0].backgroundColor.push(category.color);

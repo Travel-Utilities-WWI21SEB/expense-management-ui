@@ -1,8 +1,9 @@
 <script lang="ts">
 	import LayoutGrid, { Cell } from '@smui/layout-grid';
 	import { DonutChart, ParticipantIcon } from '$components';
-	import type { TravelData } from '../../interfaces/Trips';
-	import { calculateDate } from '../../modules/general.svelte';
+	import type { TravelData } from '$tripDomain';
+	import { calculateDate } from '$utils';
+
 	export let trip: TravelData;
 </script>
 

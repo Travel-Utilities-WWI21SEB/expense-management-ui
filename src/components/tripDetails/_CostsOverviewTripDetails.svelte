@@ -1,13 +1,12 @@
 <script lang="ts">
 	import Card from '@smui/card/src/Card.svelte';
 	import List from '@smui/list';
-	import type { Cost } from '../../interfaces/Trips';
+	import type { Cost } from '$tripDomain';
 	import { TripDetailsCostItem } from '$components';
 
 	export let costs: Array<Cost>;
 
 	let list: InstanceType<typeof List>;
-
 	let selectionIndex = -1;
 
 	const handleSelectItem = (event: CustomEvent<any>) => {

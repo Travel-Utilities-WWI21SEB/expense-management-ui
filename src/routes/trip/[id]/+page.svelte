@@ -5,10 +5,10 @@
 		HeaderAndTwoPartsLayout,
 		TripDetailsDashboard
 	} from '$components';
-	import type { Cost } from '../../../interfaces/Trips';
-	import type { TravelData } from '../../../interfaces/Trips';
-	import { calculateDate } from '../../../modules/general.svelte';
-	import { currentTrip } from '../../../stores/tripsStore';
+	import type { Cost } from '$tripDomain';
+	import type { TravelData } from '$tripDomain';
+	import { calculateDate } from '$utils';
+	import { currentTrip } from '$stores';
 
 	let cost: Cost = {
 		name: 'Kostenpunkt Aiai',

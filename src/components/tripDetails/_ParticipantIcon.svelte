@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Button from '@smui/button/src/Button.svelte';
 	import Fab from '@smui/fab';
-	import type { User } from '../../interfaces/Trips';
+	import type { User } from '$userDomain';
 
 	export let participant: User;
 </script>
