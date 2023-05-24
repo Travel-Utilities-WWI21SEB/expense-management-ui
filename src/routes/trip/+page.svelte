@@ -42,11 +42,13 @@
 <LayoutGrid>
 	{#each tripData as trip}
 		<Cell spanDevices={{ desktop: 6, tablet: 4, phone: 12 }}>
-			<Card variant="outlined" padded>
-				<PrimaryAction on:click={() => onTripCardClick(trip)}>
-					<TripCard {trip} />
-				</PrimaryAction>
-			</Card>
+			<div class="mdc-elevation--z3">
+				<Card variant="outlined" padded>
+					<PrimaryAction on:click={() => onTripCardClick(trip)}>
+						<TripCard {trip} />
+					</PrimaryAction>
+				</Card>
+			</div>
 		</Cell>
 	{/each}
 </LayoutGrid>

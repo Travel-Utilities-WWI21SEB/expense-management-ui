@@ -10,5 +10,5 @@ export function calculateDate(date: Date) {
 		mm = '0' + mm;
 	}
 
-	return dd + '.' + mm + '.' + yyyy;
+	return `${dd}.${mm}.${yyyy}`;
 }

@@ -1,9 +1,12 @@
 <script lang="ts">
 	import Card, { Content } from '@smui/card';
-	import LayoutGrid from '@smui/layout-grid';
-	import Cell from '@smui/layout-grid/src/Cell.svelte';
-	import { HeaderTripDetailsLayout, TripInfos, UserPaymentOverview } from '$components';
-	import ParticipantIcon from './_ParticipantIcon.svelte';
+	import LayoutGrid, { Cell } from '@smui/layout-grid';
+	import {
+		HeaderTripDetailsLayout,
+		TripInfos,
+		UserPaymentOverview,
+		ParticipantIcon
+	} from '$components';
 	import type { TravelData } from '$tripDomain';
 
 	export let trip: TravelData;

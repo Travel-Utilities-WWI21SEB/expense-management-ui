@@ -5,9 +5,7 @@
 		HeaderAndTwoPartsLayout,
 		TripDetailsDashboard
 	} from '$components';
-	import type { Cost } from '$tripDomain';
-	import type { TravelData } from '$tripDomain';
-	import { calculateDate } from '$utils';
+	import type { Cost, TravelData } from '$tripDomain';
 	import { currentTrip } from '$stores';
 
 	let cost: Cost = {
@@ -21,23 +19,27 @@
 		id: '982734592873465'
 	};
 	let costs = [cost, cost, cost, cost, cost, cost, cost, cost, cost, cost, cost, cost];
-	let time: string;
 
 	let trip: TravelData;
 	currentTrip.subscribe((currentTrip) => {
 		trip = currentTrip;
-		time = calculateDate(currentTrip.startDate) + ' - ' + calculateDate(currentTrip.endDate);
 	});
 </script>
 
 <HeaderAndTwoPartsLayout>
 	<span slot="header">
-		<TripDetailsHeader {trip} />
+		<div class="mdc-elevation--z3">
+			<TripDetailsHeader {trip} />
+		</div>
 	</span>
 	<span slot="left_element">
-		<TripDetailsCostOverview {costs} />
+		<div class="mdc-elevation--z3">
+			<TripDetailsCostOverview {costs} />
+		</div>
 	</span>
 	<span slot="right_element">
-		<TripDetailsDashboard {trip} />
+		<div class="mdc-elevation--z3">
+			<TripDetailsDashboard {trip} />
+		</div>
 	</span>
 </HeaderAndTwoPartsLayout>

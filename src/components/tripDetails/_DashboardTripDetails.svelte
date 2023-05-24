@@ -13,7 +13,7 @@
 			class="mdc-typography--headline6"
 			style="padding: 1rem; display: flex; justify-content: center;"
 		>
-			Total cost: {trip.totalCost + ' €'}
+			Total cost: {`${trip.totalCost}€`}
 		</div>
 		{#if trip.data}
 			<DonutChart data={trip.data} />

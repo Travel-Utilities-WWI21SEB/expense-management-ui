@@ -2,6 +2,7 @@
 	import { Graphic, Item, Meta, PrimaryText, SecondaryText, Text } from '@smui/list';
 	import type { Cost } from '$tripDomain';
 	import { createEventDispatcher } from 'svelte';
+	import { calculateDate } from '$utils';
 
 	export let cost: Cost;
 	export let i: number;
@@ -27,12 +28,12 @@
 	<Text>
 		<PrimaryText>{cost.name}</PrimaryText>
 		<SecondaryText
-			>{cost.startDate.toDateString() + ' - ' + cost.endDate.toDateString()}</SecondaryText
+			>{`${calculateDate(cost.startDate)} - ${calculateDate(cost.endDate)}`}</SecondaryText
 		>
 	</Text>
 	<Meta class="demo-list">
 		<div class="mdc-typography--headline6">
-			{cost.amount.toString() + ' ' + cost.currency}
+			{`${cost.amount.toString()} ${cost.currency}`}
 		</div>
 	</Meta>
 </Item>
