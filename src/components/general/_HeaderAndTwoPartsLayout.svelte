@@ -16,7 +16,7 @@
 		</Cell>
 		<Cell spanDevices={{ desktop: 6, tablet: 8, phone: 12 }}>
 			<div class="element">
-				<slot name="rigth_element" />
+				<slot name="right_element" />
 			</div>
 		</Cell>
 	</LayoutGrid>

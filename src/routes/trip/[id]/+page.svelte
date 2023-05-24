@@ -15,8 +15,8 @@
 		amount: 45,
 		costCategory: { name: 'Miete', color: '000000', icon: 'unicode', totalAmount: 450 },
 		creationDate: new Date(),
-		endDate: new Date(),
-		startDate: new Date(),
+		endDate: new Date('2023-06-25'),
+		startDate: new Date('2023-05-25'),
 		currency: 'EUR',
 		id: '982734592873465'
 	};
@@ -37,7 +37,7 @@
 	<span slot="left_element">
 		<TripDetailsCostOverview {costs} />
 	</span>
-	<span slot="rigth_element">
+	<span slot="right_element">
 		<TripDetailsDashboard {trip} />
 	</span>
 </HeaderAndTwoPartsLayout>
