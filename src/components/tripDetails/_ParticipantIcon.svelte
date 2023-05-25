@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Button from '@smui/button';
 	import Fab from '@smui/fab';
-	//import Tooltip, { Wrapper } from '@smui/tooltip';
 	import type { User } from '$userDomain';
 	import Tooltip from './_Tooltip.svelte';
 
