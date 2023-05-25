@@ -25,14 +25,20 @@
 		"smui-theme-dark": "smui-theme compile static/smui-dark.css -i src/theme/dark -i ./node_modules"
 	},
 	"devDependencies": {
+		"@material/elevation": "^14.0.0",
 		"@material/typography": "^14.0.0",
 		"@smui/button": "7.0.0-beta.8",
 		"@smui/card": "7.0.0-beta.8",
+		"@smui/common": "7.0.0-beta.8",
 		"@smui/drawer": "7.0.0-beta.8",
+		"@smui/fab": "7.0.0-beta.8",
 		"@smui/icon-button": "7.0.0-beta.8",
+		"@smui/layout-grid": "7.0.0-beta.8",
 		"@smui/list": "7.0.0-beta.8",
 		"@smui/menu": "7.0.0-beta.8",
 		"@smui/menu-surface": "7.0.0-beta.8",
+		"@smui/paper": "7.0.0-beta.8",
+		"@smui/tooltip": "7.0.0-beta.8",
 		"@smui/top-app-bar": "7.0.0-beta.8",
 		"@sveltejs/adapter-node": "^1.2.4",
 		"@sveltejs/kit": "^1.5.0",
@@ -51,5 +57,9 @@
 		"typescript": "^5.0.0",
 		"vite": "^4.3.0"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"chart.js": "^4.3.0",
+		"svelte-chartjs": "^3.1.2"
+	}
 }
