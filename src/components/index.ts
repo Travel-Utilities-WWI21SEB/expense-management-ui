@@ -1,5 +1,10 @@
 export { default as UserCard } from './_UserCard.svelte';
 
+// Homepage
+export { default as HomepageHeader } from './homepage/_HomepageHeader.svelte';
+export { default as HomepageTopPart } from './homepage/_HomepageTopPart.svelte';
+export { default as HomepageBottomPart } from './homepage/_HomepageBottomPart.svelte';
+
 //Trip Details
 export { default as CostsOverviewTripDetails } from './tripDetails/_CostsOverviewTripDetails.svelte';
 export { default as TripDetailsHeader } from './tripDetails/_HeaderTripDetails.svelte';
