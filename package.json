@@ -19,27 +19,10 @@
 		"prep-pr": "pnpm check && pnpm lint && pnpm build",
 		"docker:build": "docker build -t expense-ui .",
 		"docker:run": "docker run -d -p 4174:3000 --name expense-ui-container expense-ui",
-		"docker:stop": "docker stop expense-ui-container && docker rm expense-ui-container",
-		"prepare": "pnpm run smui-theme-light && pnpm run smui-theme-dark",
-		"smui-theme-light": "smui-theme compile static/smui.css -i src/theme -i ./node_modules",
-		"smui-theme-dark": "smui-theme compile static/smui-dark.css -i src/theme/dark -i ./node_modules"
+		"docker:stop": "docker stop expense-ui-container && docker rm expense-ui-container"
 	},
 	"devDependencies": {
-		"@material/elevation": "^14.0.0",
-		"@material/typography": "^14.0.0",
-		"@smui/button": "7.0.0-beta.8",
-		"@smui/card": "7.0.0-beta.8",
-		"@smui/common": "7.0.0-beta.8",
-		"@smui/drawer": "7.0.0-beta.8",
-		"@smui/fab": "7.0.0-beta.8",
-		"@smui/icon-button": "7.0.0-beta.8",
-		"@smui/layout-grid": "7.0.0-beta.8",
-		"@smui/list": "7.0.0-beta.8",
-		"@smui/menu": "7.0.0-beta.8",
-		"@smui/menu-surface": "7.0.0-beta.8",
-		"@smui/paper": "7.0.0-beta.8",
-		"@smui/tooltip": "7.0.0-beta.8",
-		"@smui/top-app-bar": "7.0.0-beta.8",
+		"@skeletonlabs/skeleton": "^1.6.2",
 		"@sveltejs/adapter-node": "^1.2.4",
 		"@sveltejs/kit": "^1.5.0",
 		"@types/node": "^20.2.1",
@@ -55,7 +38,12 @@
 		"svelte-check": "^3.0.1",
 		"tslib": "^2.4.1",
 		"typescript": "^5.0.0",
-		"vite": "^4.3.0"
+		"vite": "^4.3.0",
+		"postcss": "^8.4.23",
+		"postcss-load-config": "^4.0.1",
+		"svelte-preprocess": "^5.0.3",
+		"autoprefixer": "^10.4.14",
+		"tailwindcss": "^3.3.1"
 	},
 	"type": "module",
 	"dependencies": {
