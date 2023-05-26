@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 	import { Graphic, Item, Meta, PrimaryText, SecondaryText, Text } from '@smui/list';
 	import type { Cost } from '$tripDomain';
 	import { createEventDispatcher } from 'svelte';
@@ -43,3 +43,4 @@
 		max-width: 600px;
 	}
 </style>
+ -->

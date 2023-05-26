@@ -11,6 +11,6 @@
 </script>
 
 <h1>TBD</h1>
-
+<slot />
 <style>
 </style>

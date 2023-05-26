@@ -1,6 +1,4 @@
 <script lang="ts">
-	import Card, { PrimaryAction } from '@smui/card';
-	import LayoutGrid, { Cell } from '@smui/layout-grid';
 	import type { ChartData, TravelData } from '$tripDomain';
 	import { goto } from '$app/navigation';
 	import { TripCard } from '$components';
@@ -38,17 +36,11 @@
 	}
 </script>
 
-<h2 class="mdc-typography--headline4" style="margin: 0;">Get an Overview of all your Trips</h2>
-<LayoutGrid>
-	{#each tripData as trip}
-		<Cell spanDevices={{ desktop: 6, tablet: 4, phone: 12 }}>
-			<div class="mdc-elevation--z3">
-				<Card variant="outlined" padded>
-					<PrimaryAction on:click={() => onTripCardClick(trip)}>
-						<TripCard {trip} />
-					</PrimaryAction>
-				</Card>
-			</div>
-		</Cell>
-	{/each}
-</LayoutGrid>
+<h4 class="h4" style="margin: 0;">Get an Overview of all your Trips</h4>
+{#each tripData as trip}
+	<button class="w-48 md:w-32 lg:w.48" on:click={() => onTripCardClick(trip)}>
+		<div class="card p-4">
+			<TripCard {trip} />
+		</div>
+	</button>
+{/each}

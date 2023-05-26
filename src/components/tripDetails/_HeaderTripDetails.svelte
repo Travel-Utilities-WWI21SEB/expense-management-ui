@@ -1,6 +1,4 @@
 <script lang="ts">
-	import Card, { Content } from '@smui/card';
-	import LayoutGrid, { Cell } from '@smui/layout-grid';
 	import {
 		HeaderTripDetailsLayout,
 		TripInfos,
@@ -12,25 +10,21 @@
 	export let trip: TravelData;
 </script>
 
-<Card variant="outlined">
-	<Content>
-		<HeaderTripDetailsLayout>
-			<span slot="main_details">
-				<h3 class="mdc-typography--headline3">{trip.name}</h3>
-				<TripInfos {trip} />
-			</span>
-			<span slot="payments">
-				<UserPaymentOverview {trip} />
-			</span>
-			<span slot="people">
-				<LayoutGrid align="left">
-					{#each trip.participants as participant}
-						<Cell spanDevices={{ desktop: 1, tablet: 1, phone: 1 }}>
-							<ParticipantIcon {participant} />
-						</Cell>
-					{/each}
-				</LayoutGrid>
-			</span>
-		</HeaderTripDetailsLayout>
-	</Content>
-</Card>
+<div class="card p-4">
+	<HeaderTripDetailsLayout>
+		<span slot="main_details">
+			<h3 class="h3">{trip.name}</h3>
+			<TripInfos {trip} />
+		</span>
+		<span slot="payments">
+			<UserPaymentOverview {trip} />
+		</span>
+		<span slot="people">
+			{#each trip.participants as participant}
+				<div style="margin-top: 2rem" class="w-1">
+					<ParticipantIcon {participant} />
+				</div>
+			{/each}
+		</span>
+	</HeaderTripDetailsLayout>
+</div>
