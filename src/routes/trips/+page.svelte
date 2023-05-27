@@ -36,10 +36,14 @@
 	}
 </script>
 
-<h2 class="h2" style="margin: 0;">Get an Overview of all your Trips</h2>
-<div class="xl:grid xl:grid-cols-2 py-8">
+<h2 class="h2">Get an Overview of all your Trips</h2>
+<div class="xl:grid xl:grid-cols-2">
 	{#each tripData as trip}
-		<button class="block card card-hover" style="width: 98%" on:click={() => onTripCardClick(trip)}>
+		<button
+			class="block card card-hover my-6 shadow-xl"
+			style="width: 98%"
+			on:click={() => onTripCardClick(trip)}
+		>
 			<TripCard {trip} />
 		</button>
 	{/each}
