@@ -1,3 +1,7 @@
-<slot name="main_details" class="w-24 md:w-48 lg:w.48" />
-<slot name="payments" class="w-24 md:w-48 lg:w.48" />
-<slot name="people" class="w-24 md:w-48 lg:w.48" />
+<div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
+	<slot name="main_details" />
+	<slot name="payments" />
+	<div class="sm:col-span-2 md:col-span-1">
+		<slot name="people" />
+	</div>
+</div>

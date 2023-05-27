@@ -7,5 +7,11 @@
 </script>
 
 <Tooltip>
-	<Avatar initials={participant.name} background="bg-primary-500" />
+	<Avatar
+		initials={participant.name
+			.split(' ')
+			.map((val) => val.substring(0, 1))
+			.join('')}
+		background="bg-primary-500"
+	/>
 </Tooltip>
