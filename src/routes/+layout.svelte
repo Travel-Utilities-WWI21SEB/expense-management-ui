@@ -14,8 +14,8 @@
 </script>
 
 <!-- MOBILE ONLY! -->
-<Drawer>
-	<h3 class="h3">Navigation</h3>
+<Drawer width="w-28" height="max-h-full" class="p-0 m-1">
+	<h3 class="h3 font-bold">Navigation</h3>
 	<hr class="!border-t-4" />
 	<Sidebar />
 </Drawer>

@@ -13,6 +13,7 @@ module.exports = {
 		extend: {}
 	},
 	plugins: [
+		require('@tailwindcss/forms'),
 		// 3. Append the Skeleton plugin to the end of this list
 		// eslint-disable-next-line @typescript-eslint/no-var-requires
 		...require('@skeletonlabs/skeleton/tailwind/skeleton.cjs')()

@@ -8,7 +8,7 @@
 	}
 </script>
 
-<AppRail gap="gap-10" width="w-20" border="">
+<AppRail gap="gap-2" width="w-20" height="h-full" border="">
 	<hr class="!border-t-4" />
 	<svelte:fragment slot="lead">
 		<hr class="!border-t-2" />
@@ -18,7 +18,9 @@
 			on:click={drawerClose}
 			title="Home"
 		>
-			<HomepageIcon width={12} height={12} />
+			<svelte:fragment slot="lead">
+				<HomepageIcon width={12} height={12} />
+			</svelte:fragment>
 			<h5 class="h5">Home</h5>
 		</AppRailAnchor>
 	</svelte:fragment>
@@ -29,7 +31,9 @@
 		on:click={drawerClose}
 		title="Trips"
 	>
-		<GlobeIcon width={12} height={12} />
+		<svelte:fragment slot="lead">
+			<GlobeIcon width={12} height={12} />
+		</svelte:fragment>
 		<h5 class="h5">Trips</h5>
 	</AppRailAnchor>
 	<AppRailAnchor
@@ -38,7 +42,9 @@
 		on:click={drawerClose}
 		title="Costs"
 	>
-		<CostIcon width={12} height={12} />
+		<svelte:fragment slot="lead">
+			<CostIcon width={12} height={12} />
+		</svelte:fragment>
 		<h5 class="h5">Costs</h5>
 	</AppRailAnchor>
 	<AppRailAnchor
@@ -47,7 +53,9 @@
 		on:click={drawerClose}
 		title="History"
 	>
-		<TimeIcon width={12} height={12} />
+		<svelte:fragment slot="lead">
+			<TimeIcon width={12} height={12} />
+		</svelte:fragment>
 		<h5 class="h5">History</h5>
 	</AppRailAnchor>
 	<hr class="!border-t-4" />
@@ -58,8 +66,11 @@
 			selected={$page.url.pathname === '/profile'}
 			on:click={drawerClose}
 			title="Account"
+			class=".top-2"
 		>
-			<UserIcon width={12} height={12} />
+			<svelte:fragment slot="lead">
+				<UserIcon width={12} height={12} />
+			</svelte:fragment>
 			<h5 class="h5">Profile</h5>
 		</AppRailAnchor>
 		<hr class="!border-t-2" />
