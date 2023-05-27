@@ -13,7 +13,6 @@ export { default as HeaderAndTwoPartsLayout } from './general/_HeaderAndTwoParts
 export { default as TripDetailsCostItem } from './tripDetails/_CostItemTripDetails.svelte';
 export { default as TripDetailsDashboard } from './tripDetails/_DashboardTripDetails.svelte';
 export { default as ParticipantIcon } from './tripDetails/_ParticipantIcon.svelte';
-export { default as Tooltip } from './tripDetails/_Tooltip.svelte';
 
 //Trip Overview
 export { default as DonutChart } from './tripOverview/_DonutChart.svelte';
