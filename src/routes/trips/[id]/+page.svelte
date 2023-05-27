@@ -33,12 +33,12 @@
 		</div>
 	</span>
 	<span slot="left_element">
-		<div class="mdc-elevation--z3">
+		<div class="mdc-elevation--z3 h-full">
 			<TripDetailsCostOverview {costs} />
 		</div>
 	</span>
 	<span slot="right_element">
-		<div class="mdc-elevation--z3">
+		<div class="mdc-elevation--z3 h-full">
 			<TripDetailsDashboard {trip} />
 		</div>
 	</span>
