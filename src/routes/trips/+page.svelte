@@ -32,15 +32,15 @@
 
 	function onTripCardClick(trip: TravelData) {
 		currentTrip.update(() => trip);
-		goto(`/trip/${trip.id}`);
+		goto(`/trips/${trip.id}`);
 	}
 </script>
 
-<h4 class="h4" style="margin: 0;">Get an Overview of all your Trips</h4>
-{#each tripData as trip}
-	<button class="w-48 md:w-32 lg:w.48" on:click={() => onTripCardClick(trip)}>
-		<div class="card p-4">
+<h2 class="h2" style="margin: 0;">Get an Overview of all your Trips</h2>
+<div class="xl:grid xl:grid-cols-2 py-8">
+	{#each tripData as trip}
+		<button class="block card card-hover" style="width: 98%" on:click={() => onTripCardClick(trip)}>
 			<TripCard {trip} />
-		</div>
-	</button>
-{/each}
+		</button>
+	{/each}
+</div>
