@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { AppBar, drawerStore, LightSwitch, modeCurrent } from '@skeletonlabs/skeleton';
-	import { LightIcon, DarkIcon, MenuIcon, SettingsIcon } from '$icons';
+	import { AppBar, drawerStore, LightSwitch } from '@skeletonlabs/skeleton';
+	import { DarkIcon, LightIcon, MenuIcon } from '$icons';
+	import { modeCurrent } from '@skeletonlabs/skeleton';
 
 	function drawerOpen(): void {
 		drawerStore.open({});
@@ -23,26 +24,17 @@
 			<MenuIcon width={8} height={8} />
 		</button>
 		<!-- Menu (only on small devices) -->
-		<!-- Logo -->
 	</svelte:fragment>
+	<!-- <HeaderLogo /> -->
 	{#if !$modeCurrent}
 		<DarkIcon width={70} height={10} />
 	{:else}
 		<LightIcon width={70} height={10} />
 	{/if}
-	<svelte:fragment slot="trail">
-		<!-- Search Bar -->
-		<!-- TBD -->
-		<!-- Search Bar -->
 
+	<svelte:fragment slot="trail">
 		<!-- Theme Switch -->
 		<LightSwitch width="w-12 lg:w-16" height="h-6 lg:h-8" />
 		<!-- Theme Switch -->
-
-		<!-- Settings -->
-		<button type="button" class="btn-icon variant-ringed">
-			<SettingsIcon width={8} height={8} />
-		</button>
-		<!-- Settings -->
 	</svelte:fragment>
 </AppBar>
