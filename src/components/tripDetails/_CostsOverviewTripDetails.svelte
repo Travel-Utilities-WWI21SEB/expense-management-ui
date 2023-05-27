@@ -10,7 +10,7 @@
 	};
 </script>
 
-<div class="card">
+<div class="card h-full">
 	<h4 class="h4">Costs</h4>
 	<ul class="list">
 		{#each costs as cost, i}
