@@ -22,7 +22,7 @@
 		<span slot="people">
 			<div class="flex flex-row flex-wrap">
 				{#each trip.participants as participant}
-					<div class="px-1">
+					<div class="p-1">
 						<ParticipantIcon {participant} />
 					</div>
 				{/each}
