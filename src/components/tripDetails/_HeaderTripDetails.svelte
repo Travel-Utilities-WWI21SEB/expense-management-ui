@@ -20,11 +20,13 @@
 			<UserPaymentOverview {trip} />
 		</span>
 		<span slot="people">
-			{#each trip.participants as participant}
-				<div style="margin-top: 2rem" class="w-1">
-					<ParticipantIcon {participant} />
-				</div>
-			{/each}
+			<div class="flex flex-row flex-wrap">
+				{#each trip.participants as participant}
+					<div class="px-1">
+						<ParticipantIcon {participant} />
+					</div>
+				{/each}
+			</div>
 		</span>
 	</HeaderTripDetailsLayout>
 </div>
