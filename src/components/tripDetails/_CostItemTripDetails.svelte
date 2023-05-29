@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { Avatar } from '@skeletonlabs/skeleton';
 	import { createEventDispatcher } from 'svelte';
 	import type { Cost } from '$tripDomain';
+	import { calculateDate } from '$utils';
 
 	export let cost: Cost;
 	export let i: number;
@@ -51,10 +51,12 @@
 		<div class="col-span-8 sm:col-span-8 grid content-center p-2">
 			<div class="text-clip overflow-hidden text-left">
 				{cost.name}
+				<br />
+				{`${calculateDate(cost.startDate)} - ${calculateDate(cost.endDate)}`}
 			</div>
 		</div>
 		<div class="col-span-4 sm:col-span-2 grid content-center p-2">
-			<div class="text-clip overflow-hidden w-full text-rigth">
+			<div class="text-clip font-semibold overflow-hidden w-full text-rigth text-error-500">
 				{cost.amount + ' ' + cost.currency}
 			</div>
 		</div>
