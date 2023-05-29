@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { TripDetailsCostItem } from '$components';
 	import type { Cost } from '$tripDomain';
-	import { Avatar } from '@skeletonlabs/skeleton';
 
 	export let costs: Array<Cost>;
 
@@ -12,9 +11,9 @@
 	};
 </script>
 
-<div class="card h-full">
+<div class="card h-full p-4">
 	<h3 class="h3 flex justify-center p-2">Costs</h3>
-	<ul class="list p-4">
+	<ul class="list p-2">
 		{#each costs as cost, i}
 			<li>
 				<TripDetailsCostItem

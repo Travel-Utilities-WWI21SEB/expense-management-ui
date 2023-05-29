@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { DonutChart, ParticipantIcon, UserPaymentOverview, TripInfos } from '$components';
+	import { DonutChart, UserPaymentOverview, TripInfos, Participants } from '$components';
 	import type { TravelData } from '$tripDomain';
 
 	export let trip: TravelData;
@@ -12,13 +12,7 @@
 	<div class="flex flex-col justify-center">
 		<TripInfos {trip} />
 		<UserPaymentOverview {trip} />
-		<div class="flex flex-row justify-center flex-wrap">
-			{#each trip.participants as participant}
-				<div class="mt-2">
-					<ParticipantIcon {participant} />
-				</div>
-			{/each}
-		</div>
+		<Participants participants={trip.participants} justifyCenter={true} />
 	</div>
 	{#if trip.data && trip.totalCost}
 		<div>

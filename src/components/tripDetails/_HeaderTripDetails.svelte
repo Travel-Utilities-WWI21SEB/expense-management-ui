@@ -3,7 +3,7 @@
 		HeaderTripDetailsLayout,
 		TripInfos,
 		UserPaymentOverview,
-		ParticipantIcon
+		Participants
 	} from '$components';
 	import type { TravelData } from '$tripDomain';
 
@@ -20,13 +20,7 @@
 			<UserPaymentOverview {trip} />
 		</span>
 		<span slot="people">
-			<div class="flex flex-row flex-wrap">
-				{#each trip.participants as participant}
-					<div class="p-1">
-						<ParticipantIcon {participant} />
-					</div>
-				{/each}
-			</div>
+			<Participants participants={trip.participants} justifyCenter={false} />
 		</span>
 	</HeaderTripDetailsLayout>
 </div>
