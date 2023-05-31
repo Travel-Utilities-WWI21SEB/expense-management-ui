@@ -3,3 +3,4 @@ export type { Cost } from './Cost';
 export type { CostCategory } from './CostCategory';
 export type { CostList } from './CostList';
 export type { TravelData } from './TravelData';
+export type { Items } from './Items';
