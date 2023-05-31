@@ -2,7 +2,7 @@ import type { ChartData, TravelData } from '$tripDomain';
 
 export function modifyTripData(tripData: Array<TravelData>) {
 	return tripData.map((trip) => {
-		let tripChartData: ChartData = {
+		const tripChartData: ChartData = {
 			labels: [],
 			datasets: [
 				{
