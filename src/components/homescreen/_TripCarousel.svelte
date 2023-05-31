@@ -1,24 +1,12 @@
 <script lang="ts">
-  import type { Items } from "../../domain/trip/Items";
-  let items: Array<Items>;
-  let duration = 3000;
-  items = [
-    {
-      img: "https://flowbite.com/docs/images/carousel/carousel-1.svg",
-      alt: "Slite image item 1",
-    },
-    {
-      img: "https://flowbite.com/docs/images/carousel/carousel-2.svg",
-      alt: "Slite image item 2",
-    },
-    {
-      img: "https://flowbite.com/docs/images/carousel/carousel-3.svg",
-      alt: "Slite image item 3",
-    },
-  ]; 
+	import type { TravelData } from "$tripDomain";
+	import { TripCard } from "$components";
+
+  let duration = 3000; 
+  export let trips: Array<TravelData>
   $: current = 0;
   setInterval(() => {
-    if (current == items.length - 1) {
+    if (current == trips.length - 1) {
       current = 0;
     } else {
       current++;
@@ -29,25 +17,22 @@
 <div class="carousel">
   <!-- Carousel wrapper -->
   <div class="wrapper">
-    {#each items as item, index}
-      <div class="item {current == index ? 'z-20' : ''}" data-value={index}>
-        {#if index == 1}
-          <span>{item.alt}</span>
-        {/if}
-        <img src={item.img} alt={item.alt} />
+    {#each trips as trip, index}
+      <div class="item card h-64 {current == index ? 'z-20' : ''}" data-value={index}>
+        <TripCard {trip}/>
       </div>
     {/each}
   </div>
   <!-- Slider indicators -->
   <div class="indicators">
-    {#each items as item, index}
+    {#each trips as trip, index}
       <button
         on:click={() => {
           current = index;
         }}
         type="button"
         aria-current={current == index ? true : false}
-        aria-label={item.alt}
+        aria-label={trip.name}
         data-value={index}
       />
     {/each}
@@ -56,7 +41,7 @@
   <button
     on:click={() => {
       if (current == 0) {
-        current = items.length - 1;
+        current = trips.length - 1;
       } else {
         current--;
       }
@@ -74,7 +59,7 @@
   </button>
   <button
     on:click={() => {
-      if (current == items.length - 1) {
+      if (current == trips.length - 1) {
         current = 0;
       } else {
         current++;
@@ -99,7 +84,7 @@
     @apply relative;
   }
   .carousel .wrapper {
-    @apply overflow-hidden relative h-56 rounded-lg sm:h-64 xl:h-80 2xl:h-96;
+    @apply overflow-hidden relative h-96 rounded-lg;
   }
   .carousel .wrapper .item {
     @apply duration-700 ease-in-out absolute inset-0 transition-all transform translate-x-0;
