@@ -11,24 +11,28 @@ export const POST = (async ({ fetch, request }) => {
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({ email })
+			body: JSON.stringify({ email: email })
 		});
 
-		switch (response.status) {
-			case 200: {
-				return json({ exists: false, valid: true, error: false });
-			}
-			case 400: {
-				return json({ exists: false, valid: false, error: false });
-			}
-			case 409: {
-				return json({ exists: true, valid: true, error: false });
-			}
-			default: {
-				return json({ exists: false, valid: false, error: true });
-			}
+		if (response.ok) {
+			return json({ exists: false, valid: true, error: false, errorMessage: '' });
 		}
-	} catch (error) {
-		return json({ exists: false, valid: false, error: true });
+
+		const { errorMessage } = await response.json();
+
+		// 400: Bad Request -> Email is invalid
+		if (response.status === 400) {
+			return json({ exists: false, valid: false, error: true, errorMessage: errorMessage });
+		}
+
+		// 409: Conflict -> Email already exists (implicitly handled here)
+		return json({ exists: false, valid: true, error: true, errorMessage: errorMessage });
+	} catch (exception) {
+		return json({
+			exists: false,
+			valid: true,
+			error: true,
+			errorMessage: 'Something went wrong. Please try again later'
+		});
 	}
 }) satisfies RequestHandler;

@@ -1,4 +1,4 @@
-import { fail, json } from '@sveltejs/kit';
+import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
 export const POST = (async ({ fetch, request }) => {
@@ -11,26 +11,28 @@ export const POST = (async ({ fetch, request }) => {
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({ username })
+			body: JSON.stringify({ username: username })
 		});
 
-		switch (response.status) {
-			case 200: {
-				return json({ exists: false, valid: true });
-			}
-			case 400: {
-				return json({ exists: false, valid: false });
-			}
-			case 409: {
-				return json({ exists: true, valid: true });
-			}
-			default: {
-				fail(500);
-			}
+		if (response.ok) {
+			return json({ exists: false, valid: true, error: false, errorMessage: '' });
 		}
-	} catch (error) {
-		fail(500);
-	}
 
-	return json({ exists: false, valid: true });
+		const { errorMessage } = await response.json();
+
+		// 400: Bad Request -> Username is invalid
+		if (response.status === 400) {
+			return json({ exists: false, valid: false, error: true, errorMessage: errorMessage });
+		}
+
+		// 409: Conflict -> Email already exists (implicitly handled here)
+		return json({ exists: false, valid: true, error: true, errorMessage: errorMessage });
+	} catch (exception) {
+		return json({
+			exists: false,
+			valid: true,
+			error: true,
+			errorMessage: 'Something went wrong. Please try again later'
+		});
+	}
 }) satisfies RequestHandler;

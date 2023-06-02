@@ -1,2 +1,2 @@
 export { allTrips, currentTrip } from './tripsStore';
-export { authToken, currentUserId } from './userStore';
+export { authToken, currentUserId, newUser } from './userStore';
