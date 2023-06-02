@@ -51,7 +51,7 @@
 				Sign in to your account
 			</h1>
 			<hr class="w-16 h-1 bg-primary-500 rounded-full" />
-			<form class="space-y-4 md:space-y-6 group" action="#" novalidate>
+			<form class="space-y-4 md:space-y-6 group" novalidate>
 				<label class="label">
 					<span>Email</span>
 					<input

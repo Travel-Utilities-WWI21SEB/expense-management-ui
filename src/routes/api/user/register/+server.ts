@@ -1,5 +1,4 @@
-import { currentUserId } from '$stores';
-import { fail, json } from '@sveltejs/kit';
+import { error, json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
 export const POST = (async ({ fetch, request }) => {
@@ -15,34 +14,23 @@ export const POST = (async ({ fetch, request }) => {
 			body: JSON.stringify({ email, password, username })
 		});
 
-		console.log('response' + response.status);
-
-		switch (response.status) {
-			case 201 || 206: {
-				const data = await response.json();
-				const { userId } = data;
-
-				currentUserId.set(userId);
-
-				return json({ created: true, valid: true, error: false });
-			}
-			case 400: {
-				// Server side validation failed
-				return json({ created: false, valid: false, error: true });
-			}
-			case 409: {
-				// This should never happen since we validate
-				// the availability of the email and username
-				// before sending the request to the server.
-				return json({ created: false, valid: true, error: true });
-			}
-			default: {
-				return json({ created: false, valid: false, error: true });
-			}
+		if (response.status === 201 || response.status === 206) {
+			// 201: Created -> User successfully created
+			// 206: Partial Content -> User successfully created, but email could not be sent
+			return json({ created: true, valid: true, error: false, errorMessage: '' });
 		}
-	} catch (error) {
-		fail(500);
-	}
 
-	return json({ exists: false, valid: true });
+		const { errorMessage } = await response.json();
+
+		// 400: Bad Request -> Email, passowrd or username is invalid
+		// 409: Conflict -> This should never happen since we validate the availability of the email and username
+		if (response.status === 400 || response.status === 409) {
+			return json({ created: false, error: true, errorMessage: errorMessage });
+		}
+
+		throw error(response.status, errorMessage);
+	} catch (exception) {
+		const errorMessage = (exception as Error).message;
+		throw error(500, errorMessage);
+	}
 }) satisfies RequestHandler;
