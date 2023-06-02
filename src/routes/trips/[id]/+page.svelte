@@ -28,17 +28,17 @@
 
 <HeaderAndTwoPartsLayout>
 	<span slot="header">
-		<div class="mdc-elevation--z3">
+		<div class="">
 			<TripDetailsHeader {trip} />
 		</div>
 	</span>
 	<span slot="left_element">
-		<div class="mdc-elevation--z3 h-full">
+		<div class="h-full">
 			<TripDetailsCostOverview {costs} />
 		</div>
 	</span>
 	<span slot="right_element">
-		<div class="mdc-elevation--z3 h-full">
+		<div class="h-full">
 			<TripDetailsDashboard {trip} />
 		</div>
 	</span>

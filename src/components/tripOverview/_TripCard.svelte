@@ -15,7 +15,7 @@
 		<Participants participants={trip.participants} justifyCenter={true} />
 	</div>
 	{#if trip.data && trip.totalCost}
-		<div>
+		<div class="pr-4 pb-4">
 			<h6 class="h6 p-2 flex justify-center">
 				Total cost: {trip.totalCost}€
 			</h6>

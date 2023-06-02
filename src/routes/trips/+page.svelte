@@ -17,12 +17,11 @@
 	}
 </script>
 
-<h2 class="h2">Get an Overview of all your Trips</h2>
-<div class="xl:grid xl:grid-cols-2">
+<h2 class="h2 md:invisible text-center mt-2 text-primary-800 dark:text-primary-400">Your trips</h2>
+<div class="xl:grid xl:grid-cols-2 pl-4">
 	{#each tripData as trip}
 		<button
-			class="block card card-hover my-6 shadow-xl"
-			style="width: 98%"
+			class="block card card-hover my-6 shadow-xl mx-auto md:mr-4"
 			on:click={() => onTripCardClick(trip)}
 		>
 			<TripCard {trip} />
