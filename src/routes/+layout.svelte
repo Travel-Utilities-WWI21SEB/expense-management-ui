@@ -1,6 +1,6 @@
 <script lang="ts">
 	// Your selected Skeleton theme:
-	import '@skeletonlabs/skeleton/themes/theme-crimson.css';
+	import '@skeletonlabs/skeleton/themes/theme-skeleton.css';
 
 	// This contains the bulk of Skeletons required styles:
 	// NOTE: this will be renamed skeleton.css in the v2.x release.

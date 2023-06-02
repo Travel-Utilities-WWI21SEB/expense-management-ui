@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { TripDetailsCostItem } from '$components';
 	import type { Cost } from '$tripDomain';
 
 	export let costs: Array<Cost>;
@@ -10,12 +11,17 @@
 	};
 </script>
 
-<div class="card h-full">
-	<h4 class="h4">Costs</h4>
-	<ul class="list">
+<div class="card h-full p-4">
+	<h3 class="h3 flex justify-center p-2">Costs</h3>
+	<ul class="list p-2">
 		{#each costs as cost, i}
 			<li>
-				<p>{cost.name}</p>
+				<TripDetailsCostItem
+					{cost}
+					{selectionIndex}
+					{i}
+					on:select_item={(e) => handleSelectItem(e)}
+				/>
 			</li>
 		{/each}
 	</ul>
