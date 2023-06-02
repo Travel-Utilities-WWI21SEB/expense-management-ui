@@ -1,18 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base",
-    "schedule:weekly"
-  ],
-  "packageRules": [
-    {
-      "matchManagers": ["npm"],
-      "matchFiles": ["^pnpm-lock.yaml$"],
-      "lockFileMaintenance": {
-        "enabled": true
-      },
-      "postUpdateOptions": ["pnpmDedupe"]
-    }
+    "config:base"
   ],
   "reviewers": ["team:renovate-reviewer"]
 }
