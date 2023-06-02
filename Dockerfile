@@ -6,13 +6,10 @@ RUN corepack enable
 WORKDIR /svelte/app
 
 # Install app dependencies
-COPY src/theme ./src/theme
-RUN mkdir static
 COPY .npmrc package.json pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile
 
 COPY . .
-RUN pnpm run prepare
 RUN pnpm run build
 
 # Serve the app with a minimal node image
