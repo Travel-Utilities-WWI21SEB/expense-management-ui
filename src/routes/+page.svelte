@@ -13,8 +13,7 @@
 <HeaderAndTwoPartsLayout>
 	<span slot="header">
 		<div class="mdc-elevation--z3">
-			<h1>Homepage</h1>
-			<hr />
+			<h2 class="h2 md:invisible text-center mt-2 text-primary-800 dark:text-primary-400">Overview</h2>
 		</div>
 	</span>
 	<span slot="left_element">

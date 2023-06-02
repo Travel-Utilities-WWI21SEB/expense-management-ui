@@ -61,7 +61,7 @@
 		class="controls top-0 left-0 flex absolute z-30 justify-center items-center px-4 h-full cursor-pointer focus:outline-none"
 		data-carousel-prev=""
 	>
-		<span class="item">
+		<span class="item card-hover inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30">
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				fill="none"
@@ -72,7 +72,6 @@
 			>
 				<path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
 			</svg>
-			<span class="hidden">Previous</span>
 		</span>
 	</button>
 	<button
@@ -81,18 +80,17 @@
 		class="controls top-0 right-0 absolute z-30 justify-center items-center px-4 h-full cursor-pointer focus:outline-none"
 		data-carousel-next=""
 	>
-		<span class="item inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30">
+		<span class="item card-hover inline-flex justify-center align-middle items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30">
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				fill="none"
 				viewBox="0 0 24 24"
 				stroke-width="1.5"
 				stroke="currentColor"
-				class="w-6 h-6"
+				class="w-6 h-6 text-white sm:w-6 sm:h-6 dark:text-gray-100"
 			>
 				<path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
 			</svg>
-			<span class="hidden">Next</span>
 		</span>
 	</button>
 </div>
