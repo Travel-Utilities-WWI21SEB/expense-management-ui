@@ -29,12 +29,7 @@ const testTravelData: Array<TravelData> = [
 	{
 		id: 'ZYX-99',
 		name: 'Die guten alten Zeiten',
-		costCategories: [
-			{ name: 'Food', totalAmount: 150, color: '#F7464A', icon: 'unicode' },
-			{ name: 'Real Estate', totalAmount: 500, color: '#949FB1', icon: 'unicode' },
-			{ name: 'Mobility', totalAmount: 250, color: '#46BFBD', icon: 'unicode' },
-			{ name: 'Skiing', totalAmount: 350, color: '#D3D3D3', icon: 'unicode' }
-		],
+		costCategories: [],
 
 		data: undefined,
 		endDate: new Date('2024-04-02'),
