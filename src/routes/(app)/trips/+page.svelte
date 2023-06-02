@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { TravelData } from '$tripDomain';
 	import { goto } from '$app/navigation';
-	import { TripCard } from '$components';
+	import { TripCard, HeaderBar } from '$components';
 	import { allTrips, currentTrip } from '$stores';
 	import { modifyTripData } from '$utils';
 
@@ -17,13 +17,14 @@
 	}
 </script>
 
-<h2 class="h2 md:invisible text-center mt-2 text-primary-800 dark:text-primary-400">Your trips</h2>
-<div class="xl:grid xl:grid-cols-2 pl-4">
+<div class="card p-4 mt-8 mx-4">
+	<div class="grid grid-cols-2">
+		<HeaderBar />
+	</div>
+</div>
+<div class="grid grid-cols-1 xl:grid-cols-2 place-items-stretch gap-4 mx-4">
 	{#each tripData as trip}
-		<button
-			class="block card card-hover my-6 shadow-xl mx-auto md:mr-4"
-			on:click={() => onTripCardClick(trip)}
-		>
+		<button class="block card card-hover my-4 shadow-xl" on:click={() => onTripCardClick(trip)}>
 			<TripCard {trip} />
 		</button>
 	{/each}
