@@ -2,6 +2,7 @@ import type { ChartData, TravelData } from '$tripDomain';
 
 export function modifyTripData(tripData: Array<TravelData>) {
 	return tripData.map((trip) => {
+		//calculate data to be consumed by Chart JS
 		const tripChartData: ChartData = {
 			labels: [],
 			datasets: [
@@ -19,6 +20,7 @@ export function modifyTripData(tripData: Array<TravelData>) {
 		});
 		trip.data = tripChartData;
 		trip.totalCost = tripChartData.datasets[0].data.reduce((partialSum, a) => partialSum + a, 0);
+
 		return trip;
 	});
 }
