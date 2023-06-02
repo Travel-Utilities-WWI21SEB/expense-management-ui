@@ -4,7 +4,7 @@
 	export let trip: TravelData;
 </script>
 
-<div style="padding-top: 2rem; padding-bottom: 2rem; padding-left: 0.5rem; ">
+<div class="p-8">
 	<strong class="h6 text-success-500">
 		You will get {trip.userGets}€
 	</strong> <br />
