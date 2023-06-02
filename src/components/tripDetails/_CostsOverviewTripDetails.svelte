@@ -13,7 +13,7 @@
 
 <div class="card h-full p-4">
 	<h3 class="h3 flex justify-center p-2">Costs</h3>
-	<ul class="list p-2">
+	<ul class="list p-2 max-h-[500px] overflow-auto">
 		{#each costs as cost, i}
 			<li>
 				<TripDetailsCostItem
