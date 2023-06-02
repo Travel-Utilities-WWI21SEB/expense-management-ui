@@ -1,12 +1,9 @@
 <script lang="ts">
-	import Card from '@smui/card/src/Card.svelte';
-	import List from '@smui/list';
-	import type { Cost } from '$tripDomain';
 	import { TripDetailsCostItem } from '$components';
+	import type { Cost } from '$tripDomain';
 
 	export let costs: Array<Cost>;
 
-	let list: InstanceType<typeof List>;
 	let selectionIndex = -1;
 
 	const handleSelectItem = (event: CustomEvent<any>) => {
@@ -14,29 +11,18 @@
 	};
 </script>
 
-<Card variant="outlined" padded>
-	<div class="mdc-typography--headline4">Costs</div>
-	<List
-		class="demo-list"
-		bind:this={list}
-		twoLine
-		avatarList
-		singleSelection
-		selectedIndex={selectionIndex}
-	>
+<div class="card h-full p-4">
+	<h3 class="h3 flex justify-center p-2">Costs</h3>
+	<ul class="list p-2">
 		{#each costs as cost, i}
-			<TripDetailsCostItem
-				on:select_item={(e) => handleSelectItem(e)}
-				{cost}
-				{i}
-				{selectionIndex}
-			/>
+			<li>
+				<TripDetailsCostItem
+					{cost}
+					{selectionIndex}
+					{i}
+					on:select_item={(e) => handleSelectItem(e)}
+				/>
+			</li>
 		{/each}
-	</List>
-</Card>
-
-<style>
-	* :global(mdc-typography--headline6) {
-		color: #56e639;
-	}
-</style>
+	</ul>
+</div>

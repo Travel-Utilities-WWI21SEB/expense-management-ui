@@ -1,32 +1,20 @@
 <script>
-	import LayoutGrid, { Cell } from '@smui/layout-grid';
 </script>
 
-<div class="wrapper">
-	<LayoutGrid>
-		<Cell spanDevices={{ desktop: 12, tablet: 12, phone: 12 }}>
-			<div class="element">
-				<slot name="header" />
-			</div>
-		</Cell>
-		<Cell spanDevices={{ desktop: 6, tablet: 8, phone: 12 }}>
-			<div class="element">
-				<slot name="left_element" />
-			</div>
-		</Cell>
-		<Cell spanDevices={{ desktop: 6, tablet: 8, phone: 12 }}>
-			<div class="element">
-				<slot name="right_element" />
-			</div>
-		</Cell>
-	</LayoutGrid>
+<div class="element py-4 px-4">
+	<slot name="header" />
+</div>
+<div class="xl:grid xl:grid-cols-2 px-4 place-items-stretch">
+	<div class="element py-4">
+		<slot name="left_element" />
+	</div>
+	<div class="element py-4 content-start">
+		<slot name="right_element" />
+	</div>
 </div>
 
 <style>
 	.element {
-		width: 100%;
-	}
-	.wrapper {
-		width: 98vw;
+		width: 98%;
 	}
 </style>

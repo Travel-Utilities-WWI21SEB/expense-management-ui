@@ -1,15 +1,7 @@
-<script>
-	import LayoutGrid, { Cell } from '@smui/layout-grid';
-</script>
-
-<LayoutGrid>
-	<Cell spanDevices={{ desktop: 4, tablet: 12, phone: 12 }}>
-		<slot name="main_details" />
-	</Cell>
-	<Cell spanDevices={{ desktop: 4, tablet: 12, phone: 12 }}>
-		<slot name="payments" />
-	</Cell>
-	<Cell spanDevices={{ desktop: 4, tablet: 12, phone: 12 }}>
+<div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
+	<slot name="main_details" />
+	<slot name="payments" />
+	<div class="sm:col-span-2 md:col-span-1">
 		<slot name="people" />
-	</Cell>
-</LayoutGrid>
+	</div>
+</div>

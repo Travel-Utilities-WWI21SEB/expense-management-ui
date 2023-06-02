@@ -1,40 +1,25 @@
 <script lang="ts">
-	import LayoutGrid, { Cell } from '@smui/layout-grid';
-	import { DonutChart, ParticipantIcon, UserPaymentOverview, TripInfos } from '$components';
+	import { DonutChart, UserPaymentOverview, TripInfos, Participants } from '$components';
 	import type { TravelData } from '$tripDomain';
 
 	export let trip: TravelData;
 </script>
 
-<LayoutGrid>
-	<Cell span={12}>
-		<h2 class="mdc-typography--headline3" style="display: flex; justify-content: center;">
-			{trip.name}
-		</h2>
-	</Cell>
-	<Cell
-		spanDevices={{ desktop: 6, tablet: 12, phone: 12 }}
-		style="display: flex; justify-content: center; flex-direction:column"
-	>
+<h3 class="h3 justify-center">
+	{trip.name}
+</h3>
+<div class="md:grid md:grid-cols-2">
+	<div class="flex flex-col justify-center">
 		<TripInfos {trip} />
 		<UserPaymentOverview {trip} />
-		<LayoutGrid style="margin-top: 2rem">
-			{#each trip.participants as participant}
-				<Cell spanDevices={{ desktop: 1, tablet: 1, phone: 1 }}>
-					<ParticipantIcon {participant} />
-				</Cell>
-			{/each}
-		</LayoutGrid>
-	</Cell>
+		<Participants participants={trip.participants} justifyCenter={true} />
+	</div>
 	{#if trip.data && trip.totalCost}
-		<Cell spanDevices={{ desktop: 6, tablet: 12, phone: 12 }}>
-			<h2
-				class="mdc-typography--headline6"
-				style="padding: 1rem; display: flex; justify-content: center;"
-			>
+		<div class="pr-4 pb-4">
+			<h6 class="h6 p-2 flex justify-center">
 				Total cost: {trip.totalCost}€
-			</h2>
+			</h6>
 			<DonutChart data={trip.data} />
-		</Cell>
+		</div>
 	{/if}
-</LayoutGrid>
+</div>

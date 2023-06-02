@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 	import { goto } from '$app/navigation';
 	import Button from '@smui/button';
 	import Card, {
@@ -66,3 +66,4 @@
 		background-image: url(https://placehold.co/320x180?text=16x9);
 	}
 </style>
+ -->

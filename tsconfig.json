@@ -11,6 +11,7 @@
 		"strict": true,
 		"paths": {
 			"$components": ["./src/components"],
+			"$icons": ["./src/icons"],
 			"$stores": ["./src/stores"],
 			"$utils": ["./src/utils"],
 			"$tripDomain": ["./src/domain/trip"],
