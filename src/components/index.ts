@@ -42,6 +42,10 @@ export { default as TripDetailsHeader } from './tripDetails/_HeaderTripDetails.s
 export { default as HeaderTripDetailsLayout } from './tripDetails/_HeaderTripDetailsLayout.svelte';
 export { default as ParticipantIcon } from './tripDetails/_ParticipantIcon.svelte';
 export { default as Participants } from './tripDetails/_Participants.svelte';
+export { default as TripDetailsCostItemModal } from './tripDetails/Modal/_CostItemTripDetailsModal.svelte';
+export { default as TripDetailsEditCostItem } from './tripDetails/Modal/_EditCostItemTripDetailsModal.svelte';
+export { default as TripDetailsShowCostItem } from './tripDetails/Modal/_ShowCostItemTripDetailsModal.svelte';
+
 //Trip Overview
 export { default as DonutChart } from './tripOverview/_DonutChart.svelte';
 export { default as TripCard } from './tripOverview/_TripCard.svelte';

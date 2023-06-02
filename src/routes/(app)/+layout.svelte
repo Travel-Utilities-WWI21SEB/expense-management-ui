@@ -16,6 +16,7 @@
 	// Set floating ui defaults
 	storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
 
+	import { Modal } from '@skeletonlabs/skeleton';
 	import { Footer, Header, Sidebar } from '$components';
 </script>
 
@@ -26,6 +27,8 @@
 	<Sidebar />
 </Drawer>
 <!-- MOBILE ONLY! -->
+
+<Modal />
 
 <AppShell slotSidebarLeft="w-0 lg:w-20">
 	<!-- Header -->

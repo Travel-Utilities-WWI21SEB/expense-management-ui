@@ -2,6 +2,8 @@
 	import { createEventDispatcher } from 'svelte';
 	import type { Cost } from '$tripDomain';
 	import { calculateDate } from '$utils';
+	import { TripDetailsCostItemModal } from '$components';
+	import { modalStore, type ModalComponent, type ModalSettings } from '@skeletonlabs/skeleton';
 
 	export let cost: Cost;
 	export let i: number;
@@ -13,7 +15,18 @@
 		dispatch('select_item', {
 			index: i
 		});
+
+		const modal: ModalSettings = {
+			type: 'component',
+			component: modalComponent
+		};
+		modalStore.trigger(modal);
 	}
+
+	const modalComponent: ModalComponent = {
+		ref: TripDetailsCostItemModal,
+		props: { name: 'Johannes', cost: cost }
+	};
 
 	function pickTextColorBasedOnBgColorSimple(
 		bgColor: string,
