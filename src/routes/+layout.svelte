@@ -9,7 +9,7 @@
 	// Finally, your application's global stylesheet (sometimes labeled 'app.css')
 	import '../app.postcss';
 
-	import { AppShell, Drawer } from '@skeletonlabs/skeleton';
+	import { AppShell, Drawer, Modal } from '@skeletonlabs/skeleton';
 	import { Footer, Header, Sidebar } from '$components';
 </script>
 
@@ -20,6 +20,8 @@
 	<Sidebar />
 </Drawer>
 <!-- MOBILE ONLY! -->
+
+<Modal />
 
 <AppShell slotSidebarLeft="w-0 lg:w-20">
 	<!-- Header -->

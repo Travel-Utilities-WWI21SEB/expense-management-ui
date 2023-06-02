@@ -14,6 +14,9 @@ export { default as TripDetailsCostItem } from './tripDetails/_CostItemTripDetai
 export { default as TripDetailsDashboard } from './tripDetails/_DashboardTripDetails.svelte';
 export { default as ParticipantIcon } from './tripDetails/_ParticipantIcon.svelte';
 export { default as Participants } from './tripDetails/_Participants.svelte';
+export { default as TripDetailsCostItemModal } from './tripDetails/Modal/_CostItemTripDetailsModal.svelte';
+export { default as TripDetailsEditCostItem } from './tripDetails/Modal/_EditCostItemTripDetailsModal.svelte';
+export { default as TripDetailsShowCostItem } from './tripDetails/Modal/_ShowCostItemTripDetailsModal.svelte';
 
 //Trip Overview
 export { default as DonutChart } from './tripOverview/_DonutChart.svelte';
