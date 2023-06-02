@@ -16,7 +16,7 @@
 	</div>
 	{#if trip.data && trip.totalCost}
 		<div class="pr-4 pb-4">
-			<h6 class="h6 p-2 flex justify-center">
+			<h6 class="h6 p-4 flex justify-center">
 				Total cost: {trip.totalCost}€
 			</h6>
 			<DonutChart data={trip.data} />
