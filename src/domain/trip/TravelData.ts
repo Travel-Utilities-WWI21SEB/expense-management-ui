@@ -1,7 +1,6 @@
 import type { User } from '$userDomain';
 import type { ChartData } from './ChartData';
 import type { CostCategory } from './CostCategory';
-import type { ConicStop } from '@skeletonlabs/skeleton';
 
 export interface TravelData {
 	id: string;
@@ -13,6 +12,6 @@ export interface TravelData {
 	totalCost?: number;
 	location: string;
 	participants: Array<User>;
-	userDept: number;
-	userGets: number;
+	userDept?: number;
+	userGets?: number;
 }
