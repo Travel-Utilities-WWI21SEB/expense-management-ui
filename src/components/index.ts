@@ -36,3 +36,4 @@ export { default as DonutChart } from './tripOverview/_DonutChart.svelte';
 export { default as TripCard } from './tripOverview/_TripCard.svelte';
 export { default as TripInfos } from './tripOverview/_TripInfos.svelte';
 export { default as UserPaymentOverview } from './tripOverview/_UserPaymentOverview.svelte';
+export { default as HeaderBar } from './tripOverview/_HeaderBar.svelte';

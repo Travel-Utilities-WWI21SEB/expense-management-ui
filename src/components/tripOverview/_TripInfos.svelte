@@ -5,9 +5,9 @@
 	export let trip: TravelData;
 </script>
 
-<p style="padding: 0.5rem;">
+<p>
 	{`${calculateDate(trip.startDate)} - ${calculateDate(trip.endDate)}`}
 </p>
-<p style="padding: 0.5rem;">
+<p>
 	Location: {trip.location}
 </p>
