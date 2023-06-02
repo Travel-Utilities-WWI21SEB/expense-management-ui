@@ -10,7 +10,7 @@
 	export let trip: TravelData;
 </script>
 
-<div class="card p-4">
+<div class="card p-2">
 	<HeaderTripDetailsLayout>
 		<span slot="main_details">
 			<h3 class="h3">{trip.name}</h3>
