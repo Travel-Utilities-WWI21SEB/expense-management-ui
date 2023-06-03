@@ -20,7 +20,7 @@
 
 	// Email availability
 	let emailExists: boolean | undefined = undefined;
-	let lockEmailStep = true;
+	let lockEmailStep = false;
 
 	// Verify email
 	const verifyEmail = async () => {
@@ -59,7 +59,7 @@
 	const debouncedVerifyEmail = debounce(verifyEmail, 500);
 </script>
 
-<Step locked={lockEmailStep} buttonNextLabel="Select your username">
+<Step locked={lockEmailStep} buttonNextLabel="Select your username" buttonBack="invisible">
 	<svelte:fragment slot="header">
 		<h1
 			class="h1 text-xl text-center font-bold leading-tight tracking-tight md:text-2xl dark:text-white"
@@ -122,9 +122,10 @@
 				</form>
 				<p class="text-sm font-light text-gray-500 dark:text-gray-400">
 					Already have an account? <button
-						on:click={() => changeTab(1)}
-						class="font-medium text-primary-600 hover:underline dark:text-primary-500"
-						>Sign up</button
+						on:click={() => {
+							changeTab(1);
+						}}
+						class="variant-soft-primary">Sign in</button
 					>
 				</p>
 			</div>

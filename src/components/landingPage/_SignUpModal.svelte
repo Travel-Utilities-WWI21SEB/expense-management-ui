@@ -10,7 +10,7 @@
 	};
 </script>
 
-<div class="container md:w-1/2 grid grid-rows-auto grid-flow-col gap-8 h-4/5 md:h-3/5">
+<div class="container gap-8 md:w-1/2 h-4/5 md:h-3/5 m-5">
 	<TabGroup
 		justify="justify-center"
 		active="variant-filled-primary"

@@ -15,6 +15,7 @@
 	let errorState = false;
 	let errorDisplayMessage = '';
 
+	// Login
 	const login = async () => {
 		loading = true;
 		errorState = false;
@@ -76,19 +77,15 @@
 				</label>
 
 				<div class="flex items-center justify-between">
-					<div class="flex items-start">
-						<div class="flex items-center h-5">
-							<input
-								id="remember"
-								aria-describedby="remember"
-								type="checkbox"
-								class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-500 dark:ring-offset-primary-500"
-							/>
-						</div>
-						<div class="ml-3 text-sm">
-							<label for="remember" class="text-gray-500 dark:text-gray-300">Remember me</label>
-						</div>
-					</div>
+					<label class="flex items-center space-x-2">
+						<input
+							id="remember"
+							aria-describedby="remember"
+							type="checkbox"
+							class="w-4 h-4 checkbox"
+						/>
+						<p>Remember me</p>
+					</label>
 					<a
 						href="#"
 						class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500 ml-2"
@@ -105,7 +102,7 @@
 				</ol>
 				<button
 					type="submit"
-					class="w-full btn variant-filled-primary hover:variant-soft-primary dark:hover:variant-soft-primary-dark group-invalid:pointer-events-none group-invalid:opacity-50"
+					class="btn variant-filled-primary hover:variant-soft-primary active: dark:hover:variant-soft-primary-dark group-invalid:pointer-events-none group-invalid:opacity-50"
 					on:click={login}
 				>
 					{#if !loading}
@@ -119,8 +116,7 @@
 						on:click={() => {
 							changeTab(0);
 						}}
-						class="font-medium text-primary-600 hover:underline dark:text-primary-500"
-						>Sign up</button
+						class="variant-soft-primary">Sign up</button
 					>
 				</p>
 			</form>

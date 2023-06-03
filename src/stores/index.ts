@@ -1,2 +1,6 @@
+// Landing page store
+export { errorMessage, errorState, loading, newUser } from './landingPageStore';
+// Trip store
 export { allTrips, currentTrip } from './tripsStore';
-export { authToken, currentUserId, newUser } from './userStore';
+// User store
+export { authToken, currentUserId } from './userStore';

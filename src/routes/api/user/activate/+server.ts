@@ -1,20 +1,16 @@
+import { getErrorMessage } from '$utils';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { getErrorMessage } from '$utils';
-import type { LoginRequest } from '../../../../domain/user/requests/LoginRequest';
 
 export const POST = (async ({ cookies, fetch, request }) => {
-	const body = await request.json();
-	const requestBody: LoginRequest = body;
-	const { email, password } = requestBody;
+	const { token } = await request.json();
 
 	try {
-		const response = await fetch(`http://localhost:8080/api/v1/users/login`, {
+		const response = await fetch(`http://localhost:8080/api/v1/users/activate?token=${token}`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({ email, password })
+			}
 		});
 
 		if (response.ok) {
@@ -23,20 +19,15 @@ export const POST = (async ({ cookies, fetch, request }) => {
 			cookies.set('token', token);
 			cookies.set('refreshToken', refreshToken);
 
-			return json({ error: false, errorMessage: '' });
+			return json({ tokenCorrect: true, error: false, errorMessage: '' });
 		}
 
 		const { errorCode } = await response.json();
 		const errorMessage = getErrorMessage(errorCode);
 
-		// 400: Bad Request -> No input given or invalid input
+		// 400: Bad Request -> User entered wrong token
 		if (response.status === 400) {
-			return json({ error: true, errorMessage: 'Please enter a valid email and password' });
-		}
-
-		// 403: Forbidden -> User is not activated yet
-		if (response.status === 403) {
-			return json({ activated: false, error: true, errorMessage: errorMessage });
+			return json({ tokenCorrect: false, error: false, errorMessage: errorMessage });
 		}
 
 		return json({ error: true, errorMessage: errorMessage });

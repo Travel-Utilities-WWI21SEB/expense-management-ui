@@ -2,7 +2,6 @@
 export { default as Header } from './layout/_Header.svelte';
 export { default as Sidebar } from './layout/_Sidebar.svelte';
 export { default as Footer } from './layout/_Footer.svelte';
-export { default as UserCard } from './_UserCard.svelte';
 
 // Landing Page
 export { default as LandingPageHeader } from './landingPage/_LandingPageHeader.svelte';
