@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { AppRail, AppRailAnchor, drawerStore } from '@skeletonlabs/skeleton';
 	import { page } from '$app/stores';
 	import { CostIcon, GlobeIcon, HomepageIcon, TimeIcon, UserIcon } from '$icons';
+	import { AppRail, AppRailAnchor, drawerStore } from '@skeletonlabs/skeleton';
 
 	function drawerClose(): void {
 		drawerStore.close();
@@ -38,7 +38,7 @@
 		title="Trips"
 	>
 		<svelte:fragment slot="lead">
-			<GlobeIcon width={8} height={8} />
+			<GlobeIcon sidebarIcon={true} />
 		</svelte:fragment>
 		<span>Trips</span>
 	</AppRailAnchor>

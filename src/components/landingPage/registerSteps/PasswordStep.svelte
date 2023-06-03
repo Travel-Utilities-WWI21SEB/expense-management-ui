@@ -16,7 +16,12 @@
 	$: lockRegisterStep = !passwordValid || !passwordsMatch;
 </script>
 
-<Step locked={lockRegisterStep} buttonNextLabel="Register →">
+<Step
+	locked={lockRegisterStep}
+	buttonNextLabel="Register →"
+	regionContent="flex flex-wrap flex-col grow"
+	regionNavigation="flex flex-wrap flex-row align-end"
+>
 	<svelte:fragment slot="header">
 		<h1
 			class="h1 text-xl text-center font-bold leading-tight tracking-tight md:text-2xl dark:text-white"

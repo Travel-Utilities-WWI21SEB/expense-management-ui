@@ -1,12 +1,13 @@
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
+import { getErrorMessage } from '$utils';
 
 export const POST = (async ({ fetch, request }) => {
 	const body = await request.json();
 	const { email } = body;
 
 	try {
-		const response = await fetch(`http://localhost:8080/api/v1/user/check-email`, {
+		const response = await fetch(`http://localhost:8080/api/v1/users/check-email`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -18,7 +19,8 @@ export const POST = (async ({ fetch, request }) => {
 			return json({ exists: false, valid: true, error: false, errorMessage: '' });
 		}
 
-		const { errorMessage } = await response.json();
+		const { errorCode } = await response.json();
+		const errorMessage = getErrorMessage(errorCode);
 
 		// 400: Bad Request -> Email is invalid
 		if (response.status === 400) {

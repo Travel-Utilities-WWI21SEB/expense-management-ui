@@ -1,12 +1,13 @@
-import { error, json } from '@sveltejs/kit';
+import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
+import { getErrorMessage } from '$utils';
 
 export const POST = (async ({ fetch, request }) => {
 	const body = await request.json();
 	const { email, password, username } = body;
 
 	try {
-		const response = await fetch(`http://localhost:8080/api/v1/user/register`, {
+		const response = await fetch(`http://localhost:8080/api/v1/users/register`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -17,20 +18,15 @@ export const POST = (async ({ fetch, request }) => {
 		if (response.status === 201 || response.status === 206) {
 			// 201: Created -> User successfully created
 			// 206: Partial Content -> User successfully created, but email could not be sent
-			return json({ created: true, valid: true, error: false, errorMessage: '' });
+			return json({ error: false, errorMessage: '' });
 		}
 
-		const { errorMessage } = await response.json();
+		const { errorCode } = await response.json();
+		const errorMessage = getErrorMessage(errorCode);
 
-		// 400: Bad Request -> Email, passowrd or username is invalid
-		// 409: Conflict -> This should never happen since we validate the availability of the email and username
-		if (response.status === 400 || response.status === 409) {
-			return json({ created: false, error: true, errorMessage: errorMessage });
-		}
-
-		throw error(response.status, errorMessage);
+		return json({ error: true, errorMessage: errorMessage });
 	} catch (exception) {
-		const errorMessage = (exception as Error).message;
-		throw error(500, errorMessage);
+		const errorMessage = getErrorMessage('EM-000'); // Default error message
+		return json({ error: true, errorMessage: errorMessage });
 	}
 }) satisfies RequestHandler;
