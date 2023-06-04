@@ -7,15 +7,30 @@
 	export let cost: Cost;
 	export let trip: TravelData;
 
-	let costPaidForUser: Array<CostPaidForUser> = trip.participants.map((user: User) => {
-		return {
-			userId: user.userId,
-			amount: 0,
-			currencyCode: 'EUR',
-			user: user,
-			checked: false
-		};
-	});
+	let costPaidForUser: Array<CostPaidForUser> = trip.participants.flatMap(
+		(tripParticipants: User) => {
+			const userInvolved = cost.paidFor.filter(
+				(involvedUser) => tripParticipants.userId === involvedUser.userId
+			);
+			const newUser =
+				userInvolved.length > 0
+					? userInvolved.map((involvedUser) => {
+							return {
+								...involvedUser,
+								user: tripParticipants,
+								checked: true
+							};
+					  })
+					: {
+							userId: tripParticipants.userId,
+							amount: 0,
+							currencyCode: 'EUR',
+							user: tripParticipants,
+							checked: false
+					  };
+			return newUser;
+		}
+	);
 
 	//convert date to yyyy-mm-dd for date picker
 	let localeCost: CostDateAsString = {

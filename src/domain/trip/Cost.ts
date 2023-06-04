@@ -1,3 +1,4 @@
+import type { CostPaidForUser } from '../user/User';
 import type { CostCategory } from './CostCategory';
 
 export interface Cost {
@@ -9,6 +10,7 @@ export interface Cost {
 	startDate: Date;
 	endDate?: Date;
 	costCategory: CostCategory;
+	paidFor: Array<CostPaidForUser>;
 }
 
 export interface CostDateAsString {
@@ -20,4 +22,5 @@ export interface CostDateAsString {
 	startDate: string;
 	endDate?: string;
 	costCategory: CostCategory;
+	paidFor: Array<CostPaidForUser>;
 }

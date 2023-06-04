@@ -16,7 +16,11 @@
 		endDate: new Date('2023-06-25'),
 		startDate: new Date('2023-05-25'),
 		currency: 'EUR',
-		id: '982734592873465'
+		id: '982734592873465',
+		paidFor: [
+			{ userId: 'ljahvdöas', amount: 45, currencyCode: 'EUR' },
+			{ userId: 'alsbvas', amount: 45, currencyCode: 'EUR' }
+		]
 	};
 	let costs = [cost, cost, cost, cost, cost, cost, cost, cost, cost, cost, cost, cost];
 
