@@ -7,6 +7,17 @@ export interface Cost {
 	currency: string;
 	creationDate: Date;
 	startDate: Date;
-	endDate: Date;
+	endDate?: Date;
+	costCategory: CostCategory;
+}
+
+export interface CostDateAsString {
+	id: string;
+	name: string;
+	amount: number;
+	currency: string;
+	creationDate: Date;
+	startDate: string;
+	endDate?: string;
 	costCategory: CostCategory;
 }

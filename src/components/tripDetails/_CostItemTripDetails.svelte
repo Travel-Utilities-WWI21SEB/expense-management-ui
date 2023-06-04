@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 	import type { Cost } from '$tripDomain';
-	import { calculateDate } from '$utils';
+	import { calculateDate, pickTextColorBasedOnBgColorSimple } from '$utils';
 	import { TripDetailsCostItemModal } from '$components';
 	import { modalStore, type ModalComponent, type ModalSettings } from '@skeletonlabs/skeleton';
 
@@ -27,18 +27,6 @@
 		ref: TripDetailsCostItemModal,
 		props: { name: 'Johannes', cost: cost }
 	};
-
-	function pickTextColorBasedOnBgColorSimple(
-		bgColor: string,
-		lightColor: string,
-		darkColor: string
-	): string {
-		var color = bgColor.charAt(0) === '#' ? bgColor.substring(1, 7) : bgColor;
-		var r = parseInt(color.substring(0, 2), 16); // hexToR
-		var g = parseInt(color.substring(2, 4), 16); // hexToG
-		var b = parseInt(color.substring(4, 6), 16); // hexToB
-		return r * 0.299 + g * 0.587 + b * 0.114 > 186 ? darkColor : lightColor;
-	}
 </script>
 
 <button
@@ -53,7 +41,7 @@
 			<div class="text-clip overflow-hidden content-center">
 				<p
 					class="w-full text-sm text-slate-500 mr-4 py-2 px-4
-					 rounded-full border-0 text-sm font-semibold
+					 rounded-full border-0 font-semibold
 					 text-[{pickTextColorBasedOnBgColorSimple(cost.costCategory.color, '#FFFFFF', '#000000')}]
 					  bg-[{cost.costCategory.color}]"
 				>
@@ -65,7 +53,8 @@
 			<div class="text-clip overflow-hidden text-left">
 				{cost.name}
 				<br />
-				{`${calculateDate(cost.startDate)} - ${calculateDate(cost.endDate)}`}
+				{calculateDate(cost.startDate)}
+				{#if cost.endDate} - {calculateDate(cost.endDate)} {/if}
 			</div>
 		</div>
 		<div class="col-span-4 sm:col-span-2 grid content-center p-2">
