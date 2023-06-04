@@ -23,7 +23,8 @@
 		const modal: ModalSettings = {
 			type: 'component',
 			// Pass the component registry key as a string:
-			component: 'ModalForm'
+			component: 'ModalForm',
+			title: 'Add new Trip'
 		};
 		modalStore.trigger(modal);
 	}
