@@ -4,3 +4,11 @@ export interface User {
 	presenceEndDate: Date;
 	hasAcceptedInvite: boolean;
 }
+
+export interface CostPaidForUser {
+	userId: string;
+	amount: number;
+	currencyCode: string;
+	user?: User;
+	checked?: boolean;
+}

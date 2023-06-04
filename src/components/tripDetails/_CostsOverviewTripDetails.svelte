@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { TripDetailsCostItem } from '$components';
-	import type { Cost } from '$tripDomain';
+	import type { Cost, TravelData } from '$tripDomain';
 
 	export let costs: Array<Cost>;
+	export let trip: TravelData;
 
 	let selectionIndex = -1;
 
@@ -20,6 +21,7 @@
 					{cost}
 					{selectionIndex}
 					{i}
+					{trip}
 					on:select_item={(e) => handleSelectItem(e)}
 				/>
 			</li>
