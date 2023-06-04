@@ -24,8 +24,9 @@
 {#if $modalStore[0]}
 	<div class="modal-example-form {cBase}">
 		<header class={cHeader}>{$modalStore[0].title ?? '(title missing)'}</header>
-		<Stepper on:buttonComplete={onFormSubmit}>
+		<Stepper on:complete={onFormSubmit}>
 			<Step>
+				<svelte:fragment slot="header">Trip Details</svelte:fragment>
 				<form class="modal-form {cForm}">
 					<label class="label">
 						<span>Name</span>
@@ -57,6 +58,7 @@
 				</form>
 			</Step>
 			<Step>
+				<svelte:fragment slot="header">Invite Participants</svelte:fragment>
 				<label class="label">
 					<span>Email</span>
 					<input
