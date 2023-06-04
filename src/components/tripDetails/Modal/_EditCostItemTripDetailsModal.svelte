@@ -1,8 +1,12 @@
 <script lang="ts">
-	import type { CostDateAsString } from '$tripDomain';
+	import type { CostDateAsString, CostCategory } from '$tripDomain';
+	import type { CostPaidForUser } from '$userDomain';
 	import { SlideToggle } from '@skeletonlabs/skeleton';
 
 	export let cost: CostDateAsString;
+	export let costCategories: Array<CostCategory>;
+	export let users: Array<CostPaidForUser>;
+
 	let checked: boolean = cost.endDate ? true : false;
 
 	function changeTimeToggle(e: Event) {
@@ -33,22 +37,59 @@
 			<input class="input" type="date" min={cost.startDate} bind:value={cost.endDate} />
 		</label>
 	{/if}
-	<label class="label">
+	<label class="label col-span-2 sm:col-span-1">
 		<span>Amount</span>
-		<input class="input" type="number" bind:value={cost.amount} />
+		<div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
+			<div class="input-group-shim">{cost.currency === 'EUR' ? '€' : '$'}</div>
+			<input type="number" bind:value={cost.amount} />
+			<select bind:value={cost.currency}>
+				<option value="EUR">EUR</option>
+				<option value="USD">USD</option>
+			</select>
+		</div>
 	</label>
-	<label class="label">
-		<span>Currency</span>
-		<select class="select" bind:value={cost.currency}>
-			<option value="EUR">€</option>
-			<option value="USD">$</option>
-		</select>
-	</label>
-	<label class="label col-span-2">
+	<label class="label col-span-2 sm:col-span-1">
 		<span>Category</span>
 		<select class="select" bind:value={cost.costCategory.name}>
-			<!--Dynamic Values from backend with for Each-->
-			<option value="EUR">€</option>
+			{#each costCategories as category}
+				<option value={category.name}>{category.name} </option>
+			{/each}
 		</select>
 	</label>
+	<label class="col-span-2">
+		<span>People involved</span>
+		<div class="flex overflow-auto">
+			{#each users as user}
+				<label class="flex items-center space-x-2 px-4">
+					<input class="checkbox" type="checkbox" bind:checked={user.checked} id={user.userId} />
+					<label class="label">
+						<span class="truncate">{user.user?.name}</span>
+						<div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
+							<input type="number" bind:value={user.amount} />
+							<select bind:value={user.currencyCode}>
+								<option value="EUR">EUR</option>
+								<option value="USD">USD</option>
+							</select>
+						</div>
+					</label>
+				</label>
+			{/each}
+		</div>
+	</label>
 </div>
+
+<style>
+	/*Removes arrows for number input */
+	/* Chrome, Safari, Edge, Opera */
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	/* Firefox */
+	input[type='number'] {
+		-moz-appearance: textfield;
+		appearance: number;
+	}
+</style>
