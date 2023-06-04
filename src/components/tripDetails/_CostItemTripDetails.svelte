@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import type { Cost } from '$tripDomain';
+	import type { Cost, TravelData } from '$tripDomain';
 	import { calculateDate, pickTextColorBasedOnBgColorSimple } from '$utils';
 	import { TripDetailsCostItemModal } from '$components';
 	import { modalStore, type ModalComponent, type ModalSettings } from '@skeletonlabs/skeleton';
@@ -8,6 +8,7 @@
 	export let cost: Cost;
 	export let i: number;
 	export let selectionIndex: number;
+	export let trip: TravelData;
 
 	const dispatch = createEventDispatcher();
 
@@ -25,7 +26,7 @@
 
 	const modalComponent: ModalComponent = {
 		ref: TripDetailsCostItemModal,
-		props: { name: 'Johannes', cost: cost }
+		props: { cost: cost, trip: trip }
 	};
 </script>
 

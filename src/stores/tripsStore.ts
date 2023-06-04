@@ -17,11 +17,11 @@ const testTravelData: Array<TravelData> = [
 		totalCost: undefined,
 		location: 'Palo Alto',
 		participants: [
-			{ name: 'Aidan Zimmer' },
-			{ name: 'Johanna Deike' },
-			{ name: 'Kevin Rieger' },
-			{ name: 'lisa Reß-Park' },
-			{ name: 'Luca Chmielarski' }
+			{ name: 'Aidan Zimmer', userId: 'ljahvdöas' },
+			{ name: 'Johanna Deike', userId: 'alsbvas' },
+			{ name: 'Kevin Rieger', userId: 'öaksjdbv' },
+			{ name: 'lisa Reß-Park', userId: 'aöksdjvöa' },
+			{ name: 'Luca Chmielarski', userId: 'AIUNC)Q' }
 		],
 		userDept: 200,
 		userGets: 120
@@ -41,7 +41,10 @@ const testTravelData: Array<TravelData> = [
 		startDate: new Date('2024-03-19'),
 		totalCost: undefined,
 		location: 'Vals Schweiz',
-		participants: [{ name: 'Aidan Zimmer' }, { name: 'Johanna Deike' }],
+		participants: [
+			{ name: 'Aidan Zimmer', userId: 'ljahvdöas' },
+			{ name: 'Johanna Deike', userId: 'alsbvas' }
+		],
 		userDept: 300,
 		userGets: 50
 	}
