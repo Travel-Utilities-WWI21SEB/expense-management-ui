@@ -61,16 +61,25 @@
 		<div class="flex overflow-auto">
 			{#each users as user}
 				<label class="flex items-center space-x-2 px-4">
-					<input class="checkbox" type="checkbox" bind:checked={user.checked} id={user.userId} />
+					<input
+						class="checkbox"
+						type="checkbox"
+						bind:checked={user.checked}
+						on:change={() => {
+							user.amount = 0;
+						}}
+					/>
 					<label class="label">
 						<span class="truncate">{user.user?.name}</span>
-						<div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
-							<input type="number" bind:value={user.amount} />
-							<select bind:value={user.currencyCode}>
-								<option value="EUR">EUR</option>
-								<option value="USD">USD</option>
-							</select>
-						</div>
+						{#if user.checked}
+							<div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
+								<input type="number" bind:value={user.amount} />
+								<select bind:value={user.currencyCode}>
+									<option value="EUR">EUR</option>
+									<option value="USD">USD</option>
+								</select>
+							</div>
+						{/if}
 					</label>
 				</label>
 			{/each}
