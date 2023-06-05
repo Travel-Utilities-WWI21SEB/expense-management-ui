@@ -30,7 +30,9 @@ jobs:
         with:
           context: .
           push: true
-          tags: 930c/expense-management-ui:latest
+          tags: |
+            930c/expense-management-ui:${{ github.sha }}
+            930c/expense-management-ui:latest
 
   start-service:
     runs-on: ubuntu-latest
