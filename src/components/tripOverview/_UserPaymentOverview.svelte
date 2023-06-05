@@ -4,12 +4,14 @@
 	export let trip: TravelData;
 </script>
 
-<div style="padding-top: 2rem; padding-bottom: 2rem; padding-left: 0.5rem; ">
+<div class="p-8">
 	<strong class="h6 text-success-500">
-		You will get {trip.userGets}€
+		{trip.userGets && trip.userGets > 0 ? `You will get ${trip.userGets}€` : 'Nothing to get.'}
 	</strong> <br />
-	<strong class="h6 text-error-500">
-		You still need to pay {trip.userDept}€
+	<strong class="h6 {trip.userDept && trip.userDept > 0 ? 'text-error-500' : 'text-success-500'}">
+		{trip.userGets && trip.userGets > 0
+			? `You still need to pay ${trip.userDept}€`
+			: 'Nothing to pay.'}
 	</strong>
 </div>
 

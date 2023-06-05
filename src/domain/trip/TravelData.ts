@@ -12,6 +12,6 @@ export interface TravelData {
 	totalCost?: number;
 	location: string;
 	participants: Array<User>;
-	userDept: number;
-	userGets: number;
+	userDept?: number;
+	userGets?: number;
 }

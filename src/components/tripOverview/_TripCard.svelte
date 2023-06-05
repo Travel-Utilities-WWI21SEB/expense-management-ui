@@ -14,12 +14,12 @@
 		<UserPaymentOverview {trip} />
 		<Participants participants={trip.participants} justifyCenter={true} />
 	</div>
-	{#if trip.data && trip.totalCost}
-		<div class="pr-4 pb-4">
-			<h6 class="h6 p-2 flex justify-center">
-				Total cost: {trip.totalCost}€
-			</h6>
+	<div class="pr-4 pb-4">
+		<h6 class="h6 p-4 flex justify-center">
+			{trip.totalCost ? `Total cost: ${trip.totalCost}€` : 'No Costs specified'}
+		</h6>
+		{#if trip.data}
 			<DonutChart data={trip.data} />
-		</div>
-	{/if}
+		{/if}
+	</div>
 </div>
