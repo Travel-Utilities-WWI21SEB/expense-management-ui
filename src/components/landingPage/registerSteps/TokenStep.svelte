@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import {
 		ClosedEnvelopeIcon,
 		CrossIcon,
@@ -10,6 +11,7 @@
 	import { errorMessage, errorState, loading, newUser } from '$stores';
 	import { ProgressRadial, Step } from '@skeletonlabs/skeleton';
 	import { debounce } from 'lodash';
+	import { tick } from 'svelte/internal';
 
 	export let register: () => Promise<void>;
 
@@ -25,15 +27,9 @@
 		}, 1000);
 	}
 
-	// Form data;
-	let firstToken = '',
-		secondToken = '',
-		thirdToken = '',
-		fourthToken = '',
-		fifthToken = '',
-		sixthToken = '';
-	// not the best way to do this, but i don't know how to do it better
-	$: tokenValue = `${firstToken}${secondToken}${thirdToken}${fourthToken}${fifthToken}${sixthToken}`;
+	// Token validation
+	let tokenValues: string[] = ['', '', '', '', '', ''];
+	$: validToken = !tokenValues.some((value) => value === '');
 
 	// Utility variables
 	let correctToken: boolean | undefined = undefined;
@@ -44,17 +40,21 @@
 
 	// Verify token
 	const verifyToken = async () => {
+		if (correctToken || !validToken) {
+			return;
+		}
+
 		loading.set(true);
 		correctToken = undefined;
 		errorState.set(false);
 
 		try {
-			const response = await fetch(`api/user/activate`, {
+			const response = await fetch(`api/users/activate`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
 				},
-				body: JSON.stringify({ token: tokenValue })
+				body: JSON.stringify({ token: tokenValues.join('') })
 			});
 
 			const { tokenCorrect, error, errorMessage: message } = await response.json();
@@ -62,6 +62,10 @@
 			correctToken = tokenCorrect;
 			errorState.set(error);
 			errorMessage.set(message);
+
+			if (tokenCorrect) {
+				goto('/home');
+			}
 		} catch (error: any) {
 			errorState.set(true);
 			errorMessage.set(error.message);
@@ -69,8 +73,6 @@
 			loading.set(false);
 		}
 	};
-
-	const debouncedVerifyToken = debounce(verifyToken, 500);
 
 	// Resend token
 	const resendToken = async () => {
@@ -82,7 +84,7 @@
 		resendTokenTimer = resendTokenInterval;
 
 		try {
-			const response = await fetch(`api/user/resend-token`, {
+			const response = await fetch(`api/users/resend-token`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
@@ -102,20 +104,115 @@
 		}
 	};
 
-	// Handle token input
-	const handleTokenInput = (e: Event & { currentTarget: HTMLInputElement }): void => {
-		const target = e.currentTarget as HTMLInputElement;
-		const { value } = target;
+	// Handle keydown event
+	const keydownHandler = async (e: KeyboardEvent): Promise<void> => {
+		// If the key is trying to paste something in the first input
+		// we get the clipboard data and spread it into the inputs
+		const target = e.target as HTMLInputElement;
 
-		if (value.length === 1) {
-			const nextInput = target.nextElementSibling as HTMLInputElement;
-
-			if (nextInput) {
-				nextInput.focus();
-			} else {
-				debouncedVerifyToken();
-			}
+		if (target.title === 'token1' && e.code === 'KeyV' && (e.ctrlKey || e.metaKey)) {
+			// Little hack to get the clipboard data and spread it :)
+			const clipboardData = (e as unknown as ClipboardEvent).clipboardData?.getData('text/plain');
+			pasteClipboardData(clipboardData);
+			return;
 		}
+
+		let previousInput: HTMLInputElement;
+
+		switch (e.code) {
+			case 'Backspace':
+				previousInput = target.previousElementSibling as HTMLInputElement;
+
+				// If there's a value in the current target
+				// we delete it, otherwise we focus the previous input
+				if (previousInput && target.selectionStart === 0) {
+					previousInput.focus();
+				} else {
+					const index = Array.from(target.parentElement?.children || []).indexOf(target);
+					tokenValues[index] = '';
+				}
+
+				e.preventDefault();
+				break;
+			case 'ArrowLeft':
+				previousInput = target.previousElementSibling as HTMLInputElement;
+
+				if (previousInput && target.selectionStart === 0) {
+					previousInput.focus();
+				} else {
+					target.selectionStart = target.selectionEnd = 0;
+				}
+
+				break;
+			case 'ArrowRight':
+				const nextInput = target.nextElementSibling as HTMLInputElement;
+
+				if (nextInput && target.selectionStart === target.value.length) {
+					nextInput.focus();
+				} else {
+					target.selectionStart = target.selectionEnd = target.value.length;
+				}
+
+				break;
+			default:
+				// Check if input is number or letter
+				// Write the value and focus the next input
+				const validInput = ['Digit', 'Key', 'Numpad'];
+
+				if (validInput.some((input) => e.code.startsWith(input))) {
+					// Yet another hack to trigger svelte array reactivity
+					// but reduces loc by creating form inputs in a loop
+					const index = Array.from(target.parentElement?.children || []).indexOf(target);
+					tokenValues[index] = e.key;
+
+					const nextInput = target.nextElementSibling as HTMLInputElement;
+
+					if (nextInput) {
+						nextInput.focus();
+						e.preventDefault();
+					} else {
+						// If there's no next input, we verify the token
+						// since we're in the last input
+						await tick();
+						verifyToken();
+					}
+				}
+		}
+	};
+
+	// Handle paste event
+	const pasteHandler = (e: ClipboardEvent): void => {
+		e.preventDefault();
+
+		const clipboardData = e.clipboardData?.getData('text/plain');
+
+		pasteClipboardData(clipboardData);
+	};
+
+	const pasteClipboardData = async (clipboardData?: string): Promise<void> => {
+		if (!clipboardData) return;
+
+		// We only want to paste 6 characters
+		// If its more than 6, we slice it
+		// If its less than 6, we don't do anything
+		if (clipboardData.length > 6) {
+			clipboardData = clipboardData.slice(0, 6);
+		} else if (clipboardData.length < 6) {
+			return;
+		}
+
+		const inputs = document.querySelectorAll('input[type="text"]');
+
+		// We spread the clipboard data into the array to
+		// trigger svelte reactivity
+		tokenValues = clipboardData.split('');
+
+		// Focus the last input
+		const lastInput = inputs[inputs.length - 1] as HTMLInputElement;
+		lastInput.focus();
+
+		await tick();
+		verifyToken();
 	};
 </script>
 
@@ -166,103 +263,54 @@
 					</aside>
 				{:else}
 					<h5 class="h5 text-center">Please enter the code we sent to your email!</h5>
-					<form class="space-y-4 md:space-y-6 group w-full lg:w-3/5" novalidate>
-						<div class="flex justify-center">
-							<label class="label">
-								<input
-									class="input h-5 w-5 md:h-6 md:w-6 lg:h-7 lg:w-7 xl:h-8 xl:w-8 2xl:h-9 2xl:w-9 text-center rounded form-control"
-									title="token1"
-									maxlength="1"
-									type="text"
-									placeholder=""
-									autocomplete="off"
-									on:input={handleTokenInput}
-									bind:value={firstToken}
-								/>
-								<input
-									class="input h-5 w-5 md:h-6 md:w-6 lg:h-7 lg:w-7 xl:h-8 xl:w-8 2xl:h-9 2xl:w-9 text-center rounded"
-									title="token2"
-									maxlength="1"
-									type="text"
-									placeholder=""
-									autocomplete="off"
-									on:input={handleTokenInput}
-									bind:value={secondToken}
-								/>
-								<input
-									class="input h-5 w-5 md:h-6 md:w-6 lg:h-7 lg:w-7 xl:h-8 xl:w-8 2xl:h-9 2xl:w-9 text-center rounded"
-									title="token3"
-									maxlength="1"
-									type="text"
-									placeholder=""
-									autocomplete="off"
-									on:input={handleTokenInput}
-									bind:value={thirdToken}
-								/>
-								<input
-									class="input h-5 w-5 md:h-6 md:w-6 lg:h-7 lg:w-7 xl:h-8 xl:w-8 2xl:h-9 2xl:w-9 text-center rounded"
-									title="token4"
-									maxlength="1"
-									type="text"
-									placeholder=""
-									autocomplete="off"
-									on:input={handleTokenInput}
-									bind:value={fourthToken}
-								/>
-								<input
-									class="input h-5 w-5 md:h-6 md:w-6 lg:h-7 lg:w-7 xl:h-8 xl:w-8 2xl:h-9 2xl:w-9 text-center rounded"
-									title="token5"
-									maxlength="1"
-									type="text"
-									placeholder=""
-									autocomplete="off"
-									on:input={handleTokenInput}
-									bind:value={fifthToken}
-								/>
-								<input
-									class="input h-5 w-5 md:h-6 md:w-6 lg:h-7 lg:w-7 xl:h-8 xl:w-8 2xl:h-9 2xl:w-9 text-center rounded"
-									title="token6"
-									maxlength="1"
-									type="text"
-									placeholder=""
-									autocomplete="off"
-									on:input={handleTokenInput}
-									bind:value={sixthToken}
-								/>
-							</label>
-						</div>
-						<ol class="list">
-							<li>
-								{#if correctToken}
-									<span class="badge-icon variant-filled-success w-4 h-4"
-										><ProgressRadial
-											class="w-4 h-4"
-											stroke={100}
-											meter="stroke-success-500"
-											track="stroke-success-500/30"
-										/></span
-									>
-									<span class="flex-auto">Redirecting...</span>
-								{:else if firstToken && secondToken && thirdToken && fourthToken && fifthToken && sixthToken}
-									{#if tokenErrorState}
-										<span class="badge-icon variant-filled-success w-4 h-4"><ErrorIcon /></span>
-										<span class="flex-auto">{$errorMessage}</span>
-									{:else}
-										<span class="badge-icon variant-filled-warning w-4 h-4"><CrossIcon /></span>
-										<span class="flex-auto">Token is incorrect!</span>
-									{/if}
-								{:else}
-									<span class="badge-icon variant-filled-warning w-4 h-4"><QuestionMarkIcon /></span
-									>
-									<span class="flex-auto">Enter the code to start validation</span>
-								{/if}
-							</li>
-							<li>
-								<span class="badge-icon variant-filled-tertiary w-4 h-4"><InfoIcon /></span>
-								<span class="flex-auto">Didn't receive a code?</span>
-							</li>
-						</ol>
+					<form
+						class="grid grid-flow-col grid-cols-6 lg:gap-x-4"
+						novalidate
+						on:keydown={keydownHandler}
+						on:paste={pasteHandler}
+					>
+						{#each tokenValues as _, index}
+							<input
+								class="input text-center variant-form-material"
+								title="token{index + 1}"
+								maxlength="1"
+								type="text"
+								placeholder=""
+								autocomplete="off"
+								bind:value={tokenValues[index]}
+							/>
+						{/each}
 					</form>
+					<ol class="list">
+						<li>
+							{#if correctToken}
+								<span class="badge-icon variant-filled-success w-4 h-4"
+									><ProgressRadial
+										class="w-4 h-4"
+										stroke={100}
+										meter="stroke-success-500"
+										track="stroke-success-500/30"
+									/></span
+								>
+								<span class="flex-auto">Redirecting...</span>
+							{:else if validToken}
+								{#if tokenErrorState}
+									<span class="badge-icon variant-filled-success w-4 h-4"><ErrorIcon /></span>
+									<span class="flex-auto">{$errorMessage}</span>
+								{:else}
+									<span class="badge-icon variant-filled-warning w-4 h-4"><CrossIcon /></span>
+									<span class="flex-auto">Token is incorrect!</span>
+								{/if}
+							{:else}
+								<span class="badge-icon variant-filled-warning w-4 h-4"><QuestionMarkIcon /></span>
+								<span class="flex-auto">Enter the code to start validation</span>
+							{/if}
+						</li>
+						<li>
+							<span class="badge-icon variant-filled-tertiary w-4 h-4"><InfoIcon /></span>
+							<span class="flex-auto">Didn't receive a code?</span>
+						</li>
+					</ol>
 					<button
 						type="button"
 						class="btn btn-sm variant-filled-tertiary flex justify-center center mt-2 {resendTokenTimer >

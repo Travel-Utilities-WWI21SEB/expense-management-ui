@@ -31,7 +31,7 @@
 		loading = true;
 		errorState = false;
 
-		const response = await fetch('api/user/verify-username', {
+		const response = await fetch('api/users/verify-username', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
