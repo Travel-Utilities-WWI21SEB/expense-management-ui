@@ -25,7 +25,7 @@
 		const { email, username, password } = $newUser;
 
 		try {
-			const response = await fetch('api/user/register', {
+			const response = await fetch('api/users/register', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
@@ -50,8 +50,6 @@
 		e: CustomEvent<{ step: number; state: { current: number; total: number } }>
 	): void => {
 		const { step, state } = e.detail;
-		// Print current time and step
-		console.log(new Date().toLocaleTimeString(), step, state);
 
 		// If last step is reached, fire registration
 		if (step === 2 && state.current === 3) {

@@ -1,7 +1,7 @@
-import { json } from '@sveltejs/kit';
-import type { RequestHandler } from './$types';
 import { getErrorMessage } from '$utils';
+import { json } from '@sveltejs/kit';
 import type { LoginRequest } from '../../../../domain/user/requests/LoginRequest';
+import type { RequestHandler } from './$types';
 
 export const POST = (async ({ cookies, fetch, request }) => {
 	const body = await request.json();
@@ -20,8 +20,8 @@ export const POST = (async ({ cookies, fetch, request }) => {
 		if (response.ok) {
 			const { token, refreshToken } = await response.json();
 
-			cookies.set('token', token);
-			cookies.set('refreshToken', refreshToken);
+			cookies.set('token', token, { path: '/' });
+			cookies.set('refreshToken', refreshToken, { path: '/' });
 
 			return json({ error: false, errorMessage: '' });
 		}

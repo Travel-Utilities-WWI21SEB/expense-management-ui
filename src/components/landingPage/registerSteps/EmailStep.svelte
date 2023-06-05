@@ -20,7 +20,7 @@
 
 	// Email availability
 	let emailExists: boolean | undefined = undefined;
-	let lockEmailStep = false;
+	let lockEmailStep = true;
 
 	// Verify email
 	const verifyEmail = async () => {
@@ -33,7 +33,7 @@
 		errorState = false;
 
 		try {
-			const response = await fetch('api/user/verify-email', {
+			const response = await fetch('api/users/verify-email', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'

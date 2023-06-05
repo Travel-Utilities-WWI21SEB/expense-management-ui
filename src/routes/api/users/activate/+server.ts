@@ -16,8 +16,8 @@ export const POST = (async ({ cookies, fetch, request }) => {
 		if (response.ok) {
 			const { token, refreshToken } = await response.json();
 
-			cookies.set('token', token);
-			cookies.set('refreshToken', refreshToken);
+			cookies.set('token', token, { path: '/' });
+			cookies.set('refreshToken', refreshToken, { path: '/' });
 
 			return json({ tokenCorrect: true, error: false, errorMessage: '' });
 		}
