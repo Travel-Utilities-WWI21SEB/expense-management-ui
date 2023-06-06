@@ -23,7 +23,7 @@ export function modifyTripData(tripData: Array<TravelData>) {
 			trip.totalCost = tripChartData.datasets[0].data.reduce((partialSum, a) => partialSum + a, 0);
 		} else {
 			trip.data = {
-				labels: ['no cost specified yet'],
+				labels: ['no cost specified'],
 				datasets: [{ data: [-1], backgroundColor: ['#808080'] }]
 			};
 		}
