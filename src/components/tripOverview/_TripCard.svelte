@@ -16,7 +16,7 @@
 	</div>
 	<div class="pr-4 pb-4">
 		<h6 class="h6 p-4 flex justify-center">
-			{trip.totalCost ? `Total cost: ${trip.totalCost}€` : 'No Costs specified'}
+			{trip.totalCost ? `Total cost: ${trip.totalCost}€` : `Total cost: 0€`}
 		</h6>
 		{#if trip.data}
 			<DonutChart data={trip.data} />

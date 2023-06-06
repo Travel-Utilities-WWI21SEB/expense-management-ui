@@ -31,8 +31,17 @@
 </script>
 
 <Modal components={modalComponentRegistry} />
-<h2 class="h2 text-primary-800 dark:text-primary-400 col-start-1">Your trips</h2>
-<button type="button" class="btn variant-filled w-64 col-end-7" on:click={onButtonClick}>
+<h1 class="h1 col-start-1">
+	<span
+		class="bg-gradient-to-br from-primary-800 to-primary-400 bg-clip-text text-transparent box-decoration-clone"
+		>Your trips</span
+	>
+</h1>
+<button
+	type="button"
+	class="btn variant-filled w-24 h-12 xl:w-56 col-end-7"
+	on:click={onButtonClick}
+>
 	<span
 		><svg
 			xmlns="http://www.w3.org/2000/svg"
