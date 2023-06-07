@@ -9,8 +9,8 @@
 	// Finally, your application's global stylesheet (sometimes labeled 'app.css')
 	import '../../app.postcss';
 
-	import { AppShell, Drawer, Modal } from '@skeletonlabs/skeleton';
 	import { LandingPageFooter, LandingPageHeader, LandingPageSidebar } from '$components';
+	import { AppShell, Drawer, Modal } from '@skeletonlabs/skeleton';
 
 	let currentTile = 0;
 </script>

@@ -23,7 +23,7 @@ export const POST = (async ({ cookies, fetch, request }) => {
 			cookies.set('token', token, { path: '/' });
 			cookies.set('refreshToken', refreshToken, { path: '/' });
 
-			return json({ error: false, errorMessage: '' });
+			return json({ success: true, activated: true, error: false, errorMessage: '' });
 		}
 
 		const { errorCode } = await response.json();

@@ -219,7 +219,6 @@
 <Step
 	buttonBack="invisible pointer-events-none"
 	buttonComplete="invisible pointer-events-none"
-	regionContent="flex flex-wrap flex-col grow"
 	regionNavigation="display-none"
 >
 	<svelte:fragment slot="header">
@@ -230,106 +229,102 @@
 		</h1>
 		<hr class="w-16 h-1 bg-primary-500 rounded-full flex justify-center mt-2" />
 	</svelte:fragment>
-	<section class="bg-gray-50 dark:bg-gray-900">
-		<div class="px-6 py-8 mx-auto lg:py-0">
-			<div
-				class="flex flex-col flex-wrap content-center items-center p-6 space-y-4 md:space-y-6 sm:p-8"
-			>
-				{#if $loading}
-					<ProgressRadial
-						class="w-1/2 h-1/2"
-						stroke={100}
-						meter="stroke-primary-500"
-						track="stroke-primary-500/30"
-					/>
-				{:else if $errorState}
-					<aside class="alert variant-filled-error w-full">
-						<!-- Icon -->
-						<div>
-							<span class="badge-icon variant-ghost-error w-15 h-15"><ErrorIcon /></span>
-						</div>
-						<!-- Message -->
-						<div class="alert-message">
-							<h3 class="h3">Something went wrong!</h3>
-							<p>{$errorMessage}</p>
-						</div>
-						<!-- Actions -->
-						<div class="alert-actions">
-							<button
-								class="btn variant-filled {$loading ? 'pointer-events-none opacity-50' : ''}"
-								on:click={debouncedRegister}>Try again</button
+	<section>
+		<div class="p-6 space-y-4 md:space-y-6 sm:p-8 flex flex-col justify-center">
+			{#if $loading}
+				<ProgressRadial
+					class="w-1/2 h-1/2 mx-auto"
+					stroke={100}
+					meter="stroke-primary-500"
+					track="stroke-primary-500/30"
+				/>
+			{:else if $errorState}
+				<aside class="alert variant-filled-error w-full">
+					<!-- Icon -->
+					<div>
+						<span class="badge-icon variant-ghost-error w-15 h-15"><ErrorIcon /></span>
+					</div>
+					<!-- Message -->
+					<div class="alert-message">
+						<h3 class="h3">Something went wrong!</h3>
+						<p>{$errorMessage}</p>
+					</div>
+					<!-- Actions -->
+					<div class="alert-actions">
+						<button
+							class="btn variant-filled {$loading ? 'pointer-events-none opacity-50' : ''}"
+							on:click={debouncedRegister}>Try again</button
+						>
+					</div>
+				</aside>
+			{:else}
+				<h5 class="h5 text-center">Please enter the code we sent to your email!</h5>
+				<form
+					class="grid grid-flow-col grid-cols-6 lg:gap-x-4"
+					novalidate
+					on:keydown={keydownHandler}
+					on:paste={pasteHandler}
+				>
+					{#each tokenValues as _, index}
+						<input
+							class="input text-center variant-form-material"
+							title="token{index + 1}"
+							maxlength="1"
+							type="text"
+							placeholder=""
+							autocomplete="off"
+							bind:value={tokenValues[index]}
+						/>
+					{/each}
+				</form>
+				<ol class="list flex flex-col">
+					<li>
+						{#if correctToken}
+							<span class="badge-icon variant-filled-success w-4 h-4 justify-center"
+								><ProgressRadial
+									class="w-4 h-4"
+									stroke={100}
+									meter="stroke-success-500"
+									track="stroke-success-500/30"
+								/></span
 							>
-						</div>
-					</aside>
-				{:else}
-					<h5 class="h5 text-center">Please enter the code we sent to your email!</h5>
-					<form
-						class="grid grid-flow-col grid-cols-6 lg:gap-x-4"
-						novalidate
-						on:keydown={keydownHandler}
-						on:paste={pasteHandler}
-					>
-						{#each tokenValues as _, index}
-							<input
-								class="input text-center variant-form-material"
-								title="token{index + 1}"
-								maxlength="1"
-								type="text"
-								placeholder=""
-								autocomplete="off"
-								bind:value={tokenValues[index]}
-							/>
-						{/each}
-					</form>
-					<ol class="list">
-						<li>
-							{#if correctToken}
-								<span class="badge-icon variant-filled-success w-4 h-4"
-									><ProgressRadial
-										class="w-4 h-4"
-										stroke={100}
-										meter="stroke-success-500"
-										track="stroke-success-500/30"
-									/></span
-								>
-								<span class="flex-auto">Redirecting...</span>
-							{:else if validToken}
-								{#if tokenErrorState}
-									<span class="badge-icon variant-filled-success w-4 h-4"><ErrorIcon /></span>
-									<span class="flex-auto">{$errorMessage}</span>
-								{:else}
-									<span class="badge-icon variant-filled-warning w-4 h-4"><CrossIcon /></span>
-									<span class="flex-auto">Token is incorrect!</span>
-								{/if}
+							<span class="flex-auto">Redirecting...</span>
+						{:else if validToken}
+							{#if tokenErrorState}
+								<span class="badge-icon variant-filled-success w-4 h-4"><ErrorIcon /></span>
+								<span class="flex-auto">{$errorMessage}</span>
 							{:else}
-								<span class="badge-icon variant-filled-warning w-4 h-4"><QuestionMarkIcon /></span>
-								<span class="flex-auto">Enter the code to start validation</span>
+								<span class="badge-icon variant-filled-warning w-4 h-4"><CrossIcon /></span>
+								<span class="flex-auto">Token is incorrect!</span>
 							{/if}
-						</li>
-						<li>
-							<span class="badge-icon variant-filled-tertiary w-4 h-4"><InfoIcon /></span>
-							<span class="flex-auto">Didn't receive a code?</span>
-						</li>
-					</ol>
-					<button
-						type="button"
-						class="btn btn-sm variant-filled-tertiary flex justify-center center mt-2 {resendTokenTimer >
-						0
-							? 'pointer-events-none opacity-50'
-							: ''}"
-						on:click={resendToken}
-					>
-						<span>
-							{#if resendTokenTimer > 0}
-								<ClosedEnvelopeIcon />
-							{:else}
-								<OpenEnvelopeIcon />
-							{/if}
-						</span>
-						<span>Get a new one {remainingTime}</span>
-					</button>
-				{/if}
-			</div>
+						{:else}
+							<span class="badge-icon variant-filled-warning w-4 h-4"><QuestionMarkIcon /></span>
+							<span class="flex-auto">Enter the code to start validation</span>
+						{/if}
+					</li>
+					<li>
+						<span class="badge-icon variant-filled-tertiary w-4 h-4"><InfoIcon /></span>
+						<span class="flex-auto">Didn't receive a code?</span>
+					</li>
+				</ol>
+				<button
+					type="button"
+					class="btn btn-sm variant-filled-tertiary flex justify-center center mt-2 {resendTokenTimer >
+					0
+						? 'pointer-events-none opacity-50'
+						: ''}"
+					on:click={resendToken}
+				>
+					<span>
+						{#if resendTokenTimer > 0}
+							<ClosedEnvelopeIcon />
+						{:else}
+							<OpenEnvelopeIcon />
+						{/if}
+					</span>
+					<span>Get a new one {remainingTime}</span>
+				</button>
+			{/if}
 		</div>
 	</section>
 </Step>

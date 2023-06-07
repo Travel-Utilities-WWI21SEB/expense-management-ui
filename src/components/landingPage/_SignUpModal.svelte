@@ -10,14 +10,14 @@
 	};
 </script>
 
-<div class="container gap-8 md:w-1/2 h-4/5 md:h-3/5 m-5">
+<div class="gap-8 flex flex-col flex-shrink bg-gray-50 dark:bg-gray-900 md:w-1/2">
 	<TabGroup
 		justify="justify-center"
 		active="variant-filled-primary"
 		hover="hover:variant-soft-primary"
 		flex="flex-1 lg:flex-none"
 		rounded="rounded-xl"
-		class="bg-gray-50 dark:bg-gray-900 w-full rounded-xl"
+		class="w-full rounded-xl"
 	>
 		<Tab bind:group={tabSet} class="mt-2 mb-2" name="tab1" value={0}>Register</Tab>
 		<Tab bind:group={tabSet} class="mt-2 mb-2" name="tab2" value={1}>Login</Tab>
