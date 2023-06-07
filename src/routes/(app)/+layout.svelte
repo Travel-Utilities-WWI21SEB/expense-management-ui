@@ -9,7 +9,13 @@
 	// Finally, your application's global stylesheet (sometimes labeled 'app.css')
 	import '../../app.postcss';
 
-	import { AppShell, Drawer } from '@skeletonlabs/skeleton';
+	// Import floating ui and skeleton deps
+	import { arrow, autoUpdate, computePosition, flip, offset, shift } from '@floating-ui/dom';
+	import { AppShell, Drawer, storePopup } from '@skeletonlabs/skeleton';
+
+	// Set floating ui defaults
+	storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
+
 	import { Footer, Header, Sidebar } from '$components';
 </script>
 

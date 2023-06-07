@@ -1,11 +1,53 @@
 <script lang="ts">
-	import { AppBar, drawerStore, LightSwitch, modeCurrent } from '@skeletonlabs/skeleton';
-	import { LightIcon, DarkIcon, MenuIcon, SettingsIcon } from '$icons';
+	import { goto } from '$app/navigation';
+	import { DarkIcon, LightIcon, LogoutIcon, MenuIcon, SettingsIcon, UserIcon } from '$icons';
+	import {
+		AppBar,
+		LightSwitch,
+		drawerStore,
+		modeCurrent,
+		popup,
+		type PopupSettings
+	} from '@skeletonlabs/skeleton';
 
-	function drawerOpen(): void {
+	const drawerOpen = (): void => {
 		drawerStore.open({});
-	}
+	};
+
+	const settingsPopup: PopupSettings = {
+		event: 'click',
+		target: 'settingsPopup',
+		placement: 'bottom'
+	};
+
+	const logoutHandler = async (): Promise<void> => {
+		const response = await fetch('api/users/logout', {
+			method: 'POST'
+		});
+
+		const { success } = await response.json();
+
+		if (success) {
+			goto('/');
+		}
+	};
 </script>
+
+<!-- SETTINGS POPUP -->
+<div class="card p-4 flex flex-col flex-grow" data-popup="settingsPopup">
+	<div class="btn-group-vertical variant-ghost">
+		<button type="button" class="btn !bg-transparent">
+			<span><UserIcon width={6} height={6} /></span>
+			<span>Profile</span>
+		</button>
+		<hr class="!border-t-2 !border-separate" />
+		<button type="button" class="btn !bg-transparent" on:click={logoutHandler}>
+			<span><LogoutIcon /></span>
+			<span>Logout</span>
+		</button>
+	</div>
+</div>
+<!-- SETTINGS POPUP-->
 
 <AppBar
 	gridColumns="grid-cols-3"
@@ -40,7 +82,7 @@
 		<!-- Theme Switch -->
 
 		<!-- Settings -->
-		<button type="button" class="btn-icon variant-ringed">
+		<button type="button" class="btn-icon variant-ringed" use:popup={settingsPopup}>
 			<SettingsIcon width={8} height={8} />
 		</button>
 		<!-- Settings -->

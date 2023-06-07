@@ -61,59 +61,57 @@
 		</h1>
 		<hr class="w-16 h-1 bg-primary-500 rounded-full flex justify-center mt-2" />
 	</svelte:fragment>
-	<section class="bg-gray-50 dark:bg-gray-900">
-		<div class="px-6 py-8 mx-auto lg:py-0">
-			<div class="flex flex-col flex-wrap content-center p-6 space-y-4 md:space-y-6 sm:p-8">
-				<form class="space-y-4 md:space-y-6 group w-full lg:w-3/5" novalidate>
-					<label class="label">
-						<span>Username</span>
-						<input
-							class="input"
-							title="inputUsername"
-							type="text"
-							placeholder="mustermann1997"
-							autocomplete="username"
-							bind:value={usernameValue}
-							on:input={() => {
-								lockUserStep = true;
-								loading = true;
-								debouncedVerifyUsername();
-							}}
+	<section>
+		<div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+			<form novalidate>
+				<label class="label">
+					<span>Username</span>
+					<input
+						class="input"
+						title="inputUsername"
+						type="text"
+						placeholder="mustermann1997"
+						autocomplete="username"
+						bind:value={usernameValue}
+						on:input={() => {
+							lockUserStep = true;
+							loading = true;
+							debouncedVerifyUsername();
+						}}
+					/>
+				</label>
+			</form>
+			<ol class="list">
+				<li>
+					{#if usernameValid}
+						<span class="badge-icon variant-filled-success w-4 h-4"><CheckIcon /></span>
+						<span class="flex-auto">Username is valid</span>
+					{:else}
+						<span class="badge-icon variant-filled-error w-4 h-4"><CrossIcon /></span>
+						<span class="flex-auto">Username must be between 4 and 15 characters</span>
+					{/if}
+				</li>
+				<li>
+					{#if usernameValid && loading}
+						<ProgressRadial
+							class="w-4 h-4"
+							stroke={100}
+							meter="stroke-warning-500"
+							track="stroke-warning-500/30"
 						/>
-					</label>
-					<ol class="list">
-						<li>
-							{#if usernameValid}
-								<span class="badge-icon variant-filled-success w-4 h-4"><CheckIcon /></span>
-								<span class="flex-auto">Username is valid</span>
-							{:else}
-								<span class="badge-icon variant-filled-error w-4 h-4"><CrossIcon /></span>
-								<span class="flex-auto">Username must be between 4 and 15 characters</span>
-							{/if}
-						</li>
-						<li>
-							{#if usernameValid && loading}
-								<ProgressRadial
-									class="w-4 h-4"
-									stroke={100}
-									meter="stroke-warning-500"
-									track="stroke-warning-500/30"
-								/>
-								<span class="flex-auto">Checking availability...</span>
-							{:else if errorState}
-								<span class="badge-icon variant-filled-error w-4 h-4"><CrossIcon /></span>
-								<span class="flex-auto">{errorDisplayMessage}</span>
-							{:else if loading || usernameExists === undefined}
-								<span class="badge-icon variant-filled-warning w-4 h-4"><QuestionMarkIcon /></span>
-								<span class="flex-auto">Please provide a valid username to check availability</span>
-							{:else}
-								<span class="badge-icon variant-filled-success w-4 h-4"><CheckIcon /></span>
-								<span class="flex-auto">Username is not in use</span>
-							{/if}
-						</li>
-					</ol>
-				</form>
-			</div>
+						<span class="flex-auto">Checking availability...</span>
+					{:else if errorState}
+						<span class="badge-icon variant-filled-error w-4 h-4"><CrossIcon /></span>
+						<span class="flex-auto">{errorDisplayMessage}</span>
+					{:else if loading || usernameExists === undefined}
+						<span class="badge-icon variant-filled-warning w-4 h-4"><QuestionMarkIcon /></span>
+						<span class="flex-auto">Please provide a valid username to check availability</span>
+					{:else}
+						<span class="badge-icon variant-filled-success w-4 h-4"><CheckIcon /></span>
+						<span class="flex-auto">Username is not in use</span>
+					{/if}
+				</li>
+			</ol>
 		</div>
 	</section>
 </Step>

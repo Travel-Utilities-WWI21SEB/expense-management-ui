@@ -10,6 +10,7 @@ export { default as GlobeIcon } from './_GlobeIcon.svelte';
 export { default as HomepageIcon } from './_HomepageIcon.svelte';
 export { default as InfoIcon } from './_InfoIcon.svelte';
 export { default as LightIcon } from './_LightIcon.svelte';
+export { default as LogoutIcon } from './_LogoutIcon.svelte';
 export { default as MenuIcon } from './_MenuIcon.svelte';
 export { default as OpenEnvelopeIcon } from './_OpenEnvelopeIcon.svelte';
 export { default as QuestionMarkIcon } from './_QuestionMarkIcon.svelte';
