@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ArrowIcon } from '$icons';
+	import { ArrowIcon, GlobeIcon } from '$icons';
 
 	export let title: string;
 	export let content: string;
@@ -22,6 +22,6 @@
 	<div
 		class="sm:w-32 order-none h-32 w-20 ml-10 inline-flex items-center justify-center rounded-full bg-surface-300 dark:bg-surface-500 flex-shrink-0"
 	>
-		<slot name="icon" />
+		<GlobeIcon sidebarIcon={false} />
 	</div>
 </div>

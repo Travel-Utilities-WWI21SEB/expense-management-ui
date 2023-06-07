@@ -8,7 +8,6 @@
 		SignUpModal,
 		StatisticBox
 	} from '$components';
-	import { GlobeIcon } from '$icons';
 	import { modalStore, type ModalComponent, type ModalSettings } from '@skeletonlabs/skeleton';
 
 	// Sign Up Modal
@@ -71,29 +70,17 @@
 			title="Create trips with your friends"
 			content="Travel the world with your friends and family. Create a trip and invite your friends to join you."
 			path="travel"
-		>
-			<svelte:fragment slot="icon">
-				<GlobeIcon sidebarIcon={false} />
-			</svelte:fragment>
-		</LandingPageFeatureBoxLeft>
+		/>
 		<LandingPageFeatureBoxRight
 			title="Create trips with your friends"
 			content="Travel the world with your friends and family. Create a trip and invite your friends to join you."
 			path="travel"
-		>
-			<svelte:fragment slot="icon">
-				<GlobeIcon sidebarIcon={false} />
-			</svelte:fragment>
-		</LandingPageFeatureBoxRight>
+		/>
 		<LandingPageFeatureBoxLeft
 			title="Create trips with your friends"
 			content="Travel the world with your friends and family. Create a trip and invite your friends to join you."
 			path="travel"
-		>
-			<svelte:fragment slot="icon">
-				<GlobeIcon sidebarIcon={false} />
-			</svelte:fragment>
-		</LandingPageFeatureBoxLeft>
+		/>
 	</div>
 </section>
 <!-- FEATURES -->

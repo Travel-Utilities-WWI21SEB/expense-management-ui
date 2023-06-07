@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ArrowIcon } from '$icons';
+	import { ArrowIcon, GlobeIcon } from '$icons';
 
 	export let title: string;
 	export let content: string;
@@ -10,7 +10,7 @@
 	<div
 		class="w-32 h-32 mr-10 inline-flex items-center justify-center rounded-full bg-surface-300 dark:bg-surface-500 flex-shrink-0"
 	>
-		<slot name="icon" />
+		<GlobeIcon sidebarIcon={false} />
 	</div>
 	<div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
 		<h4 class="h4 title-font font-medium mb-2">{title}</h4>
