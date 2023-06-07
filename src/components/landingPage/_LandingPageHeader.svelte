@@ -1,7 +1,6 @@
 <script lang="ts">
-	import { AppBar, drawerStore, LightSwitch } from '@skeletonlabs/skeleton';
 	import { DarkIcon, LightIcon, MenuIcon } from '$icons';
-	import { modeCurrent } from '@skeletonlabs/skeleton';
+	import { AppBar, LightSwitch, drawerStore, modeCurrent } from '@skeletonlabs/skeleton';
 
 	function drawerOpen(): void {
 		drawerStore.open({});

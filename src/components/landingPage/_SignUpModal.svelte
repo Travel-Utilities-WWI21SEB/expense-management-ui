@@ -18,6 +18,7 @@
 		flex="flex-1 lg:flex-none"
 		rounded="rounded-xl"
 		class="w-full rounded-xl"
+		regionList="mx-2"
 	>
 		<Tab bind:group={tabSet} class="mt-2 mb-2" name="tab1" value={0}>Register</Tab>
 		<Tab bind:group={tabSet} class="mt-2 mb-2" name="tab2" value={1}>Login</Tab>

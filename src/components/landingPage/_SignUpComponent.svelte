@@ -35,6 +35,7 @@
 
 			const { error, errorMessage: message } = await response.json();
 
+			// Writing in the store to let TokenStep know the results
 			errorState.set(error);
 			errorMessage.set(message);
 		} catch (error: any) {

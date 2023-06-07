@@ -1,5 +1,6 @@
 <script lang="ts">
 	import {
+		CatchPhraseText,
 		ContactBox,
 		LandingPageFeatureBoxLeft,
 		LandingPageFeatureBoxRight,
@@ -26,24 +27,18 @@
 </script>
 
 <div class="flex justify-center m-4 p-4">
-	<h1 class="h1 mx-2 tracking-wider">
-		<span
-			class="bg-gradient-to-br dark:from-blue-400 from-blue-600 dark:to-cyan-400 to-cyan-600 bg-clip-text text-transparent box-decoration-clone"
-			>Travel.</span
-		>
-	</h1>
-	<h1 class="h1 mx-2 tracking-wider">
-		<span
-			class="bg-gradient-to-br dark:from-red-400 from-red-600 dark:to-yellow-400 to-yellow-600 bg-clip-text text-transparent box-decoration-clone"
-			>Spend.</span
-		>
-	</h1>
-	<h1 class="h1 mx-2 tracking-wider">
-		<span
-			class="bg-gradient-to-br dark:from-pink-400 from-pink-600 dark:to-violet-400 to-violet-600 bg-clip-text text-transparent box-decoration-clone"
-			>Divide.</span
-		>
-	</h1>
+	<CatchPhraseText
+		text="Travel."
+		colorGradient="dark:from-blue-400 from-blue-600 dark:to-cyan-400 to-cyan-600"
+	/>
+	<CatchPhraseText
+		text="Spend."
+		colorGradient="dark:from-red-400 from-red-600 dark:to-yellow-400 to-yellow-600"
+	/>
+	<CatchPhraseText
+		text="Divide."
+		colorGradient="dark:from-pink-400 from-pink-600 dark:to-violet-400 to-violet-600"
+	/>
 </div>
 
 <hr class="!border-t-8 !border-double" />

@@ -17,7 +17,7 @@
 
 	// Timer
 	let resendTokenInterval = 25;
-	let resendTokenTimer: number = 0;
+	let resendTokenTimer = 0;
 	$: remainingTime = resendTokenTimer > 0 ? `in ${resendTokenTimer} seconds` : '';
 
 	// Decrease timer if it's greater than 0
@@ -120,7 +120,7 @@
 		let previousInput: HTMLInputElement;
 
 		switch (e.code) {
-			case 'Backspace':
+			case 'Backspace': {
 				previousInput = target.previousElementSibling as HTMLInputElement;
 
 				// If there's a value in the current target
@@ -134,7 +134,8 @@
 
 				e.preventDefault();
 				break;
-			case 'ArrowLeft':
+			}
+			case 'ArrowLeft': {
 				previousInput = target.previousElementSibling as HTMLInputElement;
 
 				if (previousInput && target.selectionStart === 0) {
@@ -144,7 +145,8 @@
 				}
 
 				break;
-			case 'ArrowRight':
+			}
+			case 'ArrowRight': {
 				const nextInput = target.nextElementSibling as HTMLInputElement;
 
 				if (nextInput && target.selectionStart === target.value.length) {
@@ -154,7 +156,8 @@
 				}
 
 				break;
-			default:
+			}
+			default: {
 				// Check if input is number or letter
 				// Write the value and focus the next input
 				const validInput = ['Digit', 'Key', 'Numpad'];
@@ -177,6 +180,7 @@
 						verifyToken();
 					}
 				}
+			}
 		}
 	};
 

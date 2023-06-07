@@ -1,14 +1,14 @@
 <script lang="ts">
+	import { ArrowIcon } from '$icons';
+
 	export let title: string;
 	export let content: string;
 	export let path: string;
 </script>
 
-<div
-	class="flex items-center lg:w-3/5 mx-auto border-b pb-10 mb-10 border-current sm:flex-row flex-col"
->
+<div class="flex items-center lg:w-3/5 mx-auto border-b pb-10 mb-10 border-current flex-row">
 	<div
-		class="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full bg-surface-300 dark:bg-surface-500 flex-shrink-0"
+		class="w-32 h-32 mr-10 inline-flex items-center justify-center rounded-full bg-surface-300 dark:bg-surface-500 flex-shrink-0"
 	>
 		<slot name="icon" />
 	</div>
@@ -21,17 +21,7 @@
 			href={`/${path}`}
 			class="mt-3 text-tertiary-800 dark:text-tertiary-400 inline-flex items-center"
 			>Learn More
-			<svg
-				fill="none"
-				stroke="currentColor"
-				stroke-linecap="round"
-				stroke-linejoin="round"
-				stroke-width="2"
-				class="w-4 h-4 ml-2"
-				viewBox="0 0 24 24"
-			>
-				<path d="M5 12h14M12 5l7 7-7 7" />
-			</svg>
+			<ArrowIcon />
 		</a>
 	</div>
 </div>
