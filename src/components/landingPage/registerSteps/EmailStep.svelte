@@ -59,7 +59,14 @@
 	const debouncedVerifyEmail = debounce(verifyEmail, 500);
 </script>
 
-<Step locked={lockEmailStep} buttonNextLabel="Select your username" buttonBack="invisible">
+<Step
+	locked={lockEmailStep}
+	buttonNextLabel="Select your username"
+	buttonBack="invisible"
+	buttonNext="btn variant-filled-primary hover:variant-soft-primary dark:hover:variant-soft-primary-dark {lockEmailStep
+		? 'pointer-events-none opacity-50'
+		: ''}"
+>
 	<svelte:fragment slot="header">
 		<h1
 			class="h1 text-xl text-center font-bold leading-tight tracking-tight md:text-2xl dark:text-white"

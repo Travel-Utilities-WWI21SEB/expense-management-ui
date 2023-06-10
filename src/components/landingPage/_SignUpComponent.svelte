@@ -1,5 +1,16 @@
 <script lang="ts">
-	import { errorMessage, errorState, loading, newUser } from '$stores';
+	import {
+		correctToken,
+		errorMessage,
+		errorState,
+		loading,
+		newUser,
+		password,
+		passwordValid,
+		passwordsMatch,
+		tokenErrorState,
+		tokenValues
+	} from '$stores';
 	import { Stepper } from '@skeletonlabs/skeleton';
 	import { onDestroy } from 'svelte';
 	import EmailStep from './registerSteps/EmailStep.svelte';
@@ -10,11 +21,25 @@
 	export let changeTab: (index: number) => void;
 
 	onDestroy(() => {
+		// Clean up store values
 		newUser.set({
 			email: '',
 			username: '',
 			password: ''
 		});
+
+		// Clean up store values
+		tokenValues.set(['', '', '', '', '', '']);
+		correctToken.set(undefined);
+		tokenErrorState.set(false);
+
+		password.set('');
+		passwordValid.set(false);
+		passwordsMatch.set(false);
+
+		errorState.set(false);
+		errorMessage.set('');
+		loading.set(false);
 	});
 
 	// Register
@@ -59,11 +84,7 @@
 	};
 </script>
 
-<Stepper
-	class="p-3 m-3 h-full"
-	buttonNext="btn variant-filled-primary hover:variant-soft-primary dark:hover:variant-soft-primary-dark"
-	on:next={nextStepHandler}
->
+<Stepper class="p-3 m-3 h-full" on:next={nextStepHandler}>
 	<EmailStep {changeTab} />
 	<UsernameStep />
 	<PasswordStep />
