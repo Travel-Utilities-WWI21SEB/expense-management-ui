@@ -22,6 +22,7 @@
 			placeholder="********"
 			autocomplete="new-password"
 			bind:value={passwordValue}
+			on:input={onInputHandler}
 		/>
 	</label>
 	<label class="label">
@@ -33,7 +34,6 @@
 			placeholder="********"
 			autocomplete="new-password"
 			bind:value={passwordConfirm}
-			on:input={onInputHandler}
 		/>
 	</label>
 </form>

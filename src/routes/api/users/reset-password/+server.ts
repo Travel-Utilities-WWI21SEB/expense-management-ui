@@ -15,8 +15,6 @@ export const POST = (async ({ fetch, request }) => {
 			body: JSON.stringify({ email: email, password: password, token: token })
 		});
 
-		console.log(response, email, password, token);
-
 		if (response.ok || response.status === 206) {
 			return json({ success: true, error: false, errorMessage: '' });
 		}

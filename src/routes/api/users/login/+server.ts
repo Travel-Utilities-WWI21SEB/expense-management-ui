@@ -1,11 +1,10 @@
 import { PUBLIC_BASE_URL } from '$env/static/public';
-import type { LoginRequest } from '$userDomain';
 import { getErrorMessage } from '$utils';
 import { json, type RequestHandler } from '@sveltejs/kit';
 
 export const POST = (async ({ cookies, fetch, request }) => {
 	const body = await request.json();
-	const { email, password, rememberMe }: LoginRequest = body;
+	const { email, password, rememberMe } = body;
 
 	try {
 		const response = await fetch(`${PUBLIC_BASE_URL}/api/v1/users/login`, {

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { errorMessage, errorState, loading, newUser, tokenValues } from '$stores';
+	import { email, errorMessage, errorState, loading, tokenValues } from '$stores';
 	import { ProgressRadial, Step, modalStore } from '@skeletonlabs/skeleton';
 	import { debounce } from 'lodash';
 	import { correctToken, tokenErrorState } from '../../../stores/landingPageStore';
@@ -66,7 +66,7 @@
 				headers: {
 					'Content-Type': 'application/json'
 				},
-				body: JSON.stringify({ email: $newUser.email })
+				body: JSON.stringify({ email: $email })
 			});
 
 			const { error, errorMessage: message } = await response.json();

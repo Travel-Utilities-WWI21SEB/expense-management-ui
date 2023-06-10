@@ -1,6 +1,8 @@
 <script lang="ts">
 	import {
 		correctToken,
+		email,
+		emailValid,
 		errorMessage,
 		errorState,
 		loading,
@@ -11,12 +13,12 @@
 		tokenValues
 	} from '$stores';
 	import { Stepper } from '@skeletonlabs/skeleton';
-	import { onDestroy, onMount, tick } from 'svelte/internal';
-	import SetNewPasswordStep from './forgotPasswordSteps/SetNewPasswordStep.svelte';
-	import ValidateResetTokenStep from './forgotPasswordSteps/ValidateResetTokenStep.svelte';
+	import { onDestroy, tick } from 'svelte/internal';
+	import SelectEmailStep from './forgotPasswordSteps/_SelectEmailStep.svelte';
+	import SetNewPasswordStep from './forgotPasswordSteps/_SetNewPasswordStep.svelte';
+	import ValidateResetTokenStep from './forgotPasswordSteps/_ValidateResetTokenStep.svelte';
 
 	export let closeForgotPassword: () => void;
-	export let email: string;
 
 	const forgotPasswordHandler = async () => {
 		loading.set(true);
@@ -27,7 +29,7 @@
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({ email })
+			body: JSON.stringify({ email: $email })
 		});
 
 		const { error, errorMessage: errorDisplayMessage } = await response.json();
@@ -46,7 +48,7 @@
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({ email: email, password: $password, token: $tokenValues.join('') })
+			body: JSON.stringify({ email: $email, password: $password, token: $tokenValues.join('') })
 		});
 
 		const { success, error, errorMessage: errorDisplayMessage } = await response.json();
@@ -62,11 +64,25 @@
 		loading.set(false);
 	};
 
+	const nextStepHandler = (
+		e: CustomEvent<{ step: number; state: { current: number; total: number } }>
+	): void => {
+		const { step, state } = e.detail;
+
+		// If last step is reached, fire registration
+		if (step === 0 && state.current === 1) {
+			forgotPasswordHandler();
+		}
+	};
+
 	onDestroy(() => {
 		// Clean up store values
 		tokenValues.set(['', '', '', '', '', '']);
 		correctToken.set(undefined);
 		tokenErrorState.set(false);
+
+		email.set('');
+		emailValid.set(false);
 
 		password.set('');
 		passwordValid.set(false);
@@ -76,17 +92,15 @@
 		errorMessage.set('');
 		loading.set(false);
 	});
-
-	onMount(() => {
-		forgotPasswordHandler();
-	});
 </script>
 
 <Stepper
-	on:buttonBack={closeForgotPassword}
+	on:back={closeForgotPassword}
+	on:next={nextStepHandler}
 	on:complete={onCompleteHandler}
 	buttonBackLabel="Abort"
 >
-	<ValidateResetTokenStep {forgotPasswordHandler} {email} />
+	<SelectEmailStep />
+	<ValidateResetTokenStep {forgotPasswordHandler} />
 	<SetNewPasswordStep {closeForgotPassword} />
 </Stepper>

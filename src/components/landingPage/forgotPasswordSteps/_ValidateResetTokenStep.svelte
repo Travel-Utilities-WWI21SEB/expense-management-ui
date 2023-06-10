@@ -2,6 +2,7 @@
 	import { CheckIcon } from '$icons';
 	import {
 		correctToken,
+		email,
 		errorMessage,
 		errorState,
 		loading,
@@ -14,7 +15,6 @@
 	import TokenForm from '../../general/forms/_TokenForm.svelte';
 
 	export let forgotPasswordHandler: () => void;
-	export let email: string;
 
 	// Lock step
 	$: lockTokenStep = !validToken || !$correctToken;
@@ -36,7 +36,7 @@
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({ email: email, token: $tokenValues.join('') })
+			body: JSON.stringify({ email: $email, token: $tokenValues.join('') })
 		});
 
 		const { valid, error, errorMessage: errorDisplayMessage } = await response.json();

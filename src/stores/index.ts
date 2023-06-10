@@ -1,15 +1,18 @@
 // Landing page store
 export {
 	correctToken,
+	email,
+	emailValid,
 	errorMessage,
 	errorState,
 	loading,
-	newUser,
 	password,
 	passwordValid,
 	passwordsMatch,
 	tokenErrorState,
-	tokenValues
+	tokenValues,
+	username,
+	usernameValid
 } from './landingPageStore';
 // Trip store
 export { allTrips, currentTrip } from './tripsStore';

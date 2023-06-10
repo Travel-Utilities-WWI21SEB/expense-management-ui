@@ -1,20 +1,12 @@
 <script lang="ts">
 	import { CheckIcon, CrossIcon, QuestionMarkIcon } from '$icons';
-	import { newUser } from '$stores';
+	import { errorMessage, errorState, loading, username, usernameValid } from '$stores';
 	import { validateUsername } from '$utils';
 	import { ProgressRadial, Step } from '@skeletonlabs/skeleton';
 	import { debounce } from 'lodash';
 
-	// Form data
-	let usernameValue = '';
-
-	// Utility variables
-	let errorState = false;
-	let errorDisplayMessage = '';
-	let loading = false;
-
 	// Email validation
-	$: usernameValid = validateUsername(usernameValue);
+	$: usernameValid.set(validateUsername($username));
 
 	// Email availability
 	let usernameExists: boolean | undefined = undefined;
@@ -22,31 +14,30 @@
 
 	// Verify username
 	const verifyUsername = async () => {
-		if (!usernameValid) {
+		if (!$usernameValid) {
 			usernameExists = undefined;
 			return;
 		}
 
-		newUser.set({ ...$newUser, username: usernameValue });
-		loading = true;
-		errorState = false;
+		loading.set(true);
+		errorState.set(false);
 
 		const response = await fetch('api/users/verify-username', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({ username: usernameValue })
+			body: JSON.stringify({ username: $username })
 		});
 
-		const { error, errorMessage, exists, valid } = await response.json();
-		loading = false;
+		const { error, errorMessage: errorDisplayMessage, exists, valid } = await response.json();
+		loading.set(false);
 
-		errorState = error;
-		errorDisplayMessage = errorMessage;
-		usernameValid = valid;
+		errorState.set(error);
+		errorMessage.set(errorDisplayMessage);
+		usernameValid.set(valid);
 		usernameExists = exists;
-		lockUserStep = errorState || !usernameValid;
+		lockUserStep = $errorState || !usernameValid;
 	};
 
 	const debouncedVerifyUsername = debounce(verifyUsername, 500);
@@ -78,10 +69,11 @@
 						type="text"
 						placeholder="mustermann1997"
 						autocomplete="username"
-						bind:value={usernameValue}
-						on:input={() => {
+						bind:value={$username}
+						on:input={(e) => {
 							lockUserStep = true;
-							loading = true;
+							loading.set(true);
+							username.set(e.currentTarget.value.trim());
 							debouncedVerifyUsername();
 						}}
 					/>
@@ -89,7 +81,7 @@
 			</form>
 			<ol class="list">
 				<li>
-					{#if usernameValid}
+					{#if $usernameValid}
 						<span class="badge-icon variant-filled-success w-4 h-4"><CheckIcon /></span>
 						<span class="flex-auto">Username is valid</span>
 					{:else}
@@ -98,7 +90,7 @@
 					{/if}
 				</li>
 				<li>
-					{#if usernameValid && loading}
+					{#if $usernameValid && $loading}
 						<ProgressRadial
 							class="w-4 h-4"
 							stroke={100}
@@ -106,10 +98,10 @@
 							track="stroke-warning-500/30"
 						/>
 						<span class="flex-auto">Checking availability...</span>
-					{:else if errorState}
+					{:else if $errorState}
 						<span class="badge-icon variant-filled-error w-4 h-4"><CrossIcon /></span>
-						<span class="flex-auto">{errorDisplayMessage}</span>
-					{:else if loading || usernameExists === undefined}
+						<span class="flex-auto">{$errorMessage}</span>
+					{:else if $loading || usernameExists === undefined}
 						<span class="badge-icon variant-filled-warning w-4 h-4"><QuestionMarkIcon /></span>
 						<span class="flex-auto">Please provide a valid username to check availability</span>
 					{:else}

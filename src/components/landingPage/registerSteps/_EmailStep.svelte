@@ -1,22 +1,14 @@
 <script lang="ts">
 	import { CheckIcon, CrossIcon, QuestionMarkIcon } from '$icons';
-	import { newUser } from '$stores';
+	import { email, errorMessage, errorState, loading } from '$stores';
 	import { validateEmail } from '$utils';
 	import { ProgressRadial, Step } from '@skeletonlabs/skeleton';
 	import { debounce } from 'lodash';
 
 	export let changeTab: (index: number) => void;
 
-	// Form data
-	let emailValue = '';
-
-	// Utility variables
-	let errorState = false;
-	let errorDisplayMessage = '';
-	let loading = false;
-
 	// Email validation
-	$: emailValid = validateEmail(emailValue);
+	$: emailValid = validateEmail($email);
 
 	// Email availability
 	let emailExists: boolean | undefined = undefined;
@@ -29,8 +21,8 @@
 			return;
 		}
 
-		newUser.set({ ...$newUser, email: emailValue });
-		errorState = false;
+		loading.set(true);
+		errorState.set(false);
 
 		try {
 			const response = await fetch('api/users/verify-email', {
@@ -38,21 +30,21 @@
 				headers: {
 					'Content-Type': 'application/json'
 				},
-				body: JSON.stringify({ email: emailValue })
+				body: JSON.stringify({ email: $email })
 			});
 
-			const { error, errorMessage, exists, valid } = await response.json();
+			const { error, errorMessage: errorDisplayMessage, exists, valid } = await response.json();
 
-			errorState = error;
-			errorDisplayMessage = errorMessage;
+			errorState.set(error);
+			errorMessage.set(errorDisplayMessage);
 			emailValid = valid;
 			emailExists = exists;
-			lockEmailStep = errorState || !emailValid;
+			lockEmailStep = $errorState || !emailValid;
 		} catch (error: any) {
-			errorState = true;
-			errorDisplayMessage = error.message;
+			errorState.set(true);
+			errorMessage.set(error.message);
 		} finally {
-			loading = false;
+			loading.set(false);
 		}
 	};
 
@@ -86,10 +78,11 @@
 						type="email"
 						placeholder="max@mustermann.de"
 						autocomplete="email"
-						bind:value={emailValue}
-						on:input={async () => {
+						bind:value={$email}
+						on:input={async (e) => {
 							lockEmailStep = true;
-							loading = true;
+							loading.set(true);
+							email.set(e.currentTarget.value.trim());
 							debouncedVerifyEmail();
 						}}
 					/>
@@ -106,7 +99,7 @@
 					{/if}
 				</li>
 				<li>
-					{#if emailValid && loading}
+					{#if emailValid && $loading}
 						<ProgressRadial
 							class="w-4 h-4"
 							stroke={100}
@@ -114,10 +107,10 @@
 							track="stroke-warning-500/30"
 						/>
 						<span class="flex-auto">Checking availability...</span>
-					{:else if errorState}
+					{:else if $errorState}
 						<span class="badge-icon variant-filled-error w-4 h-4"><CrossIcon /></span>
-						<span class="flex-auto">{errorDisplayMessage}</span>
-					{:else if loading || emailExists === undefined}
+						<span class="flex-auto">{$errorMessage}</span>
+					{:else if $loading || emailExists === undefined}
 						<span class="badge-icon variant-filled-warning w-4 h-4"><QuestionMarkIcon /></span>
 						<span class="flex-auto">Please provide a valid email to check availability</span>
 					{:else}

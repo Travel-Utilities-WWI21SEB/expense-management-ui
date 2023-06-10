@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { CrossIcon } from '$icons';
-	import { tokenValues } from '$stores';
-	import type { LoginRequest } from '$userDomain';
+	import { email, errorMessage, errorState, loading, password, tokenValues } from '$stores';
 	import { ProgressRadial, modalStore } from '@skeletonlabs/skeleton';
 	import ForgotPasswordStepper from './_ForgotPasswordStepper.svelte';
 
@@ -11,14 +10,9 @@
 	export let emailCookie: string | undefined;
 
 	// Form data
-	let email = emailCookie || '';
-	let password = '';
+	email.set(emailCookie || $email);
 	let rememberMe = rememberMeCookie;
 
-	// Utility variables
-	let loading = false;
-	let errorState = false;
-	let errorDisplayMessage = '';
 	let forgotPassword = false;
 
 	// Provide backwards navigation to the forgotPassword component
@@ -29,24 +23,22 @@
 
 	// Login
 	const login = async () => {
-		loading = true;
-		errorState = false;
-
-		const loginRequest: LoginRequest = { email, password, rememberMe };
+		loading.set(true);
+		errorState.set(false);
 
 		const response = await fetch('api/users/login', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify(loginRequest)
+			body: JSON.stringify({ email: $email, password: $password, rememberMe })
 		});
 
-		loading = false;
-		const { success, error, errorMessage } = await response.json();
+		loading.set(false);
+		const { success, error, errorMessage: errorDisplayMessage } = await response.json();
 
-		errorState = error;
-		errorDisplayMessage = errorMessage;
+		errorState.set(error);
+		errorMessage.set(errorDisplayMessage);
 
 		if (success) {
 			modalStore.close();
@@ -74,7 +66,8 @@
 						type="email"
 						placeholder="max@mustermann.de"
 						autocomplete="email"
-						bind:value={email}
+						bind:value={$email}
+						on:input={(e) => email.set(e.currentTarget.value)}
 					/>
 				</label>
 				<label class="label">
@@ -85,7 +78,8 @@
 						type="password"
 						placeholder="********"
 						autocomplete="current-password"
-						bind:value={password}
+						bind:value={$password}
+						on:input={(e) => password.set(e.currentTarget.value)}
 					/>
 				</label>
 			</form>
@@ -110,9 +104,9 @@
 			</div>
 			<ol class="list">
 				<li>
-					{#if errorState}
+					{#if $errorState}
 						<span class="badge-icon variant-filled-error w-4 h-4"><CrossIcon /></span>
-						<span class="flex-auto">{errorDisplayMessage}</span>
+						<span class="flex-auto">{$errorMessage}</span>
 					{/if}
 				</li>
 			</ol>
@@ -131,7 +125,7 @@
 					class="btn variant-filled-primary hover:variant-soft-primary active: dark:hover:variant-soft-primary-dark"
 					on:click={login}
 				>
-					{#if !loading}
+					{#if !$loading}
 						Sign in
 					{:else}
 						<ProgressRadial width="w-6" />
@@ -140,6 +134,6 @@
 			</div>
 		</div>
 	{:else}
-		<ForgotPasswordStepper {closeForgotPassword} {email} />
+		<ForgotPasswordStepper {closeForgotPassword} />
 	{/if}
 </section>

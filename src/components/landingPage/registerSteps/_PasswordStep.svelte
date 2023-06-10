@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { newUser, passwordValid, passwordsMatch } from '$stores';
+	import { password, passwordValid, passwordsMatch } from '$stores';
 	import { Step } from '@skeletonlabs/skeleton';
 	import PasswordForm from '../../general/forms/_PasswordForm.svelte';
 
@@ -8,7 +8,7 @@
 
 	const onInputHandler = (e: Event & { currentTarget: EventTarget & HTMLInputElement }) => {
 		const { value } = e.currentTarget;
-		newUser.set({ ...$newUser, password: value });
+		password.set(value);
 	};
 </script>
 

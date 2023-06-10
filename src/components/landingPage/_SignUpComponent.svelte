@@ -1,34 +1,36 @@
 <script lang="ts">
 	import {
 		correctToken,
+		email,
+		emailValid,
 		errorMessage,
 		errorState,
 		loading,
-		newUser,
 		password,
 		passwordValid,
 		passwordsMatch,
 		tokenErrorState,
-		tokenValues
+		tokenValues,
+		username,
+		usernameValid
 	} from '$stores';
 	import { Stepper } from '@skeletonlabs/skeleton';
 	import { onDestroy } from 'svelte';
-	import EmailStep from './registerSteps/EmailStep.svelte';
-	import PasswordStep from './registerSteps/PasswordStep.svelte';
-	import TokenStep from './registerSteps/TokenStep.svelte';
-	import UsernameStep from './registerSteps/UsernameStep.svelte';
+	import EmailStep from './registerSteps/_EmailStep.svelte';
+	import PasswordStep from './registerSteps/_PasswordStep.svelte';
+	import TokenStep from './registerSteps/_TokenStep.svelte';
+	import UsernameStep from './registerSteps/_UsernameStep.svelte';
 
 	export let changeTab: (index: number) => void;
 
 	onDestroy(() => {
 		// Clean up store values
-		newUser.set({
-			email: '',
-			username: '',
-			password: ''
-		});
+		email.set('');
+		emailValid.set(false);
 
-		// Clean up store values
+		username.set('');
+		usernameValid.set(false);
+
 		tokenValues.set(['', '', '', '', '', '']);
 		correctToken.set(undefined);
 		tokenErrorState.set(false);
@@ -47,15 +49,13 @@
 		loading.set(true);
 		errorState.set(false);
 
-		const { email, username, password } = $newUser;
-
 		try {
 			const response = await fetch('api/users/register', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
 				},
-				body: JSON.stringify({ email, password, username })
+				body: JSON.stringify({ email: $email, password: $password, username: $username })
 			});
 
 			const { error, errorMessage: message } = await response.json();
