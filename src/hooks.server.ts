@@ -1,3 +1,4 @@
+import { PUBLIC_BASE_URL } from '$env/static/public';
 import type { Handle, HandleFetch } from '@sveltejs/kit';
 import { tokenExpired } from './utils/token/tokenExpired';
 
@@ -12,12 +13,9 @@ const unauthorizedRoutes = [
 	'/api/users/verify-username', // Verify username API
 	'/api/users/register', // Register API
 	'/api/users/activate', // Activate API
-	'/api/users/forgot-password' // Forgot password API
-];
-
-const apiRoutes = [
-	'http://localhost:8080', // Local API endpoint
-	'https://expenseapi.c930.net' // Production API endpoint
+	'/api/users/forgot-password', // Forgot password API
+	'api/users/verify-reset-token', // Verify reset token API
+	'api/users/reset-password' // Reset password API
 ];
 
 export const handle = (async ({ event, resolve }) => {
@@ -47,7 +45,7 @@ export const handle = (async ({ event, resolve }) => {
 	// Step 2
 	const refreshToken = event.cookies.get('refreshToken');
 	if (refreshToken && !tokenExpired(refreshToken)) {
-		const refreshTokenResponse = await fetch(`http://localhost:8080/api/v1/users/refresh`, {
+		const refreshTokenResponse = await fetch(`${PUBLIC_BASE_URL}/api/v1/users/refresh`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -81,7 +79,7 @@ export const handle = (async ({ event, resolve }) => {
 export const handleFetch = (async ({ event, request, fetch }) => {
 	const url = new URL(request.url);
 
-	if (apiRoutes.includes(url.origin)) {
+	if (PUBLIC_BASE_URL === url.origin) {
 		request.headers.set('Authorization', event.request.headers.get('Authorization') || '');
 	}
 

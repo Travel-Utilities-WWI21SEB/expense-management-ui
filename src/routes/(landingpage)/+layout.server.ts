@@ -10,4 +10,9 @@ export const load = async ({ cookies }) => {
 		// which is why we redirect to home page
 		throw redirect(303, '/home');
 	}
+
+	const email = cookies.get('email');
+	const rememberMe = email ? true : false;
+
+	return { rememberMe, email };
 };

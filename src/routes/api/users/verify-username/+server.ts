@@ -1,13 +1,14 @@
+import { PUBLIC_BASE_URL } from '$env/static/public';
+import { getErrorMessage } from '$utils';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { getErrorMessage } from '$utils';
 
 export const POST = (async ({ fetch, request }) => {
 	const body = await request.json();
 	const { username } = body;
 
 	try {
-		const response = await fetch(`http://localhost:8080/api/v1/users/check-username`, {
+		const response = await fetch(`${PUBLIC_BASE_URL}/api/v1/users/check-username`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'

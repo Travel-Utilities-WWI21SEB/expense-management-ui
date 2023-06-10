@@ -2,6 +2,7 @@
 	import { SignInComponent, SignUpComponent } from '$components';
 	import { Tab, TabGroup } from '@skeletonlabs/skeleton';
 
+	export let data;
 	let tabSet = 1;
 
 	const changeTab = (): void => {
@@ -26,7 +27,7 @@
 			{#if tabSet === 0}
 				<SignUpComponent {changeTab} />
 			{:else if tabSet === 1}
-				<SignInComponent {changeTab} />
+				<SignInComponent {changeTab} rememberMeCookie={data.rememberMe} emailCookie={data.email} />
 			{/if}
 		</svelte:fragment>
 	</TabGroup>

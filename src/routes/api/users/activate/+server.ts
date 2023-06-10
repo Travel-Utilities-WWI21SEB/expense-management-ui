@@ -1,12 +1,12 @@
+import { PUBLIC_BASE_URL } from '$env/static/public';
 import { getErrorMessage } from '$utils';
-import { json } from '@sveltejs/kit';
-import type { RequestHandler } from './$types';
+import { json, type RequestHandler } from '@sveltejs/kit';
 
 export const POST = (async ({ cookies, fetch, request }) => {
 	const { token } = await request.json();
 
 	try {
-		const response = await fetch(`http://localhost:8080/api/v1/users/activate?token=${token}`, {
+		const response = await fetch(`${PUBLIC_BASE_URL}/api/v1/users/activate?token=${token}`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'

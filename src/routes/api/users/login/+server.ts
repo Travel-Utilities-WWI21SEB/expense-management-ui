@@ -1,15 +1,14 @@
+import { PUBLIC_BASE_URL } from '$env/static/public';
+import type { LoginRequest } from '$userDomain';
 import { getErrorMessage } from '$utils';
-import { json } from '@sveltejs/kit';
-import type { LoginRequest } from '../../../../domain/user/requests/LoginRequest';
-import type { RequestHandler } from './$types';
+import { json, type RequestHandler } from '@sveltejs/kit';
 
 export const POST = (async ({ cookies, fetch, request }) => {
 	const body = await request.json();
-	const requestBody: LoginRequest = body;
-	const { email, password } = requestBody;
+	const { email, password, rememberMe }: LoginRequest = body;
 
 	try {
-		const response = await fetch(`http://localhost:8080/api/v1/users/login`, {
+		const response = await fetch(`${PUBLIC_BASE_URL}/api/v1/users/login`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -22,6 +21,13 @@ export const POST = (async ({ cookies, fetch, request }) => {
 
 			cookies.set('token', token, { path: '/' });
 			cookies.set('refreshToken', refreshToken, { path: '/' });
+
+			if (rememberMe) {
+				cookies.set('email', email, { path: '/' });
+			} else {
+				// Delete maybe existing email cookie
+				cookies.delete('email', { path: '/' });
+			}
 
 			return json({ success: true, activated: true, error: false, errorMessage: '' });
 		}

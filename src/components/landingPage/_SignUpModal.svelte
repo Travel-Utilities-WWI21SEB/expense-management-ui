@@ -3,6 +3,10 @@
 	import SignInComponent from './_SignInComponent.svelte';
 	import SignUpComponent from './_SignUpComponent.svelte';
 
+	export let data: {
+		rememberMe: boolean;
+		email: string;
+	};
 	let tabSet = 0;
 
 	const changeTab = (index: number) => {
@@ -27,7 +31,7 @@
 			{#if tabSet === 0}
 				<SignUpComponent {changeTab} />
 			{:else if tabSet === 1}
-				<SignInComponent {changeTab} />
+				<SignInComponent {changeTab} rememberMeCookie={data.rememberMe} emailCookie={data.email} />
 			{/if}
 		</svelte:fragment>
 	</TabGroup>

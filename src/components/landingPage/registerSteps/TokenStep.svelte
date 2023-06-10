@@ -9,7 +9,7 @@
 		QuestionMarkIcon
 	} from '$icons';
 	import { errorMessage, errorState, loading, newUser } from '$stores';
-	import { ProgressRadial, Step } from '@skeletonlabs/skeleton';
+	import { ProgressRadial, Step, modalStore } from '@skeletonlabs/skeleton';
 	import { debounce } from 'lodash';
 	import { tick } from 'svelte/internal';
 
@@ -64,6 +64,7 @@
 			errorMessage.set(message);
 
 			if (tokenCorrect) {
+				modalStore.close();
 				goto('/home');
 			}
 		} catch (error: any) {
@@ -306,28 +307,32 @@
 							<span class="flex-auto">Enter the code to start validation</span>
 						{/if}
 					</li>
-					<li>
-						<span class="badge-icon variant-filled-tertiary w-4 h-4"><InfoIcon /></span>
-						<span class="flex-auto">Didn't receive a code?</span>
-					</li>
+					{#if !correctToken}
+						<li>
+							<span class="badge-icon variant-filled-tertiary w-4 h-4"><InfoIcon /></span>
+							<span class="flex-auto">Didn't receive a code?</span>
+						</li>
+					{/if}
 				</ol>
-				<button
-					type="button"
-					class="btn btn-sm variant-filled-tertiary flex justify-center center mt-2 {resendTokenTimer >
-					0
-						? 'pointer-events-none opacity-50'
-						: ''}"
-					on:click={resendToken}
-				>
-					<span>
-						{#if resendTokenTimer > 0}
-							<ClosedEnvelopeIcon />
-						{:else}
-							<OpenEnvelopeIcon />
-						{/if}
-					</span>
-					<span>Get a new one {remainingTime}</span>
-				</button>
+				{#if !correctToken}
+					<button
+						type="button"
+						class="btn btn-sm variant-filled-tertiary flex justify-center center mt-2 {resendTokenTimer >
+						0
+							? 'pointer-events-none opacity-50'
+							: ''}"
+						on:click={resendToken}
+					>
+						<span>
+							{#if resendTokenTimer > 0}
+								<ClosedEnvelopeIcon />
+							{:else}
+								<OpenEnvelopeIcon />
+							{/if}
+						</span>
+						<span>Get a new one {remainingTime}</span>
+					</button>
+				{/if}
 			{/if}
 		</div>
 	</section>

@@ -1,3 +1,4 @@
+import { PUBLIC_BASE_URL } from '$env/static/public';
 import { getErrorMessage } from '$utils';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
@@ -7,7 +8,7 @@ export const POST = (async ({ fetch, request }) => {
 	const { email } = body;
 
 	try {
-		const response = await fetch(`http://localhost:8080/api/v1/users/resend-token`, {
+		const response = await fetch(`${PUBLIC_BASE_URL}/api/v1/users/resend-token`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'

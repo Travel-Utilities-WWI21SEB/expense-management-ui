@@ -1,7 +1,8 @@
+import { PUBLIC_BASE_URL } from '$env/static/public';
 import { error } from '@sveltejs/kit';
 
 export const load = async ({ fetch }) => {
-	const response = await fetch(`http://localhost:8080/api/v1/test`, {
+	const response = await fetch(`${PUBLIC_BASE_URL}/api/v1/test`, {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json'
