@@ -68,7 +68,7 @@
 			<TripDetailsShowCostItem cost={localeCost} />
 		{/if}
 	</div>
-	<footer class="modal-footer t-2{parent.regionFooter}">
+	<footer class="modal-footer {parent.regionFooter}">
 		<button class="btn border-2" on:click={parent.onClose}>Close</button>
 		{#if isEditing}
 			<button class="btn variant-filled" on:click={() => (isEditing = false)}> Save </button>

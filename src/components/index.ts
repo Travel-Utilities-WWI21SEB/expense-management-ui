@@ -17,6 +17,9 @@ export { default as Participants } from './tripDetails/_Participants.svelte';
 export { default as TripDetailsCostItemModal } from './tripDetails/Modal/_CostItemTripDetailsModal.svelte';
 export { default as TripDetailsEditCostItem } from './tripDetails/Modal/_EditCostItemTripDetailsModal.svelte';
 export { default as TripDetailsShowCostItem } from './tripDetails/Modal/_ShowCostItemTripDetailsModal.svelte';
+export { default as TripDetailsEditCostItemDetails } from './tripDetails/Modal/_CostItemDetails.svelte';
+export { default as TripDetailsEditCostItemPaidBy } from './tripDetails/Modal/_CostItemPaidyBy.svelte';
+export { default as TripDetailsEditCostItemCostAllocation } from './tripDetails/Modal/_CostItemCostAllocation.svelte';
 
 //Trip Overview
 export { default as DonutChart } from './tripOverview/_DonutChart.svelte';
