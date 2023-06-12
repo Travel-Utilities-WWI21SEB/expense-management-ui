@@ -3,10 +3,10 @@
 	import { resetLandingPageStore } from '$utils';
 	import { Stepper } from '@skeletonlabs/skeleton';
 	import { onDestroy } from 'svelte';
-	import EmailStep from './registerSteps/_EmailStep.svelte';
-	import PasswordStep from './registerSteps/_PasswordStep.svelte';
-	import TokenStep from './registerSteps/_TokenStep.svelte';
-	import UsernameStep from './registerSteps/_UsernameStep.svelte';
+	import EmailStep from './steps/_EmailStep.svelte';
+	import PasswordStep from './steps/_PasswordStep.svelte';
+	import TokenStep from './steps/_TokenStep.svelte';
+	import UsernameStep from './steps/_UsernameStep.svelte';
 
 	export let changeTab: (index: number) => void;
 
@@ -24,7 +24,8 @@
 				body: JSON.stringify({ email: $email, password: $password, username: $username })
 			});
 
-			const { error, errorMessage: message } = await response.json();
+			const body = await response.json();
+			const { error, errorMessage: message } = body;
 
 			// Writing in the store to let TokenStep know the results
 			errorState.set(error);

@@ -6,6 +6,8 @@ export {
 	errorMessage,
 	errorState,
 	loading,
+	notActivatedAlert,
+	notActivatedWorkflow,
 	password,
 	passwordValid,
 	passwordsMatch,

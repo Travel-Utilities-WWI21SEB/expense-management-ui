@@ -4,15 +4,15 @@ export { default as CatchPhraseText } from './landingPage/_CatchPhraseText.svelt
 export { default as ContactBox } from './landingPage/_ContactBox.svelte';
 export { default as LandingPageFeatureBoxLeft } from './landingPage/_FeatureBoxLeft.svelte';
 export { default as LandingPageFeatureBoxRight } from './landingPage/_FeatureBoxRight.svelte';
-export { default as LandingPageFooter } from './landingPage/_LandingPageFooter.svelte';
+export { default as LandingPageFooter } from './landingPage/layout/_LandingPageFooter.svelte';
 // Landing Page
-export { default as LandingPageHeader } from './landingPage/_LandingPageHeader.svelte';
-export { default as LandingPageSidebar } from './landingPage/_LandingPageSidebar.svelte';
 export { default as LandingPageReviewBox } from './landingPage/_ReviewBox.svelte';
-export { default as SignInComponent } from './landingPage/_SignInComponent.svelte';
-export { default as SignUpComponent } from './landingPage/_SignUpComponent.svelte';
 export { default as SignUpModal } from './landingPage/_SignUpModal.svelte';
 export { default as StatisticBox } from './landingPage/_StatisticBox.svelte';
+export { default as LandingPageHeader } from './landingPage/layout/_LandingPageHeader.svelte';
+export { default as LandingPageSidebar } from './landingPage/layout/_LandingPageSidebar.svelte';
+export { default as SignInComponent } from './landingPage/signin/_SignInComponent.svelte';
+export { default as SignUpComponent } from './landingPage/signup/_SignUpComponent.svelte';
 export { default as Footer } from './layout/_Footer.svelte';
 export { default as Header } from './layout/_Header.svelte';
 export { default as Sidebar } from './layout/_Sidebar.svelte';

@@ -14,9 +14,9 @@
 	} from '$stores';
 	import { Stepper, toastStore, type ToastSettings } from '@skeletonlabs/skeleton';
 	import { onDestroy, tick } from 'svelte/internal';
-	import SelectEmailStep from './forgotPasswordSteps/_SelectEmailStep.svelte';
-	import SetNewPasswordStep from './forgotPasswordSteps/_SetNewPasswordStep.svelte';
-	import ValidateResetTokenStep from './forgotPasswordSteps/_ValidateResetTokenStep.svelte';
+	import SelectEmailStep from './steps/_SelectEmailStep.svelte';
+	import SetNewPasswordStep from './steps/_SetNewPasswordStep.svelte';
+	import ValidateResetTokenStep from './steps/_ValidateResetTokenStep.svelte';
 
 	export let closeForgotPassword: () => void;
 
@@ -39,7 +39,8 @@
 			body: JSON.stringify({ email: $email })
 		});
 
-		const { error, errorMessage: errorDisplayMessage } = await response.json();
+		const body = await response.json();
+		const { error, errorMessage: errorDisplayMessage } = body;
 
 		errorState.set(error);
 		errorMessage.set(errorDisplayMessage);
@@ -58,7 +59,8 @@
 			body: JSON.stringify({ email: $email, password: $password, token: $tokenValues.join('') })
 		});
 
-		const { success, error, errorMessage: errorDisplayMessage } = await response.json();
+		const body = await response.json();
+		const { success, error, errorMessage: errorDisplayMessage } = body;
 
 		errorState.set(error);
 		errorMessage.set(errorDisplayMessage);

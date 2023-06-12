@@ -20,7 +20,8 @@ export const POST = (async ({ fetch, request }) => {
 			return json({ exists: false, valid: true, error: false, errorMessage: '' });
 		}
 
-		const { errorCode } = await response.json();
+		const body = await response.json();
+		const { errorCode } = body;
 		const errorMessage = getErrorMessage(errorCode);
 
 		// 400: Bad Request -> Username is invalid

@@ -25,7 +25,8 @@
 			method: 'POST'
 		});
 
-		const { success } = await response.json();
+		const body = await response.json();
+		const { success } = body;
 
 		if (success) {
 			goto('/');

@@ -3,7 +3,7 @@
 	import { errorMessage, errorState, loading, username, usernameValid } from '$stores';
 	import { validateUsername } from '$utils';
 	import { ProgressRadial, Step } from '@skeletonlabs/skeleton';
-	import { debounce } from 'lodash';
+	import _ from 'lodash';
 
 	// Email validation
 	$: usernameValid.set(validateUsername($username));
@@ -30,9 +30,10 @@
 			body: JSON.stringify({ username: $username })
 		});
 
-		const { error, errorMessage: errorDisplayMessage, exists, valid } = await response.json();
-		loading.set(false);
+		const body = await response.json();
+		const { error, errorMessage: errorDisplayMessage, exists, valid } = body;
 
+		loading.set(false);
 		errorState.set(error);
 		errorMessage.set(errorDisplayMessage);
 		usernameValid.set(valid);
@@ -40,7 +41,7 @@
 		lockUserStep = $errorState || !usernameValid;
 	};
 
-	const debouncedVerifyUsername = debounce(verifyUsername, 500);
+	const debouncedVerifyUsername = _.debounce(verifyUsername, 500);
 </script>
 
 <Step

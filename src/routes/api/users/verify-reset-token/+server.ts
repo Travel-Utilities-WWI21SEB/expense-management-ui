@@ -19,7 +19,8 @@ export const POST = (async ({ fetch, request }) => {
 			return json({ valid: true, error: false, errorMessage: '' });
 		}
 
-		const { errorCode } = await response.json();
+		const body = await response.json();
+		const { errorCode } = body;
 		const errorMessage = getErrorMessage(errorCode);
 
 		// 404: Not found -> Token is invalid

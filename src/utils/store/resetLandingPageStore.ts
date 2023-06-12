@@ -5,6 +5,8 @@ import {
 	errorMessage,
 	errorState,
 	loading,
+	notActivatedAlert,
+	notActivatedWorkflow,
 	password,
 	passwordValid,
 	passwordsMatch,
@@ -32,4 +34,7 @@ export function resetLandingPageStore() {
 	password.set('');
 	passwordValid.set(false);
 	passwordsMatch.set(false);
+
+	notActivatedAlert.set(false);
+	notActivatedWorkflow.set(false);
 }

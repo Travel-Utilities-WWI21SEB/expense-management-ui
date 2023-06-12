@@ -9,9 +9,9 @@
 		tokenValues
 	} from '$stores';
 	import { Step } from '@skeletonlabs/skeleton';
-	import AlertWithAction from '../../general/_AlertWithAction.svelte';
-	import ProgressCircleAnimated from '../../general/_ProgressCircleAnimated.svelte';
-	import TokenForm from '../../general/forms/_TokenForm.svelte';
+	import AlertWithAction from '../../../../general/_AlertWithAction.svelte';
+	import ProgressCircleAnimated from '../../../../general/_ProgressCircleAnimated.svelte';
+	import TokenForm from '../../../forms/_TokenForm.svelte';
 
 	export let forgotPasswordHandler: () => void;
 
@@ -42,7 +42,8 @@
 
 		console.log('End verifyPasswordToken');
 
-		const { valid, error, errorMessage: errorDisplayMessage } = await response.json();
+		const body = await response.json();
+		const { valid, error, errorMessage: errorDisplayMessage } = body;
 
 		correctToken.set(valid);
 		tokenErrorState.set(error);

@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { errorState, loading, password, passwordValid, passwordsMatch } from '$stores';
 	import { Step } from '@skeletonlabs/skeleton';
-	import AlertWithAction from '../../general/_AlertWithAction.svelte';
-	import ProgressCircleAnimated from '../../general/_ProgressCircleAnimated.svelte';
-	import PasswordForm from '../../general/forms/_PasswordForm.svelte';
+	import AlertWithAction from '../../../../general/_AlertWithAction.svelte';
+	import ProgressCircleAnimated from '../../../../general/_ProgressCircleAnimated.svelte';
+	import PasswordForm from '../../../forms/_PasswordForm.svelte';
 
 	export let closeForgotPassword: () => void;
 

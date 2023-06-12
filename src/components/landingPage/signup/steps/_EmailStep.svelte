@@ -3,7 +3,7 @@
 	import { email, errorMessage, errorState, loading } from '$stores';
 	import { validateEmail } from '$utils';
 	import { ProgressRadial, Step } from '@skeletonlabs/skeleton';
-	import { debounce } from 'lodash';
+	import _ from 'lodash';
 
 	export let changeTab: (index: number) => void;
 
@@ -33,7 +33,8 @@
 				body: JSON.stringify({ email: $email })
 			});
 
-			const { error, errorMessage: errorDisplayMessage, exists, valid } = await response.json();
+			const body = await response.json();
+			const { error, errorMessage: errorDisplayMessage, exists, valid } = body;
 
 			errorState.set(error);
 			errorMessage.set(errorDisplayMessage);
@@ -48,7 +49,7 @@
 		}
 	};
 
-	const debouncedVerifyEmail = debounce(verifyEmail, 500);
+	const debouncedVerifyEmail = _.debounce(verifyEmail, 500);
 </script>
 
 <Step

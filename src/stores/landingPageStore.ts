@@ -22,3 +22,7 @@ export const emailValid = writable(false);
 export const password = writable('');
 export const passwordValid = writable(false);
 export const passwordsMatch = writable(false);
+
+// Activate account variables
+export const notActivatedAlert = writable(false);
+export const notActivatedWorkflow = writable(false);

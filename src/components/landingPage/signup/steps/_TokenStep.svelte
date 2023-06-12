@@ -1,13 +1,20 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { CheckIcon } from '$icons';
-	import { email, errorMessage, errorState, loading, tokenValues } from '$stores';
+	import {
+		correctToken,
+		email,
+		errorMessage,
+		errorState,
+		loading,
+		tokenErrorState,
+		tokenValues
+	} from '$stores';
 	import { Step, modalStore } from '@skeletonlabs/skeleton';
-	import { debounce } from 'lodash';
-	import { correctToken, tokenErrorState } from '../../../stores/landingPageStore';
-	import AlertWithAction from '../../general/_AlertWithAction.svelte';
-	import ProgressCircleAnimated from '../../general/_ProgressCircleAnimated.svelte';
-	import TokenForm from '../../general/forms/_TokenForm.svelte';
+	import _ from 'lodash';
+	import AlertWithAction from '../../../general/_AlertWithAction.svelte';
+	import ProgressCircleAnimated from '../../../general/_ProgressCircleAnimated.svelte';
+	import TokenForm from '../../forms/_TokenForm.svelte';
 
 	export let register: () => Promise<void>;
 
@@ -15,7 +22,7 @@
 	$: validToken = !$tokenValues.some((value) => value === '');
 
 	// Register
-	const debouncedRegister = debounce(register, 500);
+	const debouncedRegister = _.debounce(register, 500);
 
 	// Verify token
 	const verifyToken = async () => {
@@ -36,7 +43,8 @@
 				body: JSON.stringify({ token: $tokenValues.join('') })
 			});
 
-			const { tokenCorrect, error, errorMessage: message } = await response.json();
+			const body = await response.json();
+			const { tokenCorrect, error, errorMessage: message } = body;
 
 			correctToken.set(tokenCorrect);
 			tokenErrorState.set(error);
@@ -69,7 +77,8 @@
 				body: JSON.stringify({ email: $email })
 			});
 
-			const { error, errorMessage: message } = await response.json();
+			const body = await response.json();
+			const { error, errorMessage: message } = body;
 
 			errorState.set(error);
 			errorMessage.set(message);

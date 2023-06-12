@@ -20,7 +20,8 @@ export const POST = (async ({ fetch, request }) => {
 			return json({ error: false, errorMessage: '' });
 		}
 
-		const { errorCode } = await response.json();
+		const body = await response.json();
+		const { errorCode } = body;
 		const errorMessage = getErrorMessage(errorCode);
 
 		return json({ error: true, errorMessage: errorMessage });

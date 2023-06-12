@@ -14,7 +14,8 @@ export const POST = (async ({ cookies, fetch, request }) => {
 		});
 
 		if (response.ok) {
-			const { token, refreshToken } = await response.json();
+			const body = await response.json();
+			const { token, refreshToken } = body;
 
 			cookies.set('token', token, { path: '/' });
 			cookies.set('refreshToken', refreshToken, { path: '/' });
@@ -22,7 +23,8 @@ export const POST = (async ({ cookies, fetch, request }) => {
 			return json({ tokenCorrect: true, error: false, errorMessage: '' });
 		}
 
-		const { errorCode } = await response.json();
+		const body = await response.json();
+		const { errorCode } = body;
 		const errorMessage = getErrorMessage(errorCode);
 
 		// 400: Bad Request -> User entered wrong token
