@@ -13,14 +13,14 @@ const ERROR_MESSAGES: Record<string, string> = {
 	'EM-008':
 		'The request could not be completed due to insufficient permissions of the authenticated user.',
 	'EM-009':
-		'The targeted user does not exist or you do not have sufficient permissions to access the resource',
+		'No user was found with the provided email address. Please check the email address and try again.',
 	'EM-010':
 		'The targeted trip does not exist or you do not have sufficient permissions to access the resource',
 	'EM-011':
 		'The targeted cost item does not exist or you do not have sufficient permissions to access the resource',
 	'EM-012': 'The registration failed since the email or username you provided is already in use.',
 	'EM-013':
-		'Your account is not activated yet. Please check your emails and enter the activation code',
+		'Your account is not activated yet. Please check your emails and enter the activation code by pressing on the button next to this message.',
 	'EM-014': 'The request was processed successfully, but an email could not be sent.',
 	'EM-015': 'Your account is already activated. Please log in.',
 	'EM-016': 'You already accepted the invitation to this trip.',

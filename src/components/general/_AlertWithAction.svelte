@@ -3,6 +3,7 @@
 	import { errorMessage, loading } from '$stores';
 
 	export let errorAction: () => void;
+	export let alertHeading: string;
 	export let actionText: string;
 </script>
 
@@ -13,7 +14,7 @@
 	</div>
 	<!-- Message -->
 	<div class="alert-message">
-		<h3 class="h3">Something went wrong!</h3>
+		<h3 class="h3">{alertHeading}</h3>
 		<p>{$errorMessage}</p>
 	</div>
 	<!-- Actions -->

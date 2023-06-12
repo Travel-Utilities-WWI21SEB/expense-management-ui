@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { CheckIcon } from '$icons';
 	import { email, errorMessage, errorState, loading, tokenValues } from '$stores';
-	import { ProgressRadial, Step, modalStore } from '@skeletonlabs/skeleton';
+	import { Step, modalStore } from '@skeletonlabs/skeleton';
 	import { debounce } from 'lodash';
 	import { correctToken, tokenErrorState } from '../../../stores/landingPageStore';
 	import AlertWithAction from '../../general/_AlertWithAction.svelte';
@@ -42,8 +43,7 @@
 			errorMessage.set(message);
 
 			if (tokenCorrect) {
-				modalStore.close();
-				goto('/home');
+				loading.set(false);
 			}
 		} catch (error: any) {
 			errorState.set(true);
@@ -80,6 +80,11 @@
 			loading.set(false);
 		}
 	};
+
+	const navigationHandler = () => {
+		modalStore.close();
+		goto('/home');
+	};
 </script>
 
 <Step
@@ -100,22 +105,30 @@
 			{#if $loading}
 				<ProgressCircleAnimated />
 			{:else if $errorState}
-				<AlertWithAction errorAction={debouncedRegister} actionText="Try again!" />
+				<AlertWithAction
+					errorAction={debouncedRegister}
+					alertHeading="Something went wrong!"
+					actionText="Try again!"
+				/>
+			{:else if $correctToken}
+				<aside class="alert variant-ghost-success">
+					<!-- Icon -->
+					<div><CheckIcon /></div>
+					<!-- Message -->
+					<div class="alert-message">
+						<h3 class="h3">The Verification was successful!</h3>
+						<p>
+							Thank you for trusting Costventures, click on the button on the right to automatically
+							login and navigate to the homepage.
+						</p>
+					</div>
+					<!-- Actions -->
+					<div class="alert-actions">
+						<button on:click={navigationHandler} class="btn variant-filled">Login</button>
+					</div>
+				</aside>
 			{:else}
-				<TokenForm keyboardHandler={verifyToken} {resendToken}>
-					<span
-						slot="correctTokenIcon"
-						class="badge-icon variant-filled-success w-4 h-4 justify-center"
-					>
-						<ProgressRadial
-							class="w-4 h-4"
-							stroke={100}
-							meter="stroke-success-500"
-							track="stroke-success-500/30"
-						/>
-					</span>
-					<span slot="correctTokenText" class="flex-auto">Redirecting...</span>
-				</TokenForm>
+				<TokenForm keyboardHandler={verifyToken} {resendToken} />
 			{/if}
 		</div>
 	</section>

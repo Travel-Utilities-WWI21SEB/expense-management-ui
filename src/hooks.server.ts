@@ -14,8 +14,8 @@ const unauthorizedRoutes = [
 	'/api/users/register', // Register API
 	'/api/users/activate', // Activate API
 	'/api/users/forgot-password', // Forgot password API
-	'api/users/verify-reset-token', // Verify reset token API
-	'api/users/reset-password' // Reset password API
+	'/api/users/verify-reset-token', // Verify reset token API
+	'/api/users/reset-password' // Reset password API
 ];
 
 export const handle = (async ({ event, resolve }) => {
@@ -44,28 +44,30 @@ export const handle = (async ({ event, resolve }) => {
 
 	// Step 2
 	const refreshToken = event.cookies.get('refreshToken');
-	if (refreshToken && !tokenExpired(refreshToken)) {
-		const refreshTokenResponse = await fetch(`${PUBLIC_BASE_URL}/api/v1/users/refresh`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({ refreshToken: refreshToken })
-		});
-
+	if (!refreshToken || tokenExpired(refreshToken)) {
 		// Step 4
-		if (!refreshTokenResponse.ok) {
-			return new Response('Redirect', { status: 303, headers: { Location: '/login' } });
-		}
-
-		// Step 3
-		const { token: newToken, refreshToken: newRefreshToken } = await refreshTokenResponse.json();
-
-		event.cookies.set('token', newToken, { path: '/' });
-		event.cookies.set('refreshToken', newRefreshToken, { path: '/' });
-
-		token = newToken;
+		return new Response('Redirect', { status: 303, headers: { Location: '/login' } });
 	}
+
+	// Step 3
+	const refreshTokenResponse = await fetch(`${PUBLIC_BASE_URL}/api/v1/users/refresh`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({ refreshToken: refreshToken })
+	});
+
+	if (!refreshTokenResponse.ok) {
+		return new Response('Redirect', { status: 303, headers: { Location: '/login' } });
+	}
+
+	const { token: newToken, refreshToken: newRefreshToken } = await refreshTokenResponse.json();
+
+	event.cookies.set('token', newToken, { path: '/' });
+	event.cookies.set('refreshToken', newRefreshToken, { path: '/' });
+
+	token = newToken;
 
 	event.request.headers.set('Authorization', `Bearer ${token}`);
 	const response = await resolve(event);

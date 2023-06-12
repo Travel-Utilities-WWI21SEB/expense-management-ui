@@ -9,10 +9,14 @@
 	// Finally, your application's global stylesheet (sometimes labeled 'app.css')
 	import '../../app.postcss';
 
+	import { page } from '$app/stores';
 	import { LandingPageFooter, LandingPageHeader, LandingPageSidebar } from '$components';
-	import { AppShell, Drawer, Modal } from '@skeletonlabs/skeleton';
+	import { AppShell, Drawer, Modal, Toast } from '@skeletonlabs/skeleton';
 
 	let currentTile = 0;
+
+	// Remove sidebar if the user is on login page
+	const loginPage = $page.url.pathname === '/login';
 </script>
 
 <!-- MOBILE ONLY! -->
@@ -27,6 +31,10 @@
 <Modal />
 <!-- SIGN UP MODAL -->
 
+<!-- NOTIFICATION TOASTS -->
+<Toast />
+<!-- NOTIFICATION TOASTS -->
+
 <AppShell slotSidebarLeft="w-0 lg:w-20">
 	<!-- Header -->
 	<svelte:fragment slot="header">
@@ -34,7 +42,9 @@
 	</svelte:fragment>
 	<!-- Left sidebar -->
 	<svelte:fragment slot="sidebarLeft">
-		<LandingPageSidebar tile={currentTile} />
+		{#if !loginPage}
+			<LandingPageSidebar tile={currentTile} />
+		{/if}
 	</svelte:fragment>
 	<!-- Content -->
 	<slot />

@@ -12,13 +12,20 @@
 		tokenErrorState,
 		tokenValues
 	} from '$stores';
-	import { Stepper } from '@skeletonlabs/skeleton';
+	import { Stepper, toastStore, type ToastSettings } from '@skeletonlabs/skeleton';
 	import { onDestroy, tick } from 'svelte/internal';
 	import SelectEmailStep from './forgotPasswordSteps/_SelectEmailStep.svelte';
 	import SetNewPasswordStep from './forgotPasswordSteps/_SetNewPasswordStep.svelte';
 	import ValidateResetTokenStep from './forgotPasswordSteps/_ValidateResetTokenStep.svelte';
 
 	export let closeForgotPassword: () => void;
+
+	const successToast: ToastSettings = {
+		background: 'variant-filled-success',
+		message: 'Your password was successfully reset!',
+		autohide: true,
+		timeout: 5000
+	};
 
 	const forgotPasswordHandler = async () => {
 		loading.set(true);
@@ -58,6 +65,7 @@
 
 		if (success) {
 			await tick();
+			toastStore.trigger(successToast);
 			closeForgotPassword();
 		}
 
@@ -69,7 +77,8 @@
 	): void => {
 		const { step, state } = e.detail;
 
-		// If last step is reached, fire registration
+		// If the first step is completed, we start the workflow in
+		// our backend with the given email address
 		if (step === 0 && state.current === 1) {
 			forgotPasswordHandler();
 		}

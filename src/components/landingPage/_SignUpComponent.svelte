@@ -1,19 +1,6 @@
 <script lang="ts">
-	import {
-		correctToken,
-		email,
-		emailValid,
-		errorMessage,
-		errorState,
-		loading,
-		password,
-		passwordValid,
-		passwordsMatch,
-		tokenErrorState,
-		tokenValues,
-		username,
-		usernameValid
-	} from '$stores';
+	import { email, errorMessage, errorState, loading, password, username } from '$stores';
+	import { resetLandingPageStore } from '$utils';
 	import { Stepper } from '@skeletonlabs/skeleton';
 	import { onDestroy } from 'svelte';
 	import EmailStep from './registerSteps/_EmailStep.svelte';
@@ -22,27 +9,6 @@
 	import UsernameStep from './registerSteps/_UsernameStep.svelte';
 
 	export let changeTab: (index: number) => void;
-
-	onDestroy(() => {
-		// Clean up store values
-		email.set('');
-		emailValid.set(false);
-
-		username.set('');
-		usernameValid.set(false);
-
-		tokenValues.set(['', '', '', '', '', '']);
-		correctToken.set(undefined);
-		tokenErrorState.set(false);
-
-		password.set('');
-		passwordValid.set(false);
-		passwordsMatch.set(false);
-
-		errorState.set(false);
-		errorMessage.set('');
-		loading.set(false);
-	});
 
 	// Register
 	const register = async () => {
@@ -82,6 +48,11 @@
 			register();
 		}
 	};
+
+	onDestroy(() => {
+		// Clean up store values
+		resetLandingPageStore();
+	});
 </script>
 
 <Stepper class="p-3 m-3 h-full" on:next={nextStepHandler}>

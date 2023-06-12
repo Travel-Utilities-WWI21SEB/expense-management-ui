@@ -35,7 +35,11 @@
 			{#if $loading}
 				<ProgressCircleAnimated />
 			{:else if $errorState}
-				<AlertWithAction errorAction={closeForgotPassword} actionText="Abort!" />
+				<AlertWithAction
+					errorAction={closeForgotPassword}
+					alertHeading="Something went wrong!"
+					actionText="Abort!"
+				/>
 			{:else}
 				<PasswordForm {onInputHandler} />
 			{/if}

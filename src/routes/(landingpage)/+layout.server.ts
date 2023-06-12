@@ -1,7 +1,8 @@
 import { tokenExpired } from '$utils';
 import { redirect } from '@sveltejs/kit';
+import type { LayoutServerLoad } from './$types';
 
-export const load = async ({ cookies }) => {
+export const load = (async ({ cookies }) => {
 	const token = cookies.get('token');
 	const refreshToken = cookies.get('refreshToken');
 
@@ -10,9 +11,4 @@ export const load = async ({ cookies }) => {
 		// which is why we redirect to home page
 		throw redirect(303, '/home');
 	}
-
-	const email = cookies.get('email');
-	const rememberMe = email ? true : false;
-
-	return { rememberMe, email };
-};
+}) satisfies LayoutServerLoad;

@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { CheckIcon } from '$icons';
 	import {
 		correctToken,
 		email,
@@ -31,6 +30,8 @@
 		correctToken.set(undefined);
 		tokenErrorState.set(false);
 
+		console.log('Start verifyPasswordToken');
+
 		const response = await fetch(`api/users/verify-reset-token`, {
 			method: 'POST',
 			headers: {
@@ -38,6 +39,8 @@
 			},
 			body: JSON.stringify({ email: $email, token: $tokenValues.join('') })
 		});
+
+		console.log('End verifyPasswordToken');
 
 		const { valid, error, errorMessage: errorDisplayMessage } = await response.json();
 
@@ -61,17 +64,13 @@
 			{#if $loading}
 				<ProgressCircleAnimated />
 			{:else if $errorState}
-				<AlertWithAction errorAction={forgotPasswordHandler} actionText="Try again!" />
+				<AlertWithAction
+					errorAction={forgotPasswordHandler}
+					alertHeading="Something went wrong!"
+					actionText="Try again!"
+				/>
 			{:else}
-				<TokenForm keyboardHandler={verifyPasswordToken} resendToken={forgotPasswordHandler}>
-					<span
-						slot="correctTokenIcon"
-						class="badge-icon variant-filled-success w-4 h-4 justify-center"
-					>
-						<CheckIcon />
-					</span>
-					<span slot="correctTokenText" class="flex-auto">Token is correct!</span>
-				</TokenForm>
+				<TokenForm keyboardHandler={verifyPasswordToken} resendToken={forgotPasswordHandler} />
 			{/if}
 		</div>
 	</section>

@@ -1,8 +1,22 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { CrossIcon } from '$icons';
-	import { email, errorMessage, errorState, loading, password, tokenValues } from '$stores';
+	import { CheckIcon, CrossIcon } from '$icons';
+	import {
+		correctToken,
+		email,
+		errorMessage,
+		errorState,
+		loading,
+		password,
+		tokenErrorState,
+		tokenValues
+	} from '$stores';
+	import { resetLandingPageStore } from '$utils';
 	import { ProgressRadial, modalStore } from '@skeletonlabs/skeleton';
+	import { onDestroy } from 'svelte';
+	import AlertWithAction from '../general/_AlertWithAction.svelte';
+	import ProgressCircleAnimated from '../general/_ProgressCircleAnimated.svelte';
+	import TokenForm from '../general/forms/_TokenForm.svelte';
 	import ForgotPasswordStepper from './_ForgotPasswordStepper.svelte';
 
 	export let changeTab: (index: number) => void;
@@ -14,6 +28,11 @@
 	let rememberMe = rememberMeCookie;
 
 	let forgotPassword = false;
+	let notActivatedAlert = false;
+	let notActivatedWorkflow = false;
+
+	// Token validation
+	$: validToken = !$tokenValues.some((value) => value === '');
 
 	// Provide backwards navigation to the forgotPassword component
 	const closeForgotPassword = () => {
@@ -35,7 +54,7 @@
 		});
 
 		loading.set(false);
-		const { success, error, errorMessage: errorDisplayMessage } = await response.json();
+		const { success, activated, error, errorMessage: errorDisplayMessage } = await response.json();
 
 		errorState.set(error);
 		errorMessage.set(errorDisplayMessage);
@@ -43,12 +62,87 @@
 		if (success) {
 			modalStore.close();
 			goto('/home');
+		} else if (!error && !activated) {
+			notActivatedAlert = true;
 		}
 	};
+
+	// Resend token
+	const resendToken = async () => {
+		loading.set(true);
+		correctToken.set(undefined);
+		errorState.set(false);
+		tokenErrorState.set(false);
+
+		try {
+			const response = await fetch(`api/users/resend-token`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({ email: $email })
+			});
+
+			const { error, errorMessage: message } = await response.json();
+
+			errorState.set(error);
+			errorMessage.set(message);
+		} catch (error: any) {
+			errorState.set(true);
+			errorMessage.set(error.message);
+		} finally {
+			loading.set(false);
+		}
+	};
+
+	const verifyToken = async () => {
+		if ($correctToken || !validToken) {
+			return;
+		}
+
+		loading.set(true);
+		correctToken.set(undefined);
+		tokenErrorState.set(false);
+
+		try {
+			const response = await fetch(`api/users/activate`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({ token: $tokenValues.join('') })
+			});
+
+			const { tokenCorrect, error, errorMessage: message } = await response.json();
+
+			correctToken.set(tokenCorrect);
+			tokenErrorState.set(error);
+			errorMessage.set(message);
+
+			if (tokenCorrect) {
+				loading.set(false);
+			}
+		} catch (error: any) {
+			errorState.set(true);
+			errorMessage.set(error.message);
+		} finally {
+			loading.set(false);
+		}
+	};
+
+	const navigationHandler = () => {
+		modalStore.close();
+		goto('/home');
+	};
+
+	onDestroy(() => {
+		// Clean up store values
+		resetLandingPageStore();
+	});
 </script>
 
 <section class="p-3 m-3 h-full">
-	{#if !forgotPassword}
+	{#if !forgotPassword && !notActivatedWorkflow && !notActivatedAlert}
 		<!-- This is to adjust the stepper difference in size -->
 		<div class="p-6 space-y-4 md:space-y-6 sm:p-8">
 			<h1
@@ -133,7 +227,60 @@
 				</button>
 			</div>
 		</div>
-	{:else}
+	{:else if forgotPassword}
 		<ForgotPasswordStepper {closeForgotPassword} />
+	{:else if notActivatedAlert}
+		<section>
+			<div class="p-6 space-y-4 md:space-y-6 sm:p-8 flex flex-col justify-center">
+				<AlertWithAction
+					errorAction={() => {
+						resendToken();
+						notActivatedAlert = false;
+						notActivatedWorkflow = true;
+					}}
+					alertHeading="Your account is not activated!"
+					actionText="Open token form"
+				/>
+			</div>
+		</section>
+	{:else if notActivatedWorkflow}
+		<h1
+			class="h1 text-xl text-center font-bold leading-tight tracking-tight md:text-2xl dark:text-white"
+		>
+			Verify your email
+		</h1>
+		<hr class="w-16 h-1 bg-primary-500 rounded-full flex justify-center mt-2" />
+		<section>
+			<div class="p-6 space-y-4 md:space-y-6 sm:p-8 flex flex-col justify-center">
+				{#if $loading}
+					<ProgressCircleAnimated />
+				{:else if $errorState}
+					<AlertWithAction
+						errorAction={resendToken}
+						alertHeading="Something went wrong!"
+						actionText="Send another token"
+					/>
+				{:else if $correctToken}
+					<aside class="alert variant-ghost-success">
+						<!-- Icon -->
+						<div><CheckIcon /></div>
+						<!-- Message -->
+						<div class="alert-message">
+							<h3 class="h3">The Verification was successful!</h3>
+							<p>
+								Thank you for trusting Costventures, click on the button on the right to
+								automatically login and navigate to the homepage.
+							</p>
+						</div>
+						<!-- Actions -->
+						<div class="alert-actions">
+							<button on:click={navigationHandler} class="btn variant-filled">Login</button>
+						</div>
+					</aside>
+				{:else}
+					<TokenForm keyboardHandler={verifyToken} {resendToken} />
+				{/if}
+			</div>
+		</section>
 	{/if}
 </section>

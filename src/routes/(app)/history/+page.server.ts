@@ -1,7 +1,7 @@
-import { PUBLIC_BASE_URL } from '$env/static/public';
-import { error } from '@sveltejs/kit';
+import type { PageServerLoad } from './$types';
 
-export const load = async ({ fetch }) => {
+export const load = (() => {
+	/*
 	const response = await fetch(`${PUBLIC_BASE_URL}/api/v1/test`, {
 		method: 'GET',
 		headers: {
@@ -14,8 +14,9 @@ export const load = async ({ fetch }) => {
 	}
 
 	const { message } = await response.json();
+	*/
 
 	return {
-		message
+		message: 'Test'
 	};
-};
+}) satisfies PageServerLoad;

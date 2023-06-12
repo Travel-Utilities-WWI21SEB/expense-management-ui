@@ -1,8 +1,8 @@
 <script lang="ts">
 	import {
+		CheckIcon,
 		ClosedEnvelopeIcon,
 		CrossIcon,
-		ErrorIcon,
 		InfoIcon,
 		OpenEnvelopeIcon,
 		QuestionMarkIcon
@@ -58,11 +58,13 @@
 <ol class="list flex flex-col">
 	<li>
 		{#if $correctToken}
-			<slot name="correctTokenIcon" />
-			<slot name="correctTokenText" />
+			<span class="badge-icon variant-filled-success w-4 h-4 justify-center">
+				<CheckIcon />
+			</span>
+			<span class="flex-auto">Token is correct!</span>
 		{:else if validToken}
 			{#if $tokenErrorState}
-				<span class="badge-icon variant-filled-success w-4 h-4"><ErrorIcon /></span>
+				<span class="badge-icon variant-filled-error w-4 h-4"><CrossIcon /></span>
 				<span class="flex-auto">{$errorMessage}</span>
 			{:else}
 				<span class="badge-icon variant-filled-warning w-4 h-4"><CrossIcon /></span>

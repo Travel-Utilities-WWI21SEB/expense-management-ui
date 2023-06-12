@@ -6,6 +6,14 @@ export const POST = (async ({ cookies, fetch, request }) => {
 	const body = await request.json();
 	const { email, password, rememberMe } = body;
 
+	if (!email || !password) {
+		return json({
+			success: false,
+			error: true,
+			errorMessage: 'Please enter a valid email and password'
+		});
+	}
+
 	try {
 		const response = await fetch(`${PUBLIC_BASE_URL}/api/v1/users/login`, {
 			method: 'POST',
@@ -36,16 +44,21 @@ export const POST = (async ({ cookies, fetch, request }) => {
 
 		// 400: Bad Request -> No input given or invalid input
 		if (response.status === 400) {
-			return json({ error: true, errorMessage: 'Please enter a valid email and password' });
+			return json({
+				success: false,
+				error: true,
+				errorMessage: 'Please enter a valid email and password'
+			});
 		}
 
 		// 403: Forbidden -> User is not activated yet
 		if (response.status === 403) {
-			return json({ activated: false, error: true, errorMessage: errorMessage });
+			return json({ success: false, activated: false, error: false, errorMessage: errorMessage });
 		}
 
-		return json({ error: true, errorMessage: errorMessage });
+		return json({ success: false, error: true, errorMessage: errorMessage });
 	} catch (error) {
+		console.log(error);
 		const errorMessage = getErrorMessage('EM-000'); // Default error message
 		return json({ success: false, error: true, errorMessage: errorMessage });
 	}
