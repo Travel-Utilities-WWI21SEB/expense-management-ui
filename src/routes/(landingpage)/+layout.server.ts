@@ -2,7 +2,7 @@ import { tokenExpired } from '$utils';
 import { redirect } from '@sveltejs/kit';
 import type { LayoutServerLoad } from './$types';
 
-export const load = (async ({ cookies }) => {
+export const load = (({ cookies }) => {
 	const token = cookies.get('token');
 	const refreshToken = cookies.get('refreshToken');
 

@@ -1,6 +1,44 @@
 import { tokenValues } from '$stores';
 import { tick } from 'svelte';
 
+const pasteClipboardData = async (
+	verifyToken: () => void,
+	clipboardData?: string
+): Promise<void> => {
+	if (!clipboardData) return;
+
+	// We only want to paste 6 characters
+	// If its more than 6, we slice it
+	// If its less than 6, we don't do anything
+	if (clipboardData.length > 6) {
+		clipboardData = clipboardData.slice(0, 6);
+	} else if (clipboardData.length < 6) {
+		return;
+	}
+
+	const inputs = document.querySelectorAll('input[type="text"]');
+
+	// We spread the clipboard data into the array to
+	// trigger svelte reactivity
+	tokenValues.set(clipboardData.split(''));
+
+	// Focus the last input
+	const lastInput = inputs[inputs.length - 1] as HTMLInputElement;
+	lastInput.focus();
+
+	await tick();
+	verifyToken();
+};
+
+const updateTokenValueAtIndex = (index: number, value: string): void => {
+	tokenValues.update((tokenValues) => {
+		// Create a new array with the updated value at the specified index
+		const updatedTokenValues = [...tokenValues];
+		updatedTokenValues[index] = value;
+		return updatedTokenValues;
+	});
+};
+
 export const keydownHandler = async (e: KeyboardEvent, verifyToken: () => void): Promise<void> => {
 	// If the key is trying to paste something in the first input
 	// we get the clipboard data and spread it into the inputs
@@ -87,42 +125,4 @@ export const pasteHandler = (e: ClipboardEvent, verifyToken: () => void): void =
 	const clipboardData = e.clipboardData?.getData('text/plain');
 
 	pasteClipboardData(verifyToken, clipboardData);
-};
-
-const pasteClipboardData = async (
-	verifyToken: () => void,
-	clipboardData?: string
-): Promise<void> => {
-	if (!clipboardData) return;
-
-	// We only want to paste 6 characters
-	// If its more than 6, we slice it
-	// If its less than 6, we don't do anything
-	if (clipboardData.length > 6) {
-		clipboardData = clipboardData.slice(0, 6);
-	} else if (clipboardData.length < 6) {
-		return;
-	}
-
-	const inputs = document.querySelectorAll('input[type="text"]');
-
-	// We spread the clipboard data into the array to
-	// trigger svelte reactivity
-	tokenValues.set(clipboardData.split(''));
-
-	// Focus the last input
-	const lastInput = inputs[inputs.length - 1] as HTMLInputElement;
-	lastInput.focus();
-
-	await tick();
-	verifyToken();
-};
-
-const updateTokenValueAtIndex = (index: number, value: string): void => {
-	tokenValues.update((tokenValues) => {
-		// Create a new array with the updated value at the specified index
-		const updatedTokenValues = [...tokenValues];
-		updatedTokenValues[index] = value;
-		return updatedTokenValues;
-	});
 };

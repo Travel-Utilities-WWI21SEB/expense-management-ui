@@ -19,7 +19,7 @@ const unauthorizedRoutes = [
 ];
 
 export const handle = (async ({ event, resolve }) => {
-	console.log(event.url.pathname + ', ' + Date.now());
+	console.log(`${event.url.pathname}, ${Date.now()}`);
 
 	// Unauthorized routes: Just let them pass through
 	if (unauthorizedRoutes.includes(event.url.pathname)) {
@@ -78,7 +78,7 @@ export const handle = (async ({ event, resolve }) => {
 // By default SvelteKit does not send the Authorization header to the API
 // since it is not a same-origin request. This hook will add the Authorization
 // header to the request if the request is going to the API. (rip 1 hour of my time)
-export const handleFetch = (async ({ event, request, fetch }) => {
+export const handleFetch = (({ event, request, fetch }) => {
 	const url = new URL(request.url);
 
 	if (PUBLIC_BASE_URL === url.origin) {

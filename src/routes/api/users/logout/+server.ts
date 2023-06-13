@@ -1,7 +1,7 @@
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
-export const POST = (async ({ cookies }) => {
+export const POST = (({ cookies }) => {
 	// Delete the token and refresh token
 	cookies.delete('token', { path: '/' });
 	cookies.delete('refreshToken', { path: '/' });
