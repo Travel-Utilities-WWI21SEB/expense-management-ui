@@ -9,12 +9,6 @@ WORKDIR /svelte/app
 COPY .npmrc package.json pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile
 
-# Accept VITE_PUBLIC_BASE_URL as build-argument
-ARG VITE_PUBLIC_BASE_URL
-
-# Set VITE_PUBLIC_BASE_URL to Build-Argument
-ENV VITE_PUBLIC_BASE_URL=$VITE_PUBLIC_BASE_URL
-
 COPY . .
 RUN pnpm run build
 
@@ -28,4 +22,4 @@ COPY --from=build svelte/app/node_modules ./node_modules
 COPY --from=build svelte/app/build ./build
 
 EXPOSE 3000
-CMD ["node", "build"]
+CMD ["node", "-r", "dotenv/config", "build"]
