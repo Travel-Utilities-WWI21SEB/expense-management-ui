@@ -13,7 +13,7 @@ export const POST = (async ({ fetch, request }) => {
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({ email: email })
+			body: JSON.stringify({ email })
 		});
 
 		if (response.ok) {
@@ -24,7 +24,7 @@ export const POST = (async ({ fetch, request }) => {
 		const { errorCode } = body;
 		const errorMessage = getErrorMessage(errorCode);
 
-		return json({ error: true, errorMessage: errorMessage });
+		return json({ error: true, errorMessage });
 	} catch (exception) {
 		return json({
 			error: true,

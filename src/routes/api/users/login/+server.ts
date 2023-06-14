@@ -55,13 +55,13 @@ export const POST = (async ({ cookies, fetch, request }) => {
 
 		// 403: Forbidden -> User is not activated yet
 		if (response.status === 403) {
-			return json({ success: false, activated: false, error: false, errorMessage: errorMessage });
+			return json({ success: false, activated: false, error: false, errorMessage });
 		}
 
-		return json({ success: false, error: true, errorMessage: errorMessage });
+		return json({ success: false, error: true, errorMessage });
 	} catch (error) {
 		console.log(error);
 		const errorMessage = getErrorMessage('EM-000'); // Default error message
-		return json({ success: false, error: true, errorMessage: errorMessage });
+		return json({ success: false, error: true, errorMessage });
 	}
 }) satisfies RequestHandler;

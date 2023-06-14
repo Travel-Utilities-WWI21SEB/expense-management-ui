@@ -26,9 +26,9 @@ export const POST = (async ({ fetch, request }) => {
 		const { errorCode } = body;
 		const errorMessage = getErrorMessage(errorCode);
 
-		return json({ error: true, errorMessage: errorMessage });
+		return json({ error: true, errorMessage });
 	} catch (exception) {
 		const errorMessage = getErrorMessage('EM-000'); // Default error message
-		return json({ error: true, errorMessage: errorMessage });
+		return json({ error: true, errorMessage });
 	}
 }) satisfies RequestHandler;

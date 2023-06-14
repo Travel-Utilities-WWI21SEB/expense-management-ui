@@ -1,8 +1,8 @@
-import jwtDecode from 'jwt-decode';
+import jwtDecode, { type JwtPayload } from 'jwt-decode';
 
 export function tokenExpired(token: string) {
-	const decodedToken: any = jwtDecode(token);
+	const decodedToken: JwtPayload = jwtDecode<JwtPayload>(token);
 	const currentTime = Math.floor(Date.now() / 1000);
 
-	return decodedToken && decodedToken.exp < currentTime;
+	return decodedToken.exp && decodedToken.exp < currentTime;
 }

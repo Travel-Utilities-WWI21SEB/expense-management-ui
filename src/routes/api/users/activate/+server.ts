@@ -29,12 +29,12 @@ export const POST = (async ({ cookies, fetch, request }) => {
 
 		// 400: Bad Request -> User entered wrong token
 		if (response.status === 400) {
-			return json({ tokenCorrect: false, error: false, errorMessage: errorMessage });
+			return json({ tokenCorrect: false, error: false, errorMessage });
 		}
 
-		return json({ error: true, errorMessage: errorMessage });
+		return json({ error: true, errorMessage });
 	} catch (error) {
 		const errorMessage = getErrorMessage('EM-000'); // Default error message
-		return json({ success: false, error: true, errorMessage: errorMessage });
+		return json({ success: false, error: true, errorMessage });
 	}
 }) satisfies RequestHandler;

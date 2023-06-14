@@ -55,7 +55,7 @@ export const handle = (async ({ event, resolve }) => {
 		headers: {
 			'Content-Type': 'application/json'
 		},
-		body: JSON.stringify({ refreshToken: refreshToken })
+		body: JSON.stringify({ refreshToken })
 	});
 
 	if (!refreshTokenResponse.ok) {

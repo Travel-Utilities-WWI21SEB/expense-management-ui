@@ -13,7 +13,7 @@ export const POST = (async ({ fetch, request }) => {
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({ username: username })
+			body: JSON.stringify({ username })
 		});
 
 		if (response.ok) {
@@ -26,11 +26,11 @@ export const POST = (async ({ fetch, request }) => {
 
 		// 400: Bad Request -> Username is invalid
 		if (response.status === 400) {
-			return json({ exists: false, valid: false, error: true, errorMessage: errorMessage });
+			return json({ exists: false, valid: false, error: true, errorMessage });
 		}
 
 		// 409: Conflict -> Email already exists (implicitly handled here)
-		return json({ exists: false, valid: true, error: true, errorMessage: errorMessage });
+		return json({ exists: false, valid: true, error: true, errorMessage });
 	} catch (exception) {
 		return json({
 			exists: false,

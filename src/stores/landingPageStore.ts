@@ -7,7 +7,7 @@ export const loading = writable(false);
 
 // Token variables
 export const tokenValues = writable(['', '', '', '', '', '']);
-export const correctToken = writable<boolean | undefined>(undefined);
+export const correctToken = writable<boolean | undefined>();
 export const tokenErrorState = writable(false);
 
 // Username variables

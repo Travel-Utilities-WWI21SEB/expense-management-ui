@@ -12,7 +12,7 @@ export const POST = (async ({ fetch, request }) => {
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({ email: email, token: token })
+			body: JSON.stringify({ email, token })
 		});
 
 		if (response.ok) {
@@ -25,17 +25,17 @@ export const POST = (async ({ fetch, request }) => {
 
 		// 404: Not found -> Token is invalid
 		if (response.status === 404) {
-			return json({ valid: false, error: false, errorMessage: errorMessage });
+			return json({ valid: false, error: false, errorMessage });
 		}
 
-		return json({ valid: false, error: true, errorMessage: errorMessage });
+		return json({ valid: false, error: true, errorMessage });
 	} catch (exception) {
 		const errorMessage = getErrorMessage('EM-000'); // Default error message
 
 		return json({
 			success: false,
 			error: true,
-			errorMessage: errorMessage
+			errorMessage
 		});
 	}
 }) satisfies RequestHandler;

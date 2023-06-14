@@ -12,7 +12,7 @@ export const POST = (async ({ fetch, request }) => {
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({ email: email, password: password, token: token })
+			body: JSON.stringify({ email, password, token })
 		});
 
 		if (response.ok || response.status === 206) {
@@ -23,14 +23,14 @@ export const POST = (async ({ fetch, request }) => {
 		const { errorCode } = body;
 		const errorMessage = getErrorMessage(errorCode);
 
-		return json({ success: false, error: true, errorMessage: errorMessage });
+		return json({ success: false, error: true, errorMessage });
 	} catch (exception) {
 		const errorMessage = getErrorMessage('EM-000'); // Default error message
 
 		return json({
 			success: false,
 			error: true,
-			errorMessage: errorMessage
+			errorMessage
 		});
 	}
 }) satisfies RequestHandler;
