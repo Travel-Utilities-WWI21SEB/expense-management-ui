@@ -1,13 +1,61 @@
 <script lang="ts">
-	import { AppBar, drawerStore, LightSwitch } from '@skeletonlabs/skeleton';
-	import { BagIcon, MenuIcon, SettingsIcon } from '$icons';
+	import { goto } from '$app/navigation';
+	import { DarkIcon, LightIcon, LogoutIcon, MenuIcon, SettingsIcon, UserIcon } from '$icons';
+	import {
+		AppBar,
+		LightSwitch,
+		drawerStore,
+		modeCurrent,
+		popup,
+		type PopupSettings
+	} from '@skeletonlabs/skeleton';
 
-	function drawerOpen(): void {
+	const drawerOpen = (): void => {
 		drawerStore.open({});
-	}
+	};
+
+	const settingsPopup: PopupSettings = {
+		event: 'click',
+		target: 'settingsPopup',
+		placement: 'bottom'
+	};
+
+	const logoutHandler = async (): Promise<void> => {
+		const response = await fetch('api/users/logout', {
+			method: 'POST'
+		});
+
+		const body = await response.json();
+		const { success } = body;
+
+		if (success) {
+			goto('/');
+		}
+	};
 </script>
 
-<AppBar gridColumns="grid-cols-3" slotDefault="place-self-center" slotTrail="place-content-end">
+<!-- SETTINGS POPUP -->
+<div class="card p-4 flex flex-col flex-grow" data-popup="settingsPopup">
+	<div class="btn-group-vertical variant-ghost">
+		<button type="button" class="btn !bg-transparent">
+			<span><UserIcon width={6} height={6} /></span>
+			<span>Profile</span>
+		</button>
+		<hr class="!border-t-2 !border-separate" />
+		<button type="button" class="btn !bg-transparent" on:click={logoutHandler}>
+			<span><LogoutIcon /></span>
+			<span>Logout</span>
+		</button>
+	</div>
+</div>
+<!-- SETTINGS POPUP-->
+
+<AppBar
+	gridColumns="grid-cols-3"
+	slotDefault="place-self-center"
+	slotTrail="place-content-end"
+	border="border-b border-current"
+>
 	<svelte:fragment slot="lead">
 		<!-- Menu (only on small devices) -->
 		<button
@@ -18,11 +66,13 @@
 			<MenuIcon width={8} height={8} />
 		</button>
 		<!-- Menu (only on small devices) -->
-		<BagIcon width={12} height={12} />
+		<!-- Logo -->
 	</svelte:fragment>
-	<!-- Title -->
-	<h1 class="h1 font-bold tracking-widest hidden lg:block">Costventures</h1>
-	<!-- Title -->
+	{#if !$modeCurrent}
+		<DarkIcon width={70} height={10} />
+	{:else}
+		<LightIcon width={70} height={10} />
+	{/if}
 	<svelte:fragment slot="trail">
 		<!-- Search Bar -->
 		<!-- TBD -->
@@ -33,7 +83,7 @@
 		<!-- Theme Switch -->
 
 		<!-- Settings -->
-		<button type="button" class="btn-icon variant-ringed">
+		<button type="button" class="btn-icon variant-ringed" use:popup={settingsPopup}>
 			<SettingsIcon width={8} height={8} />
 		</button>
 		<!-- Settings -->
