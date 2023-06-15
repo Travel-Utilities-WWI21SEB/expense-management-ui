@@ -19,7 +19,7 @@ const unauthorizedRoutes = [
 ];
 
 export const handle = (async ({ event, resolve }) => {
-	console.log(`${event.url.pathname}, ${Date.now()}`);
+	console.log(`Internal request: ${event.url.pathname}, ${Date.now()}}`);
 
 	// Unauthorized routes: Just let them pass through
 	if (unauthorizedRoutes.includes(event.url.pathname)) {
@@ -80,6 +80,7 @@ export const handle = (async ({ event, resolve }) => {
 // header to the request if the request is going to the API. (rip 1 hour of my time)
 export const handleFetch = (({ event, request, fetch }) => {
 	const url = new URL(request.url);
+	console.log(`Outgoing request to ${url}`);
 
 	if (PUBLIC_BASE_URL === url.origin) {
 		request.headers.set('Authorization', event.request.headers.get('Authorization') || '');
