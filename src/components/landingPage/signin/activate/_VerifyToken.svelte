@@ -10,9 +10,7 @@
 		tokenValues
 	} from '$stores';
 	import { modalStore } from '@skeletonlabs/skeleton';
-	import AlertWithAction from '../../../general/_AlertWithAction.svelte';
-	import ProgressCircleAnimated from '../../../general/_ProgressCircleAnimated.svelte';
-	import TokenForm from '../../forms/_TokenForm.svelte';
+	import { AlertWithAction, ProgressCircleAnimated, TokenForm } from '$components';
 
 	export let resendToken: () => void;
 
@@ -73,6 +71,7 @@
 			<ProgressCircleAnimated />
 		{:else if $errorState}
 			<AlertWithAction
+				enableAction={true}
 				errorAction={resendToken}
 				alertHeading="Something went wrong!"
 				actionText="Send another token"

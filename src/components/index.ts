@@ -5,6 +5,21 @@ export { default as ContactBox } from './landingPage/_ContactBox.svelte';
 export { default as LandingPageFeatureBoxLeft } from './landingPage/_FeatureBoxLeft.svelte';
 export { default as LandingPageFeatureBoxRight } from './landingPage/_FeatureBoxRight.svelte';
 export { default as LandingPageFooter } from './landingPage/layout/_LandingPageFooter.svelte';
+//SignIn
+export { default as AlertWithAction } from './general/_AlertWithAction.svelte';
+export { default as ProgressCircleAnimated } from './general/_ProgressCircleAnimated.svelte';
+export { default as TokenForm } from './landingPage/forms/_TokenForm.svelte';
+export { default as PasswordForm } from './landingPage/forms/_PasswordForm.svelte';
+export { default as SelectEmailStep } from './landingPage/signin/forgotPassword/steps/_SelectEmailStep.svelte';
+export { default as SetNewPasswordStep } from './landingPage/signin/forgotPassword/steps/_SetNewPasswordStep.svelte';
+export { default as ValidateResetTokenStep } from './landingPage/signin/forgotPassword/steps/_ValidateResetTokenStep.svelte';
+export { default as ForgotPasswordStepper } from './landingPage/signin/forgotPassword/_ForgotPasswordStepper.svelte';
+export { default as VerifyToken } from './landingPage/signin/activate/_VerifyToken.svelte';
+export { default as VerifyTokenAlert } from './landingPage/signin/activate/_VerifyTokenAlert.svelte';
+export { default as EmailStep } from './landingPage/signup/steps/_EmailStep.svelte';
+export { default as PasswordStep } from './landingPage/signup/steps/_PasswordStep.svelte';
+export { default as TokenStep } from './landingPage/signup/steps/_TokenStep.svelte';
+export { default as UsernameStep } from './landingPage/signup/steps/_UsernameStep.svelte';
 // Landing Page
 export { default as LandingPageReviewBox } from './landingPage/_ReviewBox.svelte';
 export { default as SignUpModal } from './landingPage/_SignUpModal.svelte';

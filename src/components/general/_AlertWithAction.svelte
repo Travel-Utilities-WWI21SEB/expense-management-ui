@@ -2,9 +2,10 @@
 	import { ErrorIcon } from '$icons';
 	import { errorMessage, loading } from '$stores';
 
-	export let errorAction: () => void;
+	export let errorAction = () => {};
 	export let alertHeading: string;
-	export let actionText: string;
+	export let actionText = '';
+	export let enableAction = false;
 </script>
 
 <aside class="alert variant-filled-error w-full">
@@ -18,10 +19,12 @@
 		<p>{$errorMessage}</p>
 	</div>
 	<!-- Actions -->
-	<div class="alert-actions">
-		<button
-			class="btn variant-filled {$loading ? 'pointer-events-none opacity-50' : ''}"
-			on:click={errorAction}>{actionText}</button
-		>
-	</div>
+	{#if enableAction}
+		<div class="alert-actions">
+			<button
+				class="btn variant-filled {$loading ? 'pointer-events-none opacity-50' : ''}"
+				on:click={errorAction}>{actionText}</button
+			>
+		</div>
+	{/if}
 </aside>
