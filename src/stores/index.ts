@@ -20,3 +20,5 @@ export {
 export { allTrips, currentTrip, newTripForm } from './tripsStore';
 // User store
 export { authToken, currentUser, selectedUsers } from './userStore';
+//Cost store
+export { costDetailsValid, costPaidByValid, costAllocationValid } from './costStore';

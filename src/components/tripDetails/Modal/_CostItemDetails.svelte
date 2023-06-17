@@ -3,17 +3,16 @@
 	import { SlideToggle } from '@skeletonlabs/skeleton';
 	import { CheckIcon, CrossIcon } from '$icons';
 	import { validateDetails } from '$utils';
+	import { costDetailsValid } from '$stores';
 
 	export let cost: CostDateAsString;
 	export let trip: TravelData;
 
-	$: detailsValid = validateDetails(cost, checked);
+	$: costDetailsValid.set(validateDetails(cost, checked));
 	let checked: boolean = cost.endDate ? true : false;
 
 	let endDateTrip = trip.endDate.toISOString().slice(0, 10);
 	let startDateTrip = trip.startDate.toISOString().slice(0, 10);
-
-	console.log(endDateTrip, cost.startDate, cost.endDate);
 
 	function changeTimeToggle(e: Event) {
 		if (!checked) {
@@ -76,7 +75,7 @@
 	</label>
 	<ol class="list">
 		<li>
-			{#if detailsValid}
+			{#if $costDetailsValid}
 				<span class="badge-icon variant-filled-success w-4 h-4"><CheckIcon /></span>
 				<span class="flex-auto">Cost Details are valid</span>
 			{:else}

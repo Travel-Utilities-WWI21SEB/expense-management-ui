@@ -3,6 +3,7 @@
 	import type { CostDateAsString } from '$tripDomain';
 	import { CheckIcon, CrossIcon } from '$icons';
 	import { validateCostAllocation } from '$utils';
+	import { costAllocationValid } from '$stores';
 	import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
 
 	export let users: Array<CostPaidForUser>;
@@ -10,7 +11,7 @@
 
 	$: usersInvolved = users.filter((user) => user.checked);
 	let splitType: number = 0;
-	$: costAllocationValid = validateCostAllocation(cost.amount, usersInvolved);
+	$: costAllocationValid.set(validateCostAllocation(cost.amount, usersInvolved));
 
 	function changeToEqual() {
 		users = users.map((user) => {

@@ -2,10 +2,11 @@
 	import type { CostPaidForUser } from '$userDomain';
 	import { CheckIcon, CrossIcon } from '$icons';
 	import { validatePaidBy } from '$utils';
+	import { costPaidByValid } from '$stores';
 
 	export let users: Array<CostPaidForUser>;
 
-	$: paidByValid = validatePaidBy();
+	$: costPaidByValid.set(validatePaidBy());
 </script>
 
 <label class="label pb-4">
@@ -18,7 +19,7 @@
 </label>
 <ol class="list">
 	<li>
-		{#if paidByValid}
+		{#if costPaidByValid}
 			<span class="badge-icon variant-filled-success w-4 h-4"><CheckIcon /></span>
 			<span class="flex-auto">Paid By is valid</span>
 		{:else}

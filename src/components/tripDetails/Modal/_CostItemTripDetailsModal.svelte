@@ -2,12 +2,13 @@
 	import type { Cost, CostDateAsString, TravelData } from '$tripDomain';
 	import type { CostPaidForUser, User } from '$userDomain';
 	import { TripDetailsShowCostItem, TripDetailsEditCostItem } from '$components';
+	import { costAllocationValid, costDetailsValid, costPaidByValid } from '$stores';
 
 	/* export let name: string; */
 	export let cost: Cost;
 	export let trip: TravelData;
 
-	let validData = true;
+	$: validData = $costAllocationValid && $costDetailsValid && costPaidByValid;
 
 	let costPaidForUser: Array<CostPaidForUser> = trip.participants.flatMap(
 		(tripParticipants: User) => {
