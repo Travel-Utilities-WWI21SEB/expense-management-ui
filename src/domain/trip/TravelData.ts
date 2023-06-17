@@ -3,7 +3,7 @@ import type { ChartData } from './ChartData';
 import type { CostCategory } from './CostCategory';
 
 export interface TravelData {
-	id: string;
+	tripId: string;
 	name: string;
 	costCategories: Array<CostCategory>;
 	data?: ChartData;

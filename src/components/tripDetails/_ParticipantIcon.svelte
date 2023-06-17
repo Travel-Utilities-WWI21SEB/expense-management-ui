@@ -7,7 +7,7 @@
 
 <div class="py-1">
 	<Avatar
-		initials={participant.name
+		initials={participant.username
 			.split(' ')
 			.map((val) => val.substring(0, 1))
 			.join('')}

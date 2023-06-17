@@ -2,7 +2,9 @@
 	import { ErrorIcon } from '$icons';
 	import { errorMessage, loading } from '$stores';
 
-	export let errorAction = () => {};
+	export let errorAction = () => {
+		console.log('Function not yet specified');
+	};
 	export let alertHeading: string;
 	export let actionText = '';
 	export let enableAction = false;
