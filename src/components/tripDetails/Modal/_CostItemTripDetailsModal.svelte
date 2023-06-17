@@ -7,6 +7,8 @@
 	export let cost: Cost;
 	export let trip: TravelData;
 
+	let validData = true;
+
 	let costPaidForUser: Array<CostPaidForUser> = trip.participants.flatMap(
 		(tripParticipants: User) => {
 			const userInvolved = cost.paidFor.filter(
@@ -56,14 +58,10 @@
 	const cForm = 'border border-surface-500 p-4 space-y-4 rounded-container-token';
 </script>
 
-<div class="card p-4">
+<div class="card p-4 md:w-1/2">
 	<div class="p-4">
 		{#if isEditing}
-			<TripDetailsEditCostItem
-				cost={localeCost}
-				users={costPaidForUser}
-				costCategories={trip.costCategories}
-			/>
+			<TripDetailsEditCostItem cost={localeCost} users={costPaidForUser} {trip} />
 		{:else}
 			<TripDetailsShowCostItem cost={localeCost} />
 		{/if}
@@ -71,7 +69,9 @@
 	<footer class="modal-footer {parent.regionFooter}">
 		<button class="btn border-2" on:click={parent.onClose}>Close</button>
 		{#if isEditing}
-			<button class="btn variant-filled" on:click={() => (isEditing = false)}> Save </button>
+			<button class="btn variant-filled" disabled={!validData} on:click={() => (isEditing = false)}>
+				Save
+			</button>
 		{:else}
 			<button
 				class="btn variant-filled"

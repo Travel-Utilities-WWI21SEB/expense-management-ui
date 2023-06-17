@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { CostDateAsString, CostCategory } from '$tripDomain';
+	import type { CostDateAsString, CostCategory, TravelData } from '$tripDomain';
 	import type { CostPaidForUser } from '$userDomain';
 	import {
 		TripDetailsEditCostItemDetails,
@@ -9,8 +9,8 @@
 	import { Tab, TabGroup } from '@skeletonlabs/skeleton';
 
 	export let cost: CostDateAsString;
-	export let costCategories: Array<CostCategory>;
 	export let users: Array<CostPaidForUser>;
+	export let trip: TravelData;
 
 	let tabSet: number = 0;
 </script>
@@ -22,7 +22,7 @@
 	<!-- Tab Panels --->
 	<svelte:fragment slot="panel">
 		{#if tabSet === 0}
-			<TripDetailsEditCostItemDetails {cost} {costCategories} />
+			<TripDetailsEditCostItemDetails {cost} {trip} />
 		{:else if tabSet === 1}
 			<TripDetailsEditCostItemPaidBy {users} />
 		{:else if tabSet === 2}
