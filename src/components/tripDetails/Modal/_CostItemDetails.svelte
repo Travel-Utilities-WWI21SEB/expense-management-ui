@@ -1,11 +1,19 @@
 <script lang="ts">
-	import type { CostDateAsString, CostCategory } from '$tripDomain';
+	import type { CostDateAsString, TravelData } from '$tripDomain';
 	import { SlideToggle } from '@skeletonlabs/skeleton';
+	import { CheckIcon, CrossIcon } from '$icons';
+	import { validateDetails } from '$utils';
 
 	export let cost: CostDateAsString;
-	export let costCategories: Array<CostCategory>;
+	export let trip: TravelData;
 
+	$: detailsValid = validateDetails(cost, checked);
 	let checked: boolean = cost.endDate ? true : false;
+
+	let endDateTrip = trip.endDate.toISOString().slice(0, 10);
+	let startDateTrip = trip.startDate.toISOString().slice(0, 10);
+
+	console.log(endDateTrip, cost.startDate, cost.endDate);
 
 	function changeTimeToggle(e: Event) {
 		if (!checked) {
@@ -27,12 +35,24 @@
 	>
 	<label class="label col-span-2 {checked ? 'sm:col-span-1' : 'sm:col-span-2'}">
 		<span>Start Date</span>
-		<input class="input" type="date" bind:value={cost.startDate} />
+		<input
+			class="input"
+			type="date"
+			min={startDateTrip}
+			max={endDateTrip}
+			bind:value={cost.startDate}
+		/>
 	</label>
 	{#if checked}
 		<label class="label col-span-2 sm:col-span-1">
 			<span>End Date</span>
-			<input class="input" type="date" min={cost.startDate} bind:value={cost.endDate} />
+			<input
+				class="input"
+				type="date"
+				min={cost.startDate}
+				max={endDateTrip}
+				bind:value={cost.endDate}
+			/>
 		</label>
 	{/if}
 	<label class="label col-span-2 sm:col-span-1">
@@ -49,11 +69,22 @@
 	<label class="label col-span-2 sm:col-span-1">
 		<span>Category</span>
 		<select class="select" bind:value={cost.costCategory.name}>
-			{#each costCategories as category}
+			{#each trip.costCategories as category}
 				<option value={category.name}>{category.name} </option>
 			{/each}
 		</select>
 	</label>
+	<ol class="list">
+		<li>
+			{#if detailsValid}
+				<span class="badge-icon variant-filled-success w-4 h-4"><CheckIcon /></span>
+				<span class="flex-auto">Cost Details are valid</span>
+			{:else}
+				<span class="badge-icon variant-filled-error w-4 h-4"><CrossIcon /></span>
+				<span class="flex-auto">Please provide valid cost details</span>
+			{/if}
+		</li>
+	</ol>
 </div>
 
 <style>

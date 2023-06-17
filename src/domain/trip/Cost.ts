@@ -11,6 +11,7 @@ export interface Cost {
 	endDate?: Date;
 	costCategory: CostCategory;
 	paidFor: Array<CostPaidForUser>;
+	paidBy: string;
 }
 
 export interface CostDateAsString {
@@ -23,4 +24,5 @@ export interface CostDateAsString {
 	endDate?: string;
 	costCategory: CostCategory;
 	paidFor: Array<CostPaidForUser>;
+	paidBy: string;
 }

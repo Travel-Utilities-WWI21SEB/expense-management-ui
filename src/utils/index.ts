@@ -13,4 +13,8 @@ export { validateEmail } from './validation/validateEmail';
 export { validatePassword } from './validation/validatePassword';
 export { validatePasswordsMatch } from './validation/validatePasswordsMatch';
 export { validateUsername } from './validation/validateUsername';
+
+// VALIDATOR COST_POINT
 export { validateCostAllocation } from './trips/costs/costAllocation';
+export { validatePaidBy } from './trips/costs/paidBy';
+export { validateDetails } from './trips/costs/costDetails';

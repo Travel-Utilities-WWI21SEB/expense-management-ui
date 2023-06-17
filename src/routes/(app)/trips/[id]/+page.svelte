@@ -20,7 +20,8 @@
 		paidFor: [
 			{ userId: 'ljahvdöas', amount: 45, currencyCode: 'EUR' },
 			{ userId: 'alsbvas', amount: 45, currencyCode: 'EUR' }
-		]
+		],
+		paidBy: 'ljahvdöas'
 	};
 	let costs = [cost, cost, cost, cost, cost, cost, cost, cost, cost, cost, cost, cost];
 
