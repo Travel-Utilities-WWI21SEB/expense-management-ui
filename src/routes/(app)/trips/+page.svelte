@@ -7,6 +7,7 @@
 	import { errorMessage, errorState } from '$stores';
 
 	export let data;
+	console.log(data.data);
 	errorMessage.set(data.errorMessage);
 	errorState.set(data.error);
 
@@ -18,7 +19,7 @@
 
 	function onTripCardClick(trip: TravelData) {
 		currentTrip.update(() => trip);
-		goto(`/trips/${trip.id}`);
+		goto(`/trips/${trip.tripId}`);
 	}
 </script>
 

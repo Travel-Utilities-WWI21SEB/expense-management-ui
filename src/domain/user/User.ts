@@ -1,3 +1,6 @@
 export interface User {
-	name: string;
+	username: string;
+	presenceStartDate: Date;
+	presenceEndDate: Date;
+	hasAcceptedInvite: boolean;
 }
