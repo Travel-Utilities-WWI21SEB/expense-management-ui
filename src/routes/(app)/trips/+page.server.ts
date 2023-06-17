@@ -36,7 +36,7 @@ export async function load({ fetch }) {
 	});
 
 	const body = await response.json();
-
+	console.log(body);
 	return { ...body, data: APINotFinishedHelper(body.data) };
 }
 

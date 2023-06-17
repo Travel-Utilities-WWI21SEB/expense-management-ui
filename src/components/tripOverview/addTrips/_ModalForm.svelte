@@ -3,16 +3,50 @@
 	import { modalStore, Stepper, Step } from '@skeletonlabs/skeleton';
 	import { NewTripStep, InviteParticipantsStep } from '$components';
 	import { newTripForm } from '$stores';
+	import { errorMessage, errorState, loading } from '$stores';
+	import { invalidateAll } from '$app/navigation';
+
+	const createTrip = async (newTrip: { location: string; startDate: string; endDate: string }) => {
+		loading.set(true);
+		errorState.set(false);
+
+		try {
+			const response = await fetch('api/trips', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(newTrip)
+			});
+
+			const body = await response.json();
+			const { error, errorMessage: errorDisplayMessage } = body;
+
+			errorState.set(error);
+			errorMessage.set(errorDisplayMessage);
+		} catch (error: any) {
+			errorState.set(true);
+			errorMessage.set(error.message);
+		} finally {
+			loading.set(false);
+		}
+	};
 
 	// We've created a custom submit function to pass the response and close the modal.
 	function onFormSubmit(): void {
-		if ($modalStore[0].response) $modalStore[0].response($newTripForm);
 		modalStore.close();
-		newTripForm.set({
-			name: '',
-			location: '',
-			startDate: new Date(Date.now()).toISOString().substring(0, 10),
-			endDate: new Date(Date.now()).toISOString().substring(0, 10)
+		createTrip({
+			location: $newTripForm.location,
+			endDate: $newTripForm.endDate,
+			startDate: $newTripForm.startDate
+		}).then(() => {
+			newTripForm.set({
+				name: '',
+				location: '',
+				startDate: new Date(Date.now()).toISOString().substring(0, 10),
+				endDate: new Date(Date.now()).toISOString().substring(0, 10)
+			});
+			invalidateAll();
 		});
 	}
 
