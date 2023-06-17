@@ -16,9 +16,7 @@
 	import { resetLandingPageStore } from '$utils';
 	import { ProgressRadial, modalStore } from '@skeletonlabs/skeleton';
 	import { onDestroy } from 'svelte';
-	import VerifyToken from './activate/_VerifyToken.svelte';
-	import VerifyTokenAlert from './activate/_VerifyTokenAlert.svelte';
-	import ForgotPasswordStepper from './forgotPassword/_ForgotPasswordStepper.svelte';
+	import { VerifyToken, VerifyTokenAlert, ForgotPasswordStepper } from '$components';
 
 	export let changeTab: (index: number) => void;
 	export let rememberMeCookie: boolean;

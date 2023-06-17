@@ -1,9 +1,14 @@
 <script lang="ts">
 	import type { TravelData } from '$tripDomain';
 	import { goto } from '$app/navigation';
-	import { TripCard, HeaderBar } from '$components';
+	import { TripCard, HeaderBar, AlertWithAction } from '$components';
 	import { allTrips, currentTrip } from '$stores';
 	import { modifyTripData } from '$utils';
+	import { errorMessage, errorState } from '$stores';
+
+	export let data;
+	errorMessage.set(data.errorMessage);
+	errorState.set(data.error);
 
 	let tripData: Array<TravelData>;
 
@@ -22,10 +27,14 @@
 		<HeaderBar />
 	</div>
 </div>
-<div class="grid grid-cols-1 xl:grid-cols-2 place-items-stretch gap-4 mx-4">
-	{#each tripData as trip}
-		<button class="block card card-hover my-4 shadow-xl" on:click={() => onTripCardClick(trip)}>
-			<TripCard {trip} />
-		</button>
-	{/each}
-</div>
+{#if !$errorState}
+	<div class="grid grid-cols-1 xl:grid-cols-2 place-items-stretch gap-4 mx-4">
+		{#each tripData as trip}
+			<button class="block card card-hover my-4 shadow-xl" on:click={() => onTripCardClick(trip)}>
+				<TripCard {trip} />
+			</button>
+		{/each}
+	</div>
+{:else}
+	<AlertWithAction alertHeading="Can't load trips" />
+{/if}

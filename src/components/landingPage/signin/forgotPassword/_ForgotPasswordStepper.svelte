@@ -14,9 +14,7 @@
 	} from '$stores';
 	import { Stepper, toastStore, type ToastSettings } from '@skeletonlabs/skeleton';
 	import { onDestroy, tick } from 'svelte/internal';
-	import SelectEmailStep from './steps/_SelectEmailStep.svelte';
-	import SetNewPasswordStep from './steps/_SetNewPasswordStep.svelte';
-	import ValidateResetTokenStep from './steps/_ValidateResetTokenStep.svelte';
+	import { SelectEmailStep, SetNewPasswordStep, ValidateResetTokenStep } from '$components';
 
 	export let closeForgotPassword: () => void;
 

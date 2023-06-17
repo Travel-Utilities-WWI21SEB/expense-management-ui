@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { password, passwordValid, passwordsMatch } from '$stores';
 	import { Step } from '@skeletonlabs/skeleton';
-	import PasswordForm from '../../forms/_PasswordForm.svelte';
+	import { PasswordForm } from '$components';
 
 	// Lock step
 	$: lockRegisterStep = !$passwordValid || !$passwordsMatch;

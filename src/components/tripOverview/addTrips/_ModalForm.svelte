@@ -20,7 +20,6 @@
 	// Base Classes
 	const cBase = 'card p-4 w-modal shadow-xl space-y-4';
 	const cHeader = 'text-2xl font-bold';
-	const cForm = 'border border-surface-500 p-4 space-y-4 rounded-container-token';
 </script>
 
 {#if $modalStore[0]}
@@ -29,7 +28,7 @@
 		<Stepper on:complete={onFormSubmit}>
 			<Step locked={formData.name.length < 1 || formData.location.length < 1}>
 				<svelte:fragment slot="header">Trip Details</svelte:fragment>
-				<form class="modal-form {cForm}">
+				<form class="modal-form p-4 space-y-4">
 					<label class="label">
 						<span>Name</span>
 						<input
