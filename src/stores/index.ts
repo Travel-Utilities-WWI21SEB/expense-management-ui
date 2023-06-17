@@ -17,6 +17,6 @@ export {
 	usernameValid
 } from './landingPageStore';
 // Trip store
-export { allTrips, currentTrip } from './tripsStore';
+export { allTrips, currentTrip, newTripForm } from './tripsStore';
 // User store
 export { authToken, currentUserId } from './userStore';

@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import type { TravelData } from '$tripDomain';
+import type { TravelData, NewTripInputs } from '$tripDomain';
 
 const testTravelData: Array<TravelData> = [
 	{
@@ -83,3 +83,10 @@ const testTravelData: Array<TravelData> = [
 export const allTrips = writable<Array<TravelData>>(testTravelData);
 
 export const currentTrip = writable<TravelData>();
+
+export const newTripForm = writable<NewTripInputs>({
+	name: '',
+	location: '',
+	startDate: new Date(Date.now()).toISOString().substring(0, 10),
+	endDate: new Date(Date.now()).toISOString().substring(0, 10)
+});
