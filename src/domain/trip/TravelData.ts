@@ -15,3 +15,10 @@ export interface TravelData {
 	userDept?: number;
 	userGets?: number;
 }
+
+export interface NewTripInputs {
+	name: string;
+	startDate: string;
+	endDate: string;
+	location: string;
+}
