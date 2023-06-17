@@ -6,6 +6,7 @@
 		type ModalSettings
 	} from '@skeletonlabs/skeleton';
 	import { ModalForm } from '$components';
+	import { newTripForm } from '$stores';
 
 	const modalComponentRegistry: Record<string, ModalComponent> = {
 		// Custom Modal 1
@@ -24,7 +25,15 @@
 			type: 'component',
 			// Pass the component registry key as a string:
 			component: 'ModalForm',
-			title: 'Add new Trip'
+			title: 'Add new Trip',
+			response: () => {
+				newTripForm.set({
+					name: '',
+					location: '',
+					startDate: new Date(Date.now()).toISOString().substring(0, 10),
+					endDate: new Date(Date.now()).toISOString().substring(0, 10)
+				});
+			}
 		};
 		modalStore.trigger(modal);
 	}
