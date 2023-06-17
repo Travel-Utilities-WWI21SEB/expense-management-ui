@@ -7,7 +7,7 @@
 	import { errorMessage, errorState } from '$stores';
 
 	export let data;
-	console.log(data.data);
+
 	errorMessage.set(data.errorMessage);
 	errorState.set(data.error);
 

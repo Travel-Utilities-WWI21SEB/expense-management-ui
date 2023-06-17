@@ -7,6 +7,7 @@
 	} from '@skeletonlabs/skeleton';
 	import { ModalForm } from '$components';
 	import { newTripForm } from '$stores';
+	import { PlusIcon } from '$icons';
 
 	const modalComponentRegistry: Record<string, ModalComponent> = {
 		// Custom Modal 1
@@ -51,17 +52,6 @@
 	class="btn variant-filled w-24 h-12 xl:w-56 col-end-7"
 	on:click={onButtonClick}
 >
-	<span
-		><svg
-			xmlns="http://www.w3.org/2000/svg"
-			fill="none"
-			viewBox="0 0 24 24"
-			stroke-width="1.5"
-			stroke="currentColor"
-			class="w-6 h-6"
-		>
-			<path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-		</svg>
-	</span>
+	<span><PlusIcon /> </span>
 	<span>Add Trip</span>
 </button>

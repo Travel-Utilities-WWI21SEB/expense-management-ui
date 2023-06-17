@@ -4,6 +4,7 @@ import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
 export const GET = (async ({ fetch }) => {
+	console.log('GET');
 	try {
 		const response = await fetch(`${PUBLIC_BASE_URL}/api/v1/trips`, {
 			method: 'GET',
@@ -33,16 +34,15 @@ export const GET = (async ({ fetch }) => {
 }) satisfies RequestHandler;
 
 export const POST = (async ({ fetch, request }) => {
-	const body = await request.json();
-	const { newTrip } = body;
-
+	console.log('POST');
+	const requestBody = await request.json();
 	try {
 		const response = await fetch(`${PUBLIC_BASE_URL}/api/v1/trips`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({ newTrip })
+			body: JSON.stringify(requestBody)
 		});
 
 		if (response.ok) {
