@@ -7,6 +7,7 @@ export { resetLandingPageStore } from './store/resetLandingPageStore';
 // AUTHENTICATION
 export { tokenExpired } from './token/tokenExpired';
 export { modifyTripData } from './trips/modifyTripData';
+export { modifyUserSuggestions } from './trips/modifyUserSuggestions';
 // VALIDATORS
 export { validateEmail } from './validation/validateEmail';
 export { validatePassword } from './validation/validatePassword';
