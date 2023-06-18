@@ -19,7 +19,7 @@
 </label>
 <ol class="list">
 	<li>
-		{#if costPaidByValid}
+		{#if $costPaidByValid}
 			<span class="badge-icon variant-filled-success w-4 h-4"><CheckIcon /></span>
 			<span class="flex-auto">Paid By is valid</span>
 		{:else}

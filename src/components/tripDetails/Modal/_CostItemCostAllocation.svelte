@@ -108,15 +108,15 @@
 	</div>
 	<ol class="list">
 		<li>
-			{#if costAllocationValid}
-				<span class="badge-icon variant-filled-success w-4 h-4"><CheckIcon /></span>
-				<span class="flex-auto">Cost allocation is valid</span>
-			{:else if usersInvolved.length === 0}
+			{#if usersInvolved.length === 0}
 				<span class="badge-icon variant-filled-error w-4 h-4"><CrossIcon /></span>
 				<span class="flex-auto">No one is involved in this cost</span>
-			{:else}
+			{:else if !$costAllocationValid}
 				<span class="badge-icon variant-filled-error w-4 h-4"><CrossIcon /></span>
 				<span class="flex-auto">Please provide a valid cost allocation</span>
+			{:else}
+				<span class="badge-icon variant-filled-success w-4 h-4"><CheckIcon /></span>
+				<span class="flex-auto">Cost allocation is valid</span>
 			{/if}
 		</li>
 	</ol>
