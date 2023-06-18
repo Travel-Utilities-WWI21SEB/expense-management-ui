@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { CostDateAsString, CostCategory, TravelData } from '$tripDomain';
+	import type { CostDateAsString, TravelData } from '$tripDomain';
 	import type { CostPaidForUser } from '$userDomain';
 	import {
 		TripDetailsEditCostItemDetails,
@@ -12,7 +12,7 @@
 	export let users: Array<CostPaidForUser>;
 	export let trip: TravelData;
 
-	let tabSet: number = 0;
+	let tabSet = 0;
 	$: involvedUsers = users.filter((user) => user.checked);
 </script>
 

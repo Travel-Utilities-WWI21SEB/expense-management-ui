@@ -43,7 +43,7 @@
 		startDate: cost.startDate.toISOString().slice(0, 10),
 		endDate: cost.endDate?.toISOString().slice(0, 10)
 	};
-	let isEditing: boolean = false;
+	let isEditing = false;
 
 	function onFormSubmit(): void {
 		if ($modalStore[0].response) $modalStore[0].response(cost);
@@ -51,10 +51,6 @@
 		//Put changes to backend
 		//get new costs for trip details
 	}
-
-	const cBase = 'card p-4 w-modal shadow-xl space-y-4';
-	const cHeader = 'text-2xl font-bold';
-	const cForm = 'border border-surface-500 p-4 space-y-4 rounded-container-token';
 </script>
 
 <div class="card p-4 md:w-1/2">
