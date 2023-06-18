@@ -46,6 +46,12 @@ export function changeToEqual(
 				};
 		  });
 }
+export function isSplitEqually(allUsers: Array<CostPaidForUser>, cost: CostDateAsString): boolean {
+	const involvedUsers = allUsers.filter((user) => user.checked);
+	const equallySplitUsers = changeToEqual(allUsers, cost, involvedUsers);
+	debugger;
+	return JSON.stringify(allUsers) === JSON.stringify(equallySplitUsers);
+}
 
 export function deselectAllPeople(users: Array<CostPaidForUser>): Array<CostPaidForUser> {
 	return users.map((user) => {

@@ -56,7 +56,7 @@
 <div class="card p-4 md:w-1/2">
 	<div class="p-4">
 		{#if isEditing}
-			<TripDetailsEditCostItem cost={localeCost} users={costPaidForUser} {trip} />
+			<TripDetailsEditCostItem bind:cost={localeCost} bind:users={costPaidForUser} {trip} />
 		{:else}
 			<TripDetailsShowCostItem cost={localeCost} />
 		{/if}

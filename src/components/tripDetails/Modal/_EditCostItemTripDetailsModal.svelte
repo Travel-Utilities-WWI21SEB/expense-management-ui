@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { CostDateAsString, TravelData } from '$tripDomain';
 	import type { CostPaidForUser } from '$userDomain';
+	import { isSplitEqually } from '$utils';
 	import {
 		TripDetailsEditCostItemDetails,
 		TripDetailsEditCostItemPaidBy,
@@ -12,8 +13,10 @@
 	export let users: Array<CostPaidForUser>;
 	export let trip: TravelData;
 
-	let tabSet = 0;
 	$: involvedUsers = users.filter((user) => user.checked);
+	let tabSet = 0;
+	console.log(involvedUsers);
+	cost = { ...cost, splitEqually: isSplitEqually(users, cost) };
 </script>
 
 <TabGroup>

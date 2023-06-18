@@ -12,6 +12,7 @@ export interface Cost {
 	costCategory: CostCategory;
 	paidFor: Array<CostPaidForUser>;
 	paidBy: string;
+	splitEqually?: boolean;
 }
 
 export interface CostDateAsString {
@@ -25,6 +26,7 @@ export interface CostDateAsString {
 	costCategory: CostCategory;
 	paidFor: Array<CostPaidForUser>;
 	paidBy: string;
+	splitEqually?: boolean;
 }
 export interface CostForNewCosttem {
 	id: string;
@@ -37,4 +39,5 @@ export interface CostForNewCosttem {
 	costCategory?: CostCategory;
 	paidFor?: Array<CostPaidForUser>;
 	paidBy?: string;
+	splitEqually: boolean;
 }

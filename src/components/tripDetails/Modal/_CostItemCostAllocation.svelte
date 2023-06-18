@@ -6,7 +6,8 @@
 		validateCostAllocation,
 		changeToEqual,
 		deselectAllPeople,
-		selectAllPeople
+		selectAllPeople,
+		isSplitEqually
 	} from '$utils';
 	import { costAllocationValid, costSplitType } from '$stores';
 	import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
@@ -15,7 +16,7 @@
 	export let usersInvolved: Array<CostPaidForUser>;
 	export let cost: CostDateAsString;
 
-	$costSplitType = 0;
+	$costSplitType = isSplitEqually(users, cost) ? 0 : 1;
 	$: costAllocationValid.set(validateCostAllocation(cost.amount, usersInvolved));
 </script>
 

@@ -10,7 +10,7 @@
 
 	let cost: Cost = {
 		name: 'Kostenpunkt Aiai',
-		amount: 45,
+		amount: 10,
 		costCategory: { name: 'Real Estate', color: '#000000', icon: 'unicode', totalAmount: 450 },
 		creationDate: new Date(),
 		endDate: new Date('2023-06-25'),
@@ -18,8 +18,8 @@
 		currency: 'EUR',
 		id: '982734592873465',
 		paidFor: [
-			{ userId: 'ljahvdöas', amount: 45, currencyCode: 'EUR' },
-			{ userId: 'alsbvas', amount: 45, currencyCode: 'EUR' }
+			{ userId: 'ljahvdöas', amount: 6, currencyCode: 'EUR' },
+			{ userId: 'alsbvas', amount: 4, currencyCode: 'EUR' }
 		],
 		paidBy: 'ljahvdöas'
 	};
