@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { modifyUserSuggestions } from '$utils';
-	import { errorMessage, errorState, loading } from '$stores';
+	import { errorMessage, errorState, loading, selectedUsers } from '$stores';
 	import { Autocomplete, type AutocompleteOption } from '@skeletonlabs/skeleton';
 	import { RemoveIcon } from '$icons';
 
@@ -30,21 +30,19 @@
 
 	let options: AutocompleteOption[] = [];
 
-	let selection: Array<string> = [];
-
 	function onSelection(event: any): void {
-		if (selection.indexOf(event.detail.label) === -1)
-			selection = [...selection, event.detail.label];
+		if ($selectedUsers.indexOf(event.detail.label) === -1)
+			selectedUsers.set([...$selectedUsers, event.detail.label]);
 	}
+
+	const onRemoveInvitationClick = (name: string) => {
+		selectedUsers.set($selectedUsers.filter((m) => m !== name));
+	};
 
 	const onSearchInput = () => {
 		suggestUsers(inputValue).then((result) => {
 			options = modifyUserSuggestions(result.data);
 		});
-	};
-
-	const onRemoveInvitationClick = (name: string) => {
-		selection = selection.filter((m) => m !== name);
 	};
 </script>
 
@@ -60,7 +58,7 @@
 	<Autocomplete bind:input={inputValue} {options} on:selection={onSelection} />
 </div>
 <div class="h-auto p-4" tabindex="-1">
-	{#each selection as name}
+	{#each $selectedUsers as name}
 		<span class="m-4 chip variant-filled">
 			{name}
 			<button on:click={() => onRemoveInvitationClick(name)}><RemoveIcon /></button>

@@ -2,6 +2,14 @@ import type { User } from '$userDomain';
 import type { TravelData } from '$tripDomain';
 import { modifyTripData } from '$utils';
 
+type temporaryTripType = {
+	tripId: string;
+	startDate: string;
+	participants: Array<User>;
+	endDate: string;
+	location: string;
+};
+
 const APINotFinishedHelper = (data: Array<temporaryTripType>) => {
 	const trips: Array<TravelData> = data.map((currentTrip) => {
 		const mapTrip: TravelData = {
@@ -28,22 +36,22 @@ const APINotFinishedHelper = (data: Array<temporaryTripType>) => {
 
 /** @type {import('./$types').PageLoad} */
 export async function load({ fetch }) {
-	const response = await fetch('api/trips', {
+	const tripResponse = await fetch('api/trips', {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json'
 		}
 	});
 
-	const body = await response.json();
-	console.log(body);
-	return { ...body, data: APINotFinishedHelper(body.data) };
-}
+	const tripBody = await tripResponse.json();
 
-type temporaryTripType = {
-	tripId: string;
-	startDate: string;
-	participants: Array<User>;
-	endDate: string;
-	location: string;
-};
+	const userResponse = await fetch('api/users', {
+		method: 'GET',
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	});
+
+	const userBody = await userResponse.json();
+	return { ...tripBody, tripData: APINotFinishedHelper(tripBody.data), userData: userBody };
+}

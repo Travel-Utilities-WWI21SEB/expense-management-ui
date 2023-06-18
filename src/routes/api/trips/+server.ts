@@ -46,7 +46,8 @@ export const POST = (async ({ fetch, request }) => {
 		});
 
 		if (response.ok) {
-			return json({ exists: false, error: false, errorMessage: '' });
+			const body = await response.json();
+			return json({ error: false, errorMessage: '', data: body });
 		}
 
 		const body = await response.json();
