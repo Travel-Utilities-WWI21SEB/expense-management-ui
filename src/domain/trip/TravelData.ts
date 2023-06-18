@@ -14,6 +14,7 @@ export interface TravelData {
 	participants: Array<User>;
 	userDept?: number;
 	userGets?: number;
+	hasAcceptedInvite?: boolean;
 }
 
 export interface NewTripInputs {

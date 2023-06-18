@@ -10,7 +10,7 @@ type temporaryTripType = {
 	location: string;
 };
 
-const APINotFinishedHelper = (data: Array<temporaryTripType>) => {
+const APINotFinishedHelper = (data: Array<temporaryTripType>, userData: User) => {
 	const trips: Array<TravelData> = data.map((currentTrip) => {
 		const mapTrip: TravelData = {
 			...currentTrip,
@@ -27,8 +27,12 @@ const APINotFinishedHelper = (data: Array<temporaryTripType>) => {
 			userDept: undefined,
 			userGets: undefined,
 			startDate: new Date(currentTrip.startDate),
-			endDate: new Date(currentTrip.endDate)
+			endDate: new Date(currentTrip.endDate),
+			hasAcceptedInvite: currentTrip.participants.filter(
+				(user) => user.username === userData.username
+			)[0].hasAcceptedInvite
 		};
+
 		return mapTrip;
 	});
 	return modifyTripData(trips);
@@ -53,5 +57,9 @@ export async function load({ fetch }) {
 	});
 
 	const userBody = await userResponse.json();
-	return { ...tripBody, tripData: APINotFinishedHelper(tripBody.data), userData: userBody };
+	return {
+		...tripBody,
+		tripData: APINotFinishedHelper(tripBody.data, userBody.data),
+		userData: userBody
+	};
 }
