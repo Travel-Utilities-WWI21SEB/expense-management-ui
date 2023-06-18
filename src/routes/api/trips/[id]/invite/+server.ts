@@ -5,7 +5,7 @@ import type { RequestHandler } from './$types';
 
 export const POST = (async ({ fetch, request, url }) => {
 	console.log('POST');
-	let urlParts = url.pathname.split('/');
+	const urlParts = url.pathname.split('/');
 	const requestBody = await request.json();
 	try {
 		const response = await fetch(`${PUBLIC_BASE_URL}/api/v1/trips/${urlParts[3]}/${urlParts[4]}`, {
