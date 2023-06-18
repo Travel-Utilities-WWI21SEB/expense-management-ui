@@ -2,9 +2,17 @@
 	// Stores
 	import { modalStore, Stepper, Step } from '@skeletonlabs/skeleton';
 	import { NewTripStep, InviteParticipantsStep } from '$components';
-	import { newTripForm } from '$stores';
-	import { errorMessage, errorState, loading } from '$stores';
+	import {
+		currentUser,
+		newTripForm,
+		errorMessage,
+		errorState,
+		loading,
+		selectedUsers
+	} from '$stores';
 	import { invalidateAll } from '$app/navigation';
+
+	selectedUsers.set([$currentUser.username]);
 
 	const createTrip = async (newTrip: { location: string; startDate: string; endDate: string }) => {
 		loading.set(true);
@@ -24,6 +32,34 @@
 
 			errorState.set(error);
 			errorMessage.set(errorDisplayMessage);
+
+			return body;
+		} catch (error: any) {
+			errorState.set(true);
+			errorMessage.set(error.message);
+		} finally {
+			loading.set(false);
+		}
+	};
+
+	const inviteUsers = async (tripId: number, user: { invitedUsername: string }) => {
+		loading.set(true);
+		errorState.set(false);
+
+		try {
+			const response = await fetch(`api/trips/${tripId}/invite`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(user)
+			});
+
+			const body = await response.json();
+			const { error, errorMessage: errorDisplayMessage } = body;
+
+			errorState.set(error);
+			errorMessage.set(errorDisplayMessage);
 		} catch (error: any) {
 			errorState.set(true);
 			errorMessage.set(error.message);
@@ -33,20 +69,26 @@
 	};
 
 	// We've created a custom submit function to pass the response and close the modal.
-	function onFormSubmit(): void {
-		modalStore.close();
-		createTrip({
+	async function onFormSubmit(): Promise<void> {
+		const result = await createTrip({
 			location: $newTripForm.location,
 			endDate: $newTripForm.endDate,
 			startDate: $newTripForm.startDate
-		}).then(() => {
-			newTripForm.set({
-				name: '',
-				location: '',
-				startDate: new Date(Date.now()).toISOString().substring(0, 10),
-				endDate: new Date(Date.now()).toISOString().substring(0, 10)
-			});
-			invalidateAll();
+		});
+
+		await Promise.all(
+			$selectedUsers.map(async (name) => {
+				if (name !== $currentUser.username)
+					await inviteUsers(result.data.tripId, { invitedUsername: name });
+			})
+		);
+		invalidateAll();
+		modalStore.close();
+		newTripForm.set({
+			name: '',
+			location: '',
+			startDate: new Date(Date.now()).toISOString().substring(0, 10),
+			endDate: new Date(Date.now()).toISOString().substring(0, 10)
 		});
 	}
 
@@ -58,7 +100,7 @@
 {#if $modalStore[0]}
 	<div class={cBase}>
 		<header class={cHeader}>{$modalStore[0].title ?? '(title missing)'}</header>
-		<Stepper on:complete={onFormSubmit} on:close={() => alert('test')}>
+		<Stepper on:complete={async () => await onFormSubmit()} on:close={() => alert('test')}>
 			<Step locked={$newTripForm.name.length < 1 || $newTripForm.location.length < 1}>
 				<svelte:fragment slot="header">Trip Details</svelte:fragment>
 				<NewTripStep />

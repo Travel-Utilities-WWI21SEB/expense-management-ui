@@ -19,4 +19,4 @@ export {
 // Trip store
 export { allTrips, currentTrip, newTripForm } from './tripsStore';
 // User store
-export { authToken, currentUserId } from './userStore';
+export { authToken, currentUser, selectedUsers } from './userStore';
