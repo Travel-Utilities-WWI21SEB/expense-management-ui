@@ -43,7 +43,7 @@
 						type="checkbox"
 						bind:checked={user.checked}
 						on:change={() => {
-							user.amount = 0;
+							user.amount = 0.01;
 							if ($costSplitType === 0) {
 								users = changeToEqual(users, cost, usersInvolved);
 							}
