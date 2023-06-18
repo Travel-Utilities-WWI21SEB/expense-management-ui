@@ -1,16 +1,18 @@
 <script lang="ts">
 	import type { CostDateAsString, TravelData } from '$tripDomain';
+	import type { CostPaidForUser } from '$userDomain';
 	import { SlideToggle } from '@skeletonlabs/skeleton';
 	import { CheckIcon, CrossIcon } from '$icons';
-	import { validateDetails } from '$utils';
-	import { costDetailsValid } from '$stores';
+	import { changeToEqual, validateDetails } from '$utils';
+	import { costDetailsValid, costSplitType } from '$stores';
 
 	export let cost: CostDateAsString;
 	export let trip: TravelData;
+	export let users: Array<CostPaidForUser>;
+	export let involvedUsers: Array<CostPaidForUser>;
 
 	$: costDetailsValid.set(validateDetails(cost, checked));
 	let checked: boolean = cost.endDate ? true : false;
-
 	let endDateTrip = trip.endDate.toISOString().slice(0, 10);
 	let startDateTrip = trip.startDate.toISOString().slice(0, 10);
 
@@ -58,7 +60,15 @@
 		<span>Amount</span>
 		<div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
 			<div class="input-group-shim">{cost.currency === 'EUR' ? '€' : '$'}</div>
-			<input type="number" bind:value={cost.amount} />
+			<input
+				type="number"
+				bind:value={cost.amount}
+				on:change={() => {
+					if ($costSplitType === 0) {
+						users = changeToEqual(users, cost, involvedUsers);
+					}
+				}}
+			/>
 			<select bind:value={cost.currency}>
 				<option value="EUR">EUR</option>
 				<option value="USD">USD</option>

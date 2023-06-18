@@ -3,10 +3,12 @@
 	import type { CostPaidForUser, User } from '$userDomain';
 	import { TripDetailsShowCostItem, TripDetailsEditCostItem } from '$components';
 	import { costAllocationValid, costDetailsValid, costPaidByValid } from '$stores';
+	import { modalStore } from '@skeletonlabs/skeleton';
 
 	/* export let name: string; */
 	export let cost: Cost;
 	export let trip: TravelData;
+	export let parent: any;
 
 	$: validData = $costAllocationValid && $costDetailsValid && costPaidByValid;
 
@@ -42,10 +44,6 @@
 		endDate: cost.endDate?.toISOString().slice(0, 10)
 	};
 	let isEditing: boolean = false;
-
-	export let parent: any;
-
-	import { modalStore } from '@skeletonlabs/skeleton';
 
 	function onFormSubmit(): void {
 		if ($modalStore[0].response) $modalStore[0].response(cost);

@@ -26,3 +26,15 @@ export interface CostDateAsString {
 	paidFor: Array<CostPaidForUser>;
 	paidBy: string;
 }
+export interface CostForNewCosttem {
+	id: string;
+	name?: string;
+	amount?: number;
+	currency?: string;
+	creationDate: string;
+	startDate?: string;
+	endDate?: string;
+	costCategory?: CostCategory;
+	paidFor?: Array<CostPaidForUser>;
+	paidBy?: string;
+}

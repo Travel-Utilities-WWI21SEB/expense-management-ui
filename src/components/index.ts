@@ -48,6 +48,7 @@ export { default as TripDetailsShowCostItem } from './tripDetails/Modal/_ShowCos
 export { default as TripDetailsEditCostItemDetails } from './tripDetails/Modal/_CostItemDetails.svelte';
 export { default as TripDetailsEditCostItemPaidBy } from './tripDetails/Modal/_CostItemPaidyBy.svelte';
 export { default as TripDetailsEditCostItemCostAllocation } from './tripDetails/Modal/_CostItemCostAllocation.svelte';
+export { default as TripDetailsAddNewCostItem } from './tripDetails/Modal/_AddNewCostItemModal.svelte';
 
 //Trip Overview
 export { default as DonutChart } from './tripOverview/_DonutChart.svelte';

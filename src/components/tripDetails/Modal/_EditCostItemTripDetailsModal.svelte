@@ -13,6 +13,7 @@
 	export let trip: TravelData;
 
 	let tabSet: number = 0;
+	$: involvedUsers = users.filter((user) => user.checked);
 </script>
 
 <TabGroup>
@@ -22,11 +23,15 @@
 	<!-- Tab Panels --->
 	<svelte:fragment slot="panel">
 		{#if tabSet === 0}
-			<TripDetailsEditCostItemDetails {cost} {trip} />
+			<TripDetailsEditCostItemDetails bind:cost bind:trip bind:users bind:involvedUsers />
 		{:else if tabSet === 1}
-			<TripDetailsEditCostItemPaidBy {users} />
+			<TripDetailsEditCostItemPaidBy bind:users />
 		{:else if tabSet === 2}
-			<TripDetailsEditCostItemCostAllocation {users} {cost} />
+			<TripDetailsEditCostItemCostAllocation
+				bind:users
+				bind:cost
+				bind:usersInvolved={involvedUsers}
+			/>
 		{/if}
 	</svelte:fragment>
 </TabGroup>
