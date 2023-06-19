@@ -75,6 +75,7 @@
 				errorAction={resendToken}
 				alertHeading="Something went wrong!"
 				actionText="Send another token"
+				class="variant-filled-error"
 			/>
 		{:else if $correctToken}
 			<aside class="alert variant-ghost-success">

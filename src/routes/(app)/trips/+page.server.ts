@@ -32,7 +32,6 @@ const APINotFinishedHelper = (data: Array<temporaryTripType>, userData: User) =>
 				(user) => user.username === userData.username
 			)[0].hasAcceptedInvite
 		};
-
 		return mapTrip;
 	});
 	return modifyTripData(trips);
@@ -57,9 +56,12 @@ export async function load({ fetch }) {
 	});
 
 	const userBody = await userResponse.json();
-	return {
-		...tripBody,
-		tripData: APINotFinishedHelper(tripBody.data, userBody.data),
-		userData: userBody
-	};
+	if (tripBody.data) {
+		return {
+			...tripBody,
+			tripData: APINotFinishedHelper(tripBody.data, userBody.data),
+			userData: userBody
+		};
+	}
+	return { ...tripBody, tripData: tripBody.data, userData: userBody };
 }

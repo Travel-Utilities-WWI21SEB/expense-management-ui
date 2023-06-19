@@ -68,6 +68,7 @@
 					errorAction={forgotPasswordHandler}
 					alertHeading="Something went wrong!"
 					actionText="Try again!"
+					class="variant-filled-error"
 				/>
 			{:else}
 				<TokenForm keyboardHandler={verifyPasswordToken} resendToken={forgotPasswordHandler} />

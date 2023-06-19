@@ -16,6 +16,7 @@
 			}}
 			alertHeading="Your account is not activated!"
 			actionText="Open token form"
+			class="variant-filled-error"
 		/>
 	</div>
 </section>

@@ -10,10 +10,10 @@
 	export let enableAction = false;
 </script>
 
-<aside class="alert variant-filled-error w-full">
+<aside class="alert {$$props.class} w-full">
 	<!-- Icon -->
 	<div>
-		<span class="badge-icon variant-ghost-error w-15 h-15"><ErrorIcon /></span>
+		<span class="badge-icon w-15 h-15"><ErrorIcon /></span>
 	</div>
 	<!-- Message -->
 	<div class="alert-message">
