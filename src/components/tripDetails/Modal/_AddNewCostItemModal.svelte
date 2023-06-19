@@ -8,6 +8,7 @@
 	} from '$components';
 	import { costAllocationValid, costDetailsValid, costPaidByValid } from '$stores';
 	import { Step, Stepper, modalStore } from '@skeletonlabs/skeleton';
+	import { changeToEqual } from '$utils';
 
 	export let trip: TravelData;
 
@@ -48,6 +49,7 @@
 	};
 	function changePaidBy(event: CustomEvent<any>) {
 		cost.paidBy = event.detail.paidBy;
+		costPaidForUser = changeToEqual(costPaidForUser, cost, involvedUsers);
 	}
 </script>
 

@@ -1,7 +1,8 @@
 <script lang="ts">
 	import type { CostDateAsString, TravelData } from '$tripDomain';
 	import type { CostPaidForUser } from '$userDomain';
-	import { isSplitEqually } from '$utils';
+	import { isSplitEqually, changeToEqual } from '$utils';
+	import { costSplitType } from '$stores';
 	import {
 		TripDetailsEditCostItemDetails,
 		TripDetailsEditCostItemPaidBy,
@@ -19,6 +20,7 @@
 	cost = { ...cost, splitEqually: isSplitEqually(users, cost) };
 	function changePaidBy(event: CustomEvent<any>) {
 		cost.paidBy = event.detail.paidBy;
+		if ($costSplitType === 0) users = changeToEqual(users, cost, involvedUsers);
 	}
 </script>
 

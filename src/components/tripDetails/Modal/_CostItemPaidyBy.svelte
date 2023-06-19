@@ -11,8 +11,7 @@
 	$: costPaidByValid.set(validatePaidBy());
 	const dispatch = createEventDispatcher();
 
-	function chnageSelectedValue(event: any) {
-		console.log(event.target.value);
+	function changeSelectedValue(event: any) {
 		dispatch('change', {
 			paidBy: event.target.value
 		});
@@ -24,7 +23,7 @@
 	<select
 		class="select"
 		on:change={(e) => {
-			chnageSelectedValue(e);
+			changeSelectedValue(e);
 		}}
 	>
 		{#each users as user}

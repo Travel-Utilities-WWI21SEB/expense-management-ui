@@ -27,8 +27,8 @@ export function changeToEqual(
 	usersInvolved: Array<CostPaidForUser>
 ): Array<CostPaidForUser> {
 	function divideAmount(amount: number, numberOfParticipants: number) {
-		const number = (amount / numberOfParticipants).toString();
-		return Number(parseFloat(number).toFixed(2));
+		const number = amount / numberOfParticipants;
+		return Math.floor(number * 100) / 100;
 	}
 	let newUsers = users.map((user) => {
 		return {
@@ -46,10 +46,11 @@ export function changeToEqual(
 		});
 	}
 
-	//if creditor is not debitor
-	/* if (!isAmountFullySplit(cost.amount, newUsers)) {
-		newUsers.push(users.filter((user) => user.userId === cost.paidBy)[0]);
-	} */
+	let number = 0;
+	while (!isAmountFullySplit(cost.amount, newUsers)) {
+		newUsers[number].amount += 0.01;
+		number++;
+	}
 
 	return newUsers;
 }

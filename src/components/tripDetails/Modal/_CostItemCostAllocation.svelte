@@ -78,7 +78,7 @@
 	<div class="py-2">
 		<div class="flex overflow-auto sm:grid sm:grid-cols-2 sm:gap-2">
 			{#each users as user}
-				{#if user.amount > 0}
+				{#if user.amount > 0 || user.checked}
 					<label class="label space-x-2 px-4">
 						<span class="truncate">{user.user?.name}</span>
 						<div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
