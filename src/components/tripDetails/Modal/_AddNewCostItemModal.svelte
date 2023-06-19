@@ -30,7 +30,7 @@
 		costCategory: { name: '', totalAmount: 0, color: '', icon: '' },
 		creationDate: new Date(),
 		endDate: '',
-		paidBy: '',
+		paidBy: trip.participants[0].userId,
 		paidFor: costPaidForUser,
 		startDate: new Date().toISOString().slice(0, 10)
 	};
@@ -46,6 +46,9 @@
 	const handleCostAllocationMessage = (event: CustomEvent<any>) => {
 		involvedUsers = event.detail.involvedUsers;
 	};
+	function changePaidBy(event: CustomEvent<any>) {
+		cost.paidBy = event.detail.paidBy;
+	}
 </script>
 
 <div class="card p-4 md:w-1/2">
@@ -69,7 +72,11 @@
 			</Step>
 			<Step locked={!$costPaidByValid}>
 				<svelte:fragment slot="header">Paid by</svelte:fragment>
-				<TripDetailsEditCostItemPaidBy bind:users={costPaidForUser} />
+				<TripDetailsEditCostItemPaidBy
+					bind:users={costPaidForUser}
+					paidBy={cost.paidBy}
+					on:change={changePaidBy}
+				/>
 			</Step>
 			<Step locked={!$costAllocationValid}>
 				<svelte:fragment slot="header">Cost allocation</svelte:fragment>

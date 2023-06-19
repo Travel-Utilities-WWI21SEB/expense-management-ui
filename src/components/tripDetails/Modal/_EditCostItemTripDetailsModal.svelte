@@ -17,6 +17,9 @@
 	let tabSet = 0;
 	console.log(involvedUsers);
 	cost = { ...cost, splitEqually: isSplitEqually(users, cost) };
+	function changePaidBy(event: CustomEvent<any>) {
+		cost.paidBy = event.detail.paidBy;
+	}
 </script>
 
 <TabGroup>
@@ -28,7 +31,7 @@
 		{#if tabSet === 0}
 			<TripDetailsEditCostItemDetails bind:cost bind:trip bind:users bind:involvedUsers />
 		{:else if tabSet === 1}
-			<TripDetailsEditCostItemPaidBy bind:users />
+			<TripDetailsEditCostItemPaidBy bind:users paidBy={cost.paidBy} on:change={changePaidBy} />
 		{:else if tabSet === 2}
 			<TripDetailsEditCostItemCostAllocation
 				bind:users

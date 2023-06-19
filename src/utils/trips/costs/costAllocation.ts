@@ -6,9 +6,7 @@ export function validateCostAllocation(
 	totalAmount: number,
 	users: Array<CostPaidForUser>
 ): boolean {
-	let first = isAmountFullySplit(totalAmount, users);
-	let second = validateAmountPrecisions(users);
-	return first && second;
+	return isAmountFullySplit(totalAmount, users) && validateAmountPrecisions(users);
 }
 
 function validateAmountPrecisions(usersInvolved: Array<CostPaidForUser>): boolean {
