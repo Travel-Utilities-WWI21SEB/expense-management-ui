@@ -1,6 +1,7 @@
 import type { User } from '$userDomain';
 import type { TravelData } from '$tripDomain';
 import { modifyTripData } from '$utils';
+import type { PageServerLoad } from './$types';
 
 type temporaryTripType = {
 	tripId: string;
@@ -37,8 +38,7 @@ const APINotFinishedHelper = (data: Array<temporaryTripType>, userData: User) =>
 	return modifyTripData(trips);
 };
 
-/** @type {import('./$types').PageLoad} */
-export async function load({ fetch }) {
+export const load = (async ({ fetch }) => {
 	const tripResponse = await fetch('api/trips', {
 		method: 'GET',
 		headers: {
@@ -64,4 +64,4 @@ export async function load({ fetch }) {
 		};
 	}
 	return { ...tripBody, tripData: tripBody.data, userData: userBody };
-}
+}) satisfies PageServerLoad;
