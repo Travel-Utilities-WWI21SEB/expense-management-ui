@@ -3,7 +3,7 @@
 	import type { CostPaidForUser } from '$userDomain';
 	import { SlideToggle } from '@skeletonlabs/skeleton';
 	import { CheckIcon, CrossIcon } from '$icons';
-	import { changeToEqual, validateDetails, validateAmountPrecision } from '$utils';
+	import { changeToEqual, validateDetails } from '$utils';
 	import { costDetailsValid, costSplitType } from '$stores';
 
 	export let cost: CostDateAsString;
@@ -65,8 +65,6 @@
 				bind:value={cost.amount}
 				min="0"
 				on:change={() => {
-					console.log(validateAmountPrecision(cost.amount));
-					//roundAmount();
 					if ($costSplitType === 0) {
 						users = changeToEqual(users, cost, involvedUsers);
 					}

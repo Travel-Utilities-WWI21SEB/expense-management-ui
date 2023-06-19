@@ -4,18 +4,20 @@ import { validateAmountPrecision } from '$utils';
 
 export function validateCostAllocation(
 	totalAmount: number,
-	usersInvolved: Array<CostPaidForUser>
+	users: Array<CostPaidForUser>
 ): boolean {
-	return isAmountFullySplit(totalAmount, usersInvolved) && validateAmountPrecisions(usersInvolved);
+	let first = isAmountFullySplit(totalAmount, users);
+	let second = validateAmountPrecisions(users);
+	return first && second;
 }
 
 function validateAmountPrecisions(usersInvolved: Array<CostPaidForUser>): boolean {
 	return usersInvolved.filter((user) => !validateAmountPrecision(user.amount)).length === 0;
 }
 
-function isAmountFullySplit(totalAmount: number, usersInvolved: Array<CostPaidForUser>): boolean {
+function isAmountFullySplit(totalAmount: number, users: Array<CostPaidForUser>): boolean {
 	let sum = 0;
-	usersInvolved.forEach((user) => {
+	users.forEach((user) => {
 		sum += user.amount;
 	});
 	return sum === totalAmount;
@@ -30,26 +32,32 @@ export function changeToEqual(
 		const number = (amount / numberOfParticipants).toString();
 		return Number(parseFloat(number).toFixed(2));
 	}
-	const newUsers = users.map((user) => {
+	let newUsers = users.map((user) => {
 		return {
 			...user,
 			amount: user.checked ? divideAmount(cost.amount, usersInvolved.length) : 0
 		};
 	});
 
-	return isAmountFullySplit(cost.amount, newUsers)
-		? newUsers
-		: newUsers.map((user) => {
-				return {
-					...user,
-					amount: user.user?.userId === cost.paidBy ? user.amount + 0.01 : user.amount
-				};
-		  });
+	if (!isAmountFullySplit(cost.amount, newUsers)) {
+		newUsers = newUsers.map((user) => {
+			return {
+				...user,
+				amount: user.user?.userId === cost.paidBy ? user.amount + 0.01 : user.amount
+			};
+		});
+	}
+
+	//if creditor is not debitor
+	/* if (!isAmountFullySplit(cost.amount, newUsers)) {
+		newUsers.push(users.filter((user) => user.userId === cost.paidBy)[0]);
+	} */
+
+	return newUsers;
 }
 export function isSplitEqually(allUsers: Array<CostPaidForUser>, cost: CostDateAsString): boolean {
 	const involvedUsers = allUsers.filter((user) => user.checked);
 	const equallySplitUsers = changeToEqual(allUsers, cost, involvedUsers);
-	debugger;
 	return JSON.stringify(allUsers) === JSON.stringify(equallySplitUsers);
 }
 

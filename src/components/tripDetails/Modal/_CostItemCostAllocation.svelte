@@ -17,7 +17,7 @@
 	export let cost: CostDateAsString;
 
 	$costSplitType = isSplitEqually(users, cost) ? 0 : 1;
-	$: costAllocationValid.set(validateCostAllocation(cost.amount, usersInvolved));
+	$: costAllocationValid.set(validateCostAllocation(cost.amount, users));
 </script>
 
 <div class="grid grid-cols-1 gap-2">
@@ -44,9 +44,12 @@
 						type="checkbox"
 						bind:checked={user.checked}
 						on:change={() => {
-							user.amount = 0.01;
 							if ($costSplitType === 0) {
 								users = changeToEqual(users, cost, usersInvolved);
+							} else if (user.checked) {
+								user.amount = 0.01;
+							} else if (!user.checked) {
+								user.amount = 0;
 							}
 						}}
 					/>
@@ -74,10 +77,10 @@
 
 	<div class="py-2">
 		<div class="flex overflow-auto sm:grid sm:grid-cols-2 sm:gap-2">
-			{#each usersInvolved as user}
-				<label class="label space-x-2 px-4">
-					<span class="truncate">{user.user?.name}</span>
-					{#if user.checked}
+			{#each users as user}
+				{#if user.amount > 0}
+					<label class="label space-x-2 px-4">
+						<span class="truncate">{user.user?.name}</span>
 						<div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
 							<input disabled={$costSplitType === 0} type="number" bind:value={user.amount} />
 							<select disabled={$costSplitType === 0} bind:value={user.currencyCode}>
@@ -85,8 +88,8 @@
 								<option value="USD">USD</option>
 							</select>
 						</div>
-					{/if}
-				</label>
+					</label>
+				{/if}
 			{/each}
 		</div>
 	</div>
