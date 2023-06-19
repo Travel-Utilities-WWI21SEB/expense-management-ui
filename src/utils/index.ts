@@ -13,3 +13,5 @@ export { validateEmail } from './validation/validateEmail';
 export { validatePassword } from './validation/validatePassword';
 export { validatePasswordsMatch } from './validation/validatePasswordsMatch';
 export { validateUsername } from './validation/validateUsername';
+//requests
+export { acceptTrip } from './requests/acceptTrip';
