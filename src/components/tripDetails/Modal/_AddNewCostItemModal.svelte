@@ -6,7 +6,7 @@
 		TripDetailsEditCostItemDetails,
 		TripDetailsEditCostItemPaidBy
 	} from '$components';
-	import { costAllocationValid, costDetailsValid, costPaidByValid } from '$stores';
+	import { costAllocationValid, costDetailsValid, costPaidByValid, costSplitType } from '$stores';
 	import { Step, Stepper, modalStore } from '@skeletonlabs/skeleton';
 	import { changeToEqual } from '$utils';
 
@@ -49,7 +49,9 @@
 	};
 	function changePaidBy(event: CustomEvent<any>) {
 		cost.paidBy = event.detail.paidBy;
-		costPaidForUser = changeToEqual(costPaidForUser, cost, involvedUsers);
+		if ($costSplitType) {
+			costPaidForUser = changeToEqual(costPaidForUser, cost, involvedUsers);
+		}
 	}
 </script>
 

@@ -26,6 +26,9 @@ export function changeToEqual(
 	cost: CostDateAsString,
 	usersInvolved: Array<CostPaidForUser>
 ): Array<CostPaidForUser> {
+	if (usersInvolved.length === 0) {
+		return users;
+	}
 	function divideAmount(amount: number, numberOfParticipants: number) {
 		const number = amount / numberOfParticipants;
 		return Math.floor(number * 100) / 100;
@@ -37,21 +40,24 @@ export function changeToEqual(
 		};
 	});
 
-	if (!isAmountFullySplit(cost.amount, newUsers)) {
+	//rest cents to creditor
+	/* while (!isAmountFullySplit(cost.amount, newUsers)) {
 		newUsers = newUsers.map((user) => {
 			return {
 				...user,
 				amount: user.user?.userId === cost.paidBy ? user.amount + 0.01 : user.amount
 			};
 		});
-	}
+	} */
 
+	//split rest cents by involved Users
 	let number = 0;
 	while (!isAmountFullySplit(cost.amount, newUsers)) {
-		newUsers[number].amount += 0.01;
-		number++;
+		if (newUsers[number].checked) {
+			newUsers[number].amount += 0.01;
+		}
+		number = number < newUsers.length ? number + 1 : 0;
 	}
-
 	return newUsers;
 }
 export function isSplitEqually(allUsers: Array<CostPaidForUser>, cost: CostDateAsString): boolean {
@@ -78,7 +84,7 @@ export function selectAllPeople(
 		return {
 			...user,
 			checked: true,
-			amount: splitType === 0 ? cost.amount / users.length : user.amount
+			amount: splitType === 0 ? cost.amount / users.length : user.amount === 0 ? 0.01 : user.amount
 		};
 	});
 }

@@ -20,7 +20,9 @@
 	cost = { ...cost, splitEqually: isSplitEqually(users, cost) };
 	function changePaidBy(event: CustomEvent<any>) {
 		cost.paidBy = event.detail.paidBy;
-		if ($costSplitType === 0) users = changeToEqual(users, cost, involvedUsers);
+		if ($costSplitType === 0) {
+			users = changeToEqual(users, cost, involvedUsers);
+		}
 	}
 </script>
 
