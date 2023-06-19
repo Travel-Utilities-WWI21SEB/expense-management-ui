@@ -3,7 +3,7 @@ import { getErrorMessage } from '$utils';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
-export const POST = (async ({ fetch, request, url }) => {
+export const POST = (async ({ fetch, url }) => {
 	console.log('POST');
 	const urlParts = url.pathname.split('/');
 	try {

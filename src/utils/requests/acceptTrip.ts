@@ -17,9 +17,8 @@ export const acceptTrip = async (currentTrip: TravelData) => {
 
 		errorState.set(error);
 		errorMessage.set(errorDisplayMessage);
-	} catch (error: any) {
+	} catch (error) {
 		errorState.set(true);
-		errorMessage.set(error.message);
 	} finally {
 		loading.set(false);
 	}
