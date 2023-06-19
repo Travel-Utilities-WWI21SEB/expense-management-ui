@@ -117,6 +117,7 @@
 					errorAction={debouncedRegister}
 					alertHeading="Something went wrong!"
 					actionText="Try again!"
+					class="variant-filled-error"
 				/>
 			{:else if $correctToken}
 				<aside class="alert variant-ghost-success">

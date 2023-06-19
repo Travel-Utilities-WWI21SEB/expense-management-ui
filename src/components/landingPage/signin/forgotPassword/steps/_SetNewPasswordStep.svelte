@@ -38,6 +38,7 @@
 					errorAction={closeForgotPassword}
 					alertHeading="Something went wrong!"
 					actionText="Abort!"
+					class="variant-filled-error"
 				/>
 			{:else}
 				<PasswordForm {onInputHandler} />
