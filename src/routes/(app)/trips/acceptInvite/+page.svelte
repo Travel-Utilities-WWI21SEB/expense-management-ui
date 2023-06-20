@@ -1,11 +1,35 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { CrossIcon } from '$icons';
-	import { currentTrip, errorMessage, errorState } from '$stores';
-	import { acceptTrip } from '$utils';
+	import { currentTrip, errorMessage, errorState, loading } from '$stores';
+	import type { TravelData } from '$tripDomain';
 
 	const onRejectClick = () => {
 		goto('/trips');
+	};
+
+	const acceptTrip = async (currentTrip: TravelData) => {
+		loading.set(true);
+		errorState.set(false);
+		try {
+			const response = await fetch(`/api/trips/${currentTrip.tripId}/accept`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			});
+
+			const body = await response.json();
+			const { error, errorMessage: errorDisplayMessage } = body;
+
+			errorState.set(error);
+			errorMessage.set(errorDisplayMessage);
+		} catch (error: any) {
+			errorState.set(true);
+			errorMessage.set(error.message);
+		} finally {
+			loading.set(false);
+		}
 	};
 
 	const onAcceptClick = async () => {
