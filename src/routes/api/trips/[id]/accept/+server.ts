@@ -3,15 +3,17 @@ import { getErrorMessage } from '$utils';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
-export const POST = (async ({ fetch, url }) => {
+export const POST = (async ({ fetch, url, request }) => {
 	console.log('POST');
 	const urlParts = url.pathname.split('/');
+	const requestBody = await request.json();
 	try {
 		const response = await fetch(`${PUBLIC_BASE_URL}/api/v1/trips/${urlParts[3]}/${urlParts[4]}`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
-			}
+			},
+			body: JSON.stringify(requestBody)
 		});
 
 		if (response.ok) {
