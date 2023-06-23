@@ -19,8 +19,8 @@ export { validateUsername } from './validation/validateUsername';
 export { validateCostAllocation, isSplitEqually } from './trips/costs/costAllocation';
 export { validatePaidBy } from './trips/costs/paidBy';
 export { validateDetails } from './trips/costs/costDetails';
+
 //requests
-export { acceptTrip } from './requests/acceptTrip';
 export { validateAmountPrecision } from './trips/costs/amount';
 
 //COST

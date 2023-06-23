@@ -42,7 +42,7 @@
 		}
 	};
 
-	const inviteUsers = async (tripId: number, user: { invitedUsername: string }) => {
+	const inviteUsers = async (tripId: number, user: { username: string }) => {
 		loading.set(true);
 		errorState.set(false);
 
@@ -79,7 +79,7 @@
 		await Promise.all(
 			$selectedUsers.map(async (name) => {
 				if (name !== $currentUser.username)
-					await inviteUsers(result.data.tripId, { invitedUsername: name });
+					await inviteUsers(result.data.tripId, { username: name });
 			})
 		);
 		invalidateAll();

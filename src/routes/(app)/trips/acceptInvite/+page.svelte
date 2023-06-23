@@ -1,11 +1,36 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { CrossIcon } from '$icons';
-	import { currentTrip, errorMessage, errorState } from '$stores';
-	import { acceptTrip } from '$utils';
+	import { currentTrip, errorMessage, errorState, loading } from '$stores';
+	import type { TravelData } from '$tripDomain';
 
 	const onRejectClick = () => {
 		goto('/trips');
+	};
+
+	const acceptTrip = async (currentTrip: TravelData) => {
+		loading.set(true);
+		errorState.set(false);
+		try {
+			const response = await fetch(`/api/trips/${currentTrip.tripId}/accept`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(presenceTimes)
+			});
+
+			const body = await response.json();
+			const { error, errorMessage: errorDisplayMessage } = body;
+
+			errorState.set(error);
+			errorMessage.set(errorDisplayMessage);
+		} catch (error: any) {
+			errorState.set(true);
+			errorMessage.set(error.message);
+		} finally {
+			loading.set(false);
+		}
 	};
 
 	const onAcceptClick = async () => {
@@ -17,8 +42,8 @@
 	};
 
 	const presenceTimes = {
-		presenceStart: $currentTrip.startDate.toISOString().substring(0, 10),
-		presenceEnd: $currentTrip.endDate.toISOString().substring(0, 10)
+		presenceStartDate: $currentTrip.startDate.toISOString().substring(0, 10),
+		presenceEndDate: $currentTrip.endDate.toISOString().substring(0, 10)
 	};
 </script>
 
@@ -32,7 +57,7 @@
 			class="input"
 			type="date"
 			placeholder={new Date(Date.now()).toISOString().substring(0, 10)}
-			bind:value={presenceTimes.presenceStart}
+			bind:value={presenceTimes.presenceStartDate}
 		/>
 	</label>
 	<label class="label mx-8">
@@ -43,7 +68,7 @@
 			class="input"
 			type="date"
 			placeholder={new Date(Date.now()).toISOString().substring(0, 10)}
-			bind:value={presenceTimes.presenceEnd}
+			bind:value={presenceTimes.presenceEndDate}
 		/>
 	</label>
 	<div class="flex justify-center gap-4 p-8">
