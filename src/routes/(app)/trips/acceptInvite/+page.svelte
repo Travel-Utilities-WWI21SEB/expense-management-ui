@@ -42,8 +42,8 @@
 	};
 
 	const presenceTimes = {
-		presenceStart: $currentTrip.startDate.toISOString().substring(0, 10),
-		presenceEnd: $currentTrip.endDate.toISOString().substring(0, 10)
+		presenceStartDate: $currentTrip.startDate.toISOString().substring(0, 10),
+		presenceEndDate: $currentTrip.endDate.toISOString().substring(0, 10)
 	};
 </script>
 
@@ -57,7 +57,7 @@
 			class="input"
 			type="date"
 			placeholder={new Date(Date.now()).toISOString().substring(0, 10)}
-			bind:value={presenceTimes.presenceStart}
+			bind:value={presenceTimes.presenceStartDate}
 		/>
 	</label>
 	<label class="label mx-8">
@@ -68,7 +68,7 @@
 			class="input"
 			type="date"
 			placeholder={new Date(Date.now()).toISOString().substring(0, 10)}
-			bind:value={presenceTimes.presenceEnd}
+			bind:value={presenceTimes.presenceEndDate}
 		/>
 	</label>
 	<div class="flex justify-center gap-4 p-8">
