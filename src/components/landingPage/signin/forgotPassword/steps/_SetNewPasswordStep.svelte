@@ -1,9 +1,7 @@
 <script lang="ts">
 	import { errorState, loading, password, passwordValid, passwordsMatch } from '$stores';
 	import { Step } from '@skeletonlabs/skeleton';
-	import AlertWithAction from '../../../../general/_AlertWithAction.svelte';
-	import ProgressCircleAnimated from '../../../../general/_ProgressCircleAnimated.svelte';
-	import PasswordForm from '../../../forms/_PasswordForm.svelte';
+	import { AlertWithAction, ProgressCircleAnimated, PasswordForm } from '$components';
 
 	export let closeForgotPassword: () => void;
 
@@ -36,9 +34,11 @@
 				<ProgressCircleAnimated />
 			{:else if $errorState}
 				<AlertWithAction
+					enableAction={true}
 					errorAction={closeForgotPassword}
 					alertHeading="Something went wrong!"
 					actionText="Abort!"
+					class="variant-filled-error"
 				/>
 			{:else}
 				<PasswordForm {onInputHandler} />

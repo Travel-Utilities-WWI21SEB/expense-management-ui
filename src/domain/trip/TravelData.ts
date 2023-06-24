@@ -3,7 +3,7 @@ import type { ChartData } from './ChartData';
 import type { CostCategory } from './CostCategory';
 
 export interface TravelData {
-	id: string;
+	tripId: string;
 	name: string;
 	costCategories: Array<CostCategory>;
 	data?: ChartData;
@@ -12,6 +12,14 @@ export interface TravelData {
 	totalCost?: number;
 	location: string;
 	participants: Array<User>;
-	userDept: number;
-	userGets: number;
+	userDept?: number;
+	userGets?: number;
+	hasAcceptedInvite?: boolean;
+}
+
+export interface NewTripInputs {
+	name: string;
+	startDate: string;
+	endDate: string;
+	location: string;
 }

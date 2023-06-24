@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { Tab, TabGroup } from '@skeletonlabs/skeleton';
-	import SignInComponent from './signin/_SignInComponent.svelte';
-	import SignUpComponent from './signup/_SignUpComponent.svelte';
+	import { SignInComponent, SignUpComponent } from '$components';
 
 	export let data: {
 		rememberMe: boolean;

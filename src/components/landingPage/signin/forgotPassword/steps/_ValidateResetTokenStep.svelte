@@ -9,9 +9,7 @@
 		tokenValues
 	} from '$stores';
 	import { Step } from '@skeletonlabs/skeleton';
-	import AlertWithAction from '../../../../general/_AlertWithAction.svelte';
-	import ProgressCircleAnimated from '../../../../general/_ProgressCircleAnimated.svelte';
-	import TokenForm from '../../../forms/_TokenForm.svelte';
+	import { AlertWithAction, ProgressCircleAnimated, TokenForm } from '$components';
 
 	export let forgotPasswordHandler: () => void;
 
@@ -66,9 +64,11 @@
 				<ProgressCircleAnimated />
 			{:else if $errorState}
 				<AlertWithAction
+					enableAction={true}
 					errorAction={forgotPasswordHandler}
 					alertHeading="Something went wrong!"
 					actionText="Try again!"
+					class="variant-filled-error"
 				/>
 			{:else}
 				<TokenForm keyboardHandler={verifyPasswordToken} resendToken={forgotPasswordHandler} />

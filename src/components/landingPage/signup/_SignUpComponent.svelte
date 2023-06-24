@@ -3,10 +3,7 @@
 	import { resetLandingPageStore } from '$utils';
 	import { Stepper } from '@skeletonlabs/skeleton';
 	import { onDestroy } from 'svelte';
-	import EmailStep from './steps/_EmailStep.svelte';
-	import PasswordStep from './steps/_PasswordStep.svelte';
-	import TokenStep from './steps/_TokenStep.svelte';
-	import UsernameStep from './steps/_UsernameStep.svelte';
+	import { EmailStep, PasswordStep, TokenStep, UsernameStep } from '$components';
 
 	export let changeTab: (index: number) => void;
 

@@ -12,9 +12,7 @@
 	} from '$stores';
 	import { Step, modalStore } from '@skeletonlabs/skeleton';
 	import _ from 'lodash';
-	import AlertWithAction from '../../../general/_AlertWithAction.svelte';
-	import ProgressCircleAnimated from '../../../general/_ProgressCircleAnimated.svelte';
-	import TokenForm from '../../forms/_TokenForm.svelte';
+	import { AlertWithAction, ProgressCircleAnimated, TokenForm } from '$components';
 
 	export let register: () => Promise<void>;
 
@@ -115,9 +113,11 @@
 				<ProgressCircleAnimated />
 			{:else if $errorState}
 				<AlertWithAction
+					enableAction={true}
 					errorAction={debouncedRegister}
 					alertHeading="Something went wrong!"
 					actionText="Try again!"
+					class="variant-filled-error"
 				/>
 			{:else if $correctToken}
 				<aside class="alert variant-ghost-success">
