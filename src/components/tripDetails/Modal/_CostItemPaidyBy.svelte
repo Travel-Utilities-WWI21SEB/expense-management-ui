@@ -27,7 +27,9 @@
 		}}
 	>
 		{#each users as user}
-			<option value={user.userId} selected={paidBy === user.userId}>{user.user?.name}</option>
+			<option value={user.username} selected={paidBy === user.username}
+				>{user.user?.username}</option
+			>
 		{/each}
 	</select>
 </label>

@@ -15,7 +15,7 @@
 	let costPaidForUser: Array<CostPaidForUser> = trip.participants.flatMap(
 		(tripParticipant: User) => {
 			return {
-				userId: tripParticipant.userId,
+				username: tripParticipant.username,
 				amount: 0,
 				currencyCode: 'EUR',
 				user: tripParticipant,
@@ -31,7 +31,7 @@
 		costCategory: { name: '', totalAmount: 0, color: '', icon: '' },
 		creationDate: new Date(),
 		endDate: '',
-		paidBy: trip.participants[0].userId,
+		paidBy: trip.participants[0].username,
 		paidFor: costPaidForUser,
 		startDate: new Date().toISOString().slice(0, 10)
 	};

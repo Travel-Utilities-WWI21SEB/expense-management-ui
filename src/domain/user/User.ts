@@ -6,7 +6,7 @@ export interface User {
 }
 
 export interface CostPaidForUser {
-	userId: string;
+	username: string;
 	amount: number;
 	currencyCode: string;
 	user?: User;

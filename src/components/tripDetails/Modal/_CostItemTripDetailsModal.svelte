@@ -15,7 +15,7 @@
 	let costPaidForUser: Array<CostPaidForUser> = trip.participants.flatMap(
 		(tripParticipants: User) => {
 			const userInvolved = cost.paidFor.filter(
-				(involvedUser) => tripParticipants.userId === involvedUser.userId
+				(involvedUser) => tripParticipants.username === involvedUser.username
 			);
 			const newUser =
 				userInvolved.length > 0
@@ -27,7 +27,7 @@
 							};
 					  })
 					: {
-							userId: tripParticipants.userId,
+							username: tripParticipants.username,
 							amount: 0,
 							currencyCode: 'EUR',
 							user: tripParticipants,

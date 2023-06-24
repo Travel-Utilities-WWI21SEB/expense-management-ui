@@ -18,8 +18,8 @@
 		currency: 'EUR',
 		id: '982734592873465',
 		paidFor: [
-			{ userId: 'ljahvdöas', amount: 6, currencyCode: 'EUR' },
-			{ userId: 'alsbvas', amount: 4, currencyCode: 'EUR' }
+			{ username: 'ljahvdöas', amount: 6, currencyCode: 'EUR' },
+			{ username: 'alsbvas', amount: 4, currencyCode: 'EUR' }
 		],
 		paidBy: 'ljahvdöas'
 	};
