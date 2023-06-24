@@ -5,13 +5,15 @@
 		HeaderAndTwoPartsLayout,
 		TripDetailsDashboard
 	} from '$components';
-	import type { Cost, TravelData } from '$tripDomain';
-	import { currentTrip } from '$stores';
+	import type { Cost } from '$tripDomain';
+	import type { PageData } from './$types';
+
+	export let data: PageData;
 
 	let cost: Cost = {
 		name: 'Kostenpunkt Aiai',
 		amount: 10,
-		costCategory: { name: 'Real Estate', color: '#000000', icon: 'unicode', totalAmount: 450 },
+		costCategory: { name: 'Real Estate', color: '#000000', icon: 'unicode', totalAmount: 450, id: "" },
 		creationDate: new Date(),
 		endDate: new Date('2023-06-25'),
 		startDate: new Date('2023-05-25'),
@@ -24,27 +26,22 @@
 		paidBy: 'ljahvdöas'
 	};
 	let costs = [cost, cost, cost, cost, cost, cost, cost, cost, cost, cost, cost, cost];
-
-	let trip: TravelData;
-	currentTrip.subscribe((currentTrip) => {
-		trip = currentTrip;
-	});
 </script>
 
 <HeaderAndTwoPartsLayout>
 	<span slot="header">
 		<div class="">
-			<TripDetailsHeader {trip} />
+			<TripDetailsHeader trip={data.tripData} />
 		</div>
 	</span>
 	<span slot="left_element">
 		<div class="h-full">
-			<TripDetailsCostOverview {costs} {trip} />
+			<TripDetailsCostOverview {costs} trip={data.tripData} />
 		</div>
 	</span>
 	<span slot="right_element">
 		<div class="h-full">
-			<TripDetailsDashboard {trip} />
+			<TripDetailsDashboard trip={data.tripData} />
 		</div>
 	</span>
 </HeaderAndTwoPartsLayout>

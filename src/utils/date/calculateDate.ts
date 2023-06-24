@@ -1,3 +1,3 @@
-export function calculateDate(date: Date): string {
-	return new Intl.DateTimeFormat('de-de').format(date);
+export function calculateDate(date: string): string {
+	return new Intl.DateTimeFormat('de-de').format(new Date(date))
 }

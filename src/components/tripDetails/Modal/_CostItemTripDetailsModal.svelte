@@ -35,6 +35,7 @@
 					  };
 			return newUser;
 		}
+
 	);
 
 	//convert date to yyyy-mm-dd for date picker

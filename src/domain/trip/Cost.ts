@@ -1,4 +1,4 @@
-import type { CostPaidForUser } from '../user/User';
+import type { CostPaidForUser } from "$userDomain";
 import type { CostCategory } from './CostCategory';
 
 export interface Cost {
@@ -41,3 +41,5 @@ export interface CostForNewCosttem {
 	paidBy?: string;
 	splitEqually: boolean;
 }
+
+

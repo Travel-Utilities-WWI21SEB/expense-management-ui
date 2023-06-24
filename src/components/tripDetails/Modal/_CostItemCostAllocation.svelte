@@ -53,7 +53,7 @@
 							}
 						}}
 					/>
-					<span class="truncate">{user.user?.name}</span>
+					<span class="truncate">{user.user?.username}</span>
 				</label>
 			{/each}
 		</div>
@@ -80,7 +80,7 @@
 			{#each users as user}
 				{#if user.amount > 0 || user.checked}
 					<label class="label space-x-2 px-4">
-						<span class="truncate">{user.user?.name}</span>
+						<span class="truncate">{user.user?.username}</span>
 						<div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
 							<input disabled={$costSplitType === 0} type="number" bind:value={user.amount} />
 							<select disabled={$costSplitType === 0} bind:value={user.currencyCode}>
