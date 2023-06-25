@@ -19,7 +19,7 @@
 </script>
 
 <label class="label pb-4">
-	<span>Paid by</span>
+	<span class="font-semibold">Paid by</span>
 	<select
 		class="select"
 		on:change={(e) => {

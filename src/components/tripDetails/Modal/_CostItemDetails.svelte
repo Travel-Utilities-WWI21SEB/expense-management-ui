@@ -25,17 +25,17 @@
 
 <div class="grid grid-cols-2 gap-2">
 	<label class="label col-span-2">
-		<span>Name</span>
+		<span class="font-semibold">Name</span>
 		<input class="input" type="text" bind:value={cost.name} />
 	</label>
 	<SlideToggle
-		class="col-span-2"
+		class="col-span-2 font-semibold"
 		name="Time Period"
 		bind:checked
 		on:change={() => changeTimeToggle()}>{!checked ? 'One-Time Cost' : 'Period Cost'}</SlideToggle
 	>
 	<label class="label col-span-2 {checked ? 'sm:col-span-1' : 'sm:col-span-2'}">
-		<span>Start Date</span>
+		<span class="font-semibold">Start Date</span>
 		<input
 			class="input"
 			type="date"
@@ -46,7 +46,7 @@
 	</label>
 	{#if checked}
 		<label class="label col-span-2 sm:col-span-1">
-			<span>End Date</span>
+			<span class="font-semibold">End Date</span>
 			<input
 				class="input"
 				type="date"
@@ -57,7 +57,7 @@
 		</label>
 	{/if}
 	<label class="label col-span-2 sm:col-span-1">
-		<span>Amount</span>
+		<span class="font-semibold">Amount</span>
 		<div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
 			<div class="input-group-shim">{cost.currency === 'EUR' ? '€' : '$'}</div>
 			<input
@@ -76,7 +76,7 @@
 		</div>
 	</label>
 	<label class="label col-span-2 sm:col-span-1">
-		<span>Category</span>
+		<span class="font-semibold">Category</span>
 		<select class="select" bind:value={cost.costCategory.costCategoryId}>
 			{#each trip.costCategories as category}
 				<option value={category.costCategoryId}>{category.name} </option>

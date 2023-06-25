@@ -53,8 +53,6 @@
 		//Put changes to backend
 		//get new costs for trip details
 	}
-	console.log(cost, trip);
-	console.log(costPaidForUser);
 </script>
 
 <div class="card p-4 md:w-1/2">

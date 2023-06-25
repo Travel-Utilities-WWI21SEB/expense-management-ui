@@ -38,19 +38,19 @@
 	on:click={() => selectListItem(i)}
 >
 	<div class="grid grid-cols-12 md:gap-2">
-		<div class="col-span-12 sm:col-span-2 grid content-center p-2">
+		<div class="col-span-12 sm:col-span-6 grid content-center p-2">
 			<div class="text-clip overflow-hidden content-center">
 				<p
-					class="w-full text-sm text-slate-500 mr-4 py-2 px-4
-					 rounded-full border-0 font-semibold
-					 text-[{pickTextColorBasedOnBgColorSimple(cost.costCategory.color, '#FFFFFF', '#000000')}]
-					  bg-[{cost.costCategory.color}]"
+					style="background-color: {cost.costCategory.color}"
+					class="text-sm text-
+					text-[{pickTextColorBasedOnBgColorSimple(cost.costCategory.color, '#ffffff', '#000000')}]
+					 rounded-full border-0 font-semibold m-4 chip variant-filled"
 				>
 					{cost.costCategory.name}
 				</p>
 			</div>
 		</div>
-		<div class="col-span-8 sm:col-span-8 grid content-center p-2">
+		<div class="col-span-8 sm:col-span-4 grid content-center p-2">
 			<div class="text-clip overflow-hidden text-left">
 				{cost.name}
 				<br />
@@ -60,7 +60,7 @@
 		</div>
 		<div class="col-span-4 sm:col-span-2 grid content-center p-2">
 			<div class="text-clip font-semibold overflow-hidden w-full text-rigth text-error-500">
-				{cost.amount + ' ' + cost.currency}
+				{cost.amount + ' ' + (cost.currency === '' ? '€' : cost.currency)}
 			</div>
 		</div>
 	</div>
