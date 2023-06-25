@@ -17,7 +17,13 @@ export {
 	usernameValid
 } from './landingPageStore';
 // Trip store
-export { allTrips, currentTrip, newTripForm } from './tripsStore';
+export {
+	allTrips,
+	currentTrip,
+	newTripForm,
+	newCostCategories,
+	newCostCategoryColors
+} from './tripsStore';
 // User store
 export { authToken, currentUser, selectedUsers } from './userStore';
 //Cost store

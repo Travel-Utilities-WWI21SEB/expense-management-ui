@@ -8,7 +8,9 @@
 		errorMessage,
 		errorState,
 		loading,
-		selectedUsers
+		selectedUsers,
+		newCostCategories,
+		newCostCategoryColors
 	} from '$stores';
 	import { invalidateAll } from '$app/navigation';
 	import AddCostCategories from './steps/_AddCostCategories.svelte';
@@ -69,6 +71,35 @@
 		}
 	};
 
+	const createCostCategories = async (
+		tripId: number,
+		costCategory: { name: string; color: string }
+	) => {
+		loading.set(true);
+		errorState.set(false);
+
+		try {
+			const response = await fetch(`/api/trips/${tripId}/cost-categories`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({ body: costCategory, id: tripId })
+			});
+
+			const body = await response.json();
+			const { error, errorMessage: errorDisplayMessage } = body;
+
+			errorState.set(error);
+			errorMessage.set(errorDisplayMessage);
+		} catch (error: any) {
+			errorState.set(true);
+			errorMessage.set(error.message);
+		} finally {
+			loading.set(false);
+		}
+	};
+
 	// We've created a custom submit function to pass the response and close the modal.
 	async function onFormSubmit(): Promise<void> {
 		const result = await createTrip();
@@ -80,6 +111,13 @@
 				}
 			})
 		);
+
+		$newCostCategories.map(async (name, index) => {
+			createCostCategories(result.data.tripId, {
+				name: name,
+				color: $newCostCategoryColors[index]
+			});
+		});
 
 		invalidateAll();
 		modalStore.close();
