@@ -6,7 +6,7 @@ export function modifyCosts(costs: Array<CostFromGet>, costCategories: Array<Cos
 			if (category.costCategoryId === cost.costCategoryId) {
 				return category;
 			} else {
-				return;
+				return undefined;
 			}
 		});
 		return { ...cost, costCategory, startDate: new Date(cost.deductedAt), name: cost.description };
