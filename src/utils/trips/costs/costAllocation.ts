@@ -40,23 +40,13 @@ export function changeToEqual(
 		};
 	});
 
-	//rest cents to creditor
-	/* while (!isAmountFullySplit(cost.amount, newUsers)) {
-		newUsers = newUsers.map((user) => {
-			return {
-				...user,
-				amount: user.user?.userId === cost.paidBy ? user.amount + 0.01 : user.amount
-			};
-		});
-	} */
-
 	//split rest cents by involved Users
 	let number = 0;
 	while (!isAmountFullySplit(cost.amount, newUsers)) {
 		if (newUsers[number].checked) {
 			newUsers[number].amount += 0.01;
 		}
-		number = number < newUsers.length ? number + 1 : 0;
+		number = number <= newUsers.length ? number + 1 : 0;
 	}
 	return newUsers;
 }

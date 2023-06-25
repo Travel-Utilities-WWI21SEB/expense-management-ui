@@ -41,7 +41,9 @@
 	let localeCost: CostDateAsString = {
 		...cost,
 		startDate: cost.startDate.toISOString().slice(0, 10),
-		endDate: cost.endDate?.toISOString().slice(0, 10)
+		endDate: !!cost.endDate
+			? cost.endDate.toISOString().slice(0, 10)
+			: cost.startDate.toISOString().slice(0, 10)
 	};
 	let isEditing = false;
 
@@ -51,6 +53,8 @@
 		//Put changes to backend
 		//get new costs for trip details
 	}
+	console.log(cost, trip);
+	console.log(costPaidForUser);
 </script>
 
 <div class="card p-4 md:w-1/2">

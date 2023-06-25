@@ -9,7 +9,17 @@ export function modifyCosts(costs: Array<CostFromGet>, costCategories: Array<Cos
 				return undefined;
 			}
 		});
-		return { ...cost, costCategory, startDate: new Date(cost.deductedAt), name: cost.description };
+		const contributors = cost.contributors.map((contributor) => {
+			return { ...contributor, amount: Number(contributor.amount) };
+		});
+		return {
+			...cost,
+			costCategory,
+			startDate: new Date(cost.deductedAt),
+			name: cost.description,
+			contributors,
+			amount: Number(cost.amount)
+		};
 	});
 	return result;
 }

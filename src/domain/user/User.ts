@@ -12,3 +12,11 @@ export interface CostPaidForUser {
 	user?: User;
 	checked?: boolean;
 }
+
+export interface CostPaidForUserGet {
+	username: string;
+	amount: string;
+	currencyCode: string;
+	user?: User;
+	checked?: boolean;
+}

@@ -1,4 +1,4 @@
-import type { CostPaidForUser } from '$userDomain';
+import type { CostPaidForUser, CostPaidForUserGet } from '$userDomain';
 import type { CostCategory } from './CostCategory';
 
 export interface Cost {
@@ -46,14 +46,14 @@ export interface CostForNewCosttem {
 export interface CostFromGet {
 	costId: string;
 	description: string;
-	amount: number;
+	amount: string;
 	currency: string;
 	creationDate: Date;
 	deductedAt: string;
 	endDate?: Date;
 	costCategoryId: string;
 	costCategory: CostCategory;
-	contributors: Array<CostPaidForUser>;
+	contributors: Array<CostPaidForUserGet>;
 	creditor: string;
 	splitEqually?: boolean;
 }
