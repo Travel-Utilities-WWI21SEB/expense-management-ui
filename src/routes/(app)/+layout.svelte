@@ -29,7 +29,7 @@
 <!-- MOBILE ONLY! -->
 
 <Modal />
-<Toast />
+<Toast zIndex="z-[999]" />
 
 <AppShell slotSidebarLeft="w-0 lg:w-20">
 	<!-- Header -->

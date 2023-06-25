@@ -106,7 +106,8 @@
 			? `Error: ${result.errorMessage}`
 			: `Cost ${result.data.description} created successfully`;
 		const t: ToastSettings = {
-			message: message
+			message: message,
+			background: result.error ? 'variant-filled-warning' : 'variant-filled-success'
 		};
 		toastStore.trigger(t);
 

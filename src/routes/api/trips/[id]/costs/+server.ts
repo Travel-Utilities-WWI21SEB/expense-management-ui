@@ -1,7 +1,7 @@
 import { PUBLIC_BASE_URL } from '$env/static/public';
 import { getErrorMessage } from '$utils';
 import { json } from '@sveltejs/kit';
-import type { RequestHandler } from './$types';
+import type { RequestHandler } from '../$types';
 
 export const POST = (async ({ url, fetch, request }) => {
 	console.log('POST');

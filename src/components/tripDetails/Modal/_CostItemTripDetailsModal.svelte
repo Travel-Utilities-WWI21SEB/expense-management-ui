@@ -2,8 +2,16 @@
 	import type { Cost, CostDateAsString, TravelData } from '$tripDomain';
 	import type { CostPaidForUser, User } from '$userDomain';
 	import { TripDetailsShowCostItem, TripDetailsEditCostItem } from '$components';
-	import { costAllocationValid, costDetailsValid, costPaidByValid } from '$stores';
-	import { modalStore } from '@skeletonlabs/skeleton';
+	import {
+		costAllocationValid,
+		costDetailsValid,
+		costPaidByValid,
+		errorMessage,
+		errorState,
+		loading
+	} from '$stores';
+	import { modalStore, toastStore, type ToastSettings } from '@skeletonlabs/skeleton';
+	import { invalidateAll } from '$app/navigation';
 
 	/* export let name: string; */
 	export let cost: Cost;
@@ -47,11 +55,70 @@
 	};
 	let isEditing = false;
 
-	function onFormSubmit(): void {
-		if ($modalStore[0].response) $modalStore[0].response(cost);
-		//modalStore.close();
-		//Put changes to backend
-		//get new costs for trip details
+	export async function updateCost(
+		cost: CostDateAsString,
+		trip: TravelData,
+		costPaidForUser: Array<CostPaidForUser>
+	) {
+		loading.set(true);
+		errorState.set(false);
+
+		try {
+			const costsResponse = await fetch(`/api/trips/${trip.tripId}/costs/${cost.costId}`, {
+				method: 'PATCH',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					costCategoryId: cost.costCategory.costCategoryId,
+					amount: cost.amount.toString(),
+					currency: cost.currency,
+					description: cost.name,
+					deductedAt: `${cost.startDate}T00:00:00+02:00`,
+					creditor: cost.creditor,
+					contributors: costPaidForUser
+						.filter((user) => user.checked)
+						.map((user) => {
+							return {
+								username: user.username,
+								amount: user.amount.toString()
+							};
+						})
+				})
+			});
+
+			const body = await costsResponse.json();
+
+			const { error, errorMessage: errorDisplayMessage } = body;
+
+			errorState.set(error);
+			errorMessage.set(errorDisplayMessage);
+
+			return body;
+		} catch (error: any) {
+			errorState.set(true);
+			errorMessage.set(error.message);
+		} finally {
+			loading.set(false);
+		}
+	}
+
+	async function onFormSubmit(): Promise<void> {
+		const result = await updateCost(localeCost, trip, costPaidForUser);
+
+		const message = result.error
+			? `Error: ${result.errorMessage}`
+			: `Cost ${result.data.description} created successfully`;
+		const t: ToastSettings = {
+			message: message,
+			background: result.error ? 'variant-filled-warning' : 'variant-filled-success'
+		};
+		toastStore.trigger(t);
+
+		if (!result.error) {
+			invalidateAll();
+			modalStore.close();
+		}
 	}
 </script>
 
@@ -66,7 +133,13 @@
 	<footer class="modal-footer {parent.regionFooter}">
 		<button class="btn border-2" on:click={parent.onClose}>Close</button>
 		{#if isEditing}
-			<button class="btn variant-filled" disabled={!validData} on:click={() => (isEditing = false)}>
+			<button
+				class="btn variant-filled"
+				disabled={!validData}
+				on:click={() => {
+					onFormSubmit();
+				}}
+			>
 				Save
 			</button>
 		{:else}
