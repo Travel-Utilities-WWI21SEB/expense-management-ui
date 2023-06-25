@@ -50,6 +50,8 @@ export { default as UserPaymentOverview } from './tripOverview/_UserPaymentOverv
 
 //Homescreen
 export { default as TripCarousel } from './homescreen/_TripCarousel.svelte';
+export { default as CostOverview } from './homescreen/_CostOverview.svelte';
+export { default as Funfacts } from './homescreen/_FunFacts.svelte';
 export { default as HeaderBar } from './tripOverview/_HeaderBar.svelte';
 export { default as ModalForm } from './tripOverview/addTrips/_ModalForm.svelte';
 export { default as InviteParticipantsStep } from './tripOverview/addTrips/steps/_InviteParticipantsStep.svelte';
