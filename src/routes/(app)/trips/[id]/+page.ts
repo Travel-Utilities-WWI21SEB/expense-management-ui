@@ -1,23 +1,22 @@
-import type { PageLoad } from "./$types";
+import type { PageLoad } from './$types';
 
-export const load = (async ({ params }) => {
-  const tripResponse = await fetch(`api/trips/${params.id}`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  });
+export const load = (async (event) => {
+	const tripResponse = await event.fetch(`/api/trips/${event.params.id}`, {
+		method: 'GET',
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	});
 
- /* const costsResponse = await fetch(`api/trips/${params.id}/costs`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({})
-  });*/
+	/* 	const costsResponse = await event.fetch(`api/trips/${event.params.id}/costs`, {
+		method: 'GET',
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	}); */
 
+	const tripBody = await tripResponse.json();
+	/* const costsBody = await costsResponse.json(); */
 
-  const tripBody = await tripResponse.json();
-
-  return { ...tripBody, tripData: tripBody.data };
+	return { tripData: tripBody.data /* , costsData: costsBody.data */ };
 }) satisfies PageLoad;

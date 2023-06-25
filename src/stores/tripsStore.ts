@@ -6,9 +6,9 @@ const testTravelData: Array<TravelData> = [
 		tripId: 'ABCD-01',
 		name: 'Die epische Reise',
 		costCategories: [
-			{ name: 'Food', totalAmount: 100, color: '#F7464A', icon: 'unicode' },
-			{ name: 'Real Estate', totalAmount: 400, color: '#949FB1', icon: 'unicode' },
-			{ name: 'Mobility', totalAmount: 200, color: '#46BFBD', icon: 'unicode' }
+			{ name: 'Food', totalAmount: 100, color: '#F7464A', icon: 'unicode', id: '1' },
+			{ name: 'Real Estate', totalAmount: 400, color: '#949FB1', icon: 'unicode', id: '2' },
+			{ name: 'Mobility', totalAmount: 200, color: '#46BFBD', icon: 'unicode' , id: '3'},
 		],
 
 		data: undefined,

@@ -1,9 +1,9 @@
-import {PUBLIC_BASE_URL} from "$env/static/public";
+import { PUBLIC_BASE_URL } from '$env/static/public';
 import { getErrorMessage } from '$utils';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './../$types';
 
-export const GET = (async ({ url, fetch }) => {
+export const GET = (async ({ url, fetch, params }) => {
 	console.log('GET');
 	try {
 		const response = await fetch(`${PUBLIC_BASE_URL}/api/v1/trips/${url.pathname.split('/')[3]}`, {
