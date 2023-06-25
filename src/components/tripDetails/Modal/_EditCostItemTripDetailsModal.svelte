@@ -16,7 +16,6 @@
 
 	$: involvedUsers = users.filter((user) => user.checked);
 	let tabSet = 0;
-	console.log(involvedUsers);
 	cost = { ...cost, splitEqually: isSplitEqually(users, cost) };
 	function changePaidBy(event: CustomEvent<any>) {
 		cost.contributors = event.detail.paidBy;

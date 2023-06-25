@@ -48,8 +48,6 @@
 		presenceStartDate: data.tripData.startDate.toISOString().substring(0, 10),
 		presenceEndDate: data.tripData.endDate.toISOString().substring(0, 10)
 	};
-
-	console.log(presenceTimes);
 </script>
 
 <div class="modal-form card m-8 p-4 space-y-4 lg:mx-64 lg:my-28">

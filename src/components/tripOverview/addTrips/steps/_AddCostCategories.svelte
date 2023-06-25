@@ -8,7 +8,6 @@
 	newCostCategoryColors.set(['#FF8585', '#00FF62']);
 
 	function onSelection(): void {
-		console.log(inputValue);
 		if ($newCostCategories.indexOf(inputValue) === -1) {
 			newCostCategories.set([...$newCostCategories, inputValue]);
 			newCostCategoryColors.set([...$newCostCategoryColors, '#6590D5']);

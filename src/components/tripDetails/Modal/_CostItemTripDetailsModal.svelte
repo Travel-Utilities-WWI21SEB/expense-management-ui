@@ -41,7 +41,7 @@
 	let localeCost: CostDateAsString = {
 		...cost,
 		startDate: cost.startDate.toISOString().slice(0, 10),
-		endDate: !!cost.endDate
+		endDate: cost.endDate
 			? cost.endDate.toISOString().slice(0, 10)
 			: cost.startDate.toISOString().slice(0, 10)
 	};

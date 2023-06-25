@@ -56,7 +56,6 @@
 		trip: TravelData,
 		costPaidForUser: Array<CostPaidForUser>
 	) {
-		console.log(cost);
 		loading.set(true);
 		errorState.set(false);
 
