@@ -19,6 +19,7 @@ export const load = (async ({ fetch }) => {
 	});
 
 	const userBody = await userResponse.json();
+	console.log(tripBody.data[0].costCategories);
 	if (tripBody.data) {
 		return {
 			...tripBody,

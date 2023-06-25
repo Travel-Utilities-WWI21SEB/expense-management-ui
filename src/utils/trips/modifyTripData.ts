@@ -1,5 +1,18 @@
-import type { ChartData, TravelData } from '$tripDomain';
+import type { ChartData, CostCategory, TravelData } from '$tripDomain';
 import type { User } from '$userDomain';
+
+const costCategoriesFilled = (categories: Array<CostCategory>) => {
+	let ctr = 0;
+	categories.forEach((category) => {
+		if (category.totalCost > 0) {
+			ctr++;
+		}
+	});
+	if (ctr === 0) {
+		return false;
+	}
+	return true;
+};
 
 export function modifyTrip(trip: TravelData, userData: User) {
 	trip = {
@@ -11,7 +24,6 @@ export function modifyTrip(trip: TravelData, userData: User) {
 				presenceStartDate: new Date(participant.presenceStartDate)
 			};
 		}),
-		costCategories: [],
 		startDate: new Date(trip.startDate),
 		endDate: new Date(trip.endDate),
 		hasAcceptedInvite: trip.participants.filter((user) => user.username === userData.username)[0]
@@ -28,7 +40,8 @@ export function modifyTrip(trip: TravelData, userData: User) {
 			}
 		]
 	};
-	if (trip.costCategories.length > 1) {
+
+	if (costCategoriesFilled(trip.costCategories)) {
 		trip.costCategories.forEach((category) => {
 			tripChartData.labels.push(category.name);
 			tripChartData.datasets[0].data.push(category.totalCost);

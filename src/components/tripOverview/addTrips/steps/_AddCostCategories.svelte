@@ -1,21 +1,23 @@
 <script lang="ts">
 	import { RemoveIcon } from '$icons';
+	import { newCostCategories, newCostCategoryColors } from '$stores';
 
 	let inputValue = '';
 
-	let categories: Array<string> = [];
-	let colors: Array<string> = [];
+	newCostCategories.set(['Food', 'Mobility']);
+	newCostCategoryColors.set(['#FF8585', '#00FF62']);
 
 	function onSelection(): void {
 		console.log(inputValue);
-		if (categories.indexOf(inputValue) === -1) {
-			categories = [...categories, inputValue];
+		if ($newCostCategories.indexOf(inputValue) === -1) {
+			newCostCategories.set([...$newCostCategories, inputValue]);
+			newCostCategoryColors.set([...$newCostCategoryColors, '#6590D5']);
 			inputValue = '';
 		}
 	}
 
 	const onRemoveInvitationClick = (name: string) => {
-		categories = categories.filter((m) => m !== name);
+		newCostCategories.set($newCostCategories.filter((m) => m !== name));
 	};
 </script>
 
@@ -25,15 +27,33 @@
 	name="demo"
 	bind:value={inputValue}
 	on:change={onSelection}
-	placeholder="Search..."
+	placeholder="Input new Cost Category"
 />
+{#each $newCostCategories as _, i}
+	<input
+		id={`nativeColorPicker${i}`}
+		bind:value={$newCostCategoryColors[i]}
+		type="color"
+		class="opacity-0 h-0"
+	/>
+{/each}
+
 <div class="h-auto p-4" tabindex="-1">
-	{#each categories as name, i}
-		<span class="m-4 chip variant-filled h-8">
+	{#if $newCostCategories.length > 0}
+		<p>You can change the color by clicking!</p>
+	{/if}
+	{#each $newCostCategories as name, i}
+		<button
+			class="m-4 chip variant-filled h-8"
+			style="background-color: {$newCostCategoryColors[i]};"
+			on:click={() => {
+				document.getElementById(`nativeColorPicker${i}`)?.click();
+			}}
+		>
 			{name}
 			<button on:click={() => onRemoveInvitationClick(name)}>
 				<RemoveIcon />
 			</button>
-		</span>
+		</button>
 	{/each}
 </div>

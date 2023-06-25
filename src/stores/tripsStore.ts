@@ -11,3 +11,6 @@ export const newTripForm = writable<NewTripInputs>({
 	startDate: new Date(Date.now()).toISOString().substring(0, 10),
 	endDate: new Date(Date.now()).toISOString().substring(0, 10)
 });
+
+export const newCostCategories = writable<Array<string>>();
+export const newCostCategoryColors = writable<Array<string>>();
