@@ -23,6 +23,7 @@
 		toastStore
 	} from '@skeletonlabs/skeleton';
 	import { changeToEqual } from '$utils';
+	import { invalidateAll } from '$app/navigation';
 
 	export let trip: TravelData;
 
@@ -111,6 +112,7 @@
 		toastStore.trigger(t);
 
 		if (!result.error) {
+			invalidateAll();
 			modalStore.close();
 		}
 	}

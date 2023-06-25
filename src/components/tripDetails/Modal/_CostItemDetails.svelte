@@ -72,7 +72,6 @@
 			/>
 			<select bind:value={cost.currency}>
 				<option value="EUR">EUR</option>
-				<option value="USD">USD</option>
 			</select>
 		</div>
 	</label>

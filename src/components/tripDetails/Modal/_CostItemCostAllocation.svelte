@@ -85,7 +85,6 @@
 							<input disabled={$costSplitType === 0} type="number" bind:value={user.amount} />
 							<select disabled={$costSplitType === 0} bind:value={user.currencyCode}>
 								<option value="EUR">EUR</option>
-								<option value="USD">USD</option>
 							</select>
 						</div>
 					</label>

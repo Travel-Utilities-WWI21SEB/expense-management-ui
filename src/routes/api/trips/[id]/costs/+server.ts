@@ -2,13 +2,10 @@ import { PUBLIC_BASE_URL } from '$env/static/public';
 import { getErrorMessage } from '$utils';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './../$types';
-import type { Cost, CostFromGet } from '$tripDomain';
-import type { CostCategory } from '$tripDomain';
 
 export const POST = (async ({ url, fetch, request }) => {
 	console.log('POST');
 	const requestBody = await request.json();
-	console.log(requestBody);
 	try {
 		const response = await fetch(
 			`${PUBLIC_BASE_URL}/api/v1/trips/${url.pathname.split('/')[3]}/costs`,
@@ -27,7 +24,6 @@ export const POST = (async ({ url, fetch, request }) => {
 		}
 
 		const body = await response.json();
-		console.log(body);
 		const { errorCode } = body;
 		const errorMessage = getErrorMessage(errorCode);
 

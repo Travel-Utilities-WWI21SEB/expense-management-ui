@@ -1,5 +1,4 @@
-import { modifyTrip } from '$utils';
-import { modifyCosts } from '../../../../utils/trips/costs/modifyCostData';
+import { modifyTrip, modifyCosts } from '$utils';
 import type { PageServerLoad } from './$types';
 
 export const load = (async ({ params, fetch }) => {
