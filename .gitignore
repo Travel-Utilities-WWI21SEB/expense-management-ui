@@ -5,8 +5,8 @@ node_modules
 /package
 .pnpm-debug.log
 .zshrc
-.env
-.env.*
+.env.production
+.env.development
 !.env.example
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*

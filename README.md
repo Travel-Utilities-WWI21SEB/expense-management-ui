@@ -1,52 +1,48 @@
 ## Developing
 
-If you cloned the repository locally run `corepack enable` to setup the correct version of the package manager. After running `corepack enable` you can use `pnpm` to install dependencies and run scripts.
+If you cloned the repository locally ensure that you have setup the correct node version specified in the engines-field of our `package.json`. Depending on your OS you can achieve this by using some sort of node version manager.
 
-First, install the dependencies and build the css-files:
+Once ensured, run `corepack enable` to setup the correct version of the package manager. After running `corepack enable` you can use `pnpm` to install dependencies and run scripts.
+
+1. Install the dependencies
 
 ```bash
 pnpm install
-pnpm run prepare
 ```
 
-Then, run the development server:
+2. Run the development server
 
 ```bash
 pnpm run dev
-
-# or start the server and open the app in a new browser tab
-pnpm run dev -- --open
 # exposed on port 5173
 ```
 
-For every change you make in the scss-files, you have to run `pnpm run prepare` again.
-
 ## Building
 
-To create a production version of your app:
+To create a production version of your app you can run the following command:
 
 ```bash
-pnpm run build
+pnpm build
 ```
 
-You can preview the production build on port 4173 with `pnpm run preview`.
+You can preview the production build on port 4173 with `pnpm preview`.
 
-For production we containerize the app using Docker. To build the Docker image run the following command:
+For production we containerize the app using Docker, please ensure that you have Docker Desktop installed and running on your machine. To build the Docker image run the following command:
 
 ```bash
-pnpm run docker:build
+pnpm docker:build
 ```
 
 To run the Docker image run the following command:
 
 ```bash
-pnpm run docker:run
+pnpm docker:run
 ```
 
 To stop the Docker image run the following command:
 
 ```bash
-pnpm run docker:stop
+pnpm docker:stop
 ```
 
 ## Contributing
