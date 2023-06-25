@@ -1,5 +1,5 @@
 export interface CostCategory {
-	id: string;
+	costCategoryId: string;
 	name: string;
 	totalAmount: number;
 	color: string;

@@ -13,8 +13,8 @@
 
 	$: costDetailsValid.set(validateDetails(cost, checked));
 	let checked: boolean = cost.endDate ? true : false;
-	let endDateTrip = trip.endDate
-	let startDateTrip = trip.startDate
+	let endDateTrip = trip.endDate;
+	let startDateTrip = trip.startDate;
 
 	function changeTimeToggle(e: Event) {
 		if (!checked) {
@@ -78,9 +78,9 @@
 	</label>
 	<label class="label col-span-2 sm:col-span-1">
 		<span>Category</span>
-		<select class="select" bind:value={cost.costCategory.name}>
+		<select class="select" bind:value={cost.costCategory.costCategoryId}>
 			{#each trip.costCategories as category}
-				<option value={category.name}>{category.name} </option>
+				<option value={category.costCategoryId}>{category.name} </option>
 			{/each}
 		</select>
 	</label>

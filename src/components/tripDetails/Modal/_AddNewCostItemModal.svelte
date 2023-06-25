@@ -37,7 +37,7 @@
 		name: '',
 		amount: 0,
 		currency: 'EUR',
-		costCategory: { name: '', totalAmount: 0, color: '', icon: '', id: '' },
+		costCategory: { name: '', totalAmount: 0, color: '', icon: '', costCategoryId: '' },
 		creationDate: new Date(),
 		endDate: '',
 		paidBy: trip.participants[0].username,
@@ -77,7 +77,7 @@
 			<Step locked={!$costDetailsValid}>
 				<svelte:fragment slot="header">Details</svelte:fragment>
 				<TripDetailsEditCostItemDetails
-					{cost}
+					bind:cost
 					{trip}
 					bind:users={costPaidForUser}
 					{involvedUsers}

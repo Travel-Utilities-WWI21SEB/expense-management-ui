@@ -13,14 +13,14 @@ export async function createCost(
 	errorState.set(false);
 
 	try {
-		const costsResponse = await fetch(`api/trips/${trip.tripId}/costs`, {
+		const costsResponse = await fetch(`/api/trips/${trip.tripId}/costs`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				costCategoryId: cost.costCategory.id,
-				amount: cost.amount,
+				costCategoryId: cost.costCategory.costCategoryId,
+				amount: cost.amount.toString(),
 				currency: cost.currency,
 				description: cost.name,
 				deductedAt: `${cost.startDate}T00:00:00+02:00`,
@@ -30,7 +30,7 @@ export async function createCost(
 					.map((user) => {
 						return {
 							username: user.username,
-							amount: user.amount
+							amount: user.amount.toString()
 						};
 					})
 			})

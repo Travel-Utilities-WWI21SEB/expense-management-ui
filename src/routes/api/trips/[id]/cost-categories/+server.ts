@@ -1,12 +1,13 @@
 import { PUBLIC_BASE_URL } from '$env/static/public';
-import { getErrorMessage } from '$utils';
 import { json } from '@sveltejs/kit';
-import type { RequestHandler } from './../$types';
+import type { RequestHandler } from '../$types';
+import { getErrorMessage } from '$utils';
 
-export const GET = (async ({ url, fetch }) => {
+export const GET = (async ({ fetch, params }) => {
 	console.log('GET');
+
 	try {
-		const response = await fetch(`${PUBLIC_BASE_URL}/api/v1/trips/${url.pathname.split('/')[3]}`, {
+		const response = await fetch(`${PUBLIC_BASE_URL}/api/v1/trips/${params.id}/cost-categories`, {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json'

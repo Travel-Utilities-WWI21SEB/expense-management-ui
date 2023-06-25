@@ -18,7 +18,7 @@
 			color: '#000000',
 			icon: 'unicode',
 			totalAmount: 450,
-			id: ''
+			costCategoryId: ''
 		},
 		creationDate: new Date(),
 		endDate: new Date('2023-06-25'),
@@ -31,7 +31,6 @@
 		],
 		paidBy: 'ljahvdöas'
 	};
-	let costs = [cost, cost, cost, cost, cost, cost, cost, cost, cost, cost, cost, cost];
 </script>
 
 <HeaderAndTwoPartsLayout>
@@ -45,7 +44,7 @@
 	<span slot="left_element">
 		{#if data.tripData}
 			<div class="h-full">
-				<TripDetailsCostOverview {costs} trip={data.tripData} />
+				<TripDetailsCostOverview costs={data.costsData} trip={data.tripData} />
 			</div>
 		{/if}
 	</span>
@@ -57,10 +56,3 @@
 		{/if}
 	</span>
 </HeaderAndTwoPartsLayout>
-
-<form method="POST">
-	<label>
-		add something
-		<input name="name" type="text" />
-	</label>
-</form>

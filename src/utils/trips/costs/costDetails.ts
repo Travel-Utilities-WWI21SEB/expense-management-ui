@@ -8,6 +8,6 @@ export function validateDetails(cost: CostDateAsString, endDate: boolean): boole
 		validateAmountPrecision(cost.amount) &&
 		cost.amount > 0 &&
 		endDateValid &&
-		cost.costCategory.name != ''
+		cost.costCategory.costCategoryId != ''
 	);
 }
