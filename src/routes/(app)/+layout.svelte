@@ -11,7 +11,7 @@
 
 	// Import floating ui and skeleton deps
 	import { arrow, autoUpdate, computePosition, flip, offset, shift } from '@floating-ui/dom';
-	import { AppShell, Drawer, storePopup } from '@skeletonlabs/skeleton';
+	import { AppShell, Drawer, Toast, storePopup } from '@skeletonlabs/skeleton';
 
 	// Set floating ui defaults
 	storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
@@ -29,6 +29,7 @@
 <!-- MOBILE ONLY! -->
 
 <Modal />
+<Toast />
 
 <AppShell slotSidebarLeft="w-0 lg:w-20">
 	<!-- Header -->

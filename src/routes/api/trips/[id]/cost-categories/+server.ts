@@ -2,6 +2,7 @@ import { PUBLIC_BASE_URL } from '$env/static/public';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from '../$types';
 import { getErrorMessage } from '$utils';
+import type { CostCategory } from '../../../../../domain/trip/CostCategory';
 
 export const GET = (async ({ fetch, params }) => {
 	console.log('GET');
@@ -16,6 +17,7 @@ export const GET = (async ({ fetch, params }) => {
 
 		if (response.ok) {
 			const body = await response.json();
+
 			return json({ error: false, errorMessage: '', data: body });
 		}
 

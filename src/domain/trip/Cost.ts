@@ -2,7 +2,7 @@ import type { CostPaidForUser } from '$userDomain';
 import type { CostCategory } from './CostCategory';
 
 export interface Cost {
-	id: string;
+	costId: string;
 	name: string;
 	amount: number;
 	currency: string;
@@ -11,8 +11,8 @@ export interface Cost {
 	endDate?: Date;
 	costCategoryId: string;
 	costCategory: CostCategory;
-	paidFor: Array<CostPaidForUser>;
-	paidBy: string;
+	contributors: Array<CostPaidForUser>;
+	creditor: string;
 	splitEqually?: boolean;
 }
 
@@ -25,8 +25,8 @@ export interface CostDateAsString {
 	startDate: string;
 	endDate?: string;
 	costCategory: CostCategory;
-	paidFor: Array<CostPaidForUser>;
-	paidBy: string;
+	contributors: Array<CostPaidForUser>;
+	creditor: string;
 	splitEqually?: boolean;
 }
 export interface CostForNewCosttem {
@@ -38,21 +38,22 @@ export interface CostForNewCosttem {
 	startDate?: string;
 	endDate?: string;
 	costCategory?: CostCategory;
-	paidFor?: Array<CostPaidForUser>;
-	paidBy?: string;
+	contributors?: Array<CostPaidForUser>;
+	creditor?: string;
 	splitEqually: boolean;
 }
 
 export interface CostFromGet {
-	id: string;
-	name: string;
+	costId: string;
+	description: string;
 	amount: number;
 	currency: string;
 	creationDate: Date;
-	startDate: Date;
+	deductedAt: string;
 	endDate?: Date;
 	costCategoryId: string;
-	paidFor: Array<CostPaidForUser>;
-	paidBy: string;
+	costCategory: CostCategory;
+	contributors: Array<CostPaidForUser>;
+	creditor: string;
 	splitEqually?: boolean;
 }

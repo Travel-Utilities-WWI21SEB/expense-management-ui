@@ -13,8 +13,8 @@
 
 	$: costDetailsValid.set(validateDetails(cost, checked));
 	let checked: boolean = cost.endDate ? true : false;
-	let endDateTrip = trip.endDate;
-	let startDateTrip = trip.startDate;
+	let endDateTrip = trip.endDate.toISOString().slice(0, 10);
+	let startDateTrip = trip.startDate.toISOString().slice(0, 10);
 
 	function changeTimeToggle(e: Event) {
 		if (!checked) {

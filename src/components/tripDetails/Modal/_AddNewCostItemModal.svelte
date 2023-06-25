@@ -15,9 +15,14 @@
 		errorState,
 		loading
 	} from '$stores';
-	import { Step, Stepper, modalStore } from '@skeletonlabs/skeleton';
+	import {
+		Step,
+		Stepper,
+		modalStore,
+		type ToastSettings,
+		toastStore
+	} from '@skeletonlabs/skeleton';
 	import { changeToEqual } from '$utils';
-	import { createCost } from '../../../utils/trips/requests';
 
 	export let trip: TravelData;
 
@@ -37,18 +42,77 @@
 		name: '',
 		amount: 0,
 		currency: 'EUR',
-		costCategory: { name: '', totalAmount: 0, color: '', icon: '', costCategoryId: '' },
+		costCategory: { name: '', totalCost: 0, color: '', icon: '', costCategoryId: '' },
 		creationDate: new Date(),
 		endDate: '',
-		paidBy: trip.participants[0].username,
-		paidFor: costPaidForUser,
+		creditor: trip.participants[0].username,
+		contributors: costPaidForUser,
 		startDate: new Date().toISOString().slice(0, 10)
 	};
 
-	async function onFormSubmit(): Promise<void> {
-		await createCost(cost, trip, costPaidForUser);
+	export async function createCost(
+		cost: CostDateAsString,
+		trip: TravelData,
+		costPaidForUser: Array<CostPaidForUser>
+	) {
+		console.log(cost);
+		loading.set(true);
+		errorState.set(false);
 
-		if ($modalStore[0].response) $modalStore[0].response(cost);
+		try {
+			const costsResponse = await fetch(`/api/trips/${trip.tripId}/costs`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					costCategoryId: cost.costCategory.costCategoryId,
+					amount: cost.amount.toString(),
+					currency: cost.currency,
+					description: cost.name,
+					deductedAt: `${cost.startDate}T00:00:00+02:00`,
+					creditor: cost.creditor,
+					contributors: costPaidForUser
+						.filter((user) => user.checked)
+						.map((user) => {
+							return {
+								username: user.username,
+								amount: user.amount.toString()
+							};
+						})
+				})
+			});
+
+			const body = await costsResponse.json();
+
+			const { error, errorMessage: errorDisplayMessage } = body;
+
+			errorState.set(error);
+			errorMessage.set(errorDisplayMessage);
+
+			return body;
+		} catch (error: any) {
+			errorState.set(true);
+			errorMessage.set(error.message);
+		} finally {
+			loading.set(false);
+		}
+	}
+
+	async function onFormSubmit(): Promise<void> {
+		const result = await createCost(cost, trip, costPaidForUser);
+
+		const message = result.error
+			? `Error: ${result.errorMessage}`
+			: `Cost ${result.data.description} created successfully`;
+		const t: ToastSettings = {
+			message: message
+		};
+		toastStore.trigger(t);
+
+		if (!result.error) {
+			modalStore.close();
+		}
 	}
 
 	$: involvedUsers = costPaidForUser.filter((user) => user.checked);
@@ -57,7 +121,7 @@
 	};
 
 	function changePaidBy(event: CustomEvent<any>) {
-		cost.paidBy = event.detail.paidBy;
+		cost.creditor = event.detail.paidBy;
 		if ($costSplitType) {
 			costPaidForUser = changeToEqual(costPaidForUser, cost, involvedUsers);
 		}
@@ -87,7 +151,7 @@
 				<svelte:fragment slot="header">Paid by</svelte:fragment>
 				<TripDetailsEditCostItemPaidBy
 					bind:users={costPaidForUser}
-					paidBy={cost.paidBy}
+					paidBy={cost.creditor}
 					on:change={changePaidBy}
 				/>
 			</Step>

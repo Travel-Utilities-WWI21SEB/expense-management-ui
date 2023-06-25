@@ -11,7 +11,7 @@ export function modifyTrip(trip: TravelData, userData: User) {
 				presenceStartDate: new Date(participant.presenceStartDate)
 			};
 		}),
-		costCategories: [],
+		costCategories: trip.costCategories,
 		startDate: new Date(trip.startDate),
 		endDate: new Date(trip.endDate),
 		hasAcceptedInvite: trip.participants.filter((user) => user.username === userData.username)[0]

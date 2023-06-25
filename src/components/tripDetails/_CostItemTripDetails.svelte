@@ -28,8 +28,6 @@
 		ref: TripDetailsCostItemModal,
 		props: { cost: cost, trip: trip }
 	};
-
-	console.log(cost);
 </script>
 
 <button

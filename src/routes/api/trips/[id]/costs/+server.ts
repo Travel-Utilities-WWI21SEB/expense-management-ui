@@ -54,22 +54,9 @@ export const GET = (async ({ fetch, params }) => {
 		});
 
 		if (response.ok) {
-			const costCategoryResponse = await fetch(`/api/trips/${params.id}/cost-categories`, {
-				method: 'GET',
-				headers: { 'Content-Type': 'application/json' }
-			});
-
 			const body = await response.json();
-			const costCategoryBody = await costCategoryResponse.json();
 
-			const result: Array<Cost> = body.map((cost: CostFromGet) => {
-				const costCategory = costCategoryBody.data.find((category: CostCategory) => {
-					if (category.costCategoryId === cost.costCategoryId) return category;
-				});
-				return { ...cost, costCategory };
-			});
-
-			return json({ error: false, errorMessage: '', data: result });
+			return json({ error: false, errorMessage: '', data: body });
 		}
 
 		const body = await response.json();
