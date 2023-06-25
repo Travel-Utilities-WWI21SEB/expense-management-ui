@@ -8,10 +8,7 @@ const costCategoriesFilled = (categories: Array<CostCategory>) => {
 			ctr++;
 		}
 	});
-	if (ctr === 0) {
-		return false;
-	}
-	return true;
+	return !(ctr === 0);
 };
 
 export function modifyTrip(trip: TravelData, userData: User) {

@@ -1,6 +1,6 @@
 import type { CostPaidForUser } from '$userDomain';
 import type { CostDateAsString } from '$tripDomain';
-import { validateAmountPrecision } from '$utils';
+import { validateAmountPrecision } from './amount';
 
 export function validateCostAllocation(
 	totalAmount: number,
