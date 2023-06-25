@@ -15,7 +15,7 @@
 		if (trip.hasAcceptedInvite) {
 			goto(`/trips/${trip.tripId}`);
 		} else {
-			goto('/trips/acceptInvite');
+			goto(`/trips/${trip.tripId}/acceptInvite`);
 		}
 	}
 </script>

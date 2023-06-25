@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { modifyUserSuggestions } from '$utils';
-	import { errorMessage, errorState, loading, selectedUsers } from '$stores';
+	import { errorMessage, errorState, loading, selectedUsers, currentUser } from '$stores';
 	import { Autocomplete, type AutocompleteOption } from '@skeletonlabs/skeleton';
 	import { RemoveIcon } from '$icons';
 
@@ -36,13 +36,15 @@
 	}
 
 	const onRemoveInvitationClick = (name: string) => {
-		selectedUsers.set($selectedUsers.filter((m) => m !== name));
+		if (name !== $currentUser.username) {
+			selectedUsers.set($selectedUsers.filter((m) => m !== name));
+		}
 	};
 
-	const onSearchInput = () => {
-		suggestUsers(inputValue).then((result) => {
-			options = modifyUserSuggestions(result.data);
-		});
+	const onSearchInput = async () => {
+		const suggestedUser = await suggestUsers(inputValue);
+
+		options = modifyUserSuggestions(suggestedUser.data);
 	};
 </script>
 
@@ -59,9 +61,13 @@
 </div>
 <div class="h-auto p-4" tabindex="-1">
 	{#each $selectedUsers as name}
-		<span class="m-4 chip variant-filled">
+		<span class="m-4 chip variant-filled h-8">
 			{name}
-			<button on:click={() => onRemoveInvitationClick(name)}><RemoveIcon /></button>
+			<button on:click={() => onRemoveInvitationClick(name)}>
+				{#if name !== $currentUser.username}
+					<RemoveIcon />
+				{/if}
+			</button>
 		</span>
 	{/each}
 </div>

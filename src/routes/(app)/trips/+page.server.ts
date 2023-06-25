@@ -1,17 +1,9 @@
 import type { User } from '$userDomain';
-import type { TravelData } from '$tripDomain';
+import type { TravelData, BackendTripType } from '$tripDomain';
 import { modifyTripData } from '$utils';
 import type { PageServerLoad } from './$types';
 
-type temporaryTripType = {
-	tripId: string;
-	startDate: string;
-	participants: Array<User>;
-	endDate: string;
-	location: string;
-};
-
-const APINotFinishedHelper = (data: Array<temporaryTripType>, userData: User) => {
+const APINotFinishedHelper = (data: Array<BackendTripType>, userData: User) => {
 	const trips: Array<TravelData> = data.map((currentTrip) => {
 		const mapTrip: TravelData = {
 			...currentTrip,
@@ -23,10 +15,6 @@ const APINotFinishedHelper = (data: Array<temporaryTripType>, userData: User) =>
 				};
 			}),
 			costCategories: [],
-			name: 'Trip Name',
-			totalCost: undefined,
-			userDept: undefined,
-			userGets: undefined,
 			startDate: new Date(currentTrip.startDate),
 			endDate: new Date(currentTrip.endDate),
 			hasAcceptedInvite: currentTrip.participants.filter(

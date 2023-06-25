@@ -48,6 +48,6 @@ export { default as TripCard } from './tripOverview/_TripCard.svelte';
 export { default as TripInfos } from './tripOverview/_TripInfos.svelte';
 export { default as UserPaymentOverview } from './tripOverview/_UserPaymentOverview.svelte';
 export { default as HeaderBar } from './tripOverview/_HeaderBar.svelte';
-export { default as ModalForm } from './tripOverview/addTrips/_ModalForm.svelte';
+export { default as AddTripForm } from './tripOverview/addTrips/_AddTripForm.svelte';
 export { default as InviteParticipantsStep } from './tripOverview/addTrips/steps/_InviteParticipantsStep.svelte';
 export { default as NewTripStep } from './tripOverview/addTrips/steps/_NewTripStep.svelte';

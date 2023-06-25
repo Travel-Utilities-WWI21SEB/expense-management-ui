@@ -52,7 +52,7 @@
 				headers: {
 					'Content-Type': 'application/json'
 				},
-				body: JSON.stringify(user)
+				body: JSON.stringify({ body: user, id: tripId })
 			});
 
 			const body = await response.json();
@@ -76,12 +76,14 @@
 			startDate: $newTripForm.startDate
 		});
 
-		await Promise.all(
+		Promise.all(
 			$selectedUsers.map(async (name) => {
-				if (name !== $currentUser.username)
+				if (name !== $currentUser.username) {
 					await inviteUsers(result.data.tripId, { username: name });
+				}
 			})
 		);
+
 		invalidateAll();
 		modalStore.close();
 		newTripForm.set({
