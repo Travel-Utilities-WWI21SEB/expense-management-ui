@@ -11,10 +11,11 @@
 		selectedUsers
 	} from '$stores';
 	import { invalidateAll } from '$app/navigation';
+	import AddCostCategories from './steps/_AddCostCategories.svelte';
 
 	selectedUsers.set([$currentUser.username]);
 
-	const createTrip = async (newTrip: { location: string; startDate: string; endDate: string }) => {
+	const createTrip = async () => {
 		loading.set(true);
 		errorState.set(false);
 
@@ -24,7 +25,7 @@
 				headers: {
 					'Content-Type': 'application/json'
 				},
-				body: JSON.stringify(newTrip)
+				body: JSON.stringify($newTripForm)
 			});
 
 			const body = await response.json();
@@ -70,13 +71,9 @@
 
 	// We've created a custom submit function to pass the response and close the modal.
 	async function onFormSubmit(): Promise<void> {
-		const result = await createTrip({
-			location: $newTripForm.location,
-			endDate: $newTripForm.endDate,
-			startDate: $newTripForm.startDate
-		});
+		const result = await createTrip();
 
-		Promise.all(
+		await Promise.all(
 			$selectedUsers.map(async (name) => {
 				if (name !== $currentUser.username) {
 					await inviteUsers(result.data.tripId, { username: name });
@@ -106,6 +103,10 @@
 			<Step locked={$newTripForm.name.length < 1 || $newTripForm.location.length < 1}>
 				<svelte:fragment slot="header">Trip Details</svelte:fragment>
 				<NewTripStep />
+			</Step>
+			<Step>
+				<svelte:fragment slot="header">Add Cost Categories</svelte:fragment>
+				<AddCostCategories />
 			</Step>
 			<Step>
 				<svelte:fragment slot="header">Invite Participants</svelte:fragment>

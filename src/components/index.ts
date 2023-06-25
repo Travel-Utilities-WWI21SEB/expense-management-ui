@@ -51,3 +51,4 @@ export { default as HeaderBar } from './tripOverview/_HeaderBar.svelte';
 export { default as AddTripForm } from './tripOverview/addTrips/_AddTripForm.svelte';
 export { default as InviteParticipantsStep } from './tripOverview/addTrips/steps/_InviteParticipantsStep.svelte';
 export { default as NewTripStep } from './tripOverview/addTrips/steps/_NewTripStep.svelte';
+export { default as AddCostCategories } from './tripOverview/addTrips/steps/_AddCostCategories.svelte';
