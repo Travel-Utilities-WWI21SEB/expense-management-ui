@@ -19,7 +19,7 @@
 	console.log(involvedUsers);
 	cost = { ...cost, splitEqually: isSplitEqually(users, cost) };
 	function changePaidBy(event: CustomEvent<any>) {
-		cost.paidBy = event.detail.paidBy;
+		cost.contributors = event.detail.paidBy;
 		if ($costSplitType === 0) {
 			users = changeToEqual(users, cost, involvedUsers);
 		}
@@ -35,7 +35,7 @@
 		{#if tabSet === 0}
 			<TripDetailsEditCostItemDetails bind:cost bind:trip bind:users bind:involvedUsers />
 		{:else if tabSet === 1}
-			<TripDetailsEditCostItemPaidBy bind:users paidBy={cost.paidBy} on:change={changePaidBy} />
+			<TripDetailsEditCostItemPaidBy bind:users paidBy={cost.creditor} on:change={changePaidBy} />
 		{:else if tabSet === 2}
 			<TripDetailsEditCostItemCostAllocation
 				bind:users

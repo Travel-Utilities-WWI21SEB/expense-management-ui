@@ -39,7 +39,7 @@
 		}
 	);
 	let cost: CostDateAsString = {
-		id: '',
+		costId: '',
 		name: '',
 		amount: 0,
 		currency: 'EUR',

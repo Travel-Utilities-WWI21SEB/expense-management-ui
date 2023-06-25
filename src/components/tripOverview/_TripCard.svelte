@@ -29,7 +29,9 @@
 			<DonutChart data={trip.data} />
 		{:else}
 			<h6 class="h6 p-4">No Access to data</h6>
-			<div class="mx-6 placeholder-circle w-72 animate-pulse" />
+			<div class="flex justify-center">
+				<div class="mx-6 placeholder-circle w-72 animate-pulse" />
+			</div>
 		{/if}
 	</div>
 </div>

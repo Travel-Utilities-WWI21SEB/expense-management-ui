@@ -2,7 +2,6 @@ import { PUBLIC_BASE_URL } from '$env/static/public';
 import { getErrorMessage } from '$utils';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './../$types';
-import type { TravelData } from '$tripDomain';
 
 export const GET = (async ({ url, fetch }) => {
 	console.log('GET');

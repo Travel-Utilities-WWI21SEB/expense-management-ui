@@ -112,12 +112,14 @@
 			})
 		);
 
-		$newCostCategories.map(async (name, index) => {
-			createCostCategories(result.data.tripId, {
-				name: name,
-				color: $newCostCategoryColors[index]
-			});
-		});
+		await Promise.all(
+			$newCostCategories.map(async (name, index) => {
+				await createCostCategories(result.data.tripId, {
+					name: name,
+					color: $newCostCategoryColors[index]
+				});
+			})
+		);
 
 		invalidateAll();
 		modalStore.close();

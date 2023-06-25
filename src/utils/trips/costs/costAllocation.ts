@@ -33,7 +33,7 @@ export function changeToEqual(
 		const number = amount / numberOfParticipants;
 		return Math.floor(number * 100) / 100;
 	}
-	let newUsers = users.map((user) => {
+	const newUsers = users.map((user) => {
 		return {
 			...user,
 			amount: user.checked ? divideAmount(cost.amount, usersInvolved.length) : 0

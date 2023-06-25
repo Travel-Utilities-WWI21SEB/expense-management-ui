@@ -14,7 +14,7 @@
 
 	let costPaidForUser: Array<CostPaidForUser> = trip.participants.flatMap(
 		(tripParticipants: User) => {
-			const userInvolved = cost.paidFor.filter(
+			const userInvolved = cost.contributors.filter(
 				(involvedUser) => tripParticipants.username === involvedUser.username
 			);
 			const newUser =
@@ -35,7 +35,6 @@
 					  };
 			return newUser;
 		}
-
 	);
 
 	//convert date to yyyy-mm-dd for date picker

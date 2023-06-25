@@ -16,7 +16,7 @@
 	let endDateTrip = trip.endDate.toISOString().slice(0, 10);
 	let startDateTrip = trip.startDate.toISOString().slice(0, 10);
 
-	function changeTimeToggle(e: Event) {
+	function changeTimeToggle() {
 		if (!checked) {
 			cost.endDate = '';
 		}
@@ -32,7 +32,7 @@
 		class="col-span-2"
 		name="Time Period"
 		bind:checked
-		on:change={(e) => changeTimeToggle(e)}>{!checked ? 'One-Time Cost' : 'Period Cost'}</SlideToggle
+		on:change={() => changeTimeToggle()}>{!checked ? 'One-Time Cost' : 'Period Cost'}</SlideToggle
 	>
 	<label class="label col-span-2 {checked ? 'sm:col-span-1' : 'sm:col-span-2'}">
 		<span>Start Date</span>

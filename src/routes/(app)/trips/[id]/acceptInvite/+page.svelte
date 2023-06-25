@@ -3,6 +3,9 @@
 	import { CrossIcon } from '$icons';
 	import { currentTrip, errorMessage, errorState, loading } from '$stores';
 	import type { TravelData } from '$tripDomain';
+	import type { PageData } from './$types';
+
+	export let data: PageData;
 
 	const onRejectClick = () => {
 		goto('/trips');
@@ -42,9 +45,11 @@
 	};
 
 	const presenceTimes = {
-		presenceStartDate: $currentTrip.startDate.toISOString().substring(0, 10),
-		presenceEndDate: $currentTrip.endDate.toISOString().substring(0, 10)
+		presenceStartDate: data.tripData.startDate.toISOString().substring(0, 10),
+		presenceEndDate: data.tripData.endDate.toISOString().substring(0, 10)
 	};
+
+	console.log(presenceTimes);
 </script>
 
 <div class="modal-form card m-8 p-4 space-y-4 lg:mx-64 lg:my-28">
@@ -52,8 +57,8 @@
 	<label class="label mx-8">
 		<span>Presence in Trip starting on:</span>
 		<input
-			min={$currentTrip.startDate.toISOString().substring(0, 10)}
-			max={$currentTrip.endDate.toISOString().substring(0, 10)}
+			min={data.tripData.startDate.toISOString().substring(0, 10)}
+			max={data.tripData.endDate.toISOString().substring(0, 10)}
 			class="input"
 			type="date"
 			placeholder={new Date(Date.now()).toISOString().substring(0, 10)}
@@ -63,8 +68,8 @@
 	<label class="label mx-8">
 		<span>Presence in Trip ending on:</span>
 		<input
-			max={$currentTrip.endDate.toISOString().substring(0, 10)}
-			min={$currentTrip.startDate.toISOString().substring(0, 10)}
+			max={data.tripData.endDate.toISOString().substring(0, 10)}
+			min={data.tripData.startDate.toISOString().substring(0, 10)}
 			class="input"
 			type="date"
 			placeholder={new Date(Date.now()).toISOString().substring(0, 10)}

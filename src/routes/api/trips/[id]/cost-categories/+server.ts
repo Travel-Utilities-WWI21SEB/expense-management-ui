@@ -2,7 +2,6 @@ import { PUBLIC_BASE_URL } from '$env/static/public';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from '../$types';
 import { getErrorMessage } from '$utils';
-import type { CostCategory } from '../../../../../domain/trip/CostCategory';
 
 export const GET = (async ({ fetch, params }) => {
 	console.log('GET');
@@ -36,7 +35,7 @@ export const GET = (async ({ fetch, params }) => {
 	}
 }) satisfies RequestHandler;
 
-export const POST = (async ({ fetch, request, url }) => {
+export const POST = (async ({ fetch, request }) => {
 	console.log('POST');
 	const requestBody = await request.json();
 	try {

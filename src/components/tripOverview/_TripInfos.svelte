@@ -3,7 +3,6 @@
 	import { calculateDate } from '$utils';
 
 	export let trip: TravelData;
-
 </script>
 
 <p>

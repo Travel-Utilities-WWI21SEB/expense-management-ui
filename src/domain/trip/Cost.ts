@@ -17,7 +17,7 @@ export interface Cost {
 }
 
 export interface CostDateAsString {
-	id: string;
+	costId: string;
 	name: string;
 	amount: number;
 	currency: string;
@@ -30,7 +30,7 @@ export interface CostDateAsString {
 	splitEqually?: boolean;
 }
 export interface CostForNewCosttem {
-	id: string;
+	costId: string;
 	name?: string;
 	amount?: number;
 	currency?: string;
