@@ -5,15 +5,14 @@ import type { RequestHandler } from './$types';
 
 export const POST = (async ({ fetch, request, url }) => {
 	console.log('POST');
-	const urlParts = url.pathname.split('/');
 	const requestBody = await request.json();
 	try {
-		const response = await fetch(`${PUBLIC_BASE_URL}/api/v1/trips/${urlParts[3]}/${urlParts[4]}`, {
+		const response = await fetch(`${PUBLIC_BASE_URL}/api/v1/trips/${requestBody.id}/invite`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify(requestBody)
+			body: JSON.stringify(requestBody.body)
 		});
 
 		if (response.ok) {

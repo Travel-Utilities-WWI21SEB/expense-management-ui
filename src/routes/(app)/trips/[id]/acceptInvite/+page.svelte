@@ -17,7 +17,7 @@
 				headers: {
 					'Content-Type': 'application/json'
 				},
-				body: JSON.stringify(presenceTimes)
+				body: JSON.stringify({ body: presenceTimes, id: currentTrip.tripId })
 			});
 
 			const body = await response.json();
@@ -37,7 +37,7 @@
 		await acceptTrip($currentTrip);
 
 		if (!$errorState) {
-			goto(`${$currentTrip.tripId}`);
+			goto(`/trips/${$currentTrip.tripId}`);
 		}
 	};
 

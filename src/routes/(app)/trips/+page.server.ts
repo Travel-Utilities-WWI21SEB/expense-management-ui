@@ -1,42 +1,5 @@
-import type { User } from '$userDomain';
-import type { TravelData } from '$tripDomain';
 import { modifyTripData } from '$utils';
 import type { PageServerLoad } from './$types';
-
-type temporaryTripType = {
-	tripId: string;
-	startDate: string;
-	participants: Array<User>;
-	endDate: string;
-	location: string;
-};
-
-const APINotFinishedHelper = (data: Array<temporaryTripType>, userData: User) => {
-	const trips: Array<TravelData> = data.map((currentTrip) => {
-		const mapTrip: TravelData = {
-			...currentTrip,
-			participants: currentTrip.participants.map((participant) => {
-				return {
-					...participant,
-					presenceEndDate: new Date(participant.presenceEndDate),
-					presenceStartDate: new Date(participant.presenceStartDate)
-				};
-			}),
-			costCategories: [],
-			name: 'Trip Name',
-			totalCost: undefined,
-			userDept: undefined,
-			userGets: undefined,
-			startDate: new Date(currentTrip.startDate),
-			endDate: new Date(currentTrip.endDate),
-			hasAcceptedInvite: currentTrip.participants.filter(
-				(user) => user.username === userData.username
-			)[0].hasAcceptedInvite
-		};
-		return mapTrip;
-	});
-	return modifyTripData(trips);
-};
 
 export const load = (async ({ fetch }) => {
 	const tripResponse = await fetch('api/trips', {
@@ -59,7 +22,7 @@ export const load = (async ({ fetch }) => {
 	if (tripBody.data) {
 		return {
 			...tripBody,
-			tripData: APINotFinishedHelper(tripBody.data, userBody.data),
+			tripData: modifyTripData(tripBody.data, userBody.data),
 			userData: userBody
 		};
 	}

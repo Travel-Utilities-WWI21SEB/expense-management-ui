@@ -6,7 +6,7 @@
 	export let trip: TravelData;
 </script>
 
-<h3 class="h3 justify-center">
+<h3 class="h3 justify-center p-4">
 	{trip.name}
 </h3>
 <div class="md:grid md:grid-cols-2">

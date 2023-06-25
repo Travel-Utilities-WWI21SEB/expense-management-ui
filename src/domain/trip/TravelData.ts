@@ -5,6 +5,7 @@ import type { CostCategory } from './CostCategory';
 export interface TravelData {
 	tripId: string;
 	name: string;
+	description: string;
 	costCategories: Array<CostCategory>;
 	data?: ChartData;
 	startDate: Date;
@@ -13,8 +14,20 @@ export interface TravelData {
 	location: string;
 	participants: Array<User>;
 	userDept?: number;
-	userGets?: number;
+	userCredit?: number;
 	hasAcceptedInvite?: boolean;
+}
+
+export interface BackendTripType {
+	tripId: string;
+	name: string;
+	description: string;
+	startDate: string;
+	participants: Array<User>;
+	endDate: string;
+	userDept: number;
+	userCredit: number;
+	location: string;
 }
 
 export interface NewTripInputs {

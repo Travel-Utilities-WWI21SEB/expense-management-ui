@@ -7,7 +7,7 @@ export { keydownHandler, pasteHandler } from './form/clipboardUtils';
 export { resetLandingPageStore } from './store/resetLandingPageStore';
 // AUTHENTICATION
 export { tokenExpired } from './token/tokenExpired';
-export { modifyTripData } from './trips/modifyTripData';
+export { modifyTripData, modifyTrip } from './trips/modifyTripData';
 export { modifyUserSuggestions } from './trips/modifyUserSuggestions';
 // VALIDATORS
 export { validateEmail } from './validation/validateEmail';
