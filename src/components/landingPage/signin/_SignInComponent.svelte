@@ -41,7 +41,7 @@
 		loading.set(true);
 		errorState.set(false);
 
-		const response = await fetch('api/users/login', {
+		const response = await fetch('/api/users/login', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -72,7 +72,7 @@
 		tokenErrorState.set(false);
 
 		try {
-			const response = await fetch(`api/users/resend-token`, {
+			const response = await fetch(`/api/users/resend-token`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'

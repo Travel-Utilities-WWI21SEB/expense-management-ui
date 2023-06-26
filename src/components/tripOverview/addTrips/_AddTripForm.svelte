@@ -22,7 +22,7 @@
 		errorState.set(false);
 
 		try {
-			const response = await fetch('api/trips', {
+			const response = await fetch('/api/trips', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
@@ -50,7 +50,7 @@
 		errorState.set(false);
 
 		try {
-			const response = await fetch(`api/trips/${tripId}/invite`, {
+			const response = await fetch(`/api/trips/${tripId}/invite`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'

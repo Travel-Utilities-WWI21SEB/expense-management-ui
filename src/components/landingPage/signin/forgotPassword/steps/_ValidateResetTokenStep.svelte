@@ -30,7 +30,7 @@
 
 		console.log('Start verifyPasswordToken');
 
-		const response = await fetch(`api/users/verify-reset-token`, {
+		const response = await fetch(`/api/users/verify-reset-token`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'

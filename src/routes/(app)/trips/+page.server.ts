@@ -2,7 +2,7 @@ import { modifyTripData } from '$utils';
 import type { PageServerLoad } from './$types';
 
 export const load = (async ({ fetch }) => {
-	const tripResponse = await fetch('api/trips', {
+	const tripResponse = await fetch('/api/trips', {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json'
@@ -11,7 +11,7 @@ export const load = (async ({ fetch }) => {
 
 	const tripBody = await tripResponse.json();
 
-	const userResponse = await fetch('api/users', {
+	const userResponse = await fetch('/api/users', {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json'

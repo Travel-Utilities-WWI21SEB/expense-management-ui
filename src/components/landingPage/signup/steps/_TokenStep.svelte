@@ -33,7 +33,7 @@
 		tokenErrorState.set(false);
 
 		try {
-			const response = await fetch(`api/users/activate`, {
+			const response = await fetch(`/api/users/activate`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
@@ -67,7 +67,7 @@
 		tokenErrorState.set(false);
 
 		try {
-			const response = await fetch(`api/users/resend-token`, {
+			const response = await fetch(`/api/users/resend-token`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'

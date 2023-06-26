@@ -11,7 +11,7 @@
 		errorState.set(false);
 
 		try {
-			const response = await fetch(`api/users/suggest?q=${input}`, {
+			const response = await fetch(`/api/users/suggest?q=${input}`, {
 				method: 'GET',
 				headers: {
 					'Content-Type': 'application/json'

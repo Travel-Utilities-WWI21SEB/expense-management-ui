@@ -25,7 +25,7 @@
 		errorState.set(false);
 
 		try {
-			const response = await fetch('api/users/verify-email', {
+			const response = await fetch('/api/users/verify-email', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
