@@ -3,6 +3,7 @@
 </script>
 
 <AppBar
+	background="bg-surface-500/25"
 	gridColumns="grid-cols-3"
 	slotDefault="place-self-center"
 	slotTrail="place-content-end"

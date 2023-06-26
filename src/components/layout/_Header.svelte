@@ -1,11 +1,10 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { DarkIcon, LightIcon, LogoutIcon, MenuIcon, SettingsIcon, UserIcon } from '$icons';
+	import { LogoutIcon, MenuIcon, SettingsIcon, UserIcon } from '$icons';
 	import {
 		AppBar,
 		LightSwitch,
 		drawerStore,
-		modeCurrent,
 		popup,
 		type PopupSettings
 	} from '@skeletonlabs/skeleton';
@@ -35,27 +34,22 @@
 </script>
 
 <!-- SETTINGS POPUP -->
-<div class="card p-4 flex flex-col flex-grow" data-popup="settingsPopup">
-	<div class="btn-group-vertical variant-ghost">
-		<button type="button" class="btn !bg-transparent">
-			<span><UserIcon width={6} height={6} /></span>
-			<span>Profile</span>
-		</button>
-		<hr class="!border-t-2 !border-separate" />
-		<button type="button" class="btn !bg-transparent" on:click={logoutHandler}>
-			<span><LogoutIcon /></span>
-			<span>Logout</span>
-		</button>
-	</div>
+<div class="btn-group-vertical variant-filled-surface" data-popup="settingsPopup">
+	<hr class="!border-t-2 !border-separate" />
+	<button type="button" class="btn !bg-transparent">
+		<span><UserIcon width={6} height={6} /></span>
+		<span>Profile</span>
+	</button>
+	<hr class="!border-t-2 !border-separate" />
+	<button type="button" class="btn !bg-transparent" on:click={logoutHandler}>
+		<span><LogoutIcon /></span>
+		<span>Logout</span>
+	</button>
 </div>
+
 <!-- SETTINGS POPUP-->
 
-<AppBar
-	gridColumns="grid-cols-3"
-	slotDefault="place-self-center"
-	slotTrail="place-content-end"
-	border="border-b border-current"
->
+<AppBar background="bg-surface-500/25" border="border-b border-current">
 	<svelte:fragment slot="lead">
 		<!-- Menu (only on small devices) -->
 		<button
@@ -66,22 +60,20 @@
 			<MenuIcon width={8} height={8} />
 		</button>
 		<!-- Menu (only on small devices) -->
-		<!-- Logo -->
-	</svelte:fragment>
-	{#if !$modeCurrent}
-		<DarkIcon width={70} height={10} />
-	{:else}
-		<LightIcon width={70} height={10} />
-	{/if}
-	<svelte:fragment slot="trail">
+
 		<!-- Search Bar -->
 		<!-- TBD -->
 		<!-- Search Bar -->
-
-		<!-- Theme Switch -->
-		<LightSwitch width="w-12 lg:w-16" height="h-6 lg:h-8" />
-		<!-- Theme Switch -->
-
+	</svelte:fragment>
+	<svelte:fragment slot="trail">
+		<LightSwitch
+			bgDark="bg-surface-200/50"
+			bgLight="bg-surface-200/50"
+			fillLight="gray-500"
+			width="w-12 lg:w-16"
+			height="h-6 lg:h-8"
+			class="mx-auto"
+		/>
 		<!-- Settings -->
 		<button type="button" class="btn-icon variant-ringed" use:popup={settingsPopup}>
 			<SettingsIcon width={8} height={8} />

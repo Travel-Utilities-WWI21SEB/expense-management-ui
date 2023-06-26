@@ -16,30 +16,29 @@
 	// Set floating ui defaults
 	storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
 
-	import { Footer, Header, Sidebar } from '$components';
+	import { Footer, Header } from '$components';
+	import NewSidebar from '../../components/layout/_NewSidebar.svelte';
 </script>
 
 <!-- MOBILE ONLY! -->
-<Drawer width="w-28 md:w-36" height="max-h-full" class="p-0 m-1">
-	<h3 class="h3 font-bold">Navigation</h3>
-	<hr class="!border-t-4" />
-	<Sidebar />
+<Drawer width="w-3/5">
+	<NewSidebar />
 </Drawer>
 <!-- MOBILE ONLY! -->
 
-<AppShell slotSidebarLeft="w-0 lg:w-20">
+<AppShell slotSidebarLeft="bg-surface-500/25 w-0 lg:w-1/5 border-r border-current">
 	<!-- Header -->
-	<svelte:fragment slot="header">
+	<svelte:fragment slot="pageHeader">
 		<Header />
 	</svelte:fragment>
 	<!-- Left sidebar -->
 	<svelte:fragment slot="sidebarLeft">
-		<Sidebar />
+		<NewSidebar />
 	</svelte:fragment>
 	<!-- Content -->
 	<slot />
 	<!-- Footer -->
-	<svelte:fragment slot="footer">
+	<svelte:fragment slot="pageFooter">
 		<Footer />
 	</svelte:fragment>
 </AppShell>
