@@ -6,7 +6,7 @@
 		"node": "^19.9.0",
 		"pnpm": "^8.6.0"
 	},
-	"packageManager": "pnpm@8.6.3",
+	"packageManager": "pnpm@8.6.4",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
