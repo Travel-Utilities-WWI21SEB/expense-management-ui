@@ -34,11 +34,12 @@
 				amount: 0,
 				currencyCode: 'EUR',
 				user: tripParticipant,
-				checked: false
+				checked: true
 			};
 		}
 	);
 	let cost: CostDateAsString = {
+		costCategoryId: '',
 		costId: '',
 		name: '',
 		amount: 0,
@@ -48,7 +49,7 @@
 		endDate: '',
 		creditor: trip.participants[0].username,
 		contributors: costPaidForUser,
-		startDate: new Date().toISOString().slice(0, 10)
+		startDate: trip.startDate.toISOString().slice(0, 10)
 	};
 
 	export async function createCost(
@@ -71,6 +72,7 @@
 					currency: cost.currency,
 					description: cost.name,
 					deductedAt: `${cost.startDate}T00:00:00+02:00`,
+					endDate: cost.endDate ? `${cost.endDate}T00:00:00+02:00` : null,
 					creditor: cost.creditor,
 					contributors: costPaidForUser
 						.filter((user) => user.checked)
@@ -169,4 +171,3 @@
 		</Stepper>
 	</div>
 </div>
-<!-- TODO: equally and custom not initially 0 -->

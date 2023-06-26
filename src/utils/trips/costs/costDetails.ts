@@ -2,7 +2,9 @@ import type { CostDateAsString } from '$tripDomain';
 import { validateAmountPrecision } from './amount';
 
 export function validateDetails(cost: CostDateAsString, endDate: boolean): boolean {
-	const endDateValid = endDate ? Boolean(cost.endDate) : !cost.endDate;
+	const endDateValid = endDate
+		? Boolean(cost.endDate) && isEndDateAfterStartDate(cost.startDate, cost.endDate)
+		: !cost.endDate || cost.endDate === cost.startDate;
 	return (
 		cost.name !== '' &&
 		validateAmountPrecision(cost.amount) &&
@@ -10,4 +12,8 @@ export function validateDetails(cost: CostDateAsString, endDate: boolean): boole
 		endDateValid &&
 		cost.costCategory.costCategoryId !== ''
 	);
+}
+
+function isEndDateAfterStartDate(startDate: string, endDate: string | undefined): boolean {
+	return endDate ? new Date(startDate) < new Date(endDate) : false;
 }

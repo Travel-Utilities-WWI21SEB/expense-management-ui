@@ -1,8 +1,9 @@
 <script lang="ts">
-	import { TripDetailsCostItem, TripDetailsAddNewCostItem } from '$components';
+	import { TripDetailsCostItem, TripDetailsAddNewCostItem, AlertWithAction } from '$components';
 	import type { Cost, TravelData } from '$tripDomain';
 	import type { ModalComponent, ModalSettings } from '@skeletonlabs/skeleton';
 	import { modalStore } from '@skeletonlabs/skeleton';
+	import { CostIcon } from '$icons';
 
 	export let costs: Array<Cost>;
 	export let trip: TravelData;
@@ -35,17 +36,25 @@
 			<span>Add</span>
 		</button>
 	</div>
-	<ul class="list p-2 max-h-[500px] overflow-auto">
-		{#each costs as cost, i}
-			<li>
-				<TripDetailsCostItem
-					{cost}
-					{selectionIndex}
-					{i}
-					{trip}
-					on:select_item={(e) => handleSelectItem(e)}
-				/>
-			</li>
-		{/each}
-	</ul>
+	{#if costs.length === 0}
+		<AlertWithAction
+			alertHeading="This trip has no costs yet"
+			class="variant-ghost-primary"
+			icon={CostIcon}
+		/>
+	{:else}
+		<ul class="list p-2 max-h-[500px] overflow-auto">
+			{#each costs as cost, i}
+				<li>
+					<TripDetailsCostItem
+						{cost}
+						{selectionIndex}
+						{i}
+						{trip}
+						on:select_item={(e) => handleSelectItem(e)}
+					/>
+				</li>
+			{/each}
+		</ul>
+	{/if}
 </div>

@@ -10,6 +10,7 @@
 	errorMessage.set(data.errorMessage);
 	errorState.set(data.error);
 	currentUser.set(data.userData.data);
+
 	function onTripCardClick(trip: TravelData) {
 		currentTrip.update(() => trip);
 		if (trip.hasAcceptedInvite) {

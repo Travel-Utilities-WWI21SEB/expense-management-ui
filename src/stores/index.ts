@@ -27,4 +27,10 @@ export {
 // User store
 export { authToken, currentUser, selectedUsers } from './userStore';
 //Cost store
-export { costDetailsValid, costPaidByValid, costAllocationValid, costSplitType } from './costStore';
+export {
+	costDetailsValid,
+	costPaidByValid,
+	costAllocationValid,
+	costSplitType,
+	currentCost
+} from './costStore';

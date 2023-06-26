@@ -4,6 +4,7 @@
 	import { calculateDate, pickTextColorBasedOnBgColorSimple } from '$utils';
 	import { TripDetailsCostItemModal } from '$components';
 	import { modalStore, type ModalComponent, type ModalSettings } from '@skeletonlabs/skeleton';
+	import { currentCost } from '../../stores/costStore';
 
 	export let cost: Cost;
 	export let i: number;
@@ -16,6 +17,8 @@
 		dispatch('select_item', {
 			index: i
 		});
+
+		currentCost.set(cost);
 
 		const modal: ModalSettings = {
 			type: 'component',

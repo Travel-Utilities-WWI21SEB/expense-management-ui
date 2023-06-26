@@ -16,6 +16,7 @@ export function modifyCosts(costs: Array<CostFromGet>, costCategories: Array<Cos
 			...cost,
 			costCategory,
 			startDate: new Date(cost.deductedAt),
+			endDate: cost.endDate ? new Date(cost.endDate) : undefined,
 			name: cost.description,
 			contributors,
 			amount: Number(cost.amount)

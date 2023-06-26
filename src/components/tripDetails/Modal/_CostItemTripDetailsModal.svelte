@@ -12,19 +12,25 @@
 	} from '$stores';
 	import { modalStore, toastStore, type ToastSettings } from '@skeletonlabs/skeleton';
 	import { invalidateAll } from '$app/navigation';
+	import { currentCost } from '$stores';
 
 	/* export let name: string; */
 	export let cost: Cost;
 	export let trip: TravelData;
 	export let parent: any;
 
+	currentCost.subscribe((currCost) => (cost = currCost));
+
 	$: validData = $costAllocationValid && $costDetailsValid && costPaidByValid;
 
 	let costPaidForUser: Array<CostPaidForUser> = trip.participants.flatMap(
 		(tripParticipants: User) => {
-			const userInvolved = cost.contributors.filter(
-				(involvedUser) => tripParticipants.username === involvedUser.username
-			);
+			const userInvolved = cost?.contributors
+				? cost.contributors.filter(
+						(involvedUser) => tripParticipants.username === involvedUser.username
+				  )
+				: [];
+
 			const newUser =
 				userInvolved.length > 0
 					? userInvolved.map((involvedUser) => {
@@ -53,9 +59,10 @@
 			? cost.endDate.toISOString().slice(0, 10)
 			: cost.startDate.toISOString().slice(0, 10)
 	};
+
 	let isEditing = false;
 
-	export async function updateCost(
+	async function updateCost(
 		cost: CostDateAsString,
 		trip: TravelData,
 		costPaidForUser: Array<CostPaidForUser>
@@ -72,9 +79,10 @@
 				body: JSON.stringify({
 					costCategoryId: cost.costCategory.costCategoryId,
 					amount: cost.amount.toString(),
-					currency: cost.currency,
+					currency: cost.currency === '' ? 'EUR' : cost.currency,
 					description: cost.name,
 					deductedAt: `${cost.startDate}T00:00:00+02:00`,
+					endDate: cost.endDate ? `${cost.endDate}T00:00:00+02:00` : null,
 					creditor: cost.creditor,
 					contributors: costPaidForUser
 						.filter((user) => user.checked)
@@ -108,7 +116,7 @@
 
 		const message = result.error
 			? `Error: ${result.errorMessage}`
-			: `Cost ${result.data.description} created successfully`;
+			: `Cost ${result.data.description} saved successfully`;
 		const t: ToastSettings = {
 			message: message,
 			background: result.error ? 'variant-filled-warning' : 'variant-filled-success'
@@ -116,7 +124,7 @@
 		toastStore.trigger(t);
 
 		if (!result.error) {
-			invalidateAll();
+			await invalidateAll();
 			modalStore.close();
 		}
 	}
@@ -127,7 +135,7 @@
 		{#if isEditing}
 			<TripDetailsEditCostItem bind:cost={localeCost} bind:users={costPaidForUser} {trip} />
 		{:else}
-			<TripDetailsShowCostItem cost={localeCost} />
+			<TripDetailsShowCostItem bind:cost={localeCost} />
 		{/if}
 	</div>
 	<footer class="modal-footer {parent.regionFooter}">

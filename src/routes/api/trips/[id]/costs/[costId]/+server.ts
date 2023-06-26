@@ -6,10 +6,9 @@ import type { RequestHandler } from '../$types';
 export const PATCH = (async ({ url, fetch, request, params }) => {
 	console.log('PATCH');
 	const requestBody = await request.json();
-	console.log(requestBody);
 	try {
 		const response = await fetch(
-			`${PUBLIC_BASE_URL}/api/v1/trips/${params.id}/costs/${url.pathname.split('/')[5]}}}`,
+			`${PUBLIC_BASE_URL}/api/v1/trips/${params.id}/costs/${url.pathname.split('/')[5]}`,
 			{
 				method: 'PATCH',
 				headers: {

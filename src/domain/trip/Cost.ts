@@ -24,11 +24,13 @@ export interface CostDateAsString {
 	creationDate: Date;
 	startDate: string;
 	endDate?: string;
+	costCategoryId: string;
 	costCategory: CostCategory;
 	contributors: Array<CostPaidForUser>;
 	creditor: string;
 	splitEqually?: boolean;
 }
+
 export interface CostForNewCosttem {
 	costId: string;
 	name?: string;

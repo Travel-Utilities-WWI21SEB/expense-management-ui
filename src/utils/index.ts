@@ -1,4 +1,4 @@
-export { calculateDate } from './date/calculateDate';
+export { calculateDate, calculateTomorrowForInputFormat } from './date/calculateDate';
 export { pickTextColorBasedOnBgColorSimple } from './color/color';
 // ERROR HANDLING
 export { getErrorMessage } from './error/getErrorMessage';

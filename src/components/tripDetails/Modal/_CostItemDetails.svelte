@@ -3,7 +3,7 @@
 	import type { CostPaidForUser } from '$userDomain';
 	import { SlideToggle } from '@skeletonlabs/skeleton';
 	import { CheckIcon, CrossIcon } from '$icons';
-	import { changeToEqual, validateDetails } from '$utils';
+	import { calculateTomorrowForInputFormat, changeToEqual, validateDetails } from '$utils';
 	import { costDetailsValid, costSplitType } from '$stores';
 
 	export let cost: CostDateAsString;
@@ -12,13 +12,13 @@
 	export let involvedUsers: Array<CostPaidForUser>;
 
 	$: costDetailsValid.set(validateDetails(cost, checked));
-	let checked: boolean = cost.endDate ? true : false;
-	let endDateTrip = trip.endDate.toISOString().slice(0, 10);
-	let startDateTrip = trip.startDate.toISOString().slice(0, 10);
+	let checked: boolean = cost.endDate !== cost.startDate ? true : false;
+	const endDateTrip = trip.endDate.toISOString().slice(0, 10);
+	const startDateTrip = trip.startDate.toISOString().slice(0, 10);
 
 	function changeTimeToggle() {
 		if (!checked) {
-			cost.endDate = '';
+			cost.endDate = cost.startDate;
 		}
 	}
 </script>
@@ -50,7 +50,7 @@
 			<input
 				class="input"
 				type="date"
-				min={cost.startDate}
+				min={calculateTomorrowForInputFormat(cost.startDate)}
 				max={endDateTrip}
 				bind:value={cost.endDate}
 			/>
