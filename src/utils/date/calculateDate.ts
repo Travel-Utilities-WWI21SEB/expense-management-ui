@@ -11,3 +11,19 @@ function calculateTomorrow(date: Date): Date {
 	tomorrow.setDate(tomorrow.getDate() + 1);
 	return tomorrow;
 }
+
+export function isEndDateAfterStartDate(startDate: string, endDate: string | undefined): boolean {
+	function isYearafter(startDate: Date, endDate: Date): boolean {
+		return startDate.getFullYear() < endDate.getFullYear();
+	}
+	function isMonthAfter(startDate: Date, endDate: Date): boolean {
+		return startDate.getFullYear() < endDate.getFullYear();
+	}
+	function isDayAfter(startDate: Date, endDate: Date): boolean {
+		return startDate.getFullYear() < endDate.getFullYear();
+	}
+	if (!endDate) return false;
+	const startDateAsDate = new Date(startDate);
+	const endDateAsDate = new Date(endDate);
+	return startDateAsDate < endDateAsDate;
+}

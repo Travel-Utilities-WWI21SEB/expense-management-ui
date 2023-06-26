@@ -1,4 +1,5 @@
 import type { CostDateAsString } from '$tripDomain';
+import { isEndDateAfterStartDate } from '$utils';
 import { validateAmountPrecision } from './amount';
 
 export function validateDetails(cost: CostDateAsString, endDate: boolean): boolean {
@@ -12,8 +13,4 @@ export function validateDetails(cost: CostDateAsString, endDate: boolean): boole
 		endDateValid &&
 		cost.costCategory.costCategoryId !== ''
 	);
-}
-
-function isEndDateAfterStartDate(startDate: string, endDate: string | undefined): boolean {
-	return endDate ? new Date(startDate) < new Date(endDate) : false;
 }

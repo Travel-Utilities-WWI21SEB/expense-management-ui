@@ -3,7 +3,12 @@
 	import type { CostPaidForUser } from '$userDomain';
 	import { SlideToggle } from '@skeletonlabs/skeleton';
 	import { CheckIcon, CrossIcon } from '$icons';
-	import { calculateTomorrowForInputFormat, changeToEqual, validateDetails } from '$utils';
+	import {
+		calculateTomorrowForInputFormat,
+		changeToEqual,
+		isEndDateAfterStartDate,
+		validateDetails
+	} from '$utils';
 	import { costDetailsValid, costSplitType } from '$stores';
 
 	export let cost: CostDateAsString;
@@ -18,7 +23,23 @@
 
 	function changeTimeToggle() {
 		if (!checked) {
-			cost.endDate = cost.startDate;
+			cost.endDate =
+				new Date(cost.startDate).toDateString() === new Date(endDateTrip).toDateString()
+					? cost.startDate
+					: calculateTomorrowForInputFormat(cost.startDate);
+		}
+	}
+
+	function changeStartDate(e: any) {
+		{
+			if (checked && cost.endDate && !isEndDateAfterStartDate(e.target.value, cost.endDate)) {
+				if (new Date(e.target.value).toDateString() === new Date(endDateTrip).toDateString()) {
+					cost.endDate = e.target.value;
+					checked = false;
+				} else {
+					cost.endDate = calculateTomorrowForInputFormat(cost.startDate);
+				}
+			}
 		}
 	}
 </script>
@@ -42,6 +63,7 @@
 			min={startDateTrip}
 			max={endDateTrip}
 			bind:value={cost.startDate}
+			on:change={(e) => changeStartDate(e)}
 		/>
 	</label>
 	{#if checked}
