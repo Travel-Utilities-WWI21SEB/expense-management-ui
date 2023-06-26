@@ -1,5 +1,5 @@
 import type { CostDateAsString } from '$tripDomain';
-import { isEndDateAfterStartDate } from '$utils';
+import { isEndDateAfterStartDate } from '../../date/calculateDate';
 import { validateAmountPrecision } from './amount';
 
 export function validateDetails(cost: CostDateAsString, endDate: boolean): boolean {
