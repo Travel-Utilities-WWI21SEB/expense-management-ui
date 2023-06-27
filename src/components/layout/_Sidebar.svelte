@@ -6,6 +6,7 @@
 		GlobeIcon,
 		HomepageIcon,
 		LightIcon,
+		NotificationIcon,
 		TimeIcon,
 		UserIcon
 	} from '$icons';
@@ -80,9 +81,12 @@
 			</li>
 			<li>
 				<a href="/notifications" class={classesActive('/notifications')} on:click={drawerClose}>
-					<span class="badge">
-						<TimeIcon width={8} height={8} />
-					</span>
+					<div class="relative inline-block">
+						<span class="badge-icon variant-filled-warning absolute -top-1 -right-1 z-10">2</span>
+						<span class="badge">
+							<NotificationIcon />
+						</span>
+					</div>
 					<span class="flex-auto">Notifications</span>
 				</a>
 			</li>

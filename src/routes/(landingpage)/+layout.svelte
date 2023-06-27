@@ -10,7 +10,7 @@
 	import '../../app.postcss';
 
 	import { page } from '$app/stores';
-	import { LandingPageFooter, LandingPageHeader, LandingPageSidebar } from '$components';
+	import { Footer, LandingPageHeader, LandingPageSidebar } from '$components';
 	import { AppShell, Drawer, Modal, Toast } from '@skeletonlabs/skeleton';
 
 	let currentTile = 0;
@@ -44,6 +44,6 @@
 	<slot />
 	<!-- Footer -->
 	<svelte:fragment slot="pageFooter">
-		<LandingPageFooter />
+		<Footer />
 	</svelte:fragment>
 </AppShell>

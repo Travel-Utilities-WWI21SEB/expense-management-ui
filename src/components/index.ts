@@ -1,10 +1,10 @@
 // Layout
 export { default as HeaderAndTwoPartsLayout } from './general/_HeaderAndTwoPartsLayout.svelte';
+export { default as ImprintComponent } from './general/_Imprint.svelte';
 export { default as CatchPhraseText } from './landingPage/_CatchPhraseText.svelte';
 export { default as ContactBox } from './landingPage/_ContactBox.svelte';
 export { default as LandingPageFeatureBoxLeft } from './landingPage/_FeatureBoxLeft.svelte';
 export { default as LandingPageFeatureBoxRight } from './landingPage/_FeatureBoxRight.svelte';
-export { default as LandingPageFooter } from './landingPage/layout/_LandingPageFooter.svelte';
 //SignIn
 export { default as AlertWithAction } from './general/_AlertWithAction.svelte';
 export { default as ProgressCircleAnimated } from './general/_ProgressCircleAnimated.svelte';

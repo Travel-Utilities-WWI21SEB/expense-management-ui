@@ -11,7 +11,7 @@
 
 	// Import floating ui and skeleton deps
 	import { arrow, autoUpdate, computePosition, flip, offset, shift } from '@floating-ui/dom';
-	import { AppShell, Drawer, storePopup } from '@skeletonlabs/skeleton';
+	import { AppShell, Drawer, Modal, storePopup } from '@skeletonlabs/skeleton';
 
 	// Set floating ui defaults
 	storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
@@ -24,6 +24,10 @@
 	<Sidebar />
 </Drawer>
 <!-- MOBILE ONLY! -->
+
+<!-- MODAL PLACEHOLDER -->
+<Modal />
+<!-- MODAL PLACEHOLDER -->
 
 <AppShell slotSidebarLeft="bg-surface-500/25 w-0 lg:w-2/12 border-r border-current">
 	<!-- Header -->

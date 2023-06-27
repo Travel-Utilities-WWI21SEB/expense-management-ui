@@ -18,6 +18,7 @@ export { default as LinkedinIcon } from './_LinkedinIcon.svelte';
 export { default as LogoutIcon } from './_LogoutIcon.svelte';
 export { default as MailInboxIcon } from './_MailInboxIcon.svelte';
 export { default as MenuIcon } from './_MenuIcon.svelte';
+export { default as NotificationIcon } from './_NotificationIcon.svelte';
 export { default as OpenEnvelopeIcon } from './_OpenEnvelopeIcon.svelte';
 export { default as PlusIcon } from './_PlusIcon.svelte';
 export { default as PuzzleIcon } from './_PuzzleIcon.svelte';
