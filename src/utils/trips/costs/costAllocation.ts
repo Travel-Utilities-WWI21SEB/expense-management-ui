@@ -78,3 +78,11 @@ export function selectAllPeople(
 		};
 	});
 }
+
+export function calculateRestAmount(totalAmount: number, users: Array<CostPaidForUser>): number {
+	let sum = 0;
+	users.forEach((user) => {
+		sum += user.amount;
+	});
+	return totalAmount - sum;
+}

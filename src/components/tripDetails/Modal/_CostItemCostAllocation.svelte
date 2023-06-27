@@ -7,7 +7,8 @@
 		changeToEqual,
 		deselectAllPeople,
 		selectAllPeople,
-		isSplitEqually
+		isSplitEqually,
+		calculateRestAmount
 	} from '$utils';
 	import { costAllocationValid, costSplitType } from '$stores';
 	import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
@@ -18,6 +19,7 @@
 
 	$costSplitType = isSplitEqually(users, cost) ? 0 : 1;
 	$: costAllocationValid.set(validateCostAllocation(cost.amount, users));
+	$: restAmount = calculateRestAmount(cost.amount, users);
 </script>
 
 <div class="grid grid-cols-1 gap-2">
@@ -105,6 +107,16 @@
 			{:else}
 				<span class="badge-icon variant-filled-success w-4 h-4"><CheckIcon /></span>
 				<span class="flex-auto">Cost allocation is valid</span>
+			{/if}
+		</li>
+		<li>
+			{#if !$costAllocationValid}
+				<span class="badge-icon variant-filled-error w-4 h-4"><CrossIcon /></span>
+				<span class="flex-auto"
+					>{`${Math.abs(restAmount).toString()} € ${
+						restAmount > 0 ? 'are left to split' : 'are split too much'
+					}`}</span
+				>
 			{/if}
 		</li>
 	</ol>

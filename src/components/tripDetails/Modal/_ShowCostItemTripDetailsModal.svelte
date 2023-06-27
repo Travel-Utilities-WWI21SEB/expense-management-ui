@@ -13,7 +13,7 @@
 		>
 	</h1>
 
-	<div class="flex">
+	<div class="flex justify-center lg:col-span-2">
 		<h3 class="h3 pr-2 font-semibold">
 			{#if cost.endDate !== cost.startDate && cost.endDate}
 				Time Period:
@@ -41,7 +41,7 @@
 		<h3 class="h3 font-semibold text-primary-500">{cost.creditor}</h3>
 	</div>
 
-	<div class="hidden lg:flex text-clip overflow-hidden content-center">
+	<!-- <div class="hidden lg:flex text-clip overflow-hidden content-center">
 		<p
 			style="background-color: {cost.costCategory.color}"
 			class="w-full text-sm text-
@@ -50,7 +50,7 @@
 		>
 			{cost.costCategory.name}
 		</p>
-	</div>
+	</div> -->
 
 	<div class="lg:col-span-2">
 		<h3 class="h3 font-semibold">Cost allocation:</h3>
@@ -69,7 +69,7 @@
 		</div>
 	</div>
 
-	<div class="lg:hidden text-clip overflow-hidden content-center">
+	<div class="text-clip lg:col-span-2 overflow-hidden content-center">
 		<p
 			style="background-color: {cost.costCategory.color}"
 			class="w-full text-sm text-

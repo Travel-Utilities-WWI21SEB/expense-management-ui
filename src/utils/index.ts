@@ -26,5 +26,10 @@ export { validateDetails } from './trips/costs/costDetails';
 export { validateAmountPrecision } from './trips/costs/amount';
 
 //COST
-export { changeToEqual, deselectAllPeople, selectAllPeople } from './trips/costs/costAllocation';
+export {
+	changeToEqual,
+	deselectAllPeople,
+	selectAllPeople,
+	calculateRestAmount
+} from './trips/costs/costAllocation';
 export { modifyCosts } from './trips/costs/modifyCostData';

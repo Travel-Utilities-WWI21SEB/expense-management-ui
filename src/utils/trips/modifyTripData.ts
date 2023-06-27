@@ -1,7 +1,7 @@
 import type { ChartData, CostCategory, TravelData } from '$tripDomain';
 import type { User } from '$userDomain';
 
-const costCategoriesFilled = (categories: Array<CostCategory>) => {
+const costCategoriesFilled = (categories: Array<CostCategory>): boolean => {
 	let ctr = 0;
 	categories.forEach((category) => {
 		if (category.totalCost > 0) {

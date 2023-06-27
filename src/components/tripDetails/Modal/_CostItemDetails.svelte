@@ -66,6 +66,7 @@
 			on:change={(e) => changeStartDate(e)}
 		/>
 	</label>
+
 	{#if checked}
 		<label class="label col-span-2 sm:col-span-1">
 			<span class="font-semibold">End Date</span>
