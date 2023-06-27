@@ -38,7 +38,7 @@ export const PATCH = (async ({ url, fetch, request, params }) => {
 	}
 }) satisfies RequestHandler;
 
-export const DELETE = (async ({ url, fetch, request, params }) => {
+export const DELETE = (async ({ url, fetch, params }) => {
 	console.log('DELETE');
 	try {
 		const response = await fetch(
