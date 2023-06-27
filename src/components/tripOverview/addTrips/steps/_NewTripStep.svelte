@@ -1,5 +1,11 @@
 <script lang="ts">
 	import { newTripForm } from '$stores';
+
+	const onStartDateChange = () => {
+		if (new Date($newTripForm.endDate) < new Date($newTripForm.startDate)) {
+			newTripForm.set({ ...$newTripForm, endDate: $newTripForm.startDate });
+		}
+	};
 </script>
 
 <form class="modal-form p-4 space-y-4">
@@ -24,10 +30,11 @@
 			type="date"
 			placeholder={new Date(Date.now()).toISOString().substring(0, 10)}
 			bind:value={$newTripForm.startDate}
+			on:change={onStartDateChange}
 		/>
 	</label>
 	<label class="label">
-		<span>Start Date:</span>
+		<span>End Date:</span>
 		<input
 			min={$newTripForm.startDate}
 			class="input"

@@ -8,12 +8,16 @@
 	export let alertHeading: string;
 	export let actionText = '';
 	export let enableAction = false;
+
+	export let icon: any = ErrorIcon;
 </script>
 
 <aside class="alert {$$props.class} w-full">
 	<!-- Icon -->
 	<div>
-		<span class="badge-icon w-15 h-15"><ErrorIcon /></span>
+		<span class="badge-icon w-15 h-15">
+			<svelte:component this={icon} />
+		</span>
 	</div>
 	<!-- Message -->
 	<div class="alert-message">

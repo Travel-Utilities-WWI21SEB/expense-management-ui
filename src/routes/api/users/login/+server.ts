@@ -60,7 +60,6 @@ export const POST = (async ({ cookies, fetch, request }) => {
 
 		return json({ success: false, error: true, errorMessage });
 	} catch (error) {
-		console.log(error);
 		const errorMessage = getErrorMessage('EM-000'); // Default error message
 		return json({ success: false, error: true, errorMessage });
 	}

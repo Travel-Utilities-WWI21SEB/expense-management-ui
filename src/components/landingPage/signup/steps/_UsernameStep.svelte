@@ -22,7 +22,7 @@
 		loading.set(true);
 		errorState.set(false);
 
-		const response = await fetch('api/users/verify-username', {
+		const response = await fetch('/api/users/verify-username', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'

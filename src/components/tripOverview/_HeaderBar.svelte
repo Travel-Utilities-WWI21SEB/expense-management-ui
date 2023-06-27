@@ -5,15 +5,15 @@
 		type ModalComponent,
 		type ModalSettings
 	} from '@skeletonlabs/skeleton';
-	import { ModalForm } from '$components';
+	import { AddTripForm } from '$components';
 	import { newTripForm } from '$stores';
 	import { PlusIcon } from '$icons';
 
 	const modalComponentRegistry: Record<string, ModalComponent> = {
 		// Custom Modal 1
-		ModalForm: {
+		AddTripForm: {
 			// Pass a reference to your custom component
-			ref: ModalForm,
+			ref: AddTripForm,
 			// Add the component properties as key/value pairs
 			props: { background: 'bg-red-500' },
 			// Provide a template literal for the default component slot
@@ -25,7 +25,7 @@
 		const modal: ModalSettings = {
 			type: 'component',
 			// Pass the component registry key as a string:
-			component: 'ModalForm',
+			component: 'AddTripForm',
 			title: 'Add new Trip',
 			response: () => {
 				newTripForm.set({

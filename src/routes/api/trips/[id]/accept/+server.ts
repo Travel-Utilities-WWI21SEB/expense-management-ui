@@ -3,15 +3,16 @@ import { getErrorMessage } from '$utils';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
-export const POST = (async ({ fetch, url }) => {
+export const POST = (async ({ fetch, request }) => {
 	console.log('POST');
-	const urlParts = url.pathname.split('/');
+	const requestBody = await request.json();
 	try {
-		const response = await fetch(`${PUBLIC_BASE_URL}/api/v1/trips/${urlParts[3]}/${urlParts[4]}`, {
+		const response = await fetch(`${PUBLIC_BASE_URL}/api/v1/trips/${requestBody.id}/accept`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
-			}
+			},
+			body: JSON.stringify(requestBody.body)
 		});
 
 		if (response.ok) {
@@ -22,7 +23,6 @@ export const POST = (async ({ fetch, url }) => {
 		const { errorCode } = body;
 		const errorMessage = getErrorMessage(errorCode);
 
-		// 409: Conflict -> Email already exists (implicitly handled here)
 		return json({ exists: false, error: true, errorMessage });
 	} catch (exception) {
 		return json({
