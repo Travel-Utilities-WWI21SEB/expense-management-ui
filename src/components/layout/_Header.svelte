@@ -1,22 +1,10 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { LogoutIcon, MenuIcon, SettingsIcon, UserIcon } from '$icons';
-	import {
-		AppBar,
-		LightSwitch,
-		drawerStore,
-		popup,
-		type PopupSettings
-	} from '@skeletonlabs/skeleton';
+	import { LogoutIcon, MenuIcon, SearchIcon } from '$icons';
+	import { AppBar, LightSwitch, drawerStore } from '@skeletonlabs/skeleton';
 
 	const drawerOpen = (): void => {
 		drawerStore.open({});
-	};
-
-	const settingsPopup: PopupSettings = {
-		event: 'click',
-		target: 'settingsPopup',
-		placement: 'bottom'
 	};
 
 	const logoutHandler = async (): Promise<void> => {
@@ -33,20 +21,6 @@
 	};
 </script>
 
-<!-- SETTINGS POPUP -->
-<div class="btn-group-vertical variant-filled-surface" data-popup="settingsPopup">
-	<hr class="!border-t-2 !border-separate" />
-	<button type="button" class="btn !bg-transparent">
-		<span><UserIcon width={6} height={6} /></span>
-		<span>Profile</span>
-	</button>
-	<hr class="!border-t-2 !border-separate" />
-	<button type="button" class="btn !bg-transparent" on:click={logoutHandler}>
-		<span><LogoutIcon /></span>
-		<span>Logout</span>
-	</button>
-</div>
-
 <!-- SETTINGS POPUP-->
 
 <AppBar background="bg-surface-500/25" border="border-b border-current">
@@ -60,11 +34,23 @@
 			<MenuIcon width={8} height={8} />
 		</button>
 		<!-- Menu (only on small devices) -->
-
-		<!-- Search Bar -->
-		<!-- TBD -->
-		<!-- Search Bar -->
 	</svelte:fragment>
+	<!-- Search Bar -->
+	<div
+		class="input-group input-group-divider grid-cols-[auto_1fr_auto] hidden md:flex md:w-2/3 lg:w-1/2"
+	>
+		<div class="input-group-shim">
+			<SearchIcon />
+		</div>
+		<input
+			type="search"
+			id="default-search"
+			class="w-full border border-current rounded-lg"
+			placeholder="Search Trips..."
+			required
+		/>
+	</div>
+	<!-- Search Bar -->
 	<svelte:fragment slot="trail">
 		<LightSwitch
 			bgDark="bg-surface-200/50"
@@ -75,8 +61,8 @@
 			class="mx-auto"
 		/>
 		<!-- Settings -->
-		<button type="button" class="btn-icon variant-ringed" use:popup={settingsPopup}>
-			<SettingsIcon width={8} height={8} />
+		<button type="button" class="btn-icon variant-ringed" on:click={logoutHandler}>
+			<LogoutIcon />
 		</button>
 		<!-- Settings -->
 	</svelte:fragment>

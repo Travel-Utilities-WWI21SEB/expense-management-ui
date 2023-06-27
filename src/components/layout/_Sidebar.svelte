@@ -1,82 +1,91 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { CostIcon, GlobeIcon, HomepageIcon, TimeIcon, UserIcon } from '$icons';
-	import { AppRail, AppRailAnchor, drawerStore } from '@skeletonlabs/skeleton';
+	import {
+		CostIcon,
+		DarkIcon,
+		GlobeIcon,
+		HomepageIcon,
+		LightIcon,
+		TimeIcon,
+		UserIcon
+	} from '$icons';
+	import { drawerStore, modeCurrent } from '@skeletonlabs/skeleton';
 
-	function drawerClose(): void {
+	$: classesActive = (href: string) => (href === $page.url.pathname ? '!bg-primary-500' : '');
+
+	const drawerClose = () => {
 		drawerStore.close();
-	}
+	};
 </script>
 
-<AppRail
-	gap="gap-2"
-	spacing="space-y-0"
-	width="w-20"
-	height="h-full"
-	border="lg:border-r border-current"
->
-	<hr class="!border-t-4" />
-	<svelte:fragment slot="lead">
-		<hr class="!border-t-2" />
-		<AppRailAnchor
-			href="/home"
-			selected={$page.url.pathname === '/home'}
-			on:click={drawerClose}
-			title="Home"
-		>
-			<svelte:fragment slot="lead">
-				<HomepageIcon width={8} height={8} />
-			</svelte:fragment>
-			<span>Home</span>
-		</AppRailAnchor>
-	</svelte:fragment>
-	<!-- --- -->
-	<AppRailAnchor
-		href="/trips"
-		selected={$page.url.pathname === '/trips'}
-		on:click={drawerClose}
-		title="Trips"
-	>
-		<svelte:fragment slot="lead">
-			<GlobeIcon sidebarIcon={true} />
-		</svelte:fragment>
-		<span>Trips</span>
-	</AppRailAnchor>
-	<AppRailAnchor
-		href="/costs"
-		selected={$page.url.pathname === '/costs'}
-		on:click={drawerClose}
-		title="Costs"
-	>
-		<svelte:fragment slot="lead">
-			<CostIcon width={8} height={8} />
-		</svelte:fragment>
-		<span>Costs</span>
-	</AppRailAnchor>
-	<AppRailAnchor
-		href="/history"
-		selected={$page.url.pathname === '/history'}
-		on:click={drawerClose}
-		title="History"
-	>
-		<svelte:fragment slot="lead">
-			<TimeIcon width={8} height={8} />
-		</svelte:fragment>
-		<span>History</span>
-	</AppRailAnchor>
-	<hr class="!border-t-4" />
-	<!-- --- -->
-	<svelte:fragment slot="trail">
-		<AppRailAnchor
-			href="/profile"
-			selected={$page.url.pathname === '/profile'}
-			on:click={drawerClose}
-			title="Account"
-		>
-			<svelte:fragment slot="lead">
-				<UserIcon width={10} height={10} />
-			</svelte:fragment>
-			<span>Profile</span>
-		</AppRailAnchor>
-	</svelte:fragment>
-</AppRail>
+<div class="h-full">
+	<div class="sidebar-header flex items-center justify-center py-4">
+		{#if !$modeCurrent}
+			<DarkIcon width={70} height={10} />
+		{:else}
+			<LightIcon width={70} height={10} />
+		{/if}
+	</div>
+
+	<nav class="list-nav p-4">
+		<ul>
+			<li class="my-px">
+				<span class="flex font-medium text-sm px-4 my-4 uppercase">Homepage</span>
+			</li>
+			<li>
+				<a href="/home" class={classesActive('/home')} on:click={drawerClose}>
+					<span class="badge">
+						<HomepageIcon width={8} height={8} />
+					</span>
+					<span class="flex-auto">Home</span>
+				</a>
+			</li>
+			<li class="my-px">
+				<span class="flex font-medium text-sm px-4 my-4 uppercase">Trips</span>
+			</li>
+			<li>
+				<a href="/trips" class={classesActive('/trips')} on:click={drawerClose}>
+					<span class="badge">
+						<GlobeIcon sidebarIcon={true} />
+					</span>
+					<span class="flex-auto">Trips</span>
+				</a>
+			</li>
+			<li>
+				<a href="/costs" class={classesActive('/costs')} on:click={drawerClose}>
+					<span class="badge">
+						<CostIcon width={8} height={8} />
+					</span>
+					<span class="flex-auto">Costs</span>
+				</a>
+			</li>
+			<li>
+				<a href="/history" class={classesActive('/history')} on:click={drawerClose}>
+					<span class="badge">
+						<TimeIcon width={8} height={8} />
+					</span>
+					<span class="flex-auto">History</span>
+				</a>
+			</li>
+			<li class="my-px">
+				<span class="flex font-medium text-sm px-4 my-4 uppercase">Account</span>
+			</li>
+			<li>
+				<a href="/profile" class={classesActive('/profile')} on:click={drawerClose}>
+					<span class="badge">
+						<UserIcon width={8} height={8} />
+					</span>
+					<span class="flex-auto">Profile</span>
+				</a>
+			</li>
+			<li>
+				<a href="/notifications" class={classesActive('/notifications')} on:click={drawerClose}>
+					<span class="badge">
+						<TimeIcon width={8} height={8} />
+					</span>
+					<span class="flex-auto">Notifications</span>
+				</a>
+			</li>
+		</ul>
+	</nav>
+</div>

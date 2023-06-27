@@ -40,12 +40,6 @@
 	<svelte:fragment slot="header">
 		<LandingPageHeader />
 	</svelte:fragment>
-	<!-- Left sidebar -->
-	<svelte:fragment slot="sidebarLeft">
-		{#if !loginPage}
-			<LandingPageSidebar tile={currentTile} />
-		{/if}
-	</svelte:fragment>
 	<!-- Content -->
 	<slot />
 	<!-- Footer -->

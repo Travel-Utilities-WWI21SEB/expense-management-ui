@@ -61,10 +61,10 @@ export const handle = (async ({ event, resolve }) => {
 	if (!refreshTokenResponse.ok) {
 		// Delete the cookies and redirect to login page
 		const response = new Response('Redirect', { status: 303, headers: { Location: '/login' } });
-		response.headers.set('Set-Cookie', `token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT`);
+		response.headers.set('Set-Cookie', 'token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT');
 		response.headers.set(
 			'Set-Cookie',
-			`refreshToken=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT`
+			'refreshToken=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT'
 		);
 
 		return response;
