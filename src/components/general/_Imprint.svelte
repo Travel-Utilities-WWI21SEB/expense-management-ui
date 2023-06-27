@@ -3,7 +3,7 @@
 </script>
 
 <div class="md:w-3/5 bg-surface-50 dark:bg-surface-500 rounded-lg shadow-xl p-4">
-	<h2 class="h2 mb-4">Imprint</h2>
+	<h2 class="h2 mb-4">Imprint (in german only)</h2>
 	<Accordion>
 		<AccordionItem open>
 			<svelte:fragment slot="lead">1</svelte:fragment>
@@ -18,7 +18,7 @@
 		<AccordionItem>
 			<svelte:fragment slot="lead">2</svelte:fragment>
 			<svelte:fragment slot="summary"><h4 class="h4">Vertreten durch</h4></svelte:fragment>
-			<svelte:fragment slot="content">Kevin Kemal Rieger</svelte:fragment>
+			<svelte:fragment slot="content"><p>Kevin Kemal Rieger</p></svelte:fragment>
 		</AccordionItem>
 		<AccordionItem>
 			<svelte:fragment slot="lead">3</svelte:fragment>

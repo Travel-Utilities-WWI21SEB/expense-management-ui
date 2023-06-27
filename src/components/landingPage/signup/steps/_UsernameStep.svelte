@@ -42,6 +42,19 @@
 	};
 
 	const debouncedVerifyUsername = _.debounce(verifyUsername, 500);
+
+	// Keyboard handler
+	const keydownHandler = (e: KeyboardEvent) => {
+		if (e.key === 'Enter') {
+			if ($usernameValid && !lockUserStep) {
+				// Click next button
+				const nextButton = document.querySelector('.btn.variant-filled-primary');
+				if (nextButton) {
+					(nextButton as HTMLButtonElement).click();
+				}
+			}
+		}
+	};
 </script>
 
 <Step
@@ -61,7 +74,7 @@
 	</svelte:fragment>
 	<section>
 		<div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-			<form novalidate>
+			<form novalidate on:keydown={keydownHandler}>
 				<label class="label">
 					<span>Username</span>
 					<input

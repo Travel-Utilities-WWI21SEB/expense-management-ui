@@ -10,9 +10,22 @@
 
 	$: passwordValid.set(validatePassword(passwordValue));
 	$: passwordsMatch.set(validatePasswordsMatch(passwordValue, passwordConfirm));
+
+	// Keyboard handler
+	const keydownHandler = (e: KeyboardEvent) => {
+		if (e.key === 'Enter') {
+			if ($passwordValid && $passwordsMatch) {
+				// Click next button
+				const nextButton = document.querySelector('.btn.variant-filled-primary');
+				if (nextButton) {
+					(nextButton as HTMLButtonElement).click();
+				}
+			}
+		}
+	};
 </script>
 
-<form class="space-y-4 md:space-y-6" novalidate>
+<form class="space-y-4 md:space-y-6" novalidate on:keydown={keydownHandler}>
 	<label class="label mb-2">
 		<span>Password</span>
 		<input

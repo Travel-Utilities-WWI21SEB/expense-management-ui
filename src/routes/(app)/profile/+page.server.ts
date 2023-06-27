@@ -10,7 +10,7 @@ type dataResponse = {
 };
 
 export const load = (async (event: ServerLoadEvent) => {
-	const response = await event.fetch(`api/users`, {
+	const response = await event.fetch('api/users', {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json'
