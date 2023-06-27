@@ -18,6 +18,7 @@
 	export let cost: Cost;
 	export let trip: TravelData;
 	export let parent: any;
+	export let onDelete: (cost: CostDateAsString) => void;
 
 	currentCost.subscribe((currCost) => (cost = currCost));
 
@@ -141,6 +142,15 @@
 	<footer class="modal-footer {parent.regionFooter}">
 		<button class="btn border-2" on:click={parent.onClose}>Close</button>
 		{#if isEditing}
+			<button
+				class="btn variant-filled-error"
+				on:click={() => {
+					onDelete(localeCost);
+				}}
+			>
+				<span>&#128465</span>
+				<span>Delete</span>
+			</button>
 			<button
 				class="btn variant-filled"
 				disabled={!validData}

@@ -37,3 +37,35 @@ export const PATCH = (async ({ url, fetch, request, params }) => {
 		});
 	}
 }) satisfies RequestHandler;
+
+export const DELETE = (async ({ url, fetch, request, params }) => {
+	console.log('DELETE');
+	try {
+		const response = await fetch(
+			`${PUBLIC_BASE_URL}/api/v1/trips/${params.id}/costs/${url.pathname.split('/')[5]}`,
+			{
+				method: 'DELETE',
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			}
+		);
+
+		if (response.status === 204) {
+			return json({ error: false, errorMessage: '' });
+		}
+
+		const body = await response.json();
+		const { errorCode } = body;
+		const errorMessage = getErrorMessage(errorCode);
+
+		return json({ error: true, errorMessage });
+	} catch (exception) {
+		return json({
+			exists: false,
+			valid: true,
+			error: true,
+			errorMessage: 'Something went wrong. Please try again later'
+		});
+	}
+}) satisfies RequestHandler;
