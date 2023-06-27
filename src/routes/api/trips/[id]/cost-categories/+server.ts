@@ -24,7 +24,6 @@ export const GET = (async ({ fetch, params }) => {
 		const errorMessage = getErrorMessage(errorCode);
 
 		return json({ error: true, errorMessage });
-		// 409: Conflict -> Email already exists (implicitly handled here)
 	} catch (exception) {
 		return json({
 			exists: false,
@@ -58,7 +57,6 @@ export const POST = (async ({ fetch, request }) => {
 		const { errorCode } = body;
 		const errorMessage = getErrorMessage(errorCode);
 
-		// 409: Conflict -> Email already exists (implicitly handled here)
 		return json({ exists: false, error: true, errorMessage });
 	} catch (exception) {
 		return json({
