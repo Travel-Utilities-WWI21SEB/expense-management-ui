@@ -22,11 +22,13 @@
 	const startDateTrip = trip.startDate.toISOString().slice(0, 10);
 
 	function changeTimeToggle() {
-		if (!checked) {
+		if (checked) {
 			cost.endDate =
 				new Date(cost.startDate).toDateString() === new Date(endDateTrip).toDateString()
 					? cost.startDate
 					: calculateTomorrowForInputFormat(cost.startDate);
+		} else {
+			cost.endDate = cost.startDate;
 		}
 	}
 
