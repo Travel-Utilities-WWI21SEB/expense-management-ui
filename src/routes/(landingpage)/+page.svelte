@@ -10,9 +10,17 @@
 	} from '$components';
 	import { modalStore, type ModalComponent, type ModalSettings } from '@skeletonlabs/skeleton';
 
+	export let data;
+
 	// Sign Up Modal
 	const modalComponent: ModalComponent = {
-		ref: SignUpModal
+		ref: SignUpModal,
+		props: {
+			data: {
+				rememberMe: data.rememberMe,
+				email: data.email
+			}
+		}
 	};
 
 	const modal: ModalSettings = {

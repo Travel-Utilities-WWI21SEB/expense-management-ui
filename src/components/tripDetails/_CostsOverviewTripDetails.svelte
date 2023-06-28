@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { TripDetailsCostItem, TripDetailsAddNewCostItem, AlertWithAction } from '$components';
+	import { AlertWithAction, TripDetailsAddNewCostItem, TripDetailsCostItem } from '$components';
+	import { CostIcon } from '$icons';
 	import type { Cost, TravelData } from '$tripDomain';
 	import type { ModalComponent, ModalSettings } from '@skeletonlabs/skeleton';
 	import { modalStore } from '@skeletonlabs/skeleton';
-	import { CostIcon } from '$icons';
 
 	export let costs: Array<Cost>;
 	export let trip: TravelData;
@@ -43,13 +43,13 @@
 			icon={CostIcon}
 		/>
 	{:else}
-		<ul class="list p-2 max-h-[500px] overflow-auto">
+		<ul class="list p-2 max-h-[500px] overflow-y-auto">
 			{#each costs as cost, i}
 				<li>
 					<TripDetailsCostItem
 						{cost}
-						{selectionIndex}
 						{i}
+						{selectionIndex}
 						{trip}
 						on:select_item={(e) => handleSelectItem(e)}
 					/>

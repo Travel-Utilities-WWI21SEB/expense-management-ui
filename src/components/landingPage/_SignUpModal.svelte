@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { Tab, TabGroup } from '@skeletonlabs/skeleton';
 	import { SignInComponent, SignUpComponent } from '$components';
+	import { Tab, TabGroup } from '@skeletonlabs/skeleton';
 
 	export let data: {
 		rememberMe: boolean;
-		email: string;
+		email: string | undefined;
 	};
 	let tabSet = 0;
 
