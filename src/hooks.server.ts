@@ -5,6 +5,7 @@ import { tokenExpired } from './utils/token/tokenExpired';
 const unauthorizedRoutes = [
 	'/', // Home page
 	'/login', // Login page
+	'/api/email', // Send email API
 	'/api/users/login', // Login API
 	'/api/users/logout', // Logout API
 	'/api/users/resend-token', // Resend token API
