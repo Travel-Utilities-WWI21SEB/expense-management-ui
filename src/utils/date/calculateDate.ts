@@ -1,14 +1,20 @@
-export function calculateDate(date: Date) {
-	const yyyy = date.getFullYear();
-	let mm: number | string = date.getMonth() + 1; // Months start at 0!
-	let dd: number | string = date.getDate();
+export function calculateDate(date: Date): string {
+	return new Intl.DateTimeFormat('de-de').format(date);
+}
 
-	if (dd < 10) {
-		dd = '0' + dd;
-	}
-	if (mm < 10) {
-		mm = '0' + mm;
-	}
+export function calculateTomorrowForInputFormat(date: string): string {
+	return calculateTomorrow(new Date(date)).toISOString().slice(0, 10);
+}
 
-	return `${dd}.${mm}.${yyyy}`;
+function calculateTomorrow(date: Date): Date {
+	const tomorrow = new Date(date);
+	tomorrow.setDate(tomorrow.getDate() + 1);
+	return tomorrow;
+}
+
+export function isEndDateAfterStartDate(startDate: string, endDate: string | undefined): boolean {
+	if (!endDate) return false;
+	const startDateAsDate = new Date(startDate);
+	const endDateAsDate = new Date(endDate);
+	return startDateAsDate < endDateAsDate;
 }

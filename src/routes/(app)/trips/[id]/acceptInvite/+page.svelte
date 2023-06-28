@@ -3,6 +3,9 @@
 	import { CrossIcon } from '$icons';
 	import { currentTrip, errorMessage, errorState, loading } from '$stores';
 	import type { TravelData } from '$tripDomain';
+	import type { PageData } from './$types';
+
+	export let data: PageData;
 
 	const onRejectClick = () => {
 		goto('/trips');
@@ -16,7 +19,8 @@
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
-				}
+				},
+				body: JSON.stringify({ body: presenceTimes, id: currentTrip.tripId })
 			});
 
 			const body = await response.json();
@@ -36,13 +40,13 @@
 		await acceptTrip($currentTrip);
 
 		if (!$errorState) {
-			goto(`${$currentTrip.tripId}`);
+			goto(`/trips/${$currentTrip.tripId}`);
 		}
 	};
 
 	const presenceTimes = {
-		presenceStart: $currentTrip.startDate.toISOString().substring(0, 10),
-		presenceEnd: $currentTrip.endDate.toISOString().substring(0, 10)
+		presenceStartDate: data.tripData.startDate.toISOString().substring(0, 10),
+		presenceEndDate: data.tripData.endDate.toISOString().substring(0, 10)
 	};
 </script>
 
@@ -51,23 +55,23 @@
 	<label class="label mx-8">
 		<span>Presence in Trip starting on:</span>
 		<input
-			min={$currentTrip.startDate.toISOString().substring(0, 10)}
-			max={$currentTrip.endDate.toISOString().substring(0, 10)}
+			min={data.tripData.startDate.toISOString().substring(0, 10)}
+			max={data.tripData.endDate.toISOString().substring(0, 10)}
 			class="input"
 			type="date"
 			placeholder={new Date(Date.now()).toISOString().substring(0, 10)}
-			bind:value={presenceTimes.presenceStart}
+			bind:value={presenceTimes.presenceStartDate}
 		/>
 	</label>
 	<label class="label mx-8">
 		<span>Presence in Trip ending on:</span>
 		<input
-			max={$currentTrip.endDate.toISOString().substring(0, 10)}
-			min={$currentTrip.startDate.toISOString().substring(0, 10)}
+			max={data.tripData.endDate.toISOString().substring(0, 10)}
+			min={data.tripData.startDate.toISOString().substring(0, 10)}
 			class="input"
 			type="date"
 			placeholder={new Date(Date.now()).toISOString().substring(0, 10)}
-			bind:value={presenceTimes.presenceEnd}
+			bind:value={presenceTimes.presenceEndDate}
 		/>
 	</label>
 	<div class="flex justify-center gap-4 p-8">

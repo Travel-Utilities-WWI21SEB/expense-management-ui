@@ -29,7 +29,7 @@
 		loading.set(true);
 		errorState.set(false);
 
-		const response = await fetch('api/users/forgot-password', {
+		const response = await fetch('/api/users/forgot-password', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -49,7 +49,7 @@
 		loading.set(true);
 		errorState.set(false);
 
-		const response = await fetch(`api/users/reset-password`, {
+		const response = await fetch(`/api/users/reset-password`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
