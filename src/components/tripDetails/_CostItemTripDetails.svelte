@@ -125,7 +125,7 @@
 					style="background-color: {cost.costCategory.color}"
 					class="text-sm text-
 					text-[{pickTextColorBasedOnBgColorSimple(cost.costCategory.color, '#ffffff', '#000000')}]
-					 rounded-full border-0 font-semibold m-4 chip variant-filled"
+					 rounded-full border-0 font-semibold m-4 chip variant-filled truncate"
 				>
 					{cost.costCategory.name}
 				</p>

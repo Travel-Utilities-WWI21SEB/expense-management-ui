@@ -84,5 +84,5 @@ export function calculateRestAmount(totalAmount: number, users: Array<CostPaidFo
 	users.forEach((user) => {
 		sum += user.amount;
 	});
-	return totalAmount - sum;
+	return Math.floor((totalAmount - sum) * 100) / 100;
 }
