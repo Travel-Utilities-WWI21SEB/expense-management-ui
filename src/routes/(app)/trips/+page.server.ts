@@ -2,23 +2,26 @@ import { modifyTripData } from '$utils';
 import type { PageServerLoad } from './$types';
 
 export const load = (async ({ fetch }) => {
-	const tripResponse = await fetch('/api/trips', {
+	const tripPromise = fetch('/api/trips', {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json'
 		}
 	});
 
-	const tripBody = await tripResponse.json();
-
-	const userResponse = await fetch('/api/users', {
+	const userPromise = fetch('/api/users', {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json'
 		}
 	});
+
+	// Resolve both promises at the same time
+	const [tripResponse, userResponse] = await Promise.all([tripPromise, userPromise]);
 
 	const userBody = await userResponse.json();
+	const tripBody = await tripResponse.json();
+
 	if (tripBody.data) {
 		return {
 			...tripBody,

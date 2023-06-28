@@ -25,7 +25,6 @@ export { default as LandingPageReviewBox } from './landingPage/_ReviewBox.svelte
 export { default as SignUpModal } from './landingPage/_SignUpModal.svelte';
 export { default as StatisticBox } from './landingPage/_StatisticBox.svelte';
 export { default as LandingPageHeader } from './landingPage/layout/_LandingPageHeader.svelte';
-export { default as LandingPageSidebar } from './landingPage/layout/_LandingPageSidebar.svelte';
 export { default as SignInComponent } from './landingPage/signin/_SignInComponent.svelte';
 export { default as SignUpComponent } from './landingPage/signup/_SignUpComponent.svelte';
 export { default as Footer } from './layout/_Footer.svelte';
@@ -52,7 +51,7 @@ export { default as Participants } from './tripDetails/_Participants.svelte';
 
 //Trip Overview
 export { default as DonutChart } from './tripOverview/_DonutChart.svelte';
-export { default as HeaderBar, default as HeaderBar } from './tripOverview/_HeaderBar.svelte';
+export { default as HeaderBar } from './tripOverview/_HeaderBar.svelte';
 export { default as TripCard } from './tripOverview/_TripCard.svelte';
 export { default as TripInfos } from './tripOverview/_TripInfos.svelte';
 export { default as UserPaymentOverview } from './tripOverview/_UserPaymentOverview.svelte';

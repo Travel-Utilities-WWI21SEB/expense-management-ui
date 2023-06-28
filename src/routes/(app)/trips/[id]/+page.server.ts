@@ -1,27 +1,33 @@
-import { modifyTrip, modifyCosts } from '$utils';
+import { modifyCosts, modifyTrip } from '$utils';
 import type { PageServerLoad } from './$types';
 
 export const load = (async ({ params, fetch }) => {
-	const tripResponse = await fetch(`/api/trips/${params.id}`, {
+	const tripPromise = fetch(`/api/trips/${params.id}`, {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json'
 		}
 	});
 
-	const costsResponse = await fetch(`/api/trips/${params.id}/costs`, {
+	const costPromise = fetch(`/api/trips/${params.id}/costs`, {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json'
 		}
 	});
 
-	const userResponse = await fetch('/api/users', {
+	const userPromise = fetch('/api/users', {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json'
 		}
 	});
+
+	const [tripResponse, costsResponse, userResponse] = await Promise.all([
+		tripPromise,
+		costPromise,
+		userPromise
+	]);
 
 	const tripBody = await tripResponse.json();
 	const costsBody = await costsResponse.json();

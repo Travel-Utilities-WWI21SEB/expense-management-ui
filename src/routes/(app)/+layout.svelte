@@ -10,14 +10,12 @@
 	import '../../app.postcss';
 
 	// Import floating ui and skeleton deps
+	import { Footer, Header, Sidebar } from '$components';
 	import { arrow, autoUpdate, computePosition, flip, offset, shift } from '@floating-ui/dom';
-	import { AppShell, Drawer, Toast, storePopup } from '@skeletonlabs/skeleton';
+	import { AppShell, Drawer, Modal, Toast, storePopup } from '@skeletonlabs/skeleton';
 
 	// Set floating ui defaults
 	storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
-
-	import { Footer, Header, Sidebar } from '$components';
-	import { Modal } from '@skeletonlabs/skeleton';
 </script>
 
 <!-- MOBILE ONLY! -->
