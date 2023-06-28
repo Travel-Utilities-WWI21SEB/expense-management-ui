@@ -34,3 +34,5 @@ export {
 	costSplitType,
 	currentCost
 } from './costStore';
+//General store
+export { loadingPage } from './general';

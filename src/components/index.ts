@@ -5,6 +5,7 @@ export { default as ContactBox } from './landingPage/_ContactBox.svelte';
 export { default as LandingPageFeatureBoxLeft } from './landingPage/_FeatureBoxLeft.svelte';
 export { default as LandingPageFeatureBoxRight } from './landingPage/_FeatureBoxRight.svelte';
 export { default as LandingPageFooter } from './landingPage/layout/_LandingPageFooter.svelte';
+export { default as LoadingScreen } from './general/_LoadingScreen.svelte';
 //SignIn
 export { default as AlertWithAction } from './general/_AlertWithAction.svelte';
 export { default as ProgressCircleAnimated } from './general/_ProgressCircleAnimated.svelte';

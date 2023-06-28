@@ -1,7 +1,9 @@
 import { modifyTripData } from '$utils';
+import { loadingPage } from '../../../stores/general';
 import type { PageServerLoad } from './$types';
 
 export const load = (async ({ fetch }) => {
+	loadingPage.set(true);
 	const tripResponse = await fetch('/api/trips', {
 		method: 'GET',
 		headers: {
@@ -19,6 +21,8 @@ export const load = (async ({ fetch }) => {
 	});
 
 	const userBody = await userResponse.json();
+
+	loadingPage.set(true);
 	if (tripBody.data) {
 		return {
 			...tripBody,
