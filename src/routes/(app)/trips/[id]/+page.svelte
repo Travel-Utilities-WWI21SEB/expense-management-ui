@@ -5,41 +5,31 @@
 		HeaderAndTwoPartsLayout,
 		TripDetailsDashboard
 	} from '$components';
-	import type { Cost, TravelData } from '$tripDomain';
-	import { currentTrip } from '$stores';
+	import type { PageData } from './$types';
 
-	let cost: Cost = {
-		name: 'Kostenpunkt Aiai',
-		amount: 45,
-		costCategory: { name: 'Miete', color: '#ffffff', icon: 'unicode', totalAmount: 450 },
-		creationDate: new Date(),
-		endDate: new Date('2023-06-25'),
-		startDate: new Date('2023-05-25'),
-		currency: 'EUR',
-		id: '982734592873465'
-	};
-	let costs = [cost, cost, cost, cost, cost, cost, cost, cost, cost, cost, cost, cost];
-
-	let trip: TravelData;
-	currentTrip.subscribe((currentTrip) => {
-		trip = currentTrip;
-	});
+	export let data: PageData;
 </script>
 
 <HeaderAndTwoPartsLayout>
 	<span slot="header">
-		<div class="">
-			<TripDetailsHeader {trip} />
-		</div>
+		{#if data.tripData}
+			<div class="">
+				<TripDetailsHeader trip={data.tripData} />
+			</div>
+		{/if}
 	</span>
 	<span slot="left_element">
-		<div class="h-full">
-			<TripDetailsCostOverview {costs} />
-		</div>
+		{#if data.tripData && data.costsData}
+			<div class="h-full">
+				<TripDetailsCostOverview costs={data.costsData} trip={data.tripData} />
+			</div>
+		{/if}
 	</span>
 	<span slot="right_element">
-		<div class="h-full">
-		<TripDetailsDashboard {trip}/>
-		</div>
+		{#if data.tripData}
+			<div class="h-full">
+				<TripDetailsDashboard trip={data.tripData} />
+			</div>
+		{/if}
 	</span>
 </HeaderAndTwoPartsLayout>

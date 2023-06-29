@@ -1,6 +1,7 @@
 export interface CostCategory {
+	costCategoryId: string;
 	name: string;
-	totalAmount: number;
+	totalCost: number;
 	color: string;
-	icon: string;
+	icon?: string;
 }

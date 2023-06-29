@@ -21,7 +21,7 @@
 	};
 
 	const logoutHandler = async (): Promise<void> => {
-		const response = await fetch('api/users/logout', {
+		const response = await fetch('/api/users/logout', {
 			method: 'POST'
 		});
 

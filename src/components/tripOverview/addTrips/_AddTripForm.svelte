@@ -8,23 +8,26 @@
 		errorMessage,
 		errorState,
 		loading,
-		selectedUsers
+		selectedUsers,
+		newCostCategories,
+		newCostCategoryColors
 	} from '$stores';
 	import { invalidateAll } from '$app/navigation';
+	import AddCostCategories from './steps/_AddCostCategories.svelte';
 
 	selectedUsers.set([$currentUser.username]);
 
-	const createTrip = async (newTrip: { location: string; startDate: string; endDate: string }) => {
+	const createTrip = async () => {
 		loading.set(true);
 		errorState.set(false);
 
 		try {
-			const response = await fetch('api/trips', {
+			const response = await fetch('/api/trips', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
 				},
-				body: JSON.stringify(newTrip)
+				body: JSON.stringify($newTripForm)
 			});
 
 			const body = await response.json();
@@ -42,17 +45,46 @@
 		}
 	};
 
-	const inviteUsers = async (tripId: number, user: { invitedUsername: string }) => {
+	const inviteUsers = async (tripId: number, user: { username: string }) => {
 		loading.set(true);
 		errorState.set(false);
 
 		try {
-			const response = await fetch(`api/trips/${tripId}/invite`, {
+			const response = await fetch(`/api/trips/${tripId}/invite`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
 				},
-				body: JSON.stringify(user)
+				body: JSON.stringify({ body: user, id: tripId })
+			});
+
+			const body = await response.json();
+			const { error, errorMessage: errorDisplayMessage } = body;
+
+			errorState.set(error);
+			errorMessage.set(errorDisplayMessage);
+		} catch (error: any) {
+			errorState.set(true);
+			errorMessage.set(error.message);
+		} finally {
+			loading.set(false);
+		}
+	};
+
+	const createCostCategories = async (
+		tripId: number,
+		costCategory: { name: string; color: string }
+	) => {
+		loading.set(true);
+		errorState.set(false);
+
+		try {
+			const response = await fetch(`/api/trips/${tripId}/cost-categories`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({ body: costCategory, id: tripId })
 			});
 
 			const body = await response.json();
@@ -70,18 +102,25 @@
 
 	// We've created a custom submit function to pass the response and close the modal.
 	async function onFormSubmit(): Promise<void> {
-		const result = await createTrip({
-			location: $newTripForm.location,
-			endDate: $newTripForm.endDate,
-			startDate: $newTripForm.startDate
-		});
+		const result = await createTrip();
 
 		await Promise.all(
 			$selectedUsers.map(async (name) => {
-				if (name !== $currentUser.username)
-					await inviteUsers(result.data.tripId, { invitedUsername: name });
+				if (name !== $currentUser.username) {
+					await inviteUsers(result.data.tripId, { username: name });
+				}
 			})
 		);
+
+		await Promise.all(
+			$newCostCategories.map(async (name, index) => {
+				await createCostCategories(result.data.tripId, {
+					name: name,
+					color: $newCostCategoryColors[index]
+				});
+			})
+		);
+
 		invalidateAll();
 		modalStore.close();
 		newTripForm.set({
@@ -104,6 +143,10 @@
 			<Step locked={$newTripForm.name.length < 1 || $newTripForm.location.length < 1}>
 				<svelte:fragment slot="header">Trip Details</svelte:fragment>
 				<NewTripStep />
+			</Step>
+			<Step>
+				<svelte:fragment slot="header">Add Cost Categories</svelte:fragment>
+				<AddCostCategories />
 			</Step>
 			<Step>
 				<svelte:fragment slot="header">Invite Participants</svelte:fragment>
