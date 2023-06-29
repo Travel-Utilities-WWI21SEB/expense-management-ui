@@ -15,7 +15,6 @@ export const GET = (async ({ fetch }) => {
 
 		if (response.ok) {
 			const body = await response.json();
-			console.log(body);
 			return json({ error: false, errorMessage: '', data: body });
 		}
 

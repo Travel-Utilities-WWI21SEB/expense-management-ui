@@ -27,6 +27,7 @@ export { validatePaidBy } from './trips/costs/paidBy';
 
 //COST
 export { generateRandomColor } from './color/generateRandomColor';
+export { formatCostString } from './cost/formatCostString';
 export {
 	calculateRestAmount,
 	changeToEqual,

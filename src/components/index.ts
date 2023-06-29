@@ -59,3 +59,10 @@ export { default as AddTripForm } from './tripOverview/addTrips/_AddTripForm.sve
 export { default as AddCostCategories } from './tripOverview/addTrips/steps/_AddCostCategories.svelte';
 export { default as InviteParticipantsStep } from './tripOverview/addTrips/steps/_InviteParticipantsStep.svelte';
 export { default as NewTripStep } from './tripOverview/addTrips/steps/_NewTripStep.svelte';
+
+// Cost Overview
+export { default as AverageContributionPercentage } from './costOverview/_AverageContributionPercentage.svelte';
+export { default as AverageTripCosts } from './costOverview/_AverageTripCosts.svelte';
+export { default as PieChart } from './costOverview/_PieChart.svelte';
+export { default as TotalCosts } from './costOverview/_TotalCosts.svelte';
+export { default as TripAssociation } from './costOverview/_TripAssociation.svelte';
