@@ -1,8 +1,14 @@
 <script lang="ts">
-	import { TripDetailsCostItem, TripDetailsAddNewCostItem, AlertWithAction } from '$components';
+	import {
+		TripDetailsCostItem,
+		TripDetailsAddNewCostItem,
+		AlertWithAction,
+		TripDetailsSortingPopUp,
+		TripDetailsFilterPopUp
+	} from '$components';
 	import type { Cost, TravelData } from '$tripDomain';
-	import type { ModalComponent, ModalSettings } from '@skeletonlabs/skeleton';
-	import { modalStore } from '@skeletonlabs/skeleton';
+	import type { ModalComponent, ModalSettings, PopupSettings } from '@skeletonlabs/skeleton';
+	import { modalStore, popup } from '@skeletonlabs/skeleton';
 	import { CostIcon } from '$icons';
 
 	export let costs: Array<Cost>;
@@ -26,10 +32,22 @@
 		};
 		modalStore.trigger(modal);
 	}
+
+	const popUpSorting: PopupSettings = {
+		event: 'click',
+		target: 'SortingPopUp',
+		placement: 'bottom'
+	};
+
+	const popUpFiltering: PopupSettings = {
+		event: 'click',
+		target: 'FilteringPopUp',
+		placement: 'bottom'
+	};
 </script>
 
 <div class="card h-full p-4">
-	<div class="flex justify-between p-4">
+	<div class="flex justify-between pt-4 px-4">
 		<h3 class="h3">Costs</h3>
 		<button type="button" class="btn variant-filled" on:click={addNewCostItem}>
 			<span>+</span>
@@ -43,6 +61,14 @@
 			icon={CostIcon}
 		/>
 	{:else}
+		<div class="flex p-2">
+			<button type="button" class="btn btn-sm variant-filled mx-1" use:popup={popUpSorting}
+				>Sort</button
+			>
+			<button type="button" class="btn btn-sm variant-filled mx-1" use:popup={popUpFiltering}
+				>Filter</button
+			>
+		</div>
 		<ul class="list p-2 max-h-[500px] overflow-auto">
 			{#each costs as cost, i}
 				<li>
@@ -58,3 +84,15 @@
 		</ul>
 	{/if}
 </div>
+
+<!-- 	Sorting PopUp   -->
+<div class="card p-4 shadow-xl w-72 grid grid-cols-2" data-popup="SortingPopUp">
+	<TripDetailsSortingPopUp />
+</div>
+<!-- SortingPopUp End -->
+
+<!-- 	Filtering PopUp   -->
+<div class="card p-4 shadow-xl w-72 grid grid-cols-2" data-popup="FilteringPopUp">
+	<TripDetailsFilterPopUp {trip} />
+</div>
+<!-- Filtering PopUp End -->

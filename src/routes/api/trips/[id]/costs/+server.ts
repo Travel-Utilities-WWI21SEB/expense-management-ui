@@ -38,20 +38,42 @@ export const POST = (async ({ url, fetch, request }) => {
 	}
 }) satisfies RequestHandler;
 
-export const GET = (async ({ fetch, params }) => {
+export const GET = (async ({ fetch, params, url }) => {
 	console.log('GET');
 
+	const page = Number(url.searchParams.get('page'));
+	const pageSize = Number(url.searchParams.get('pageSize'));
+	const sort = String(url.searchParams.get('sortBy') ?? 'deducted_at');
+	const sortOrder = String(url.searchParams.get('sortOrder') ?? 'desc');
+
+	const sortByQuery = `sortBy=${sort}`;
+	const sortOrderQuery = url.searchParams.has('sortOrder') ? `&sortOrder=${sortOrder}` : '';
+	const minDeductionDateQuery = url.searchParams.has('minDeductionDate')
+		? `&minDeductionDate=${url.searchParams.get('minDeductionDate')}T00:00:00Z`
+		: '';
+	const maxDeductionDateQuery = url.searchParams.has('maxDeductionDate')
+		? `&maxDeductionDate=${url.searchParams.get('maxDeductionDate')}T00:00:00Z`
+		: '';
+	const minEndDateQuery = url.searchParams.has('minEndDate')
+		? `&minEndDate=${url.searchParams.get('minEndDate')}T00:00:00Z`
+		: '';
+	const maxEndDateQuery = url.searchParams.has('maxEndDate')
+		? `&maxEndDate=${url.searchParams.get('maxEndDate')}T00:00:00Z`
+		: '';
+
 	try {
-		const response = await fetch(`${PUBLIC_BASE_URL}/api/v1/trips/${params.id}/costs`, {
-			method: 'GET',
-			headers: {
-				'Content-Type': 'application/json'
+		const response = await fetch(
+			`${PUBLIC_BASE_URL}/api/v1/trips/${params.id}/costs?${sortByQuery}${sortOrderQuery}${minDeductionDateQuery}${maxDeductionDateQuery}${minEndDateQuery}${maxEndDateQuery}`,
+			{
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json'
+				}
 			}
-		});
+		);
 
 		if (response.ok) {
 			const body = await response.json();
-
 			return json({ error: false, errorMessage: '', data: body });
 		}
 
