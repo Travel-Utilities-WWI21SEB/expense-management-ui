@@ -1,9 +1,11 @@
 <script lang="ts">
-	import { newTripForm } from '$stores';
+	import type { NewTripInputs } from '$tripDomain';
+
+	export let newTrip: NewTripInputs;
 
 	const onStartDateChange = () => {
-		if (new Date($newTripForm.endDate) < new Date($newTripForm.startDate)) {
-			newTripForm.set({ ...$newTripForm, endDate: $newTripForm.startDate });
+		if (new Date(newTrip.endDate) < new Date(newTrip.startDate)) {
+			newTrip = { ...newTrip, endDate: newTrip.startDate };
 		}
 	};
 </script>
@@ -11,14 +13,14 @@
 <form class="modal-form p-4 space-y-4">
 	<label class="label">
 		<span>Name</span>
-		<input class="input" type="text" bind:value={$newTripForm.name} placeholder="Enter name..." />
+		<input class="input" type="text" bind:value={newTrip.name} placeholder="Enter name..." />
 	</label>
 	<label class="label">
 		<span>Location</span>
 		<input
 			class="input"
 			type="text"
-			bind:value={$newTripForm.location}
+			bind:value={newTrip.location}
 			placeholder="Enter location..."
 		/>
 	</label>
@@ -29,18 +31,18 @@
 			class="input"
 			type="date"
 			placeholder={new Date(Date.now()).toISOString().substring(0, 10)}
-			bind:value={$newTripForm.startDate}
+			bind:value={newTrip.startDate}
 			on:change={onStartDateChange}
 		/>
 	</label>
 	<label class="label">
 		<span>End Date:</span>
 		<input
-			min={$newTripForm.startDate}
+			min={newTrip.startDate}
 			class="input"
 			type="date"
 			placeholder={new Date(Date.now()).toISOString().substring(0, 10)}
-			bind:value={$newTripForm.endDate}
+			bind:value={newTrip.endDate}
 		/>
 	</label>
 </form>

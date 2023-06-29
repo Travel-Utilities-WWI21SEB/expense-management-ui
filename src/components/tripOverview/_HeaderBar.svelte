@@ -6,18 +6,15 @@
 		type ModalSettings
 	} from '@skeletonlabs/skeleton';
 	import { AddTripForm } from '$components';
-	import { newTripForm } from '$stores';
 	import { PlusIcon } from '$icons';
+	import type { NewTripInputs } from '$tripDomain';
 
 	const modalComponentRegistry: Record<string, ModalComponent> = {
 		// Custom Modal 1
 		AddTripForm: {
 			// Pass a reference to your custom component
-			ref: AddTripForm,
+			ref: AddTripForm
 			// Add the component properties as key/value pairs
-			props: { background: 'bg-red-500' },
-			// Provide a template literal for the default component slot
-			slot: '<p>Skeleton</p>'
 		}
 	};
 
@@ -26,15 +23,7 @@
 			type: 'component',
 			// Pass the component registry key as a string:
 			component: 'AddTripForm',
-			title: 'Add new Trip',
-			response: () => {
-				newTripForm.set({
-					name: '',
-					location: '',
-					startDate: new Date(Date.now()).toISOString().substring(0, 10),
-					endDate: new Date(Date.now()).toISOString().substring(0, 10)
-				});
-			}
+			title: 'Add new Trip'
 		};
 		modalStore.trigger(modal);
 	}

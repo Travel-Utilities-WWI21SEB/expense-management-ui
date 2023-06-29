@@ -1,21 +1,27 @@
 <script lang="ts">
 	// Stores
-	import { modalStore, Stepper, Step } from '@skeletonlabs/skeleton';
-	import { NewTripStep, InviteParticipantsStep } from '$components';
 	import {
-		currentUser,
-		newTripForm,
-		errorMessage,
-		errorState,
-		loading,
-		selectedUsers,
-		newCostCategories,
-		newCostCategoryColors
-	} from '$stores';
+		modalStore,
+		Stepper,
+		Step,
+		type ToastSettings,
+		toastStore
+	} from '@skeletonlabs/skeleton';
+	import { NewTripStep, InviteParticipantsStep } from '$components';
+	import { currentUser, errorMessage, errorState, loading } from '$stores';
 	import { invalidateAll } from '$app/navigation';
 	import AddCostCategories from './steps/_AddCostCategories.svelte';
+	import type { NewTripInputs } from '$tripDomain';
 
-	selectedUsers.set([$currentUser.username]);
+	let newTrip: NewTripInputs = {
+		name: '',
+		location: '',
+		startDate: new Date(Date.now()).toISOString().substring(0, 10),
+		endDate: new Date(Date.now()).toISOString().substring(0, 10)
+	};
+	let selectedUsers = [$currentUser.username];
+	let newCostCategories = ['Food', 'Mobility'];
+	let newCostCategoryColors = ['#FF8585', '#00FF62'];
 
 	const createTrip = async () => {
 		loading.set(true);
@@ -27,7 +33,7 @@
 				headers: {
 					'Content-Type': 'application/json'
 				},
-				body: JSON.stringify($newTripForm)
+				body: JSON.stringify(newTrip)
 			});
 
 			const body = await response.json();
@@ -105,7 +111,7 @@
 		const result = await createTrip();
 
 		await Promise.all(
-			$selectedUsers.map(async (name) => {
+			selectedUsers.map(async (name) => {
 				if (name !== $currentUser.username) {
 					await inviteUsers(result.data.tripId, { username: name });
 				}
@@ -113,22 +119,31 @@
 		);
 
 		await Promise.all(
-			$newCostCategories.map(async (name, index) => {
+			newCostCategories.map(async (name, index) => {
 				await createCostCategories(result.data.tripId, {
 					name: name,
-					color: $newCostCategoryColors[index]
+					color: newCostCategoryColors[index]
 				});
 			})
 		);
 
+		const message = result.error
+			? `Error: ${result.errorMessage}`
+			: `Trip ${result.data.name} created successfully`;
+		const t: ToastSettings = {
+			message: message,
+			background: result.error ? 'variant-filled-warning' : 'variant-filled-success'
+		};
+		toastStore.trigger(t);
+
 		invalidateAll();
 		modalStore.close();
-		newTripForm.set({
+		newTrip = {
 			name: '',
 			location: '',
 			startDate: new Date(Date.now()).toISOString().substring(0, 10),
 			endDate: new Date(Date.now()).toISOString().substring(0, 10)
-		});
+		};
 	}
 
 	// Base Classes
@@ -140,17 +155,17 @@
 	<div class={cBase}>
 		<header class={cHeader}>{$modalStore[0].title ?? '(title missing)'}</header>
 		<Stepper on:complete={async () => await onFormSubmit()} on:close={() => alert('test')}>
-			<Step locked={$newTripForm.name.length < 1 || $newTripForm.location.length < 1}>
+			<Step locked={newTrip.name.length < 1 || newTrip.location.length < 1}>
 				<svelte:fragment slot="header">Trip Details</svelte:fragment>
-				<NewTripStep />
+				<NewTripStep bind:newTrip />
 			</Step>
 			<Step>
 				<svelte:fragment slot="header">Add Cost Categories</svelte:fragment>
-				<AddCostCategories />
+				<AddCostCategories bind:newCostCategories bind:newCostCategoryColors />
 			</Step>
 			<Step>
 				<svelte:fragment slot="header">Invite Participants</svelte:fragment>
-				<InviteParticipantsStep />
+				<InviteParticipantsStep bind:selectedUsers />
 			</Step>
 		</Stepper>
 	</div>

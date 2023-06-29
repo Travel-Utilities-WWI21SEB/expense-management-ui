@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { modifyUserSuggestions } from '$utils';
-	import { errorMessage, errorState, loading, selectedUsers, currentUser } from '$stores';
+	import { errorMessage, errorState, loading, currentUser } from '$stores';
 	import { Autocomplete, type AutocompleteOption } from '@skeletonlabs/skeleton';
 	import { RemoveIcon } from '$icons';
 
 	let inputValue = '';
+	export let selectedUsers: Array<string>;
 
 	const suggestUsers = async (input: string) => {
 		loading.set(true);
@@ -31,13 +32,13 @@
 	let options: AutocompleteOption[] = [];
 
 	function onSelection(event: any): void {
-		if ($selectedUsers.indexOf(event.detail.label) === -1)
-			selectedUsers.set([...$selectedUsers, event.detail.label]);
+		if (selectedUsers.indexOf(event.detail.label) === -1)
+			selectedUsers = [...selectedUsers, event.detail.label];
 	}
 
 	const onRemoveInvitationClick = (name: string) => {
 		if (name !== $currentUser.username) {
-			selectedUsers.set($selectedUsers.filter((m) => m !== name));
+			selectedUsers = selectedUsers.filter((m) => m !== name);
 		}
 	};
 
@@ -60,7 +61,7 @@
 	<Autocomplete bind:input={inputValue} {options} on:selection={onSelection} />
 </div>
 <div class="h-auto p-4" tabindex="-1">
-	{#each $selectedUsers as name}
+	{#each selectedUsers as name}
 		<span class="m-4 chip variant-filled h-8">
 			{name}
 			<button on:click={() => onRemoveInvitationClick(name)}>

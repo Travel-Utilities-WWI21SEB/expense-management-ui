@@ -16,16 +16,8 @@ export {
 	username,
 	usernameValid
 } from './landingPageStore';
-// Trip store
-export {
-	allTrips,
-	currentTrip,
-	newTripForm,
-	newCostCategories,
-	newCostCategoryColors
-} from './tripsStore';
 // User store
-export { authToken, currentUser, selectedUsers } from './userStore';
+export { authToken, currentUser } from './userStore';
 //Cost store
 export {
 	costDetailsValid,
