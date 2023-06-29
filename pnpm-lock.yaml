@@ -30,10 +30,10 @@ devDependencies:
     version: 1.8.0
   '@sveltejs/adapter-node':
     specifier: 1.2.4
-    version: 1.2.4(@sveltejs/kit@1.20.5)
+    version: 1.2.4(@sveltejs/kit@1.21.0)
   '@sveltejs/kit':
-    specifier: 1.20.5
-    version: 1.20.5(svelte@3.59.2)(vite@4.3.9)
+    specifier: 1.21.0
+    version: 1.21.0(svelte@3.59.2)(vite@4.3.9)
   '@tailwindcss/forms':
     specifier: 0.5.3
     version: 0.5.3(tailwindcss@3.3.2)
@@ -501,7 +501,7 @@ packages:
       svelte: 3.58.0
     dev: true
 
-  /@sveltejs/adapter-node@1.2.4(@sveltejs/kit@1.20.5):
+  /@sveltejs/adapter-node@1.2.4(@sveltejs/kit@1.21.0):
     resolution: {integrity: sha512-TNnhS+OKRZ9RKnC+ho5mlE2FJquI61i0v7yOXxBUSU3LAoYH2kwVVL8P8ecjefmZ8BOfM1V54pBnDODBU5CEaA==}
     peerDependencies:
       '@sveltejs/kit': ^1.0.0
@@ -509,12 +509,12 @@ packages:
       '@rollup/plugin-commonjs': 24.1.0(rollup@3.25.1)
       '@rollup/plugin-json': 6.0.0(rollup@3.25.1)
       '@rollup/plugin-node-resolve': 15.1.0(rollup@3.25.1)
-      '@sveltejs/kit': 1.20.5(svelte@3.59.2)(vite@4.3.9)
+      '@sveltejs/kit': 1.21.0(svelte@3.59.2)(vite@4.3.9)
       rollup: 3.25.1
     dev: true
 
-  /@sveltejs/kit@1.20.5(svelte@3.59.2)(vite@4.3.9):
-    resolution: {integrity: sha512-8rJYZ2boRlO75lwpbpB+DlSzIwmTuamXTpVlDtw4dBk86o3UaDe/+Ro4xCsV/4FtTw2U8xPHyV83edAWbQHG0w==}
+  /@sveltejs/kit@1.21.0(svelte@3.59.2)(vite@4.3.9):
+    resolution: {integrity: sha512-CBsYoI34SjtOQp0eG85dmVnvTR3Pjs8VgAQhO0CgQja9BIorKl808F1X8EunPhCcyek5r5lKQE1Mmbi0RuzHqA==}
     engines: {node: ^16.14 || >=18}
     hasBin: true
     requiresBuild: true
