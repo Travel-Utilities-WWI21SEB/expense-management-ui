@@ -2,8 +2,16 @@
 	import type { TravelData } from '$tripDomain';
 	import { goto } from '$app/navigation';
 	import { TripCard, HeaderBar, AlertWithAction } from '$components';
-	import { currentTrip, currentUser } from '$stores';
+	import { currentUser } from '$stores';
 	import { errorMessage, errorState } from '$stores';
+	import type { NewTripInputs } from '$tripDomain';
+
+	let newTrip: NewTripInputs = {
+		name: '',
+		location: '',
+		startDate: new Date(Date.now()).toISOString().substring(0, 10),
+		endDate: new Date(Date.now()).toISOString().substring(0, 10)
+	};
 
 	export let data;
 
@@ -12,7 +20,6 @@
 	currentUser.set(data.userData.data);
 
 	function onTripCardClick(trip: TravelData) {
-		currentTrip.update(() => trip);
 		if (trip.hasAcceptedInvite) {
 			goto(`/trips/${trip.tripId}`);
 		} else {
