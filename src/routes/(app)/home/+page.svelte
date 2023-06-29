@@ -5,34 +5,23 @@
 	import { modifyTripData } from '$utils';
 	import FunFacts from "../../../components/homescreen/_FunFacts.svelte";
 
-	let trips: Array<TravelData>
-    allTrips.subscribe((storeData) => {
-		trips = modifyTripData(storeData);
-	});
+	export let data;
 
 	let cost: Cost = {
 		name: 'Kostenpunkt Aiai',
 		amount: 45,
-		costCategory: { name: 'Miete', color: '#ffffff', icon: 'unicode', totalAmount: 450 },
+		costCategory: { name: 'Miete', color: '#ffffff', icon: 'unicode', totalCost: 450, costCategoryId: 'ksldfajöldksfj'},
 		creationDate: new Date(),
 		endDate: new Date('2023-06-25'),
 		startDate: new Date('2023-05-25'),
 		currency: 'EUR',
-		id: '982734592873465'
+		costId: '982734592873465',
+		costCategoryId: 'ksldfajöldksfj',	
+		contributors: [],
+		creditor: 'Hans',
 	};
 
-	let cost2: Cost = {
-		name: 'Miete September',
-		amount: 500,
-		costCategory: { name: 'Miete', color: '#ffffff', icon: 'unicode', totalAmount: 450 },
-		creationDate: new Date(),
-		endDate: new Date('2023-06-25'),
-		startDate: new Date('2023-05-25'),
-		currency: 'EUR',
-		id: '982734592873467'
-	};
-
-	let costs = [cost, cost2, cost, cost2, cost];
+	let costs = [cost, cost, cost, cost, cost];
 </script>
 
 <div>
@@ -45,7 +34,7 @@
 		</span>
 		<span slot="left_element">
 			<div class="mdc-elevation--z3">
-				<TripCarousel {trips}/>
+				<TripCarousel trips={data.tripData}/>
 			</div>
 		</span>
 		<span slot="right_element">

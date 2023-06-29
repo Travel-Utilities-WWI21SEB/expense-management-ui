@@ -34,11 +34,18 @@
 	<!-- Carousel wrapper -->
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<div class="wrapper relative card-hover h-96 rounded-lg" on:click={() => onTripCardClick()}>
-		{#each trips as trip, index}
+		{#if trips.length == 0}
+			<div class="card">
+				<p class="text-center">No trips yet</p>
+
+			</div>
+			{:else}
+			{#each trips as trip, index}
 			<div class="item duration-700 ease-in-out absolute inset-0 transition-all transform translate-x-0 card h-fit p-4 {currentTrip == index ? 'z-20' : ''}" data-value={index}>
 				<TripCard {trip} />
 			</div>
 		{/each}
+		{/if}
 		</div>
 	<!-- Slider indicators -->
 	<div class="indicators flex absolute bottom-5 left-1/2 z-30 space-x-3 -translate-x-1/2">
