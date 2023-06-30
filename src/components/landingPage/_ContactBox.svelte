@@ -2,6 +2,18 @@
 	import { MailInboxIcon } from '$icons';
 	import { toastStore, type ToastSettings } from '@skeletonlabs/skeleton';
 
+	// Timer
+	let resendTokenInterval = 25;
+	let resendTokenTimer = 0;
+	$: remainingTime = resendTokenTimer > 0 ? `in ${resendTokenTimer} seconds` : '';
+
+	// Decrease timer if it's greater than 0
+	$: if (resendTokenTimer > 0) {
+		setTimeout(() => {
+			resendTokenTimer--;
+		}, 1000);
+	}
+
 	const submitHandler = async (e: MouseEvent) => {
 		// Get form data
 		const name = (document.getElementById('name') as HTMLInputElement).value;
@@ -28,6 +40,8 @@
 				timeout: 5000
 			};
 		} else {
+			resendTokenTimer = resendTokenInterval;
+
 			toast = {
 				background: 'variant-filled-success',
 				message: 'Your message was sent successfully!',
@@ -55,31 +69,68 @@
 			</p>
 		</div>
 		<div class="lg:w-1/2 md:w-2/3 mx-auto">
-			<form class="flex flex-wrap -m-2">
+			<form class="flex flex-wrap group -m-2" novalidate>
 				<div class="p-2 w-1/2">
 					<div class="relative">
 						<label for="name" class="leading-7 text-sm">Name</label>
-						<input type="text" id="name" name="name" class="input" required />
+						<input
+							type="text"
+							id="name"
+							name="name"
+							class="input peer invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
+							placeholder="Your name"
+							minlength="3"
+							required
+						/>
+						<span
+							class="mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block"
+						>
+							Please enter a valid name (at least 3 characters)
+						</span>
 					</div>
 				</div>
 				<div class="p-2 w-1/2">
 					<div class="relative">
 						<label for="email" class="leading-7 text-sm">Email</label>
-						<input type="email" id="email" name="email" class="input" required />
+						<input
+							type="email"
+							id="email"
+							name="email"
+							class="input peer invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
+							placeholder="your-mail@your-domain.de"
+							required
+						/>
+						<span
+							class="mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block"
+						>
+							Please enter a valid email address (e.g. max@mustermann.de)
+						</span>
 					</div>
 				</div>
 				<div class="p-2 w-full">
 					<div class="relative">
 						<label for="message" class="leading-7 text-sm">Message</label>
-						<textarea id="message" name="message" rows={6} class="textarea" required />
+						<textarea
+							id="message"
+							name="message"
+							rows={6}
+							class="textarea"
+							placeholder="Whatever you want to tell us"
+							required
+						/>
 					</div>
 				</div>
 				<div class="p-2 w-full flex justify-center">
-					<button class="btn btn-lg variant-filled" on:click={submitHandler}>
+					<button
+						class="btn btn-lg variant-filled {resendTokenTimer > 0
+							? 'pointer-events-none opacity-50'
+							: ''} group-invalid:pointer-events-none group-invalid:opacity-50"
+						on:click={submitHandler}
+					>
 						<span>
 							<MailInboxIcon />
 						</span>
-						<span>Send</span>
+						<span>Send {remainingTime}</span>
 					</button>
 				</div>
 				<div class="p-2 w-full pt-8 mt-8 border-t border-current text-center">

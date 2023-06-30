@@ -22,17 +22,14 @@
 
 <footer class="bg-surface-500/25 border-t border-current">
 	<div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
-		<div class="md:flex md:justify-between">
-			<div class="md:mt-auto">
-				<a
-					href="/"
-					class="flex title-font font-medium items-center md:justify-start justify-center"
-				>
+		<div class="flex justify-between">
+			<div class="my-auto">
+				<a href="/" class="flex title-font font-medium items-center justify-start">
 					<TitleLessLogoIcon />
-					<span class="ml-3 text-xl">Travel Utilities</span>
+					<span class="ml-3 text-lg md:text-xl">Travel Utilities</span>
 				</a>
 			</div>
-			<div class="grid grid-flow-col gap-8 sm:gap-6">
+			<div class="grid grid-flow-col gap-6 md:gap-8">
 				<div>
 					<h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
 						Follow us
@@ -58,11 +55,11 @@
 			</div>
 		</div>
 		<hr class="!border-t-4 my-6" />
-		<div class="sm:flex sm:items-center sm:justify-between">
-			<span class="text-sm text-gray-500 sm:text-center dark:text-gray-400"
+		<div class="flex items-center justify-between">
+			<span class="text-sm text-gray-500 text-center dark:text-gray-400"
 				>© 2023 <a href="https://costventures.works/" class="hover:underline">Travel Utilities</a>.
 			</span>
-			<div class="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
+			<div class="flex mt-4 space-x-6 justify-center">
 				<a href="https://www.facebook.com/groups/ElonMusk/">
 					<FacebookIcon />
 				</a>
