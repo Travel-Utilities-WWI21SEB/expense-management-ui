@@ -52,7 +52,6 @@
 				if (r) {
 					onDeleteCost(cost);
 				} else {
-					console.log('cancel pressed');
 					const modalCost: ModalSettings = {
 						type: 'component',
 						component: modalComponent

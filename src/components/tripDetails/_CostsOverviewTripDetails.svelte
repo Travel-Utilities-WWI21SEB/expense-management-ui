@@ -54,6 +54,14 @@
 			<span>Add</span>
 		</button>
 	</div>
+	<div class="flex p-2">
+		<button type="button" class="btn btn-sm variant-filled mx-1" use:popup={popUpSorting}
+			>Sort</button
+		>
+		<button type="button" class="btn btn-sm variant-filled mx-1" use:popup={popUpFiltering}
+			>Filter</button
+		>
+	</div>
 	{#if costs.length === 0}
 		<AlertWithAction
 			alertHeading="This trip has no costs yet"
@@ -61,26 +69,20 @@
 			icon={CostIcon}
 		/>
 	{:else}
-		<div class="flex p-2">
-			<button type="button" class="btn btn-sm variant-filled mx-1" use:popup={popUpSorting}
-				>Sort</button
-			>
-			<button type="button" class="btn btn-sm variant-filled mx-1" use:popup={popUpFiltering}
-				>Filter</button
-			>
-		</div>
 		<ul class="list p-2 max-h-[500px] overflow-auto">
-			{#each costs as cost, i}
-				<li>
-					<TripDetailsCostItem
-						{cost}
-						{selectionIndex}
-						{i}
-						{trip}
-						on:select_item={(e) => handleSelectItem(e)}
-					/>
-				</li>
-			{/each}
+			{#key costs}
+				{#each costs as cost, i}
+					<li>
+						<TripDetailsCostItem
+							{cost}
+							{selectionIndex}
+							{i}
+							{trip}
+							on:select_item={(e) => handleSelectItem(e)}
+						/>
+					</li>
+				{/each}
+			{/key}
 		</ul>
 	{/if}
 </div>

@@ -13,11 +13,12 @@
 		orderBy = e.target.value;
 	}
 
-	function setQueryParameter(parameter: string, value: string) {
-		if ($page.url.searchParams.has(parameter)) {
-			$page.url.searchParams.delete(parameter);
+	function setQueryParameter(url: URL, parameter: string, value: string): URL {
+		if (url.searchParams.has(parameter)) {
+			url.searchParams.delete(parameter);
 		}
-		$page.url.searchParams.append(parameter, value);
+		url.searchParams.append(parameter, value);
+		return url;
 	}
 </script>
 
@@ -33,6 +34,8 @@
 		<option value="deducted_at">Start Date</option>
 		<option value="end_date">End Date</option>
 		<option value="amount">Amount</option>
+		<option value="id_cost_category">Cost Category</option>
+		<option value="description">Name</option>
 	</select>
 </label>
 
@@ -54,18 +57,20 @@
 	type="button"
 	class="btn variant-filled mt-2 w-full"
 	on:click={() => {
-		setQueryParameter('sortBy', sortBy);
-		setQueryParameter('sortOrder', orderBy);
-		goto(`?${$page.url.searchParams.toString()}`);
+		let url = new URL($page.url);
+		setQueryParameter(url, 'sortBy', sortBy);
+		setQueryParameter(url, 'sortOrder', orderBy);
+		goto(`?${url.searchParams.toString()}`);
 	}}>Apply</button
 >
 <button
 	type="button"
 	class="btn variant-outline my-2 w-full"
 	on:click={() => {
-		$page.url.searchParams.delete('sortBy');
-		$page.url.searchParams.delete('sortOrder');
-		goto(`?${$page.url.searchParams.toString()}`);
+		let url = new URL($page.url);
+		url.searchParams.delete('sortBy');
+		url.searchParams.delete('sortOrder');
+		goto(`?${url.searchParams.toString()}`);
 	}}>Clear</button
 >
 

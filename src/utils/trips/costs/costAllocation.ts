@@ -50,6 +50,7 @@ export function changeToEqual(
 	}
 	return newUsers;
 }
+
 export function isSplitEqually(allUsers: Array<CostPaidForUser>, cost: CostDateAsString): boolean {
 	const involvedUsers = allUsers.filter((user) => user.checked);
 	const equallySplitUsers = changeToEqual(allUsers, cost, involvedUsers);

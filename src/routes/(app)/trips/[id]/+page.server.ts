@@ -4,10 +4,6 @@ import type { PageServerLoad } from './$types';
 export const load = (async ({ params, fetch, url }) => {
 	const sort = String(url.searchParams.get('sortBy') ?? 'deducted_at');
 	const sortOrder = String(url.searchParams.get('sortOrder') ?? 'desc');
-	const minDeductionDate = String(url.searchParams.get('minDeductionDate'));
-	const maxDeductionDate = String(url.searchParams.get('maxDeductionDate'));
-	const minEndDate = String(url.searchParams.get('minEndDate'));
-	const maxEndDate = String(url.searchParams.get('maxEndDate'));
 
 	const sortByQuery = `sortBy=${sort}`;
 	const sortOrderQuery = url.searchParams.has('sortOrder') ? `&sortOrder=${sortOrder}` : '';
