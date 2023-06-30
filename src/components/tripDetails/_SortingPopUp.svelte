@@ -2,8 +2,8 @@
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 
-	let sortBy = $page.url.searchParams.get('sortBy') ?? 'deducted_at';
-	let orderBy = $page.url.searchParams.get('sortOrder') ?? 'desc';
+	$: sortBy = $page.url.searchParams.get('sortBy') ?? 'deducted_at';
+	$: orderBy = $page.url.searchParams.get('sortOrder') ?? 'desc';
 
 	function changeSortBy(e: any) {
 		sortBy = e.target.value;
@@ -11,6 +11,13 @@
 
 	function changeOrderBy(e: any) {
 		orderBy = e.target.value;
+	}
+
+	function setQueryParameter(parameter: string, value: string) {
+		if ($page.url.searchParams.has(parameter)) {
+			$page.url.searchParams.delete(parameter);
+		}
+		$page.url.searchParams.append(parameter, value);
 	}
 </script>
 
@@ -45,8 +52,21 @@
 
 <button
 	type="button"
-	class="btn variant-filled my-2 w-full"
-	on:click={() => goto(`?sortBy=${sortBy}&sortOrder=${orderBy}`)}>Apply</button
+	class="btn variant-filled mt-2 w-full"
+	on:click={() => {
+		setQueryParameter('sortBy', sortBy);
+		setQueryParameter('sortOrder', orderBy);
+		goto(`?${$page.url.searchParams.toString()}`);
+	}}>Apply</button
+>
+<button
+	type="button"
+	class="btn variant-outline my-2 w-full"
+	on:click={() => {
+		$page.url.searchParams.delete('sortBy');
+		$page.url.searchParams.delete('sortOrder');
+		goto(`?${$page.url.searchParams.toString()}`);
+	}}>Clear</button
 >
 
 <!-- //Clear Button -->
