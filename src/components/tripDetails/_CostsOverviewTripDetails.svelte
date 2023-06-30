@@ -10,6 +10,7 @@
 	import type { ModalComponent, ModalSettings, PopupSettings } from '@skeletonlabs/skeleton';
 	import { modalStore, popup } from '@skeletonlabs/skeleton';
 	import { CostIcon } from '$icons';
+	import { page } from '$app/stores';
 
 	export let costs: Array<Cost>;
 	export let trip: TravelData;
@@ -62,9 +63,15 @@
 			>Filter</button
 		>
 	</div>
-	{#if costs.length === 0}
+	{#if costs.length === 0 && $page.url.searchParams.size === 0}
 		<AlertWithAction
 			alertHeading="This trip has no costs yet"
+			class="variant-ghost-primary"
+			icon={CostIcon}
+		/>
+	{:else if costs.length === 0 && $page.url.searchParams.size > 0}
+		<AlertWithAction
+			alertHeading="No costs match your filter criteria"
 			class="variant-ghost-primary"
 			icon={CostIcon}
 		/>

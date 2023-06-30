@@ -14,35 +14,47 @@
 		queryParam: string;
 		value: string;
 		checked: boolean;
+		minValue: string;
+		maxValue: string;
+		isMin: boolean;
 	}
 
-	let filterOptions = [
+	let filterOptions: Array<FilterOptions> = [
 		{
 			name: 'Minimal Start Date',
 			queryParam: 'minDeductionDate',
-			value:
-				$page.url.searchParams.get('minDeducationDate') ??
-				trip.startDate.toISOString().slice(0, 10),
-			checked: $page.url.searchParams.has('minDeducationDate')
+			value: startDateTrip,
+			checked: false,
+			minValue: startDateTrip,
+			maxValue: endDateTrip,
+			isMin: true
 		},
 		{
 			name: 'Maximal Start Date',
 			queryParam: 'maxDeductionDate',
-			value:
-				$page.url.searchParams.get('maxDeductionDate') ?? trip.endDate.toISOString().slice(0, 10),
-			checked: $page.url.searchParams.has('maxDeductionDate')
+			value: endDateTrip,
+			checked: false,
+			minValue: startDateTrip,
+			maxValue: endDateTrip,
+			isMin: false
 		},
 		{
 			name: 'Minimal End Date',
 			queryParam: 'minEndDate',
-			value: $page.url.searchParams.get('minEndDate') ?? trip.startDate.toISOString().slice(0, 10),
-			checked: $page.url.searchParams.has('minEndDate')
+			value: startDateTrip,
+			checked: false,
+			minValue: startDateTrip,
+			maxValue: endDateTrip,
+			isMin: true
 		},
 		{
 			name: 'Maximal End Date',
 			queryParam: 'maxEndDate',
-			value: $page.url.searchParams.get('maxEndDate') ?? trip.endDate.toISOString().slice(0, 10),
-			checked: $page.url.searchParams.has('masEndDate')
+			value: endDateTrip,
+			checked: false,
+			minValue: startDateTrip,
+			maxValue: endDateTrip,
+			isMin: false
 		}
 	];
 
@@ -54,10 +66,7 @@
 				value: $page.url.searchParams.get(option.queryParam) ?? option.value
 			};
 		});
-		console.log(filterOptions);
 	});
-
-	console.log(filterOptions);
 
 	function setQueryParameter(url: URL, parameter: string, value: string): URL {
 		if (url.searchParams.has(parameter)) {
@@ -82,16 +91,26 @@
 		filterOptions.forEach((option) => {
 			url.searchParams.delete(option.queryParam);
 		});
+		goto(`?${url.searchParams.toString()}`);
 
 		const newFilterOptions = filterOptions.map((option) => {
 			return {
 				...option,
-				checked: false
+				checked: false,
+				value: option.isMin ? startDateTrip : endDateTrip
 			};
 		});
 		filterOptions = newFilterOptions;
+	}
 
-		goto(`?${url.searchParams.toString()}`);
+	$: {
+		filterOptions = filterOptions.map((option, i) => {
+			return {
+				...option,
+				minValue: option.isMin ? startDateTrip : filterOptions[i - 1].value,
+				maxValue: option.isMin ? filterOptions[i + 1].value : endDateTrip
+			};
+		});
 	}
 </script>
 
@@ -110,6 +129,8 @@
 			<input
 				class="input ml-4 my-2"
 				type="date"
+				min={option.minValue}
+				max={option.maxValue}
 				bind:value={option.value}
 				on:change={(e) => changeDate(e, i)}
 			/>
@@ -123,14 +144,12 @@
 	on:click={() => {
 		let url = new URL($page.url);
 		filterOptions.forEach((option) => {
-			console.log(option);
 			if (option.checked) {
 				url = setQueryParameter(url, option.queryParam, option.value);
 			} else {
 				url.searchParams.delete(option.queryParam);
 			}
 		});
-		console.log(url.toString());
 		goto(`?${url.searchParams.toString()}`);
 	}}>Apply</button
 >
