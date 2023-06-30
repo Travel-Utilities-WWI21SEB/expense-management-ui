@@ -1,7 +1,7 @@
 import { modifyTripData } from '$utils';
 import type { PageServerLoad } from './$types';
 
-export const load = (async ({ fetch }) => {
+export const load: PageServerLoad = async ({ fetch }) => {
 	const tripPromise = fetch('/api/trips', {
 		method: 'GET',
 		headers: {
@@ -30,4 +30,4 @@ export const load = (async ({ fetch }) => {
 		};
 	}
 	return { ...tripBody, tripData: tripBody.data, userData: userBody };
-}) satisfies PageServerLoad;
+};

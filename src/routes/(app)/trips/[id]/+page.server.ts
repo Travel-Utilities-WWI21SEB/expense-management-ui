@@ -1,7 +1,7 @@
 import { modifyCosts, modifyTrip } from '$utils';
 import type { PageServerLoad } from './$types';
 
-export const load = (async ({ params, fetch }) => {
+export const load: PageServerLoad = async ({ params, fetch }) => {
 	const tripPromise = fetch(`/api/trips/${params.id}`, {
 		method: 'GET',
 		headers: {
@@ -43,4 +43,4 @@ export const load = (async ({ params, fetch }) => {
 	}
 
 	return { tripData: tripBody.data, costsData: costsBody.data };
-}) satisfies PageServerLoad;
+};

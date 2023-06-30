@@ -9,7 +9,7 @@ type dataResponse = {
 	user: UserDetails;
 };
 
-export const load = (async (event: ServerLoadEvent) => {
+export const load: PageServerLoad = async (event: ServerLoadEvent) => {
 	const response = await event.fetch('/api/users', {
 		method: 'GET',
 		headers: {
@@ -34,4 +34,4 @@ export const load = (async (event: ServerLoadEvent) => {
 		errorMessage: '',
 		user: body.data
 	} as unknown as dataResponse;
-}) satisfies PageServerLoad;
+};

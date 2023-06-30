@@ -16,10 +16,12 @@ const unauthorizedRoutes = [
 	'/api/users/activate', // Activate API
 	'/api/users/forgot-password', // Forgot password API
 	'/api/users/verify-reset-token', // Verify reset token API
-	'/api/users/reset-password' // Reset password API
+	'/api/users/reset-password', // Reset password API
+	'/inlang/en.json', // Inlang API for English
+	'/inlang/de.json' // Inlang API for German
 ];
 
-export const handle = (async ({ event, resolve }) => {
+export const handle: Handle = async ({ event, resolve }) => {
 	console.log(`Internal request: ${event.url.pathname}, ${Date.now()}}`);
 
 	// Unauthorized routes: Just let them pass through
@@ -82,12 +84,12 @@ export const handle = (async ({ event, resolve }) => {
 	const response = await resolve(event);
 
 	return response;
-}) satisfies Handle;
+};
 
 // By default SvelteKit does not send the Authorization header to the API
 // since it is not a same-origin request. This hook will add the Authorization
 // header to the request if the request is going to the API. (rip 1 hour of my time)
-export const handleFetch = (({ event, request, fetch }) => {
+export const handleFetch: HandleFetch = ({ event, request, fetch }) => {
 	const url = new URL(request.url);
 	console.log(`Outgoing request to ${url}`);
 
@@ -96,4 +98,4 @@ export const handleFetch = (({ event, request, fetch }) => {
 	}
 
 	return fetch(request);
-}) satisfies HandleFetch;
+};

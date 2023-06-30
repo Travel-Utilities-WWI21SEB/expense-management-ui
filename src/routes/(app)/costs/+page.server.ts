@@ -8,7 +8,7 @@ type LoadResponse = {
 	costOverview: CostOverview;
 };
 
-export const load = (async (event: ServerLoadEvent) => {
+export const load: PageServerLoad = async (event: ServerLoadEvent) => {
 	const response = await event.fetch('/api/costs', {
 		method: 'GET',
 		headers: {
@@ -23,4 +23,4 @@ export const load = (async (event: ServerLoadEvent) => {
 		errorMessage,
 		costOverview: data
 	} as LoadResponse;
-}) satisfies PageServerLoad;
+};

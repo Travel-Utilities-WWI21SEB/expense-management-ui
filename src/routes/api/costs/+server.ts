@@ -3,7 +3,7 @@ import { getErrorMessage } from '$utils';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
-export const GET = (async ({ fetch }) => {
+export const GET: RequestHandler = async ({ fetch }) => {
 	console.log('GET');
 	try {
 		const response = await fetch(`${PUBLIC_BASE_URL}/api/v1/costs/overview`, {
@@ -32,4 +32,4 @@ export const GET = (async ({ fetch }) => {
 			errorMessage: message
 		});
 	}
-}) satisfies RequestHandler;
+};
