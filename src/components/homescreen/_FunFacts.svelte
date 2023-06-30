@@ -1,8 +1,7 @@
 <script lang="ts">
-	import { TripDetailsCostItem } from '$components';
-	import type { Cost } from '$tripDomain';
+	import type { Debt } from '$debtDomain';
 
-	export let costs: Array<Cost>;
+	// export let debts: Array<Debt>;
 
 	let selectionIndex = -1;
 

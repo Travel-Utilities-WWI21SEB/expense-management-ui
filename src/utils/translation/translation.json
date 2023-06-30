@@ -1,0 +1,530 @@
+{
+    "page": {
+        "name": "landing_page",
+        "parts":[
+            {
+                "part_name": "nav_bar",
+                "elements": [
+                    {
+                        "element_name": "headline",
+                        "translations": [
+                            {
+                                "language": "en",
+                                "text": "Navigation"
+                            },
+                            {
+                                "language": "de",
+                                "text": "Navigation"
+                            }
+                        ]
+                       
+                    },
+                    {
+                        "element_name": "sign_up",
+                        "translations": [
+                            {
+                                "language": "en",
+                                "text": "Sign Up"
+                            },
+                            {
+                                "language": "de",
+                                "text": "Registrierung"
+                            }
+                        ]
+                    },
+                    {
+                        "element_name": "features",
+                        "translations": [
+                            {
+                                "language": "en",
+                                "text": "Features"
+                            },
+                            {
+                                "language": "de",
+                                "text": "Features"
+                            }
+                        ]
+                    },
+                    {
+                        "element_name": "reviews",
+                        "translations": [
+                            {
+                                "language": "en",
+                                "text": "Reviews"
+                            },
+                            {
+                                "language": "de",
+                                "text": "Bewertungen"
+                            }
+                        ]
+                    },
+                    {
+                        "element_name": "contact",
+                        "translations": [
+                            {
+                                "language": "en",
+                                "text": "Contact"
+                            },
+                            {
+                                "language": "de",
+                                "text": "Kontakt"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "part_name": "banner",
+                "elements": [
+                    {
+                        "element_name": "headline",
+                        "translations": [
+                            {
+                                "language": "en",
+                                "text": "Travel. Spend. Divide."
+                            },
+                            {
+                                "language": "de",
+                                "text": "Reisen. Ausgeben. Aufteilen."
+                            }
+                        ]
+                    },
+                    {
+                        "element_name": "call-to-action",
+                        "translations": [
+                            {
+                                "language": "en",
+                                "text": "Get startet with Costventures today by creating a free account"
+                            },
+                            {
+                                "language": "de",
+                                "text": "Starte noch heute mit Costventures und erstelle ein kostenloses Konto"
+                            }
+                        ]
+                    },
+                    {
+                        "element_name": "register",
+                        "translations": [
+                            {
+                                "language": "en",
+                                "text": "Register"
+                            },
+                            {
+                                "language": "de",
+                                "text": "Registrieren"
+                            }
+                        ]
+                    },
+                ]
+            },
+            {
+                "part_name": "features_explanation1",
+                "elements": [
+                    {
+                        "element_name": "headline",
+                        "translations": [
+                            {
+                                "language": "en",
+                                "text": "Create trips with your friends"
+                            },
+                            {
+                                "language": "de",
+                                "text": "Erstelle Reisen mit deinen Freunden"
+                            }
+                        ]
+                    },
+                    {
+                        "element_name": "explanation",
+                        "translations": [
+                            {
+                                "language": "en",
+                                "text": "Travel the world with your friends and family. Create a trip and invite your friends to join you."
+                            },
+                            {
+                                "language": "de",
+                                "text": "Bereise die Welt mit Freunden und  Familie. Erstelle eine Reise und lade deine Freunde ein, sich dir anzuschließen."
+                            }
+                        ]
+                    },
+                    {
+                        "element_name": "learn_more",
+                        "translations": [
+                            {
+                                "language": "en",
+                                "text": "Learn More"
+                            },
+                            {
+                                "language": "de",
+                                "text": "Mehr erfahren"
+                            }
+                        ]
+                    }
+                ]
+            }
+            {
+                "part_name": "features_explanation2",
+                "elements": [
+                    {
+                        "element_name": "headline",
+                        "translations": [
+                            {
+                                "language": "en",
+                                "text": "..." //TODO: Add text
+                            },
+                            {
+                                "language": "de",
+                                "text": "..." //TODO: Add text
+                            }
+                        ]
+                    },
+                    {
+                        "element_name": "explanation",
+                        "translations": [
+                            {
+                                "language": "en",
+                                "text": "..." //TODO: Add text
+                            },
+                            {
+                                "language": "de",
+                                "text": "..." //TODO: Add text
+                            }
+                        ]
+                    },
+                    {
+                        "element_name": "learn_more",
+                        "translations": [
+                            {
+                                "language": "en",
+                                "text": "Learn More"
+                            },
+                            {
+                                "language": "de",
+                                "text": "Mehr erfahren"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "part_name": "features_explanation3",
+                "elements": [
+                    {
+                        "element_name": "headline",
+                        "translations": [
+                            {
+                                "language": "en",
+                                "text": "..." //TODO: Add text
+                            },
+                            {
+                                "language": "de",
+                                "text": "..." //TODO: Add text
+                            }
+                        ]
+                    },
+                    {
+                        "element_name": "explanation",
+                        "translations": [
+                            {
+                                "language": "en",
+                                "text": "..." //TODO: Add text
+                            },
+                            {
+                                "language": "de",
+                                "text": "..." //TODO: Add text
+                            }
+                        ]
+                    },
+                    {
+                        "element_name": "learn_more",
+                        "translations": [
+                            {
+                                "language": "en",
+                                "text": "Learn More"
+                            },
+                            {
+                                "language": "de",
+                                "text": "Mehr erfahren"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "part_name": "reviews1",
+                "elements": [
+                    {
+                        "element_name": "text",
+                        "translations": [
+                            {
+                                "language": "en",
+                                "text": "Mashallah simply the best software" 
+                            },
+                            {
+                                "language": "de",
+                                "text": "Mashallah einfach die beste Software" 
+                            }
+                        ]
+                    },
+                    {
+                        "element_name": "name",
+                        "translations": [
+                            {
+                                "language": "en",
+                                "text": "Aleks Georgiev" 
+                            },
+                            {
+                                "language": "de",
+                                "text": "Aleks Georgiev" 
+                            }
+                        ]
+                    },
+                    {
+                        "element_name": "role",
+                        "translations": [
+                            {
+                                "language": "en",
+                                "text": "Senior Product Designer"
+                            },
+                            {
+                                "language": "de",
+                                "text": "Senior-Produktdesigner"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "part_name": "reviews2",
+                "elements": [
+                    {
+                        "element_name": "text",
+                        "translations": [
+                            {
+                                "language": "en",
+                                "text": "Brutal product" 
+                            },
+                            {
+                                "language": "de",
+                                "text": "Brutales Produkt" 
+                            }
+                        ]
+                    },
+                    {
+                        "element_name": "name",
+                        "translations": [
+                            {
+                                "language": "en",
+                                "text": "Justin Schwab" 
+                            },
+                            {
+                                "language": "de",
+                                "text": "Justin Schwab" 
+                            }
+                        ]
+                    },
+                    {
+                        "element_name": "role",
+                        "translations": [
+                            {
+                                "language": "en",
+                                "text": "Spast"
+                            },
+                            {
+                                "language": "de",
+                                "text": "Spast"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "part_name": "reviews3",
+                "elements": [
+                    {
+                        "element_name": "text",
+                        "translations": [
+                            {
+                                "language": "en",
+                                "text": "Since I started using Costventures, I can finally see how broke I am." 
+                            },
+                            {
+                                "language": "de",
+                                "text": "Seit ich Costventures benutze kann ich endlich sehen wie broke ich bin." 
+                            }
+                        ]
+                    },
+                    {
+                        "element_name": "name",
+                        "translations": [
+                            {
+                                "language": "en",
+                                "text": "Nico Niebisch" 
+                            },
+                            {
+                                "language": "de",
+                                "text": "Nico Niebisch" 
+                            }
+                        ]
+                    },
+                    {
+                        "element_name": "role",
+                        "translations": [
+                            {
+                                "language": "en",
+                                "text": "Chief Executive Officer"
+                            },
+                            {
+                                "language": "de",
+                                "text": "Geschäftsführer"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "part_name": "stats",
+                "elements": [
+                    {
+                        "element_name": "user",
+                        "translations": [
+                            {
+                                "language": "en",
+                                "text": "Users" 
+                            },
+                            {
+                                "language": "de",
+                                "text": "Nutzer" 
+                            }
+                        ]
+                    },
+                    {
+                        "element_name": "subscriber",
+                        "translations": [
+                            {
+                                "language": "en",
+                                "text": "Subscribers" 
+                            },
+                            {
+                                "language": "de",
+                                "text": "Abonnenten" 
+                            }
+                        ]
+                    },
+                    {
+                        "element_name": "investor",
+                        "translations": [
+                            {
+                                "language": "en",
+                                "text": "Investors"
+                            },
+                            {
+                                "language": "de",
+                                "text": "Investoren"
+                            }
+                        ]
+                    },
+                    {
+                        "element_name": "team",
+                        "translations": [
+                            {
+                                "language": "en",
+                                "text": "Talented Team"
+                            },
+                            {
+                                "language": "de",
+                                "text": "Talentiertes Team"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "part_name": "contact_us",
+                "elements": [
+                    {
+                        "element_name": "headline",
+                        "translations": [
+                            {
+                                "language": "en",
+                                "text": "Contact Us" 
+                            },
+                            {
+                                "language": "de",
+                                "text": "Kontakt" 
+                            }
+                        ]
+                    },
+                    {
+                        "element_name": "contact_text",
+                        "translations": [
+                            {
+                                "language": "en",
+                                "text": "If there's something you need to tell us, just do it. We won't bite, promised. :)" 
+                            },
+                            {
+                                "language": "de",
+                                "text": "Wenn du uns etwas zu sagen hast, tu es einfach. Wir beißen nicht, versprochen :)" 
+                            }
+                        ]
+                    },
+                    {
+                        "element_name": "name",
+                        "translations": [
+                            {
+                                "language": "en",
+                                "text": "Name"
+                            },
+                            {
+                                "language": "de",
+                                "text": "Name"
+                            }
+                        ]
+                    },
+                    {
+                        "element_name": "email",
+                        "translations": [
+                            {
+                                "language": "en",
+                                "text": "Email"
+                            },
+                            {
+                                "language": "de",
+                                "text": "E-Mail"
+                            }
+                        ]
+                    },
+                    {
+                        "element_name": "message",
+                        "translations": [
+                            {
+                                "language": "en",
+                                "text": "Message"
+                            },
+                            {
+                                "language": "de",
+                                "text": "Nachricht"
+                            }
+                        ]
+                    },
+                    {
+                        "element_name": "send_button",
+                        "translations": [
+                            {
+                                "language": "en",
+                                "text": "Send"
+                            },
+                            {
+                                "language": "de",
+                                "text": "Absenden"
+                            }
+                        ]
+                    }
+                ]
+            }
+
+        ]
+
+    }
+   
+ 
+}

@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { TripDetailsCostItem } from '$components';
+	import { DebtItem } from '$components';
 	import type { Cost } from '$tripDomain';
 	import { goto } from '$app/navigation';
 
-	export let costs: Array<Cost>;
+	export let debts: Array<Debts>;
 
 	let selectionIndex = -1;
 
