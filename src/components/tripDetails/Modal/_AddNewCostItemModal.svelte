@@ -27,8 +27,9 @@
 
 	export let trip: TravelData;
 
-	let costPaidForUser: Array<CostPaidForUser> = trip.participants.flatMap(
-		(tripParticipant: User) => {
+	let costPaidForUser: Array<CostPaidForUser> = trip.participants
+		.filter((user) => user.hasAcceptedInvite)
+		.flatMap((tripParticipant: User) => {
 			return {
 				username: tripParticipant.username,
 				amount: 0,
@@ -36,8 +37,8 @@
 				user: tripParticipant,
 				checked: true
 			};
-		}
-	);
+		});
+
 	let cost: CostDateAsString = {
 		costCategoryId: '',
 		costId: '',

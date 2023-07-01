@@ -118,7 +118,7 @@
 	on:click={() => selectListItem(i)}
 >
 	<div class="grid grid-cols-12 md:gap-2">
-		<div class="col-span-12 sm:col-span-3 grid content-center p-2">
+		<div class="col-span-12 sm:col-span-3 grid content-center sm:p-2">
 			<div class="text-clip overflow-hidden content-center">
 				<p
 					style="background-color: {cost.costCategory.color}"
@@ -130,15 +130,15 @@
 				</p>
 			</div>
 		</div>
-		<div class="col-span-8 sm:col-span-7 grid content-center p-2">
-			<div class="text-clip overflow-hidden text-left">
+		<div class="col-span-8 sm:col-span-7 grid content-center px-2 pb-2 sm:p-2">
+			<div class="text-clip overflow-hidden text-left truncate">
 				{cost.name}
 				<br />
 				{calculateDate(cost.startDate)}
 				{#if cost.endDate} - {calculateDate(cost.endDate)} {/if}
 			</div>
 		</div>
-		<div class="col-span-4 sm:col-span-2 grid content-center p-2">
+		<div class="col-span-4 sm:col-span-2 grid content-center px-2 pb-2 sm:p-2">
 			<div class="text-clip font-semibold overflow-hidden w-full text-rigth text-error-500">
 				{cost.amount + ' ' + (cost.currency === '' ? '€' : cost.currency)}
 			</div>
