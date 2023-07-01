@@ -1,6 +1,8 @@
 <script lang="ts">
 	export let text: string;
 	export let colorGradient: string;
+
+	console.log(text);
 </script>
 
 <h1 class="h1 mx-2 tracking-wider">

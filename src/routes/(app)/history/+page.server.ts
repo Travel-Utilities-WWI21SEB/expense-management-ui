@@ -1,7 +1,7 @@
 import type { PageServerLoad } from './$types';
 
-export const load = (() => {
+export const load: PageServerLoad = () => {
 	return {
 		message: 'Test'
 	};
-}) satisfies PageServerLoad;
+};

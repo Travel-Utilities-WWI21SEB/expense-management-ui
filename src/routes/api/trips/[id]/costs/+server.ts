@@ -3,7 +3,7 @@ import { getErrorMessage } from '$utils';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from '../$types';
 
-export const POST = (async ({ url, fetch, request }) => {
+export const POST: RequestHandler = async ({ url, fetch, request }) => {
 	console.log('POST');
 	const requestBody = await request.json();
 	try {
@@ -36,9 +36,9 @@ export const POST = (async ({ url, fetch, request }) => {
 			errorMessage: 'Something went wrong. Please try again later'
 		});
 	}
-}) satisfies RequestHandler;
+};
 
-export const GET = (async ({ fetch, params, url }) => {
+export const GET: RequestHandler = async ({ fetch, params, url }) => {
 	console.log('GET');
 
 	const sort = String(url.searchParams.get('sortBy') ?? 'deducted_at');
@@ -92,4 +92,4 @@ export const GET = (async ({ fetch, params, url }) => {
 			errorMessage: 'Something went wrong. Please try again later'
 		});
 	}
-}) satisfies RequestHandler;
+};

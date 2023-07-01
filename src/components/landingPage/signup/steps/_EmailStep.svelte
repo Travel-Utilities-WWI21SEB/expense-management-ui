@@ -50,13 +50,26 @@
 	};
 
 	const debouncedVerifyEmail = _.debounce(verifyEmail, 500);
+
+	// Keyboard handler
+	const keydownHandler = (e: KeyboardEvent) => {
+		if (e.key === 'Enter') {
+			if (emailValid && !lockEmailStep) {
+				// Click next button
+				const nextButton = document.querySelector('.btn.variant-filled-primary');
+				if (nextButton) {
+					(nextButton as HTMLButtonElement).click();
+				}
+			}
+		}
+	};
 </script>
 
 <Step
 	locked={lockEmailStep}
 	buttonNextLabel="Select your username"
 	buttonBack="invisible"
-	buttonNext="btn variant-filled-primary hover:variant-soft-primary dark:hover:variant-soft-primary-dark {lockEmailStep
+	buttonNext="variant-filled-primary hover:variant-soft-primary dark:hover:variant-soft-primary-dark {lockEmailStep
 		? 'pointer-events-none opacity-50'
 		: ''}"
 >
@@ -70,7 +83,7 @@
 	</svelte:fragment>
 	<section>
 		<div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-			<form novalidate>
+			<form novalidate on:keydown={keydownHandler}>
 				<label class="label">
 					<span>Email</span>
 					<input

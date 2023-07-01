@@ -3,7 +3,7 @@ import { getErrorMessage } from '$utils';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
-export const GET = (async ({ url, fetch }) => {
+export const GET: RequestHandler = async ({ url, fetch }) => {
 	console.log('GET');
 	try {
 		const response = await fetch(`${PUBLIC_BASE_URL}/api/v1/trips/${url.pathname.split('/')[3]}`, {
@@ -32,4 +32,4 @@ export const GET = (async ({ url, fetch }) => {
 			errorMessage: 'Something went wrong. Please try again later'
 		});
 	}
-}) satisfies RequestHandler;
+};

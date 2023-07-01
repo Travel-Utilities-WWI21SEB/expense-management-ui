@@ -1,0 +1,126 @@
+{
+	"header": {
+		"languages": {
+			"en": "English",
+			"de": "German"
+		},
+		"logout": "Logout",
+		"search": "Search trips..."
+	},
+	"footer": {
+		"followUs": {
+			"title": "Follow us"
+		},
+		"legal": {
+			"title": "Legal",
+			"imprint": "Imprint"
+		}
+	},
+	"forms": {
+		"signup": {
+			"title": "Sign up",
+			"emailStep": {
+				"title": "Select your email",
+				"invalidEmail": "Please provide a valid email",
+				"validEmail": "Email is valid",
+				"inititalValidation": "Please provide an email address to check availability",
+				"ongoingValidation": "Checking availability...",
+				"available": "This email is available",
+				"unavailable": "This email is already taken",
+				"nextStep": "Select your username"
+			},
+			"usernameStep": {
+				"title": "Select your username",
+				"invalidUsername": "Username must be between 4 and 15 characters",
+				"validUsername": "Username is valid",
+				"inititalValidation": "Please provide a valid username to check availability",
+				"ongoingValidation": "Checking availability...",
+				"available": "This username is available",
+				"unavailable": "This username is already taken",
+				"nextStep": "Select your password"
+			},
+			"passwordStep": {
+				"title": "Select your password",
+				"invalidPassword": "Password must be at least 8 characters long",
+				"validPassword": "Minimum length fulfilled",
+				"passwordsDontMatch": "Passwords don't match",
+				"passwordsMatch": "Passwords match",
+				"nextStep": "Register"
+			},
+			"tokenStep": {
+				"title": "Confirm your email",
+				"description": "Please enter the token you received via email!",
+				"initialValidation": "Enter the token to start validation",
+				"ongoingValidation": "Validating...",
+				"receiveCodeMessage": "Didn't receive a code?",
+				"resendCode": "Get a new one",
+			}
+			"alreadyRegistered": "Already registered?",
+			"alreadyRegisteredAction": "Login"
+		}
+	},
+	"sidebar": {
+		"homepage": {
+			"title": "Homepage",
+			"home": "Home"
+		},
+		"trips": {
+			"title": "Trips",
+			"trips": "Trips",
+			"costs": "Costs",
+			"history": "History"
+		},
+		"account": {
+			"title": "Account",
+			"profile": "Profile"
+		}
+	},
+	"landingPage": {
+		"banner": {
+			"catchPhrase": {
+				"first": "Travel.",
+				"second": "Spend.",
+				"third": "Divide."
+			}
+		},
+		"register": {
+			"title": "Get started with Costventures today by creating a free account.",
+			"button": "Register"
+		},
+		"features": {
+			"redirectMessage": "Learn more",
+			"travel": {
+				"title": "Travel",
+				"description": "Travel the world with your friends and family. Create a trip and invite your friends to join you. Plan your trip together and share the costs."
+			},
+			"spend": {
+				"title": "Spend",
+				"description": "Spend your money wisely. Create a budget for your trip and keep track of your expenses. See how much you have spent and how much you have left."
+			},
+			"divide": {
+				"title": "Divide",
+				"description": "Divide the costs of your trip. Add your expenses and see how much you owe or how much you are owed. Settle your debts and enjoy your trip."
+			}
+		},
+		"reviews": {
+			"aleks": "this is way better than our fitness app",
+			"thomas": "this shit good",
+			"nico": "I can finally see how broke I am now"
+		},
+		"stats": {
+			"users": "Users",
+			"subscribers": "Subscribers",
+			"investors": "Investors",
+			"team": "Talented Team"
+		},
+		"contactBox": {
+			"title": "Contact us",
+			"message": "If you have any questions or suggestions, please tell us. We won't bite. :)",
+			"invalidName": "Please enter a valid name (at least 3 characters)",
+			"invalidEmail": "Please enter a valid email address (e.g. max@mustermann.de)",
+			"label": "Message",
+			"placeholder": "Whatever you want to say...",
+			"button": "Send"
+		}
+	}
+}

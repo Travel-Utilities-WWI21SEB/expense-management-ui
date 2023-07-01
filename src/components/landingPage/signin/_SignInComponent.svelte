@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { ForgotPasswordStepper, VerifyToken, VerifyTokenAlert } from '$components';
 	import { CrossIcon } from '$icons';
 	import {
 		correctToken,
@@ -16,7 +17,6 @@
 	import { resetLandingPageStore } from '$utils';
 	import { ProgressRadial, modalStore } from '@skeletonlabs/skeleton';
 	import { onDestroy } from 'svelte';
-	import { VerifyToken, VerifyTokenAlert, ForgotPasswordStepper } from '$components';
 
 	export let changeTab: (index: number) => void;
 	export let rememberMeCookie: boolean;
@@ -93,6 +93,21 @@
 		}
 	};
 
+	// Keyboard handler
+	const keydownHandler = (e: KeyboardEvent) => {
+		if (e.key === 'Enter') {
+			// Ensure that we are in the context of signing in
+			if (!forgotPassword && !$notActivatedWorkflow && !$notActivatedAlert) {
+				// Click login button
+				const loginButton = document.querySelector('.btn.variant-filled-primary');
+
+				if (loginButton) {
+					(loginButton as HTMLButtonElement).click();
+				}
+			}
+		}
+	};
+
 	onDestroy(() => {
 		// Clean up store values
 		resetLandingPageStore();
@@ -109,7 +124,7 @@
 				Sign in to your account
 			</h1>
 			<hr class="w-16 h-1 bg-primary-500 rounded-full" />
-			<form class="space-y-4 md:space-y-6" novalidate>
+			<form class="space-y-4 md:space-y-6" novalidate on:keydown={keydownHandler}>
 				<label class="label">
 					<span>Email</span>
 					<input

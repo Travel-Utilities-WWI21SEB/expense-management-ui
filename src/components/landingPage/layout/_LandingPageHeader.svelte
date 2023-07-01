@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { LanguageSelector } from '$components';
 	import { DarkIcon, LightIcon, MenuIcon } from '$icons';
 	import { AppBar, LightSwitch, drawerStore, modeCurrent } from '@skeletonlabs/skeleton';
 
@@ -8,6 +9,7 @@
 </script>
 
 <AppBar
+	background="bg-surface-500/25"
 	gridColumns="grid-cols-3"
 	slotDefault="place-self-center"
 	slotTrail="place-content-end"
@@ -32,6 +34,10 @@
 	{/if}
 
 	<svelte:fragment slot="trail">
+		<!-- LANGUAGE SELECTOR -->
+		<LanguageSelector />
+		<!-- LANGUAGE SELECTOR -->
+
 		<!-- Theme Switch -->
 		<LightSwitch width="w-12 lg:w-16" height="h-6 lg:h-8" />
 		<!-- Theme Switch -->

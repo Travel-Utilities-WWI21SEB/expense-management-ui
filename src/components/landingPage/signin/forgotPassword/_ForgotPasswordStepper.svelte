@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { SelectEmailStep, SetNewPasswordStep, ValidateResetTokenStep } from '$components';
 	import {
 		correctToken,
 		email,
@@ -14,7 +15,6 @@
 	} from '$stores';
 	import { Stepper, toastStore, type ToastSettings } from '@skeletonlabs/skeleton';
 	import { onDestroy, tick } from 'svelte/internal';
-	import { SelectEmailStep, SetNewPasswordStep, ValidateResetTokenStep } from '$components';
 
 	export let closeForgotPassword: () => void;
 

@@ -3,7 +3,7 @@ import { getErrorMessage } from '$utils';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
-export const POST = (async ({ fetch, request }) => {
+export const POST: RequestHandler = async ({ fetch, request }) => {
 	console.log('POST');
 	const requestBody = await request.json();
 	try {
@@ -32,4 +32,4 @@ export const POST = (async ({ fetch, request }) => {
 			errorMessage: 'Something went wrong. Please try again later'
 		});
 	}
-}) satisfies RequestHandler;
+};

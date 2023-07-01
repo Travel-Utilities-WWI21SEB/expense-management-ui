@@ -20,17 +20,17 @@ export {
 export {
 	allTrips,
 	currentTrip,
-	newTripForm,
 	newCostCategories,
-	newCostCategoryColors
+	newCostCategoryColors,
+	newTripForm
 } from './tripsStore';
 // User store
 export { authToken, currentUser, selectedUsers } from './userStore';
 //Cost store
 export {
+	costAllocationValid,
 	costDetailsValid,
 	costPaidByValid,
-	costAllocationValid,
 	costSplitType,
 	currentCost
 } from './costStore';
