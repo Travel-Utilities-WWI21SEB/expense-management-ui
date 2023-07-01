@@ -15,18 +15,18 @@ export const POST: RequestHandler = async ({ fetch, request }) => {
 			body: JSON.stringify({ email, token })
 		});
 
+		console.log(response);
+
 		if (response.ok) {
 			return json({ valid: true, error: false, errorMessage: '' });
+		} else if (response.status !== 500) {
+			return json({ valid: false, error: false, errorMessage: '' });
 		}
 
+		console.log('here');
 		const body = await response.json();
 		const { errorCode } = body;
 		const errorMessage = getErrorMessage(errorCode);
-
-		// 404: Not found -> Token is invalid
-		if (response.status === 404) {
-			return json({ valid: false, error: false, errorMessage });
-		}
 
 		return json({ valid: false, error: true, errorMessage });
 	} catch (exception) {

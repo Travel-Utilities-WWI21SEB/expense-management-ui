@@ -17,6 +17,7 @@
 		}
 	},
 	"forms": {
+		"step": "Schritt",
 		"signup": {
 			"title": "Registrieren",
 			"steps": {
@@ -24,7 +25,7 @@
 					"title": "Wählen Sie Ihre E-Mail",
 					"invalidEmail": "Bitte geben Sie eine gültige E-Mail an",
 					"validEmail": "E-Mail ist gültig",
-					"inititalValidation": "Bitte geben Sie eine gültige E-Mail-Adresse ein, um die Verfügbarkeit zu prüfen",
+					"initialValidation": "Bitte geben Sie eine gültige E-Mail-Adresse ein, um die Verfügbarkeit zu prüfen",
 					"ongoingValidation": "Überprüfung der Verfügbarkeit...",
 					"available": "Diese E-Mail ist verfügbar",
 					"unavailable": "Diese E-Mail ist bereits vergeben",
@@ -35,7 +36,7 @@
 					"word": "Benutzername",
 					"invalidUsername": "Benutzername muss zwischen 4 und 15 Zeichen lang sein",
 					"validUsername": "Benutzername ist gültig",
-					"inititalValidation": "Bitte geben Sie einen gültigen Benutzernamen ein, um die Verfügbarkeit zu prüfen",
+					"initialValidation": "Bitte geben Sie einen gültigen Benutzernamen ein, um die Verfügbarkeit zu prüfen",
 					"ongoingValidation": "Überprüfung der Verfügbarkeit...",
 					"available": "Dieser Benutzername ist verfügbar",
 					"unavailable": "Dieser Benutzername ist bereits vergeben",
@@ -59,12 +60,13 @@
 					"correctToken": "Token ist korrekt",
 					"incorrectToken": "Token ist falsch",
 					"receiveCodeMessage": "Keinen Code erhalten?",
-					"resendCode": "Erhalte einen neuen",
+					"resendCode": "Erhalte einen Neuen",
 					"alertHeading": "Etwas ist schief gelaufen!",
 					"alertMessage": "Versuchen Sie es erneut.",
 					"successMessage": "Die Verifizierung war erfolgreich!",
 					"successAction": "Danke, dass Sie Costventures vertrauen, klicken Sie auf die Schaltfläche rechts, um sich automatisch einzuloggen und zur Startseite zu navigieren.",
-					"successActionLink": "Anmelden"
+					"successActionLink": "Anmelden",
+					"seconds": "Sekunden"
 				}
 			},
 			"alreadyRegistered": "Bereits registriert?",
@@ -92,7 +94,7 @@
 					"password": {
 						"title": "Neues Passwort festlegen",
 						"alertHeading": "Etwas ist schief gelaufen!",
-						"nextStep": "Abbrechen"
+						"nextStep": "Passwort setzen"
 					}
 				}
 			},

@@ -29,8 +29,6 @@
 		correctToken.set(undefined);
 		tokenErrorState.set(false);
 
-		console.log('Start verifyPasswordToken');
-
 		const response = await fetch(`/api/users/verify-reset-token`, {
 			method: 'POST',
 			headers: {
@@ -38,8 +36,6 @@
 			},
 			body: JSON.stringify({ email: $email, token: $tokenValues.join('') })
 		});
-
-		console.log('End verifyPasswordToken');
 
 		const body = await response.json();
 		const { valid, error, errorMessage: errorDisplayMessage } = body;

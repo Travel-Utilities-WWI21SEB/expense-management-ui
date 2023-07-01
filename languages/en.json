@@ -17,6 +17,7 @@
 		}
 	},
 	"forms": {
+		"step": "Step",
 		"signup": {
 			"title": "Sign up",
 			"steps": {
@@ -24,7 +25,7 @@
 					"title": "Select your email",
 					"invalidEmail": "Please provide a valid email",
 					"validEmail": "Email is valid",
-					"inititalValidation": "Please provide a valid email address to check availability",
+					"initialValidation": "Please provide a valid email address to check availability",
 					"ongoingValidation": "Checking availability...",
 					"available": "This email is available",
 					"unavailable": "This email is already taken",
@@ -35,7 +36,7 @@
 					"word": "Username",
 					"invalidUsername": "Username must be between 4 and 15 characters",
 					"validUsername": "Username is valid",
-					"inititalValidation": "Please provide a valid username to check availability",
+					"initialValidation": "Please provide a valid username to check availability",
 					"ongoingValidation": "Checking availability...",
 					"available": "This username is available",
 					"unavailable": "This username is already taken",
@@ -64,7 +65,8 @@
 					"alertMessage": "Try again.",
 					"successMessage": "The verification was successful!",
 					"successAction": "Thank you for trusting Costventures, click on the button on the right to automatically login and navigate to the homepage.",
-					"successActionLink": "Login"
+					"successActionLink": "Login",
+					"seconds": "seconds"
 				}
 			},
 			"alreadyRegistered": "Already registered?",
@@ -92,7 +94,7 @@
 					"password": {
 						"title": "Set new password",
 						"alertHeading": "Something went wrong!",
-						"nextStep": "Abort"
+						"nextStep": "Set password"
 					}
 				}
 			},

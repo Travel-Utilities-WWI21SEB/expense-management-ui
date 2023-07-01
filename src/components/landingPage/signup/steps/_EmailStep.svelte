@@ -68,7 +68,7 @@
 
 <Step
 	locked={lockEmailStep}
-	buttonNextLabel={i('forms.signup.steps.email.nextButton')}
+	buttonNextLabel={i('forms.signup.steps.email.nextStep')}
 	buttonBack="invisible"
 	buttonNext="variant-filled-primary hover:variant-soft-primary dark:hover:variant-soft-primary-dark {lockEmailStep
 		? 'pointer-events-none opacity-50'
@@ -127,7 +127,7 @@
 						<span class="flex-auto">{$errorMessage}</span>
 					{:else if $loading || emailExists === undefined}
 						<span class="badge-icon variant-filled-warning w-4 h-4"><QuestionMarkIcon /></span>
-						<span class="flex-auto">{i('forms.signup.steps.email.inititalValidation')}</span>
+						<span class="flex-auto">{i('forms.signup.steps.email.initialValidation')}</span>
 					{:else}
 						<span class="badge-icon variant-filled-success w-4 h-4"><CheckIcon /></span>
 						<span class="flex-auto">{i('forms.signup.steps.email.available')}</span>

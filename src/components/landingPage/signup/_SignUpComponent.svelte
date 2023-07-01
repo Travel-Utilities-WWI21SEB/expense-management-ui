@@ -1,9 +1,10 @@
 <script lang="ts">
+	import { EmailStep, PasswordStep, TokenStep, UsernameStep } from '$components';
 	import { email, errorMessage, errorState, loading, password, username } from '$stores';
 	import { resetLandingPageStore } from '$utils';
+	import { i } from '@inlang/sdk-js';
 	import { Stepper } from '@skeletonlabs/skeleton';
 	import { onDestroy } from 'svelte';
-	import { EmailStep, PasswordStep, TokenStep, UsernameStep } from '$components';
 
 	export let changeTab: (index: number) => void;
 
@@ -53,7 +54,7 @@
 	});
 </script>
 
-<Stepper class="p-3 m-3 h-full" on:next={nextStepHandler}>
+<Stepper class="p-3 m-3 h-full" on:next={nextStepHandler} stepTerm={i('forms.step')}>
 	<EmailStep {changeTab} />
 	<UsernameStep />
 	<PasswordStep />

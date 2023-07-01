@@ -55,19 +55,19 @@
 	<li>
 		{#if $passwordValid}
 			<span class="badge-icon variant-filled-success w-4 h-4"><CheckIcon /></span>
-			<span class="flex-auto">{i('forms.signup.steps.validPassword')}</span>
+			<span class="flex-auto">{i('forms.signup.steps.password.validPassword')}</span>
 		{:else}
 			<span class="badge-icon variant-filled-error w-4 h-4"><CrossIcon /></span>
-			<span class="flex-auto">{i('forms.signup.steps.invalidPassword')}</span>
+			<span class="flex-auto">{i('forms.signup.steps.password.invalidPassword')}</span>
 		{/if}
 	</li>
 	<li>
 		{#if $passwordsMatch}
 			<span class="badge-icon variant-filled-success w-4 h-4"><CheckIcon /></span>
-			<span class="flex-auto">{i('forms.signup.steps.passwordsMatch')}</span>
+			<span class="flex-auto">{i('forms.signup.steps.password.passwordsMatch')}</span>
 		{:else}
 			<span class="badge-icon variant-filled-error w-4 h-4"><CrossIcon /></span>
-			<span class="flex-auto">{i('forms.signup.steps.passwordsDontMatch')}</span>
+			<span class="flex-auto">{i('forms.signup.steps.password.passwordsDontMatch')}</span>
 		{/if}
 	</li>
 </ol>
