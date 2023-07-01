@@ -44,7 +44,7 @@ export {
 	default as CostsOverviewTripDetails,
 	default as TripDetailsCostOverview
 } from './tripDetails/_CostsOverviewTripDetails.svelte';
-export { default as TripDetailsDashboard } from './tripDetails/_DashboardTripDetails.svelte';
+export { default as TripDetailsCostDashboard } from './tripDetails/_DashboardTripDetails.svelte';
 export { default as TripDetailsHeader } from './tripDetails/_HeaderTripDetails.svelte';
 export { default as HeaderTripDetailsLayout } from './tripDetails/_HeaderTripDetailsLayout.svelte';
 export { default as ParticipantIcon } from './tripDetails/_ParticipantIcon.svelte';
