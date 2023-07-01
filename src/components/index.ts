@@ -49,6 +49,8 @@ export { default as TripDetailsHeader } from './tripDetails/_HeaderTripDetails.s
 export { default as HeaderTripDetailsLayout } from './tripDetails/_HeaderTripDetailsLayout.svelte';
 export { default as ParticipantIcon } from './tripDetails/_ParticipantIcon.svelte';
 export { default as Participants } from './tripDetails/_Participants.svelte';
+export { default as TripDetailsFilterPopUp } from './tripDetails/_FilterPopUp.svelte';
+export { default as TripDetailsSortingPopUp } from './tripDetails/_SortingPopUp.svelte';
 
 //Trip Overview
 export { default as DonutChart } from './tripOverview/_DonutChart.svelte';

@@ -31,12 +31,15 @@ export const load = async ({ params, fetch, url }) => {
 		}
 	});
 
-	const costPromise = fetch(`/api/trips/${params.id}/costs`, {
-		method: 'GET',
-		headers: {
-			'Content-Type': 'application/json'
+	const costPromise = fetch(
+		`/api/trips/${params.id}/costs?${sortByQuery}${sortOrderQuery}${minDeductionDateQuery}${maxDeductionDateQuery}${minEndDateQuery}${maxEndDateQuery}${pageQuery}${pageSizeQuery}`,
+		{
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json'
+			}
 		}
-	});
+	);
 
 	const userPromise = fetch('/api/users', {
 		method: 'GET',

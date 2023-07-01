@@ -53,8 +53,8 @@
 				"initialValidation": "Enter the token to start validation",
 				"ongoingValidation": "Validating...",
 				"receiveCodeMessage": "Didn't receive a code?",
-				"resendCode": "Get a new one",
-			}
+				"resendCode": "Get a new one"
+			},
 			"alreadyRegistered": "Already registered?",
 			"alreadyRegisteredAction": "Login"
 		}
