@@ -16,8 +16,7 @@ export const load = (async ({ fetch, params }) => {
 		}
 	});
 
-	const tripBody = await tripResponse.json();
-	const userBody = await userResponse.json();
+	const [tripBody, userBody] = await Promise.all([tripResponse.json(), userResponse.json()]);
 
 	if (tripBody.data) {
 		return {

@@ -9,8 +9,6 @@ export const load = (async ({ fetch }) => {
 		}
 	});
 
-	const tripBody = await tripResponse.json();
-
 	const userResponse = await fetch('/api/users', {
 		method: 'GET',
 		headers: {
@@ -18,7 +16,8 @@ export const load = (async ({ fetch }) => {
 		}
 	});
 
-	const userBody = await userResponse.json();
+	const [tripBody, userBody] = await Promise.all([tripResponse.json(), userResponse.json()]);
+
 	if (tripBody.data) {
 		return {
 			...tripBody,

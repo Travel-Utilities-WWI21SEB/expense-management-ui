@@ -48,9 +48,11 @@ export const load = (async ({ params, fetch, url }) => {
 		}
 	});
 
-	const tripBody = await tripResponse.json();
-	const costsBody = await costsResponse.json();
-	const userBody = await userResponse.json();
+	const [tripBody, costsBody, userBody] = await Promise.all([
+		tripResponse.json(),
+		costsResponse.json(),
+		userResponse.json()
+	]);
 
 	if (tripBody.data) {
 		return {
