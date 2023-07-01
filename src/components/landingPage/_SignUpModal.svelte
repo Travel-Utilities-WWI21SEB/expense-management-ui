@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { SignInComponent, SignUpComponent } from '$components';
+	import { i } from '@inlang/sdk-js';
 	import { Tab, TabGroup } from '@skeletonlabs/skeleton';
 
 	export let data: {
@@ -23,8 +24,8 @@
 		class="w-full rounded-xl"
 		regionList="mx-2"
 	>
-		<Tab bind:group={tabSet} class="mt-2 mb-2" name="tab1" value={0}>Register</Tab>
-		<Tab bind:group={tabSet} class="mt-2 mb-2" name="tab2" value={1}>Login</Tab>
+		<Tab bind:group={tabSet} class="mt-2 mb-2" name="tab1" value={0}>{i('forms.signup.title')}</Tab>
+		<Tab bind:group={tabSet} class="mt-2 mb-2" name="tab2" value={1}>{i('forms.signin.title')}</Tab>
 		<!-- Tab Panels --->
 		<svelte:fragment slot="panel">
 			{#if tabSet === 0}

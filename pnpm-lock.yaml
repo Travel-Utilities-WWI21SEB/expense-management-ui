@@ -82,6 +82,9 @@ devDependencies:
   svelte-check:
     specifier: 3.4.4
     version: 3.4.4(postcss-load-config@4.0.1)(postcss@8.4.24)(svelte@3.59.2)
+  svelte-flag-icons:
+    specifier: ^0.5.5
+    version: 0.5.5(svelte@3.59.2)
   svelte-preprocess:
     specifier: 5.0.4
     version: 5.0.4(postcss-load-config@4.0.1)(postcss@8.4.24)(svelte@3.59.2)(typescript@5.1.5)
@@ -2457,6 +2460,14 @@ packages:
       espree: 9.5.2
       postcss: 8.4.24
       postcss-scss: 4.0.6(postcss@8.4.24)
+      svelte: 3.59.2
+    dev: true
+
+  /svelte-flag-icons@0.5.5(svelte@3.59.2):
+    resolution: {integrity: sha512-66mBHl8fQkkpmcFplYAedtJLHCj+rTC/i8XWxfESlk/b9CliyZjuP3RedJgj71US7NpwYmJMOiluCFoVJJKLZw==}
+    peerDependencies:
+      svelte: ^3.54.0 || ^4.0.0
+    dependencies:
       svelte: 3.59.2
     dev: true
 

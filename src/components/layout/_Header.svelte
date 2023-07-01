@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { LogoutIcon, MenuIcon, SearchIcon } from '$icons';
+	import { i } from '@inlang/sdk-js';
 	import { AppBar, LightSwitch, drawerStore } from '@skeletonlabs/skeleton';
+	import LanguageSelector from '../general/_LanguageSelector.svelte';
 
 	const drawerOpen = (): void => {
 		drawerStore.open({});
@@ -20,8 +22,6 @@
 		}
 	};
 </script>
-
-<!-- SETTINGS POPUP-->
 
 <AppBar background="bg-surface-500/25" border="border-b border-current">
 	<svelte:fragment slot="lead">
@@ -46,24 +46,22 @@
 			type="search"
 			id="default-search"
 			class="w-full border border-current rounded-lg"
-			placeholder="Search Trips..."
+			placeholder={i('header.search')}
 			required
 		/>
 	</div>
 	<!-- Search Bar -->
 	<svelte:fragment slot="trail">
-		<LightSwitch
-			bgDark="bg-surface-200/50"
-			bgLight="bg-surface-200/50"
-			fillLight="gray-500"
-			width="w-12 lg:w-16"
-			height="h-6 lg:h-8"
-			class="mx-auto"
-		/>
-		<!-- Settings -->
-		<button type="button" class="btn-icon variant-ringed" on:click={logoutHandler}>
-			<LogoutIcon />
+		<!-- LANGUAGE SELECTOR -->
+		<LanguageSelector />
+		<!-- Logut -->
+		<button type="button" class="btn variant-ringed pt-2" on:click={logoutHandler}>
+			<span>
+				<LogoutIcon />
+			</span>
+			<span class="hidden md:block">{i('header.logout')}</span>
 		</button>
-		<!-- Settings -->
+		<!-- LIGHT SWITCH -->
+		<LightSwitch width="w-16" height="h-8" class="mx-auto border border-surface rounded-full" />
 	</svelte:fragment>
 </AppBar>

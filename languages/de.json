@@ -1,1 +1,169 @@
-{}
+{
+	"header": {
+		"languages": {
+			"en": "Englisch",
+			"de": "Deutsch"
+		},
+		"logout": "Abmelden",
+		"search": "Durchsuche deine Reisen..."
+	},
+	"footer": {
+		"followUs": {
+			"title": "Folge uns"
+		},
+		"legal": {
+			"title": "Rechtliches",
+			"imprint": "Impressum"
+		}
+	},
+	"forms": {
+		"signup": {
+			"title": "Registrieren",
+			"steps": {
+				"email": {
+					"title": "Wählen Sie Ihre E-Mail",
+					"invalidEmail": "Bitte geben Sie eine gültige E-Mail an",
+					"validEmail": "E-Mail ist gültig",
+					"inititalValidation": "Bitte geben Sie eine gültige E-Mail-Adresse ein, um die Verfügbarkeit zu prüfen",
+					"ongoingValidation": "Überprüfung der Verfügbarkeit...",
+					"available": "Diese E-Mail ist verfügbar",
+					"unavailable": "Diese E-Mail ist bereits vergeben",
+					"nextStep": "Wählen Sie Ihren Benutzernamen"
+				},
+				"username": {
+					"title": "Wählen Sie Ihren Benutzernamen",
+					"word": "Benutzername",
+					"invalidUsername": "Benutzername muss zwischen 4 und 15 Zeichen lang sein",
+					"validUsername": "Benutzername ist gültig",
+					"inititalValidation": "Bitte geben Sie einen gültigen Benutzernamen ein, um die Verfügbarkeit zu prüfen",
+					"ongoingValidation": "Überprüfung der Verfügbarkeit...",
+					"available": "Dieser Benutzername ist verfügbar",
+					"unavailable": "Dieser Benutzername ist bereits vergeben",
+					"nextStep": "Wählen Sie Ihr Passwort"
+				},
+				"password": {
+					"title": "Wählen Sie Ihr Passwort",
+					"word": "Passwort",
+					"wordRepeat": "Passwort wiederholen",
+					"invalidPassword": "Passwort muss mindestens 8 Zeichen lang sein",
+					"validPassword": "Minimale Länge erfüllt",
+					"passwordsDontMatch": "Passwörter stimmen nicht überein",
+					"passwordsMatch": "Passwörter stimmen überein",
+					"nextStep": "Registrieren"
+				},
+				"token": {
+					"title": "Bestätigen Sie Ihre E-Mail",
+					"description": "Bitte geben Sie den Token ein, den Sie per E-Mail erhalten haben!",
+					"initialValidation": "Geben Sie den Token ein, um die Validierung zu starten",
+					"ongoingValidation": "Validierung...",
+					"correctToken": "Token ist korrekt",
+					"incorrectToken": "Token ist falsch",
+					"receiveCodeMessage": "Keinen Code erhalten?",
+					"resendCode": "Erhalte einen neuen",
+					"alertHeading": "Etwas ist schief gelaufen!",
+					"alertMessage": "Versuchen Sie es erneut.",
+					"successMessage": "Die Verifizierung war erfolgreich!",
+					"successAction": "Danke, dass Sie Costventures vertrauen, klicken Sie auf die Schaltfläche rechts, um sich automatisch einzuloggen und zur Startseite zu navigieren.",
+					"successActionLink": "Anmelden"
+				}
+			},
+			"alreadyRegistered": "Bereits registriert?",
+			"alreadyRegisteredAction": "Anmelden"
+		},
+		"signin": {
+			"title": "Anmelden",
+			"componentTitle": "Melden Sie sich bei Ihrem Konto an",
+			"password": "Passwort",
+			"forgotPassword": {
+				"title": "Passwort vergessen?",
+				"abort": "Abbrechen",
+				"steps": {
+					"email": {
+						"title": "Was ist Ihre E-Mail-Adresse?",
+						"invalidEmail": "Bitte geben Sie eine gültige E-Mail an",
+						"validEmail": "E-Mail ist gültig",
+						"nextStep": "Erhalte Rücksetz-Code"
+					},
+					"token": {
+						"alertHeading": "Etwas ist schief gelaufen!",
+						"alertMessage": "Versuchen Sie es erneut",
+						"nextStep": "Neues Passwort eingeben"
+					},
+					"password": {
+						"title": "Neues Passwort festlegen",
+						"alertHeading": "Etwas ist schief gelaufen!",
+						"nextStep": "Abbrechen"
+					}
+				}
+			},
+			"rememberMe": "Erinnere dich an mich",
+			"noAccount": "Noch kein Konto?",
+			"noAccountAction": "Registrieren",
+			"submit": "Anmelden"
+		}
+	},
+	"sidebar": {
+		"homepage": {
+			"title": "Startseite",
+			"home": "Start"
+		},
+		"trips": {
+			"title": "Reisen",
+			"trips": "Reisen",
+			"costs": "Kosten",
+			"history": "Historie"
+		},
+		"account": {
+			"title": "Benutzerkonto",
+			"profile": "Profil"
+		}
+	},
+	"landingPage": {
+		"banner": {
+			"catchPhrase": {
+				"first": "Reisen.",
+				"second": "Ausgeben.",
+				"third": "Teilen."
+			}
+		},
+		"register": {
+			"title": "Legen Sie noch heute mit Costventures los, indem Sie ein kostenloses Konto erstellen.",
+			"button": "Registrieren"
+		},
+		"features": {
+			"redirectMessage": "Erfahre mehr",
+			"travel": {
+				"title": "Reisen",
+				"description": "Entdecke mit deinen Freunden und deiner Familie die Welt. Plane gemeinsam eine Reise und lade deine Freunde ein, sich anzuschließen. Gemeinsam könnt ihr euren Trip gestalten und die Kosten teilen."
+			},
+			"spend": {
+				"title": "Ausgeben",
+				"description": "Verwaltet euer Geld sinnvoll, indem ihr den Überblick über eure Ausgaben behaltet. Seht, wie viel ihr bereits ausgegeben habt und wie viel euch noch bleibt."
+			},
+			"divide": {
+				"title": "Teilen",
+				"description": "Teilt die Kosten eurer Reise gerecht auf. Erfasst eure Ausgaben und seht, wer wem wie viel schuldet. Begleicht eure Schulden und genießt eure Reise in vollen Zügen."
+			}
+		},
+		"reviews": {
+			"aleks": "Mashallah 10/10 (Hast du noch deine Hafermilch?)",
+			"thomas": "Besser als jeder Franzosenfilm",
+			"nico": "Seit ich Costventures benutze, kann ich endlich sehen wie broke ich bin"
+		},
+		"stats": {
+			"users": "Nutzer",
+			"subscribers": "Abonnenten",
+			"investors": "Investoren",
+			"team": "Talentiertes Team"
+		},
+		"contactBox": {
+			"title": "Kontaktiere uns",
+			"message": "Falls du Fragen oder Anregungen hast, kannst du uns gerne eine Nachricht schreiben. Wir freuen uns über jede Nachricht, die nicht von Thomas kommt. :)",
+			"invalidName": "Bitte gib einen gültigen Namen ein (mindestens 3 Zeichen)",
+			"invalidEmail": "Bitte gib eine gültige E-Mail-Adresse ein (z.B. max@mustermann.de)",
+			"label": "Nachricht",
+			"placeholder": "Was möchtest du uns mitteilen?",
+			"button": "Senden"
+		}
+	}
+}

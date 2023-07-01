@@ -13,6 +13,7 @@
 		tokenErrorState,
 		tokenValues
 	} from '$stores';
+	import { i } from '@inlang/sdk-js';
 	import { Stepper, toastStore, type ToastSettings } from '@skeletonlabs/skeleton';
 	import { onDestroy, tick } from 'svelte/internal';
 
@@ -107,7 +108,7 @@
 	on:back={closeForgotPassword}
 	on:next={nextStepHandler}
 	on:complete={onCompleteHandler}
-	buttonBackLabel="Abort"
+	buttonBackLabel={i('forms.signin.forgotPassword.steps.abort')}
 >
 	<SelectEmailStep />
 	<ValidateResetTokenStep {forgotPasswordHandler} />

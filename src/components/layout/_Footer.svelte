@@ -7,6 +7,7 @@
 		TitleLessLogoIcon,
 		TwitterIcon
 	} from '$icons';
+	import { i } from '@inlang/sdk-js';
 	import { modalStore, type ModalComponent, type ModalSettings } from '@skeletonlabs/skeleton';
 
 	const modalComponent: ModalComponent = {
@@ -32,7 +33,7 @@
 			<div class="grid grid-flow-col gap-6 md:gap-8">
 				<div>
 					<h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-						Follow us
+						{i('footer.followUs.title')}
 					</h2>
 					<ul class="text-gray-600 dark:text-gray-400 font-medium">
 						<li>
@@ -43,11 +44,13 @@
 					</ul>
 				</div>
 				<div>
-					<h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
+					<h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+						{i('footer.legal.title')}
+					</h2>
 					<ul class="text-gray-600 dark:text-gray-400 font-medium">
 						<li>
 							<button class="hover:underline" on:click={() => modalStore.trigger(imprintModal)}>
-								Imprint
+								{i('footer.legal.imprint')}
 							</button>
 						</li>
 					</ul>

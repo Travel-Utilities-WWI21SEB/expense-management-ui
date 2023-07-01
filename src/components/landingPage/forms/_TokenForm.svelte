@@ -9,6 +9,7 @@
 	} from '$icons';
 	import { correctToken, errorMessage, tokenErrorState, tokenValues } from '$stores';
 	import { keydownHandler, pasteHandler } from '$utils';
+	import { i } from '@inlang/sdk-js';
 
 	export let keyboardHandler: () => void;
 	export let resendToken: () => void;
@@ -35,7 +36,7 @@
 	};
 </script>
 
-<h5 class="h5 text-center">Please enter the code we sent to your email!</h5>
+<h5 class="h5 text-center">{i('forms.signup.steps.token.description')}</h5>
 <form
 	class="grid grid-flow-col grid-cols-6 lg:gap-x-4"
 	novalidate
@@ -61,24 +62,24 @@
 			<span class="badge-icon variant-filled-success w-4 h-4 justify-center">
 				<CheckIcon />
 			</span>
-			<span class="flex-auto">Token is correct!</span>
+			<span class="flex-auto">{i('forms.signup.steps.token.correctToken')}</span>
 		{:else if validToken}
 			{#if $tokenErrorState}
 				<span class="badge-icon variant-filled-error w-4 h-4"><CrossIcon /></span>
 				<span class="flex-auto">{$errorMessage}</span>
 			{:else}
 				<span class="badge-icon variant-filled-warning w-4 h-4"><CrossIcon /></span>
-				<span class="flex-auto">Token is incorrect!</span>
+				<span class="flex-auto">{i('forms.signup.steps.token.correctToken')}</span>
 			{/if}
 		{:else}
 			<span class="badge-icon variant-filled-warning w-4 h-4"><QuestionMarkIcon /></span>
-			<span class="flex-auto">Enter the code to start validation</span>
+			<span class="flex-auto">{i('forms.signup.steps.token.initialValidation')}</span>
 		{/if}
 	</li>
 	{#if !$correctToken}
 		<li>
 			<span class="badge-icon variant-filled-tertiary w-4 h-4"><InfoIcon /></span>
-			<span class="flex-auto">Didn't receive a code?</span>
+			<span class="flex-auto">{i('forms.signup.steps.token.receiveCodeMessage')}</span>
 		</li>
 	{/if}
 </ol>
@@ -97,6 +98,10 @@
 				<OpenEnvelopeIcon />
 			{/if}
 		</span>
-		<span>Get a new one {remainingTime}</span>
+		<span
+			>{i('forms.signup.steps.token.resendCode')}
+			{remainingTime}
+			{i('forms.signup.steps.token.seconds')}
+		</span>
 	</button>
 {/if}

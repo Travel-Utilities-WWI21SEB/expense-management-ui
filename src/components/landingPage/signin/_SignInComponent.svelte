@@ -15,6 +15,7 @@
 		tokenValues
 	} from '$stores';
 	import { resetLandingPageStore } from '$utils';
+	import { i } from '@inlang/sdk-js';
 	import { ProgressRadial, modalStore } from '@skeletonlabs/skeleton';
 	import { onDestroy } from 'svelte';
 
@@ -121,7 +122,7 @@
 			<h1
 				class="h1 text-xl font-bold leading-tight tracking-tight md:text-2xl dark:text-white text-center"
 			>
-				Sign in to your account
+				{i('forms.signin.componentTitle')}
 			</h1>
 			<hr class="w-16 h-1 bg-primary-500 rounded-full" />
 			<form class="space-y-4 md:space-y-6" novalidate on:keydown={keydownHandler}>
@@ -138,7 +139,7 @@
 					/>
 				</label>
 				<label class="label">
-					<span>Password</span>
+					<span>{i('forms.signin.password')}</span>
 					<input
 						class="input"
 						title="password"
@@ -159,14 +160,14 @@
 						class="w-4 h-4 checkbox"
 						bind:checked={rememberMe}
 					/>
-					<p>Remember me</p>
+					<p>{i('forms.signin.rememberMe')}</p>
 				</label>
 				<button
 					on:click={() => {
 						forgotPassword = true;
 					}}
 					class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500 ml-2"
-					>Forgot password?</button
+					>{i('forms.signin.forgotPassword.title')}</button
 				>
 			</div>
 			<ol class="list">
@@ -179,12 +180,14 @@
 			</ol>
 
 			<p class="text-sm font-light text-gray-500 dark:text-gray-400">
-				Don't have an account yet? <button
+				{i('forms.signin.noAccount')}
+				<button
 					on:click={() => {
 						changeTab(0);
 					}}
-					class="variant-soft-primary">Sign up</button
-				>
+					class="variant-soft-primary"
+					>{i('forms.signin.noAccountAction')}
+				</button>
 			</p>
 			<div class="flex flex-row justify-end">
 				<button
@@ -193,7 +196,7 @@
 					on:click={login}
 				>
 					{#if !$loading}
-						Sign in
+						{i('forms.signin.submit')}
 					{:else}
 						<ProgressRadial width="w-6" />
 					{/if}

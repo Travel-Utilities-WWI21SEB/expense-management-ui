@@ -6,10 +6,10 @@
 		GlobeIcon,
 		HomepageIcon,
 		LightIcon,
-		NotificationIcon,
 		TimeIcon,
 		UserIcon
 	} from '$icons';
+	import { i } from '@inlang/sdk-js';
 	import { drawerStore, modeCurrent } from '@skeletonlabs/skeleton';
 
 	$: classesActive = (href: string) => (href === $page.url.pathname ? '!bg-primary-500' : '');
@@ -31,7 +31,9 @@
 	<nav class="list-nav p-4">
 		<ul>
 			<li class="my-px">
-				<span class="flex font-medium text-sm px-4 my-4 uppercase">Homepage</span>
+				<span class="flex font-medium text-sm px-4 my-4 uppercase"
+					>{i('sidebar.homepage.title')}</span
+				>
 			</li>
 			<li>
 				<a
@@ -43,11 +45,11 @@
 					<span class="badge">
 						<HomepageIcon width={8} height={8} />
 					</span>
-					<span class="flex-auto">Home</span>
+					<span class="flex-auto">{i('sidebar.homepage.home')}</span>
 				</a>
 			</li>
 			<li class="my-px">
-				<span class="flex font-medium text-sm px-4 my-4 uppercase">Trips</span>
+				<span class="flex font-medium text-sm px-4 my-4 uppercase">{i('sidebar.trips.title')}</span>
 			</li>
 			<li>
 				<a
@@ -59,7 +61,7 @@
 					<span class="badge">
 						<GlobeIcon sidebarIcon={true} />
 					</span>
-					<span class="flex-auto">Trips</span>
+					<span class="flex-auto">{i('sidebar.trips.trips')}</span>
 				</a>
 			</li>
 			<li>
@@ -72,7 +74,7 @@
 					<span class="badge">
 						<CostIcon width={8} height={8} />
 					</span>
-					<span class="flex-auto">Costs</span>
+					<span class="flex-auto">{i('sidebar.trips.costs')}</span>
 				</a>
 			</li>
 			<li>
@@ -85,11 +87,13 @@
 					<span class="badge">
 						<TimeIcon width={8} height={8} />
 					</span>
-					<span class="flex-auto">History</span>
+					<span class="flex-auto">{i('sidebar.trips.history')}</span>
 				</a>
 			</li>
 			<li class="my-px">
-				<span class="flex font-medium text-sm px-4 my-4 uppercase">Account</span>
+				<span class="flex font-medium text-sm px-4 my-4 uppercase"
+					>{i('sidebar.account.title')}</span
+				>
 			</li>
 			<li>
 				<a
@@ -101,23 +105,7 @@
 					<span class="badge">
 						<UserIcon width={8} height={8} />
 					</span>
-					<span class="flex-auto">Profile</span>
-				</a>
-			</li>
-			<li>
-				<a
-					href="/notifications"
-					class={classesActive('/notifications')}
-					on:click={drawerClose}
-					data-sveltekit-preload-data="hover"
-				>
-					<div class="relative inline-block">
-						<span class="badge-icon variant-filled-warning absolute -top-1 -right-1 z-10">2</span>
-						<span class="badge">
-							<NotificationIcon />
-						</span>
-					</div>
-					<span class="flex-auto">Notifications</span>
+					<span class="flex-auto">{i('sidebar.account.profile')}</span>
 				</a>
 			</li>
 		</ul>
