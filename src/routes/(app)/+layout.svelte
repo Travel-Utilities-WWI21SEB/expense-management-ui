@@ -1,21 +1,6 @@
 <script lang="ts">
-	// Your selected Skeleton theme:
-	import '@skeletonlabs/skeleton/themes/theme-skeleton.css';
-
-	// This contains the bulk of Skeletons required styles:
-	// NOTE: this will be renamed skeleton.css in the v2.x release.
-	import '@skeletonlabs/skeleton/styles/skeleton.css';
-
-	// Finally, your application's global stylesheet (sometimes labeled 'app.css')
-	import '../../app.postcss';
-
-	// Import floating ui and skeleton deps
 	import { Footer, Header, Sidebar } from '$components';
-	import { arrow, autoUpdate, computePosition, flip, offset, shift } from '@floating-ui/dom';
-	import { AppShell, Drawer, Modal, Toast, storePopup } from '@skeletonlabs/skeleton';
-
-	// Set floating ui defaults
-	storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
+	import { AppShell, Drawer, Modal, Toast } from '@skeletonlabs/skeleton';
 </script>
 
 <!-- MOBILE ONLY! -->

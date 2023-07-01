@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { LanguageSelector } from '$components';
 	import { DarkIcon, LightIcon, MenuIcon } from '$icons';
 	import { AppBar, LightSwitch, drawerStore, modeCurrent } from '@skeletonlabs/skeleton';
 
@@ -33,6 +34,10 @@
 	{/if}
 
 	<svelte:fragment slot="trail">
+		<!-- LANGUAGE SELECTOR -->
+		<LanguageSelector />
+		<!-- LANGUAGE SELECTOR -->
+
 		<!-- Theme Switch -->
 		<LightSwitch width="w-12 lg:w-16" height="h-6 lg:h-8" />
 		<!-- Theme Switch -->

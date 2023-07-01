@@ -1,1 +1,83 @@
-{}
+{
+	"header": {
+		"languages": {
+			"en": "Englisch",
+			"de": "Deutsch"
+		},
+		"logout": "Abmelden",
+		"search": "Durchsuche deine Reisen..."
+	},
+	"footer": {
+		"followUs": {
+			"title": "Folge uns"
+		},
+		"legal": {
+			"title": "Rechtliches",
+			"imprint": "Impressum"
+		}
+	},
+	"sidebar": {
+		"homepage": {
+			"title": "Startseite",
+			"home": "Start"
+		},
+		"trips": {
+			"title": "Reisen",
+			"trips": "Reisen",
+			"costs": "Kosten",
+			"history": "Historie"
+		},
+		"account": {
+			"title": "Benutzerkonto",
+			"profile": "Profil"
+		}
+	},
+	"landingPage": {
+		"banner": {
+			"catchPhrase": {
+				"first": "Reisen.",
+				"second": "Ausgeben.",
+				"third": "Teilen."
+			}
+		},
+		"register": {
+			"title": "Legen Sie noch heute mit Costventures los, indem Sie ein kostenloses Konto erstellen.",
+			"button": "Registrieren"
+		},
+		"features": {
+			"redirectMessage": "Erfahre mehr",
+			"travel": {
+				"title": "Reisen",
+				"description": "Entdecke mit deinen Freunden und deiner Familie die Welt. Plane gemeinsam eine Reise und lade deine Freunde ein, sich anzuschließen. Gemeinsam könnt ihr euren Trip gestalten und die Kosten teilen."
+			},
+			"spend": {
+				"title": "Ausgeben",
+				"description": "Verwaltet euer Geld sinnvoll, indem ihr den Überblick über eure Ausgaben behaltet. Seht, wie viel ihr bereits ausgegeben habt und wie viel euch noch bleibt."
+			},
+			"divide": {
+				"title": "Teilen",
+				"description": "Teilt die Kosten eurer Reise gerecht auf. Erfasst eure Ausgaben und seht, wer wem wie viel schuldet. Begleicht eure Schulden und genießt eure Reise in vollen Zügen."
+			}
+		},
+		"reviews": {
+			"aleks": "Mashallah 10/10 (Hast du noch deine Hafermilch?)",
+			"thomas": "Besser als jeder Franzosenfilm",
+			"nico": "Seit ich Costventures benutze, kann ich endlich sehen wie broke ich bin"
+		},
+		"stats": {
+			"users": "Nutzer",
+			"subscribers": "Abonnenten",
+			"investors": "Investoren",
+			"team": "Talentiertes Team"
+		},
+		"contactBox": {
+			"title": "Kontaktiere uns",
+			"message": "Falls du Fragen oder Anregungen hast, kannst du uns gerne eine Nachricht schreiben. Wir freuen uns über jede Nachricht, die nicht von Thomas kommt. :)",
+			"invalidName": "Bitte gib einen gültigen Namen ein (mindestens 3 Zeichen)",
+			"invalidEmail": "Bitte gib eine gültige E-Mail-Adresse ein (z.B. max@mustermann.de)",
+			"label": "Nachricht",
+			"placeholder": "Was möchtest du uns mitteilen?",
+			"button": "Senden"
+		}
+	}
+}

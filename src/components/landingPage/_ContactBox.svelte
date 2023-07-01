@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { MailInboxIcon } from '$icons';
+	import { i } from '@inlang/sdk-js';
 	import { toastStore, type ToastSettings } from '@skeletonlabs/skeleton';
 
 	// Timer
@@ -63,9 +64,9 @@
 <section>
 	<div class="container px-5 py-24 mx-auto">
 		<div class="flex flex-col text-center w-full mb-12">
-			<h1 class="h1 title-font mb-4">Contact Us</h1>
+			<h1 class="h1 title-font mb-4">{i('landingPage.contactBox.title')}</h1>
 			<p class="lg:w-2/3 mx-auto leading-relaxed text-base">
-				If there's something you need to tell us, just do it. We won't bite, promised. :)
+				{i('landingPage.contactBox.message')}
 			</p>
 		</div>
 		<div class="lg:w-1/2 md:w-2/3 mx-auto">
@@ -78,14 +79,14 @@
 							id="name"
 							name="name"
 							class="input peer invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
-							placeholder="Your name"
+							placeholder="Thomas"
 							minlength="3"
 							required
 						/>
 						<span
 							class="mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block"
 						>
-							Please enter a valid name (at least 3 characters)
+							{i('landingPage.contactBox.invalidName')}
 						</span>
 					</div>
 				</div>
@@ -97,25 +98,27 @@
 							id="email"
 							name="email"
 							class="input peer invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
-							placeholder="your-mail@your-domain.de"
+							placeholder="thomas@ing.de"
 							required
 						/>
 						<span
 							class="mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block"
 						>
-							Please enter a valid email address (e.g. max@mustermann.de)
+							{i('landingPage.contactBox.invalidEmail')}
 						</span>
 					</div>
 				</div>
 				<div class="p-2 w-full">
 					<div class="relative">
-						<label for="message" class="leading-7 text-sm">Message</label>
+						<label for="message" class="leading-7 text-sm"
+							>{i('landingPage.contactBox.label')}</label
+						>
 						<textarea
 							id="message"
 							name="message"
 							rows={6}
 							class="textarea"
-							placeholder="Whatever you want to tell us"
+							placeholder={i('landingPage.contactBox.placeholder')}
 							required
 						/>
 					</div>
@@ -130,7 +133,7 @@
 						<span>
 							<MailInboxIcon />
 						</span>
-						<span>Send {remainingTime}</span>
+						<span>{i('landingPage.contactBox.button')} {remainingTime}</span>
 					</button>
 				</div>
 				<div class="p-2 w-full pt-8 mt-8 border-t border-current text-center">

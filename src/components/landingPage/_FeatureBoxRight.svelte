@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { ArrowIcon, GlobeIcon } from '$icons';
+	import { i } from '@inlang/sdk-js';
 
 	export let title: string;
 	export let content: string;
@@ -15,7 +16,7 @@
 		<a
 			href={`/${path}`}
 			class="mt-3 text-tertiary-800 dark:text-tertiary-400 inline-flex items-center"
-			>Learn More
+			>{i('landingPage.features.redirectMessage')}
 			<ArrowIcon />
 		</a>
 	</div>
