@@ -7,7 +7,12 @@
 		TripDetailsFilterPopUp
 	} from '$components';
 	import type { Cost, TravelData } from '$tripDomain';
-	import type { ModalComponent, ModalSettings, PopupSettings } from '@skeletonlabs/skeleton';
+	import {
+		Paginator,
+		type ModalComponent,
+		type ModalSettings,
+		type PopupSettings
+	} from '@skeletonlabs/skeleton';
 	import { modalStore, popup } from '@skeletonlabs/skeleton';
 	import { CostIcon } from '$icons';
 	import { page } from '$app/stores';
@@ -16,6 +21,18 @@
 	export let trip: TravelData;
 
 	let selectionIndex = -1;
+
+	let paginationPagePage = {
+		offset: 0,
+		limit: 5,
+		size: costs.length,
+		amounts: [5, 10, 20, 50]
+	};
+
+	$: paginatedCosts = costs.slice(
+		paginationPagePage.offset * paginationPagePage.limit, // start
+		paginationPagePage.offset * paginationPagePage.limit + paginationPagePage.limit // end
+	);
 
 	const handleSelectItem = (event: CustomEvent<any>) => {
 		selectionIndex = event.detail.index;
@@ -77,8 +94,8 @@
 		/>
 	{:else}
 		<ul class="list p-2 max-h-[500px] overflow-auto">
-			{#key costs}
-				{#each costs as cost, i}
+			{#key paginatedCosts}
+				{#each paginatedCosts as cost, i}
 					<li>
 						<TripDetailsCostItem
 							{cost}
@@ -91,6 +108,12 @@
 				{/each}
 			{/key}
 		</ul>
+		<Paginator
+			bind:settings={paginationPagePage}
+			showFirstLastButtons={false}
+			showPreviousNextButtons={true}
+			justify="justify-center"
+		/>
 	{/if}
 </div>
 

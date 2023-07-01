@@ -19,6 +19,10 @@ export const load = (async ({ params, fetch, url }) => {
 	const maxEndDateQuery = url.searchParams.has('maxEndDate')
 		? `&maxEndDate=${url.searchParams.get('maxEndDate')}`
 		: '';
+	const pageQuery = url.searchParams.has('page') ? `&page=${url.searchParams.get('page')}` : '';
+	const pageSizeQuery = url.searchParams.has('pageSize')
+		? `&pageSize=${url.searchParams.get('pageSize')}`
+		: '';
 
 	const tripResponse = await fetch(`/api/trips/${params.id}`, {
 		method: 'GET',
@@ -28,7 +32,7 @@ export const load = (async ({ params, fetch, url }) => {
 	});
 
 	const costsResponse = await fetch(
-		`/api/trips/${params.id}/costs?${sortByQuery}${sortOrderQuery}${minDeductionDateQuery}${maxDeductionDateQuery}${minEndDateQuery}${maxEndDateQuery}`,
+		`/api/trips/${params.id}/costs?${sortByQuery}${sortOrderQuery}${minDeductionDateQuery}${maxDeductionDateQuery}${minEndDateQuery}${maxEndDateQuery}${pageQuery}${pageSizeQuery}`,
 		{
 			method: 'GET',
 			headers: {

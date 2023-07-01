@@ -41,8 +41,6 @@ export const POST = (async ({ url, fetch, request }) => {
 export const GET = (async ({ fetch, params, url }) => {
 	console.log('GET');
 
-	const page = Number(url.searchParams.get('page'));
-	const pageSize = Number(url.searchParams.get('pageSize'));
 	const sort = String(url.searchParams.get('sortBy') ?? 'deducted_at');
 	const sortOrder = String(url.searchParams.get('sortOrder') ?? 'desc');
 
@@ -60,10 +58,14 @@ export const GET = (async ({ fetch, params, url }) => {
 	const maxEndDateQuery = url.searchParams.has('maxEndDate')
 		? `&maxEndDate=${url.searchParams.get('maxEndDate')}T00:00:00Z`
 		: '';
+	const pageQuery = url.searchParams.has('page') ? `&page=${url.searchParams.get('page')}` : '';
+	const pageSizeQuery = url.searchParams.has('pageSize')
+		? `&pageSize=${url.searchParams.get('pageSize')}`
+		: '';
 
 	try {
 		const response = await fetch(
-			`${PUBLIC_BASE_URL}/api/v1/trips/${params.id}/costs?${sortByQuery}${sortOrderQuery}${minDeductionDateQuery}${maxDeductionDateQuery}${minEndDateQuery}${maxEndDateQuery}`,
+			`${PUBLIC_BASE_URL}/api/v1/trips/${params.id}/costs?${sortByQuery}${sortOrderQuery}${minDeductionDateQuery}${maxDeductionDateQuery}${minEndDateQuery}${maxEndDateQuery}${pageQuery}${pageSizeQuery}`,
 			{
 				method: 'GET',
 				headers: {
