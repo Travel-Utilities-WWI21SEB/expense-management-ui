@@ -4,7 +4,6 @@
 	import { Avatar } from '@skeletonlabs/skeleton';
 
 	export let data;
-	console.log(data);
 
 	const { error, errorMessage: message, user } = data;
 	errorMessage.set(message);
