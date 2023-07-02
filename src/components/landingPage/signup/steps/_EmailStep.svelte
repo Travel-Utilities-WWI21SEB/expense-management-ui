@@ -2,6 +2,7 @@
 	import { CheckIcon, CrossIcon, QuestionMarkIcon } from '$icons';
 	import { email, errorMessage, errorState, loading } from '$stores';
 	import { validateEmail } from '$utils';
+	import { i } from '@inlang/sdk-js';
 	import { ProgressRadial, Step } from '@skeletonlabs/skeleton';
 	import _ from 'lodash';
 
@@ -50,13 +51,26 @@
 	};
 
 	const debouncedVerifyEmail = _.debounce(verifyEmail, 500);
+
+	// Keyboard handler
+	const keydownHandler = (e: KeyboardEvent) => {
+		if (e.key === 'Enter') {
+			if (emailValid && !lockEmailStep) {
+				// Click next button
+				const nextButton = document.querySelector('.btn.variant-filled-primary');
+				if (nextButton) {
+					(nextButton as HTMLButtonElement).click();
+				}
+			}
+		}
+	};
 </script>
 
 <Step
 	locked={lockEmailStep}
-	buttonNextLabel="Select your username"
+	buttonNextLabel={i('forms.signup.steps.email.nextStep')}
 	buttonBack="invisible"
-	buttonNext="btn variant-filled-primary hover:variant-soft-primary dark:hover:variant-soft-primary-dark {lockEmailStep
+	buttonNext="variant-filled-primary hover:variant-soft-primary dark:hover:variant-soft-primary-dark {lockEmailStep
 		? 'pointer-events-none opacity-50'
 		: ''}"
 >
@@ -64,13 +78,13 @@
 		<h1
 			class="h1 text-xl text-center font-bold leading-tight tracking-tight md:text-2xl dark:text-white"
 		>
-			Select your email
+			{i('forms.signup.steps.email.title')}
 		</h1>
 		<hr class="w-16 h-1 bg-primary-500 rounded-full flex justify-center mt-2" />
 	</svelte:fragment>
 	<section>
 		<div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-			<form novalidate>
+			<form novalidate on:keydown={keydownHandler}>
 				<label class="label">
 					<span>Email</span>
 					<input
@@ -93,10 +107,10 @@
 				<li>
 					{#if emailValid}
 						<span class="badge-icon variant-filled-success w-4 h-4"><CheckIcon /></span>
-						<span class="flex-auto">Email is valid</span>
+						<span class="flex-auto">{i('forms.signup.steps.email.validEmail')}</span>
 					{:else}
 						<span class="badge-icon variant-filled-error w-4 h-4"><CrossIcon /></span>
-						<span class="flex-auto">Please provide a valid email</span>
+						<span class="flex-auto">{i('forms.signup.steps.email.invalidEmail')}</span>
 					{/if}
 				</li>
 				<li>
@@ -107,25 +121,26 @@
 							meter="stroke-warning-500"
 							track="stroke-warning-500/30"
 						/>
-						<span class="flex-auto">Checking availability...</span>
+						<span class="flex-auto">{i('forms.signup.steps.email.ongoingValidation')}</span>
 					{:else if $errorState}
 						<span class="badge-icon variant-filled-error w-4 h-4"><CrossIcon /></span>
 						<span class="flex-auto">{$errorMessage}</span>
 					{:else if $loading || emailExists === undefined}
 						<span class="badge-icon variant-filled-warning w-4 h-4"><QuestionMarkIcon /></span>
-						<span class="flex-auto">Please provide a valid email to check availability</span>
+						<span class="flex-auto">{i('forms.signup.steps.email.initialValidation')}</span>
 					{:else}
 						<span class="badge-icon variant-filled-success w-4 h-4"><CheckIcon /></span>
-						<span class="flex-auto">Email is not in use</span>
+						<span class="flex-auto">{i('forms.signup.steps.email.available')}</span>
 					{/if}
 				</li>
 			</ol>
 			<p class="text-sm font-light text-gray-500 dark:text-gray-400">
-				Already have an account? <button
+				{i('forms.signup.alreadyRegistered')}
+				<button
 					on:click={() => {
 						changeTab(1);
 					}}
-					class="variant-soft-primary">Sign in</button
+					class="variant-soft-primary">{i('forms.signup.alreadyRegisteredAction')}</button
 				>
 			</p>
 		</div>

@@ -1,9 +1,10 @@
+import inlangPlugin from '@inlang/sdk-js/adapter-sveltekit';
 import { sveltekit } from '@sveltejs/kit/vite';
-import { defineConfig } from 'vite';
 import path from 'path';
+import { defineConfig } from 'vite';
 
 export default defineConfig({
-	plugins: [sveltekit()],
+	plugins: [inlangPlugin(), sveltekit()],
 	resolve: {
 		alias: {
 			$components: path.resolve('./src/components'),
@@ -11,7 +12,8 @@ export default defineConfig({
 			$stores: path.resolve('./src/stores'),
 			$utils: path.resolve('./src/utils'),
 			$tripDomain: path.resolve('./src/domain/trip'),
-			$userDomain: path.resolve('./src/domain/user')
+			$userDomain: path.resolve('./src/domain/user'),
+			$costDomain: path.resolve('./src/domain/cost')
 		}
 	}
 });

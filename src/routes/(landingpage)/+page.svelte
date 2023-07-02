@@ -8,6 +8,7 @@
 		SignUpModal,
 		StatisticBox
 	} from '$components';
+	import { i } from '@inlang/sdk-js';
 	import { modalStore, type ModalComponent, type ModalSettings } from '@skeletonlabs/skeleton';
 
 	export let data;
@@ -16,7 +17,10 @@
 	const modalComponent: ModalComponent = {
 		ref: SignUpModal,
 		props: {
-			data: data
+			data: {
+				rememberMe: data.rememberMe,
+				email: data.email
+			}
 		}
 	};
 
@@ -32,15 +36,15 @@
 
 <div class="flex justify-center m-4 p-4">
 	<CatchPhraseText
-		text="Travel."
+		text={i('landingPage.banner.catchPhrase.first')}
 		colorGradient="dark:from-blue-400 from-blue-600 dark:to-cyan-400 to-cyan-600"
 	/>
 	<CatchPhraseText
-		text="Spend."
+		text={i('landingPage.banner.catchPhrase.second')}
 		colorGradient="dark:from-red-400 from-red-600 dark:to-yellow-400 to-yellow-600"
 	/>
 	<CatchPhraseText
-		text="Divide."
+		text={i('landingPage.banner.catchPhrase.third')}
 		colorGradient="dark:from-pink-400 from-pink-600 dark:to-violet-400 to-violet-600"
 	/>
 </div>
@@ -52,14 +56,14 @@
 	<div class="container px-5 py-24 mx-auto">
 		<div class="lg:w-2/3 flex flex-col sm:flex-row sm:items-center items-start mx-auto">
 			<h2 class="h2 flex-grow sm:pr-16 text-center">
-				Get started with Costventures today by creating a free account.
+				{i('landingPage.register.title')}
 			</h2>
 			<button
 				class="btn btn-lg variant-filled mt-8 mx-auto lg:m-0"
 				data-sveltekit-preload-data="hover"
 				on:click={openModal}
 			>
-				Register
+				{i('landingPage.register.button')}
 			</button>
 		</div>
 	</div>
@@ -72,19 +76,19 @@
 <section id="featureBox">
 	<div class="container px-5 py-24 mx-auto">
 		<LandingPageFeatureBoxLeft
-			title="Create trips with your friends"
-			content="Travel the world with your friends and family. Create a trip and invite your friends to join you."
-			path="travel"
+			title={i('landingPage.features.travel.title')}
+			content={i('landingPage.features.travel.description')}
+			path="features/travel"
 		/>
 		<LandingPageFeatureBoxRight
-			title="Create trips with your friends"
-			content="Travel the world with your friends and family. Create a trip and invite your friends to join you."
-			path="travel"
+			title={i('landingPage.features.spend.title')}
+			content={i('landingPage.features.spend.description')}
+			path="features/spend"
 		/>
 		<LandingPageFeatureBoxLeft
-			title="Create trips with your friends"
-			content="Travel the world with your friends and family. Create a trip and invite your friends to join you."
-			path="travel"
+			title={i('landingPage.features.divide.title')}
+			content={i('landingPage.features.divide.description')}
+			path="features/divide"
 		/>
 	</div>
 </section>
@@ -98,21 +102,21 @@
 		<div class="lg:flex lg:flex-wrap -m-4">
 			<LandingPageReviewBox
 				imageLink="/aleksIcon.jpg"
-				quote="Mashallah einfach die beste Software"
+				quote={i('landingPage.reviews.aleks')}
 				name="ALEKS GEORGIEV"
 				jobTitle="Senior Product Designer"
 			/>
 			<hr class="!border-t-2 lg:border-0 !border-double" />
 			<LandingPageReviewBox
 				imageLink="/justinIcon.jpg"
-				quote="Brutales Produkt"
+				quote={i('landingPage.reviews.thomas')}
 				name="JUSTIN SCHWAB"
 				jobTitle="Spast"
 			/>
 			<hr class="!border-t-2 lg:border-0 !border-double" />
 			<LandingPageReviewBox
 				imageLink="/nicoIcon.jpg"
-				quote="Seit ich Costventures benutze kann ich endlich sehen wie broke ich bin."
+				quote={i('landingPage.reviews.nico')}
 				name="NICO NIEBISCH"
 				jobTitle="Chief Executive Officer"
 			/>
@@ -127,10 +131,10 @@
 <section id="statisticBox">
 	<div class="container px-5 py-24 mx-auto">
 		<div class="flex flex-wrap -m-4 text-center">
-			<StatisticBox title="Users" kpi="23k" />
-			<StatisticBox title="Subscribers" kpi="18.2K" />
-			<StatisticBox title="Investors" kpi="35" />
-			<StatisticBox title="Talented Team" kpi="1" />
+			<StatisticBox title={i('landingPage.stats.users')} kpi="23k" />
+			<StatisticBox title={i('landingPage.stats.subscribers')} kpi="18.2K" />
+			<StatisticBox title={i('landingPage.stats.investors')} kpi="35" />
+			<StatisticBox title={i('landingPage.stats.team')} kpi="1" />
 		</div>
 	</div>
 </section>

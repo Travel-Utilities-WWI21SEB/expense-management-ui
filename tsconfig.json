@@ -15,7 +15,8 @@
 			"$stores": ["./src/stores"],
 			"$utils": ["./src/utils"],
 			"$tripDomain": ["./src/domain/trip"],
-			"$userDomain": ["./src/domain/user"]
+			"$userDomain": ["./src/domain/user"],
+			"$costDomain": ["./src/domain/cost"]
 		}
 	}
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias

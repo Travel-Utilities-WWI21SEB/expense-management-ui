@@ -44,7 +44,7 @@ export const keydownHandler = async (e: KeyboardEvent, verifyToken: () => void):
 	// we get the clipboard data and spread it into the inputs
 	const target = e.target as HTMLInputElement;
 
-	if (target.title === 'token1' && e.code === 'KeyV' && (e.ctrlKey || e.metaKey)) {
+	if ((target.title === 'token1' && e.key === 'v') || (e.key === 'V' && (e.ctrlKey || e.metaKey))) {
 		// Little hack to get the clipboard data and spread it :)
 		const clipboardData = (e as unknown as ClipboardEvent).clipboardData?.getData('text/plain');
 		pasteClipboardData(verifyToken, clipboardData);
@@ -53,7 +53,7 @@ export const keydownHandler = async (e: KeyboardEvent, verifyToken: () => void):
 
 	let previousInput: HTMLInputElement;
 
-	switch (e.code) {
+	switch (e.key) {
 		case 'Backspace': {
 			previousInput = target.previousElementSibling as HTMLInputElement;
 
@@ -94,9 +94,7 @@ export const keydownHandler = async (e: KeyboardEvent, verifyToken: () => void):
 		default: {
 			// Check if input is number or letter
 			// Write the value and focus the next input
-			const validInput = ['Digit', 'Key', 'Numpad'];
-
-			if (validInput.some((input) => e.code.startsWith(input))) {
+			if (/^[a-z0-9]$/i.test(e.key)) {
 				// Yet another hack to trigger svelte array reactivity
 				// but reduces loc by creating form inputs in a loop
 				const index = Array.from(target.parentElement?.children || []).indexOf(target);
@@ -121,8 +119,6 @@ export const keydownHandler = async (e: KeyboardEvent, verifyToken: () => void):
 // Handle paste event
 export const pasteHandler = (e: ClipboardEvent, verifyToken: () => void): void => {
 	e.preventDefault();
-
 	const clipboardData = e.clipboardData?.getData('text/plain');
-
 	pasteClipboardData(verifyToken, clipboardData);
 };

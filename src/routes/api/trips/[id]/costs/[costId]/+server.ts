@@ -3,7 +3,7 @@ import { getErrorMessage } from '$utils';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from '../$types';
 
-export const PATCH = (async ({ url, fetch, request, params }) => {
+export const PATCH: RequestHandler = async ({ url, fetch, request, params }) => {
 	console.log('PATCH');
 	const requestBody = await request.json();
 	try {
@@ -36,9 +36,9 @@ export const PATCH = (async ({ url, fetch, request, params }) => {
 			errorMessage: 'Something went wrong. Please try again later'
 		});
 	}
-}) satisfies RequestHandler;
+};
 
-export const DELETE = (async ({ url, fetch, params }) => {
+export const DELETE: RequestHandler = async ({ url, fetch, params }) => {
 	console.log('DELETE');
 	try {
 		const response = await fetch(
@@ -68,4 +68,4 @@ export const DELETE = (async ({ url, fetch, params }) => {
 			errorMessage: 'Something went wrong. Please try again later'
 		});
 	}
-}) satisfies RequestHandler;
+};

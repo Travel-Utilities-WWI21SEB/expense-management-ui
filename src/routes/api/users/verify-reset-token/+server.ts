@@ -3,7 +3,7 @@ import { getErrorMessage } from '$utils';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
-export const POST = (async ({ fetch, request }) => {
+export const POST: RequestHandler = async ({ fetch, request }) => {
 	const { email, token } = await request.json();
 
 	try {
@@ -17,16 +17,13 @@ export const POST = (async ({ fetch, request }) => {
 
 		if (response.ok) {
 			return json({ valid: true, error: false, errorMessage: '' });
+		} else if (response.status !== 500) {
+			return json({ valid: false, error: false, errorMessage: '' });
 		}
 
 		const body = await response.json();
 		const { errorCode } = body;
 		const errorMessage = getErrorMessage(errorCode);
-
-		// 404: Not found -> Token is invalid
-		if (response.status === 404) {
-			return json({ valid: false, error: false, errorMessage });
-		}
 
 		return json({ valid: false, error: true, errorMessage });
 	} catch (exception) {
@@ -38,4 +35,4 @@ export const POST = (async ({ fetch, request }) => {
 			errorMessage
 		});
 	}
-}) satisfies RequestHandler;
+};

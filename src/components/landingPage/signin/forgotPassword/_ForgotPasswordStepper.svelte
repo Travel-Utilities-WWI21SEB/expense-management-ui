@@ -1,20 +1,10 @@
 <script lang="ts">
-	import {
-		correctToken,
-		email,
-		emailValid,
-		errorMessage,
-		errorState,
-		loading,
-		password,
-		passwordValid,
-		passwordsMatch,
-		tokenErrorState,
-		tokenValues
-	} from '$stores';
+	import { SelectEmailStep, SetNewPasswordStep, ValidateResetTokenStep } from '$components';
+	import { email, errorMessage, errorState, loading, password, tokenValues } from '$stores';
+	import { i } from '@inlang/sdk-js';
 	import { Stepper, toastStore, type ToastSettings } from '@skeletonlabs/skeleton';
 	import { onDestroy, tick } from 'svelte/internal';
-	import { SelectEmailStep, SetNewPasswordStep, ValidateResetTokenStep } from '$components';
+	import { resetLandingPageStore } from '../../../../utils/store/resetLandingPageStore';
 
 	export let closeForgotPassword: () => void;
 
@@ -85,21 +75,7 @@
 	};
 
 	onDestroy(() => {
-		// Clean up store values
-		tokenValues.set(['', '', '', '', '', '']);
-		correctToken.set(undefined);
-		tokenErrorState.set(false);
-
-		email.set('');
-		emailValid.set(false);
-
-		password.set('');
-		passwordValid.set(false);
-		passwordsMatch.set(false);
-
-		errorState.set(false);
-		errorMessage.set('');
-		loading.set(false);
+		resetLandingPageStore();
 	});
 </script>
 
@@ -107,7 +83,8 @@
 	on:back={closeForgotPassword}
 	on:next={nextStepHandler}
 	on:complete={onCompleteHandler}
-	buttonBackLabel="Abort"
+	buttonBackLabel={i('forms.signin.forgotPassword.abort')}
+	stepTerm={i('forms.step')}
 >
 	<SelectEmailStep />
 	<ValidateResetTokenStep {forgotPasswordHandler} />

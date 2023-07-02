@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { AlertWithAction, ProgressCircleAnimated, TokenForm } from '$components';
 	import { CheckIcon } from '$icons';
 	import {
 		correctToken,
@@ -10,9 +11,9 @@
 		tokenErrorState,
 		tokenValues
 	} from '$stores';
+	import { i } from '@inlang/sdk-js';
 	import { Step, modalStore } from '@skeletonlabs/skeleton';
 	import _ from 'lodash';
-	import { AlertWithAction, ProgressCircleAnimated, TokenForm } from '$components';
 
 	export let register: () => Promise<void>;
 
@@ -103,7 +104,7 @@
 		<h1
 			class="h1 text-xl text-center font-bold leading-tight tracking-tight md:text-2xl dark:text-white"
 		>
-			Verify your email
+			{i('forms.signup.steps.token.title')}
 		</h1>
 		<hr class="w-16 h-1 bg-primary-500 rounded-full flex justify-center mt-2" />
 	</svelte:fragment>
@@ -125,15 +126,16 @@
 					<div><CheckIcon /></div>
 					<!-- Message -->
 					<div class="alert-message">
-						<h3 class="h3">The Verification was successful!</h3>
+						<h3 class="h3">{i('forms.signup.steps.token.successMessage')}</h3>
 						<p>
-							Thank you for trusting Costventures, click on the button on the right to automatically
-							login and navigate to the homepage.
+							{i('forms.signup.steps.token.successAction')}
 						</p>
 					</div>
 					<!-- Actions -->
 					<div class="alert-actions">
-						<button on:click={navigationHandler} class="btn variant-filled">Login</button>
+						<button on:click={navigationHandler} class="btn variant-filled"
+							>{i('forms.signup.steps.token.successMessageLink')}</button
+						>
 					</div>
 				</aside>
 			{:else}

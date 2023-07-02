@@ -2,7 +2,7 @@ import { PUBLIC_BASE_URL } from '$env/static/public';
 import { getErrorMessage } from '$utils';
 import { json, type RequestHandler } from '@sveltejs/kit';
 
-export const POST = (async ({ fetch, request }) => {
+export const POST: RequestHandler = async ({ fetch, request }) => {
 	const { email } = await request.json();
 
 	try {
@@ -27,4 +27,4 @@ export const POST = (async ({ fetch, request }) => {
 		const errorMessage = getErrorMessage('EM-000'); // Default error message
 		return json({ error: true, errorMessage });
 	}
-}) satisfies RequestHandler;
+};

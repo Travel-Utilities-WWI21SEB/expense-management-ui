@@ -1,9 +1,9 @@
 import { PUBLIC_BASE_URL } from '$env/static/public';
+import { getErrorMessage } from '$utils';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from '../$types';
-import { getErrorMessage } from '$utils';
 
-export const GET = (async ({ fetch, params }) => {
+export const GET: RequestHandler = async ({ fetch, params }) => {
 	console.log('GET');
 
 	try {
@@ -32,9 +32,9 @@ export const GET = (async ({ fetch, params }) => {
 			errorMessage: 'Something went wrong. Please try again later'
 		});
 	}
-}) satisfies RequestHandler;
+};
 
-export const POST = (async ({ fetch, request }) => {
+export const POST: RequestHandler = async ({ fetch, request }) => {
 	console.log('POST');
 	const requestBody = await request.json();
 	try {
@@ -66,4 +66,4 @@ export const POST = (async ({ fetch, request }) => {
 			errorMessage: 'Something went wrong. Please try again later'
 		});
 	}
-}) satisfies RequestHandler;
+};
