@@ -1,7 +1,8 @@
-import { modifyCosts, modifyTrip } from '$utils';
+import { modifyDebtData, modifyTrip } from '$utils';
+import { getCurrentUser } from '$utils';
 import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({ params, fetch, url }) => {
+export const load: PageServerLoad = async ({ params, fetch, cookies }) => {
 	const tripPromise = fetch(`/api/trips/${params.id}`, {
 		method: 'GET',
 		headers: {
@@ -33,16 +34,18 @@ export const load: PageServerLoad = async ({ params, fetch, url }) => {
 	const userBody = await userResponse.json();
 	const debtBody = await debtResponse.json();
 
-	console.log('debtBody', debtBody);
-
-	if (tripBody.data) {
+	const token = cookies.get('token');
+	if (token === undefined) {
 		return {
-			...tripBody,
-			tripData: modifyTrip(tripBody.data, userBody.data),
-			userData: userBody,
-			debtData: debtBody
+			data: 'nodata'
 		};
 	}
+	const userId = getCurrentUser(token);
 
-	return { tripData: tripBody.data, debtBody: debtBody.data };
+	return {
+		...tripBody,
+		tripData: modifyTrip(tripBody.data, userBody.data),
+		userData: userBody,
+		debtData: modifyDebtData(debtBody.data, userId)
+	};
 };

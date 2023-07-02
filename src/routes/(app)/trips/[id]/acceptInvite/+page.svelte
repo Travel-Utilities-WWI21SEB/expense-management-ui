@@ -40,7 +40,7 @@
 		await acceptTrip($currentTrip);
 
 		if (!$errorState) {
-			goto(`/trips/${$currentTrip.tripId}`);
+			goto(`/trips/${$currentTrip.tripId}/costs`);
 		}
 	};
 

@@ -32,7 +32,7 @@ export { default as Footer } from './layout/_Footer.svelte';
 export { default as Header } from './layout/_Header.svelte';
 export { default as Sidebar } from './layout/_Sidebar.svelte';
 export { default as TripDetailsCostItem } from './tripDetails/_CostItemTripDetails.svelte';
-//Trip Details
+//Trip Cost Details
 export { default as TripDetailsAddNewCostItem } from './tripDetails/Modal/_AddNewCostItemModal.svelte';
 export { default as TripDetailsEditCostItemCostAllocation } from './tripDetails/Modal/_CostItemCostAllocation.svelte';
 export { default as TripDetailsEditCostItemDetails } from './tripDetails/Modal/_CostItemDetails.svelte';
@@ -51,6 +51,11 @@ export { default as ParticipantIcon } from './tripDetails/_ParticipantIcon.svelt
 export { default as Participants } from './tripDetails/_Participants.svelte';
 export { default as TripDetailsFilterPopUp } from './tripDetails/_FilterPopUp.svelte';
 export { default as TripDetailsSortingPopUp } from './tripDetails/_SortingPopUp.svelte';
+//Trip Debt Details
+export { default as DebtItemTripDetails } from './tripDebtDetails/_DebtItemTripDetails.svelte';
+export { default as DebtOverviewTripDetails } from './tripDebtDetails/_DebtOverview.svelte';
+export { default as DebtItemModalTripDetails } from './tripDebtDetails/Modal/_DeptItemModalTripDetails.svelte';
+export { default as ParticipantIconDebt } from './tripDebtDetails/_ParticipantIconDebt.svelte';
 
 //Trip Overview
 export { default as DonutChart } from './tripOverview/_DonutChart.svelte';

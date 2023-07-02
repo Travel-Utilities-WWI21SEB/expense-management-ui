@@ -1,5 +1,5 @@
 import { modifyTrip } from '$utils';
-import type { PageServerLoad } from '../$types';
+import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ fetch, params }) => {
 	const tripResponse = await fetch(`/api/trips/${params.id}`, {

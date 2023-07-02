@@ -35,3 +35,7 @@ export {
 	selectAllPeople
 } from './trips/costs/costAllocation';
 export { modifyCosts } from './trips/costs/modifyCostData';
+
+//DEBT
+export { modifyDebtData } from './debt/modifyDeptData';
+export { getCurrentUser } from './token/getUser';
