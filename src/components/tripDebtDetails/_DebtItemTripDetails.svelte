@@ -1,13 +1,12 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import type { Debt, TravelData } from '$tripDomain';
+	import type { Debt } from '$tripDomain';
 	import { modalStore, type ModalSettings, type ModalComponent } from '@skeletonlabs/skeleton';
 	import { DebtItemModalTripDetails, ParticipantIconDebt } from '$components';
 
 	export let debt: Debt;
 	export let i: number;
 	export let selectionIndex: number;
-	export let trip: TravelData;
 	export let isDebt: boolean;
 
 	const dispatch = createEventDispatcher();
@@ -26,7 +25,7 @@
 
 	const modalComponent: ModalComponent = {
 		ref: DebtItemModalTripDetails,
-		props: { debt: debt, trip: trip }
+		props: { debt: debt, isDebt: isDebt }
 	};
 </script>
 
@@ -38,13 +37,14 @@
 		on:click={() => selectListItem(i)}
 	>
 		<div class="grid grid-cols-12 md:gap-2">
-			<div class="col-span-4 flex justify-center text-center">
-				{debt.amount}
+			<div class="col-span-4 flex justify-center items-center text-error-700 dark:text-error-500">
+				<h3 class="font-semibold h3 mr-1">{debt.amount}</h3>
+				{`${debt.currency}`}
 			</div>
 			<div class="col-span-4 flex justify-center items-center">&#8594;</div>
 			<div class="col-span-4">
 				<ParticipantIconDebt
-					participant={debt.debtor}
+					participant={debt.creditor}
 					background="bg-error-300 dark:bg-error-500"
 				/>
 			</div>
@@ -61,13 +61,15 @@
 		<div class="grid grid-cols-12 md:gap-2">
 			<div class="col-span-4">
 				<ParticipantIconDebt
-					participant={debt.creditor}
+					participant={debt.debtor}
 					background="bg-success-300 dark:bg-success-500"
 				/>
 			</div>
 			<div class="col-span-4 flex justify-center items-center w-full">&#8594;</div>
-			<div class="col-span-4 flex justify-center items-center">
-				<h3 class="text-success-700 dark:text-success-500 font-semibold h3 mr-1">{debt.amount}</h3>
+			<div
+				class="col-span-4 flex justify-center items-center text-success-700 dark:text-success-500"
+			>
+				<h3 class=" font-semibold h3 mr-1">{debt.amount}</h3>
 				{`${debt.currency}`}
 			</div>
 		</div>

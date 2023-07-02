@@ -18,7 +18,7 @@
 	<span slot="left_element">
 		{#if data.tripData && data.debtData}
 			<div class="h-full">
-				<DebtOverviewTripDetails debts={data.debtData} trip={data.tripData} />
+				<DebtOverviewTripDetails debts={data.debtData} />
 			</div>
 		{/if}
 	</span>
