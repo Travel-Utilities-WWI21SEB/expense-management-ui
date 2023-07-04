@@ -30,3 +30,5 @@ export { default as TwitterIcon } from './_TwitterIcon.svelte';
 export { default as UserIcon } from './_UserIcon.svelte';
 export { default as RemoveIcon } from './_RemoveIcon.svelte';
 export { default as PlusIcon } from './_PlusIcon.svelte';
+export { default as DeleteIcon } from './_DeleteIcon.svelte';
+export { default as EditIcon } from './_EditIcon.svelte';

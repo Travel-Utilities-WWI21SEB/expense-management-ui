@@ -1,15 +1,11 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { CrossIcon } from '$icons';
-	import { currentTrip, errorMessage, errorState, loading } from '$stores';
+	import { errorMessage, errorState, loading } from '$stores';
 	import type { TravelData } from '$tripDomain';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
-
-	const onRejectClick = () => {
-		goto('/trips');
-	};
 
 	const acceptTrip = async (currentTrip: TravelData) => {
 		loading.set(true);
@@ -36,11 +32,43 @@
 		}
 	};
 
+	const rejectTrip = async (currentTrip: TravelData) => {
+		loading.set(true);
+		errorState.set(false);
+		try {
+			const response = await fetch(`/api/trips/${currentTrip.tripId}/decline`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({ body: presenceTimes, id: currentTrip.tripId })
+			});
+
+			const body = await response.json();
+			const { error, errorMessage: errorDisplayMessage } = body;
+
+			errorState.set(error);
+			errorMessage.set(errorDisplayMessage);
+		} catch (error: any) {
+			errorState.set(true);
+			errorMessage.set(error.message);
+		} finally {
+			loading.set(false);
+		}
+	};
+
+	const onRejectClick = async () => {
+		await rejectTrip(data.tripData);
+		if (!$errorState) {
+			goto('/trips');
+		}
+	};
+
 	const onAcceptClick = async () => {
-		await acceptTrip($currentTrip);
+		await acceptTrip(data.tripData);
 
 		if (!$errorState) {
-			goto(`/trips/${$currentTrip.tripId}`);
+			goto(`/trips/${data.tripData.tripId}`);
 		}
 	};
 

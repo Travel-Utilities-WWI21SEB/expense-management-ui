@@ -13,6 +13,7 @@
 	import { modalStore, toastStore, type ToastSettings } from '@skeletonlabs/skeleton';
 	import { invalidateAll } from '$app/navigation';
 	import { currentCost } from '$stores';
+	import { DeleteIcon } from '$icons';
 
 	/* export let name: string; */
 	export let cost: Cost;
@@ -148,7 +149,7 @@
 					onDelete(localeCost);
 				}}
 			>
-				<span>&#128465</span>
+				<DeleteIcon />
 				<span>Delete</span>
 			</button>
 			<button
