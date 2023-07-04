@@ -6,6 +6,7 @@
 		Participants
 	} from '$components';
 	import type { TravelData } from '$tripDomain';
+	import { DeleteIcon, EditIcon } from '$icons';
 
 	export let trip: TravelData;
 </script>
@@ -21,6 +22,12 @@
 		</span>
 		<span slot="people">
 			<Participants participants={trip.participants} justifyCenter={false} />
+		</span>
+		<span slot="actions">
+			<div class="flex flex-col gap-2 m-2 justify-center">
+				<button class="btn variant-filled w-24"><EditIcon />dEdit</button>
+				<button class="btn variant-ghost-error w-24"><DeleteIcon /></button>
+			</div>
 		</span>
 	</HeaderTripDetailsLayout>
 </div>

@@ -32,3 +32,5 @@ export { default as TimeIcon } from './_TimeIcon.svelte';
 export { default as TitleLessLogoIcon } from './_TitleLessLogoIcon.svelte';
 export { default as TwitterIcon } from './_TwitterIcon.svelte';
 export { default as UserIcon } from './_UserIcon.svelte';
+export { default as DeleteIcon } from './_DeleteIcon.svelte';
+export { default as EditIcon } from './_EditIcon.svelte';
