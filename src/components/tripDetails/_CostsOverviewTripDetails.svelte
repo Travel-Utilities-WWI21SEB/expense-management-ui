@@ -22,7 +22,7 @@
 
 	let selectionIndex = -1;
 
-	let paginationPagePage = {
+	let paginationSettings = {
 		offset: 0,
 		limit: 5,
 		size: costs.length,
@@ -30,8 +30,8 @@
 	};
 
 	$: paginatedCosts = costs.slice(
-		paginationPagePage.offset * paginationPagePage.limit, // start
-		paginationPagePage.offset * paginationPagePage.limit + paginationPagePage.limit // end
+		paginationSettings.offset * paginationSettings.limit, // start
+		paginationSettings.offset * paginationSettings.limit + paginationSettings.limit // end
 	);
 
 	const handleSelectItem = (event: CustomEvent<any>) => {
@@ -109,7 +109,7 @@
 			{/key}
 		</ul>
 		<Paginator
-			bind:settings={paginationPagePage}
+			bind:settings={paginationSettings}
 			showFirstLastButtons={false}
 			showPreviousNextButtons={true}
 			justify="justify-center"

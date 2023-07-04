@@ -78,12 +78,10 @@
 
 	function changeDate(e: any, index: number) {
 		filterOptions[index] = { ...filterOptions[index], value: e.target.value };
-		console.log(filterOptions[index]);
 	}
 
 	function onChangeCheck(e: any, index: number) {
 		filterOptions[index] = { ...filterOptions[index], checked: e.target.checked };
-		console.log(filterOptions[index]);
 	}
 
 	function clearFilter() {
