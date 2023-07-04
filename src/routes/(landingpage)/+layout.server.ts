@@ -2,7 +2,7 @@ import { tokenExpired } from '$utils';
 import { redirect } from '@sveltejs/kit';
 import type { LayoutServerLoad } from './$types';
 
-export const load = (({ cookies }) => {
+export const load: LayoutServerLoad = ({ cookies }) => {
 	const token = cookies.get('token');
 	const refreshToken = cookies.get('refreshToken');
 
@@ -11,4 +11,4 @@ export const load = (({ cookies }) => {
 		// which is why we redirect to home page
 		throw redirect(303, '/home');
 	}
-}) satisfies LayoutServerLoad;
+};

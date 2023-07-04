@@ -3,7 +3,7 @@ import { getErrorMessage } from '$utils';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
-export const POST = (async ({ fetch, request }) => {
+export const POST: RequestHandler = async ({ fetch, request }) => {
 	const body = await request.json();
 	const { email, password, username } = body;
 
@@ -31,4 +31,4 @@ export const POST = (async ({ fetch, request }) => {
 		const errorMessage = getErrorMessage('EM-000'); // Default error message
 		return json({ error: true, errorMessage });
 	}
-}) satisfies RequestHandler;
+};

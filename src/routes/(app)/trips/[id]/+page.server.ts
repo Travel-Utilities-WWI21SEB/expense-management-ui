@@ -1,7 +1,7 @@
-import { modifyTrip, modifyCosts } from '$utils';
+import { modifyCosts, modifyTrip } from '$utils';
 import type { PageServerLoad } from './$types';
 
-export const load = (async ({ params, fetch, url }) => {
+export const load: PageServerLoad = async ({ params, fetch, url }) => {
 	const sort = String(url.searchParams.get('sortBy') ?? 'deducted_at');
 	const sortOrder = String(url.searchParams.get('sortOrder') ?? 'desc');
 
@@ -24,14 +24,14 @@ export const load = (async ({ params, fetch, url }) => {
 		? `&pageSize=${url.searchParams.get('pageSize')}`
 		: '';
 
-	const tripResponse = await fetch(`/api/trips/${params.id}`, {
+	const tripPromise = fetch(`/api/trips/${params.id}`, {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json'
 		}
 	});
 
-	const costsResponse = await fetch(
+	const costPromise = fetch(
 		`/api/trips/${params.id}/costs?${sortByQuery}${sortOrderQuery}${minDeductionDateQuery}${maxDeductionDateQuery}${minEndDateQuery}${maxEndDateQuery}${pageQuery}${pageSizeQuery}`,
 		{
 			method: 'GET',
@@ -41,12 +41,18 @@ export const load = (async ({ params, fetch, url }) => {
 		}
 	);
 
-	const userResponse = await fetch('/api/users', {
+	const userPromise = fetch('/api/users', {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json'
 		}
 	});
+
+	const [tripResponse, costsResponse, userResponse] = await Promise.all([
+		tripPromise,
+		costPromise,
+		userPromise
+	]);
 
 	const tripBody = await tripResponse.json();
 	const costsBody = await costsResponse.json();
@@ -62,4 +68,4 @@ export const load = (async ({ params, fetch, url }) => {
 	}
 
 	return { tripData: tripBody.data, costsData: costsBody.data };
-}) satisfies PageServerLoad;
+};

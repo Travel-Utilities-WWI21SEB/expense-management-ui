@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { AlertWithAction, ProgressCircleAnimated, TokenForm } from '$components';
 	import {
 		correctToken,
 		email,
@@ -8,8 +9,8 @@
 		tokenErrorState,
 		tokenValues
 	} from '$stores';
+	import { i } from '@inlang/sdk-js';
 	import { Step } from '@skeletonlabs/skeleton';
-	import { AlertWithAction, ProgressCircleAnimated, TokenForm } from '$components';
 
 	export let forgotPasswordHandler: () => void;
 
@@ -28,8 +29,6 @@
 		correctToken.set(undefined);
 		tokenErrorState.set(false);
 
-		console.log('Start verifyPasswordToken');
-
 		const response = await fetch(`/api/users/verify-reset-token`, {
 			method: 'POST',
 			headers: {
@@ -37,8 +36,6 @@
 			},
 			body: JSON.stringify({ email: $email, token: $tokenValues.join('') })
 		});
-
-		console.log('End verifyPasswordToken');
 
 		const body = await response.json();
 		const { valid, error, errorMessage: errorDisplayMessage } = body;
@@ -51,7 +48,7 @@
 </script>
 
 <Step
-	buttonNextLabel="Enter new password"
+	buttonNextLabel={i('forms.signin.forgotPassword.steps.token.nextStep')}
 	locked={lockTokenStep}
 	buttonBack="invisible"
 	buttonNext="btn variant-filled-primary hover:variant-soft-primary dark:hover:variant-soft-primary-dark {lockTokenStep
@@ -66,8 +63,8 @@
 				<AlertWithAction
 					enableAction={true}
 					errorAction={forgotPasswordHandler}
-					alertHeading="Something went wrong!"
-					actionText="Try again!"
+					alertHeading={i('forms.signin.forgotPassword.steps.token.alertHeading')}
+					actionText={i('forms.signin.forgotPassword.steps.token.alertMessage')}
 					class="variant-filled-error"
 				/>
 			{:else}

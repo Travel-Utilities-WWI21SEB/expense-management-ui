@@ -2,6 +2,7 @@
 	import { CheckIcon, CrossIcon, QuestionMarkIcon } from '$icons';
 	import { errorMessage, errorState, loading, username, usernameValid } from '$stores';
 	import { validateUsername } from '$utils';
+	import { i } from '@inlang/sdk-js';
 	import { ProgressRadial, Step } from '@skeletonlabs/skeleton';
 	import _ from 'lodash';
 
@@ -42,11 +43,24 @@
 	};
 
 	const debouncedVerifyUsername = _.debounce(verifyUsername, 500);
+
+	// Keyboard handler
+	const keydownHandler = (e: KeyboardEvent) => {
+		if (e.key === 'Enter') {
+			if ($usernameValid && !lockUserStep) {
+				// Click next button
+				const nextButton = document.querySelector('.btn.variant-filled-primary');
+				if (nextButton) {
+					(nextButton as HTMLButtonElement).click();
+				}
+			}
+		}
+	};
 </script>
 
 <Step
 	locked={lockUserStep}
-	buttonNextLabel="Select your password"
+	buttonNextLabel={i('forms.signup.steps.username.nextStep')}
 	buttonNext="btn variant-filled-primary hover:variant-soft-primary dark:hover:variant-soft-primary-dark {lockUserStep
 		? 'pointer-events-none opacity-50'
 		: ''}"
@@ -55,15 +69,15 @@
 		<h1
 			class="h1 text-xl text-center font-bold leading-tight tracking-tight md:text-2xl dark:text-white"
 		>
-			Select your username
+			{i('forms.signup.steps.username.title')}
 		</h1>
 		<hr class="w-16 h-1 bg-primary-500 rounded-full flex justify-center mt-2" />
 	</svelte:fragment>
 	<section>
 		<div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-			<form novalidate>
+			<form novalidate on:keydown={keydownHandler}>
 				<label class="label">
-					<span>Username</span>
+					<span>{i('forms.signup.steps.username.word')}</span>
 					<input
 						class="input"
 						title="inputUsername"
@@ -84,10 +98,10 @@
 				<li>
 					{#if $usernameValid}
 						<span class="badge-icon variant-filled-success w-4 h-4"><CheckIcon /></span>
-						<span class="flex-auto">Username is valid</span>
+						<span class="flex-auto">{i('forms.signup.steps.username.validUsername')}</span>
 					{:else}
 						<span class="badge-icon variant-filled-error w-4 h-4"><CrossIcon /></span>
-						<span class="flex-auto">Username must be between 4 and 15 characters</span>
+						<span class="flex-auto">{i('forms.signup.steps.username.invalidUsername')}</span>
 					{/if}
 				</li>
 				<li>
@@ -98,16 +112,16 @@
 							meter="stroke-warning-500"
 							track="stroke-warning-500/30"
 						/>
-						<span class="flex-auto">Checking availability...</span>
+						<span class="flex-auto">{i('forms.signup.steps.username.ongoingValidation')}</span>
 					{:else if $errorState}
 						<span class="badge-icon variant-filled-error w-4 h-4"><CrossIcon /></span>
 						<span class="flex-auto">{$errorMessage}</span>
 					{:else if $loading || usernameExists === undefined}
 						<span class="badge-icon variant-filled-warning w-4 h-4"><QuestionMarkIcon /></span>
-						<span class="flex-auto">Please provide a valid username to check availability</span>
+						<span class="flex-auto">{i('forms.signup.steps.username.initialValidation')}</span>
 					{:else}
 						<span class="badge-icon variant-filled-success w-4 h-4"><CheckIcon /></span>
-						<span class="flex-auto">Username is not in use</span>
+						<span class="flex-auto">{i('forms.signup.steps.username.available')}</span>
 					{/if}
 				</li>
 			</ol>
