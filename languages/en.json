@@ -14,6 +14,36 @@
 		"legal": {
 			"title": "Legal",
 			"imprint": "Imprint"
+		},
+		"imprint": {
+			"title": "Imprint",
+			"close": "Close",
+			"general": {
+				"title": "General",
+				"content": "Information according to § 5 TMG",
+				"name": "Kevin Kemal Rieger",
+				"address": "Schulzenstraße 4, 68259 Mannheim"
+			},
+			"represented_by": {
+				"title": "Represented by",
+				"name": "Kevin Kemal Rieger"
+			},
+			"contact": {
+				"title": "Contact",
+				"phone": "Phone",
+				"phone_number": "+49 152 09707882",
+				"email": "Email",
+				"email_address": "team@mail.costventures.works"
+			},
+			"disclaimer": {
+				"title": "Disclaimer",
+				"content_1": "Liability for content",
+				"content_1_description": "The content of our pages has been created with the utmost care. However, we cannot guarantee the accuracy, completeness, and timeliness of the content. As a service provider, we are responsible for our own content on these pages according to § 7 para. 1 TMG (German Telemedia Act) and general laws. According to §§ 8 to 10 TMG, we are not obliged to monitor transmitted or stored third-party information or to investigate circumstances that indicate illegal activity. Obligations to remove or block the use of information according to general laws remain unaffected. However, liability in this regard is only possible from the time we become aware of a specific infringement. Upon becoming aware of such legal violations, we will promptly remove the content.",
+				"content_2": "Liability for links",
+				"content_2_description": "Our offer contains links to external websites of third parties over whose content we have no influence. Therefore, we cannot assume any liability for these external contents. The respective provider or operator of the linked pages is always responsible for their content. The linked pages were checked for possible legal violations at the time of linking. No illegal content was discernible at the time of linking. However, a permanent content control of the linked pages is not reasonable without concrete evidence of an infringement. If we become aware of any legal violations, we will remove such links immediately.",
+				"content_3": "Data protection",
+				"content_3_description": "The use of our website is generally possible without providing personal data. If personal data (e.g., name, address, or email addresses) is collected on our website, it is always done on a voluntary basis, if possible. This data will not be disclosed to third parties without your explicit consent. We would like to point out that data transmission over the Internet (e.g., communication by email) can have security vulnerabilities. Complete protection of data against access by third parties is not possible. The use of contact data published within the framework of the imprint obligation by third parties for sending unsolicited advertising and information materials is hereby expressly prohibited. The operators of the pages expressly reserve the right to take legal action in the event of unsolicited sending of promotional information, such as spam emails."
+			}
 		}
 	},
 	"forms": {

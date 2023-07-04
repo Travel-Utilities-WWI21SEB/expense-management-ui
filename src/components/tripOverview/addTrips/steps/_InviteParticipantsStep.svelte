@@ -1,8 +1,9 @@
 <script lang="ts">
+	import { currentUser, errorMessage, errorState, loading, selectedUsers } from '$stores';
 	import { modifyUserSuggestions } from '$utils';
-	import { errorMessage, errorState, loading, selectedUsers, currentUser } from '$stores';
 	import { Autocomplete, type AutocompleteOption } from '@skeletonlabs/skeleton';
-	import { RemoveIcon } from '$icons';
+	import { XMark } from '@steeze-ui/heroicons';
+	import { Icon } from '@steeze-ui/svelte-icon';
 
 	let inputValue = '';
 
@@ -65,7 +66,7 @@
 			{name}
 			<button on:click={() => onRemoveInvitationClick(name)}>
 				{#if name !== $currentUser.username}
-					<RemoveIcon />
+					<Icon src={XMark} class="w-6 h-6" />
 				{/if}
 			</button>
 		</span>

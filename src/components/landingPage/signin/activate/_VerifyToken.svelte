@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { CheckIcon } from '$icons';
+	import { AlertWithAction, ProgressCircleAnimated, TokenForm } from '$components';
 	import {
 		correctToken,
 		errorMessage,
@@ -10,7 +10,8 @@
 		tokenValues
 	} from '$stores';
 	import { modalStore } from '@skeletonlabs/skeleton';
-	import { AlertWithAction, ProgressCircleAnimated, TokenForm } from '$components';
+	import { Check } from '@steeze-ui/heroicons';
+	import { Icon } from '@steeze-ui/svelte-icon';
 
 	export let resendToken: () => void;
 
@@ -80,7 +81,9 @@
 		{:else if $correctToken}
 			<aside class="alert variant-ghost-success">
 				<!-- Icon -->
-				<div><CheckIcon /></div>
+				<div>
+					<Icon src={Check} class="w-6 h-6" />
+				</div>
 				<!-- Message -->
 				<div class="alert-message">
 					<h3 class="h3">The Verification was successful!</h3>

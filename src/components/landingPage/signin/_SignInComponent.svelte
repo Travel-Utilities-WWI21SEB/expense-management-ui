@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { ForgotPasswordStepper, VerifyToken, VerifyTokenAlert } from '$components';
-	import { CrossIcon } from '$icons';
 	import {
 		correctToken,
 		email,
@@ -17,6 +16,8 @@
 	import { resetLandingPageStore } from '$utils';
 	import { i } from '@inlang/sdk-js';
 	import { ProgressRadial, modalStore } from '@skeletonlabs/skeleton';
+	import { XMark } from '@steeze-ui/heroicons';
+	import { Icon } from '@steeze-ui/svelte-icon';
 	import { onDestroy } from 'svelte';
 
 	export let changeTab: (index: number) => void;
@@ -173,7 +174,9 @@
 			<ol class="list">
 				<li>
 					{#if $errorState}
-						<span class="badge-icon variant-filled-error w-4 h-4"><CrossIcon /></span>
+						<span class="badge-icon variant-filled-error w-4 h-4">
+							<Icon src={XMark} class="w-6 h-6" />
+						</span>
 						<span class="flex-auto">{$errorMessage}</span>
 					{/if}
 				</li>

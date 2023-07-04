@@ -1,8 +1,9 @@
 <script lang="ts">
-	import type { CostPaidForUser } from '$userDomain';
-	import { CheckIcon, CrossIcon } from '$icons';
-	import { validatePaidBy } from '$utils';
 	import { costPaidByValid } from '$stores';
+	import type { CostPaidForUser } from '$userDomain';
+	import { validatePaidBy } from '$utils';
+	import { Check, XMark } from '@steeze-ui/heroicons';
+	import { Icon } from '@steeze-ui/svelte-icon';
 	import { createEventDispatcher } from 'svelte';
 
 	export let users: Array<CostPaidForUser>;
@@ -36,10 +37,14 @@
 <ol class="list">
 	<li>
 		{#if $costPaidByValid}
-			<span class="badge-icon variant-filled-success w-4 h-4"><CheckIcon /></span>
+			<span class="badge-icon variant-filled-success w-4 h-4">
+				<Icon src={Check} class="w-6 h-6" />
+			</span>
 			<span class="flex-auto">Paid By is valid</span>
 		{:else}
-			<span class="badge-icon variant-filled-error w-4 h-4"><CrossIcon /></span>
+			<span class="badge-icon variant-filled-error w-4 h-4">
+				<Icon src={XMark} class="w-6 h-6" />
+			</span>
 			<span class="flex-auto">Please provide a valid paid by</span>
 		{/if}
 	</li>

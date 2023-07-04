@@ -1,21 +1,30 @@
 <script lang="ts">
-	import { MailInboxIcon } from '$icons';
+	import { contactTimer, startContactTimer, stopContactTimer } from '$stores';
 	import { i } from '@inlang/sdk-js';
 	import { toastStore, type ToastSettings } from '@skeletonlabs/skeleton';
+	import { InboxArrowDown } from '@steeze-ui/heroicons';
+	import { Icon } from '@steeze-ui/svelte-icon';
+	import { onDestroy } from 'svelte';
 
 	// Timer
 	let resendTokenInterval = 25;
-	let resendTokenTimer = 0;
-	$: remainingTime = resendTokenTimer > 0 ? `in ${resendTokenTimer} seconds` : '';
+	let elapsedSeconds: number | null;
+	let remaining: number | null;
 
-	// Decrease timer if it's greater than 0
-	$: if (resendTokenTimer > 0) {
-		setTimeout(() => {
-			resendTokenTimer--;
-		}, 1000);
-	}
+	const unsubscribe = contactTimer.subscribe((t) => {
+		elapsedSeconds = t.elapsedSeconds;
+		remaining = resendTokenInterval - elapsedSeconds!;
+		if (elapsedSeconds! >= resendTokenInterval) {
+			stopContactTimer();
+		}
+	});
 
-	const submitHandler = async (e: MouseEvent) => {
+	$: remainingTime = elapsedSeconds
+		? `in ${remaining!} ${i('forms.signup.steps.token.seconds')}`
+		: '';
+	$: classes = elapsedSeconds ? 'pointer-events-none opacity-50' : '';
+
+	const submitHandler = async () => {
 		// Get form data
 		const name = (document.getElementById('name') as HTMLInputElement).value;
 		const email = (document.getElementById('email') as HTMLInputElement).value;
@@ -41,7 +50,7 @@
 				timeout: 5000
 			};
 		} else {
-			resendTokenTimer = resendTokenInterval;
+			startContactTimer();
 
 			toast = {
 				background: 'variant-filled-success',
@@ -59,6 +68,10 @@
 		// Show toast
 		toastStore.trigger(toast);
 	};
+
+	onDestroy(() => {
+		unsubscribe();
+	});
 </script>
 
 <section>
@@ -125,13 +138,11 @@
 				</div>
 				<div class="p-2 w-full flex justify-center">
 					<button
-						class="btn btn-lg variant-filled {resendTokenTimer > 0
-							? 'pointer-events-none opacity-50'
-							: ''} group-invalid:pointer-events-none group-invalid:opacity-50"
+						class="btn btn-lg variant-filled {classes} group-invalid:pointer-events-none group-invalid:opacity-50"
 						on:click={submitHandler}
 					>
 						<span>
-							<MailInboxIcon />
+							<Icon src={InboxArrowDown} class="w-6 h-6" />
 						</span>
 						<span>{i('landingPage.contactBox.button')} {remainingTime}</span>
 					</button>

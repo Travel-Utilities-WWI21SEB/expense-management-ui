@@ -9,7 +9,6 @@
 	];
 
 	let comboboxValue: string = language;
-	const icon = new Us({ target: document.body, props: { tabindex: '-1' } });
 
 	$: activateLanguageTitle = languages.find((language) => language.id === comboboxValue)?.title;
 	$: activateLanguageIcon = languages.find((language) => language.id === comboboxValue)?.icon;
@@ -41,7 +40,7 @@
 </script>
 
 <!-- LANGUAGE POPUP -->
-<div class="card w-48 shadow-xl py-2" data-popup="languageCombobox">
+<div class="card w-48 shadow-xl py-2 z-50" data-popup="languageCombobox">
 	<ListBox rounded="rounded-none">
 		{#each languages as language}
 			<ListBoxItem
@@ -64,14 +63,14 @@
 </div>
 <!-- LANGUAGE POPUP -->
 
-<div class="mt-auto">
+<div class="my-auto">
 	<button
 		type="button"
 		class="btn variant-ringed-surface pt-2 justify-between"
 		use:popup={languageCombobox}
 	>
 		<span>
-			<svelte:component this={activateLanguageIcon} size="20" />
+			<svelte:component this={activateLanguageIcon} class="w-6 h-6" />
 		</span>
 		<span class="hidden md:block">{activateLanguageTitle}</span>
 	</button>

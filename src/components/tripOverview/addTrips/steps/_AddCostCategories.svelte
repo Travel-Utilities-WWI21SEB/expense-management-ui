@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { RemoveIcon } from '$icons';
 	import { newCostCategories, newCostCategoryColors } from '$stores';
+	import { XMark } from '@steeze-ui/heroicons';
+	import { Icon } from '@steeze-ui/svelte-icon';
 
 	let inputValue = '';
 
@@ -51,7 +52,7 @@
 		>
 			{name}
 			<button on:click={() => onRemoveInvitationClick(name)}>
-				<RemoveIcon />
+				<Icon src={XMark} class="w-6 h-6" />
 			</button>
 		</button>
 	{/each}

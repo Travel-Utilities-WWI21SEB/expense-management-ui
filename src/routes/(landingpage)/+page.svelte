@@ -10,6 +10,7 @@
 	} from '$components';
 	import { i } from '@inlang/sdk-js';
 	import { modalStore, type ModalComponent, type ModalSettings } from '@skeletonlabs/skeleton';
+	import { CreditCard, GlobeEuropeAfrica, Users } from '@steeze-ui/heroicons';
 
 	export let data;
 
@@ -34,7 +35,7 @@
 	};
 </script>
 
-<div class="flex justify-center m-4 p-4">
+<div class="flex justify-center md:flex-row flex-col items-center m-4 p-4">
 	<CatchPhraseText
 		text={i('landingPage.banner.catchPhrase.first')}
 		colorGradient="dark:from-blue-400 from-blue-600 dark:to-cyan-400 to-cyan-600"
@@ -79,16 +80,19 @@
 			title={i('landingPage.features.travel.title')}
 			content={i('landingPage.features.travel.description')}
 			path="features/travel"
+			icon={GlobeEuropeAfrica}
 		/>
 		<LandingPageFeatureBoxRight
 			title={i('landingPage.features.spend.title')}
 			content={i('landingPage.features.spend.description')}
 			path="features/spend"
+			icon={CreditCard}
 		/>
 		<LandingPageFeatureBoxLeft
 			title={i('landingPage.features.divide.title')}
 			content={i('landingPage.features.divide.description')}
 			path="features/divide"
+			icon={Users}
 		/>
 	</div>
 </section>

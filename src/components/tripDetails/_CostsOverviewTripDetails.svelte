@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { AlertWithAction, TripDetailsAddNewCostItem, TripDetailsCostItem } from '$components';
-	import { CostIcon } from '$icons';
 	import type { Cost, TravelData } from '$tripDomain';
 	import type { ModalComponent, ModalSettings } from '@skeletonlabs/skeleton';
 	import { modalStore } from '@skeletonlabs/skeleton';
+	import { Banknotes } from '@steeze-ui/heroicons';
 
 	export let costs: Array<Cost>;
 	export let trip: TravelData;
@@ -40,7 +40,7 @@
 		<AlertWithAction
 			alertHeading="This trip has no costs yet"
 			class="variant-ghost-primary"
-			icon={CostIcon}
+			icon={Banknotes}
 		/>
 	{:else}
 		<ul class="list p-2 max-h-[500px] overflow-y-auto">

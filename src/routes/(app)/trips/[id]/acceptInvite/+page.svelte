@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { CrossIcon } from '$icons';
 	import { currentTrip, errorMessage, errorState, loading } from '$stores';
 	import type { TravelData } from '$tripDomain';
+	import { XMark } from '@steeze-ui/heroicons';
+	import { Icon } from '@steeze-ui/svelte-icon';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
@@ -79,7 +80,9 @@
 		<button on:click={onRejectClick} class="btn variant-ghost">Reject</button>
 	</div>
 	{#if $errorState}
-		<span class="badge-icon variant-filled-error w-4 h-4"><CrossIcon /></span>
+		<span class="badge-icon variant-filled-error w-4 h-4">
+			<Icon src={XMark} class="w-4 h-4" />
+		</span>
 		<span class="flex-auto">{$errorMessage}</span>
 	{/if}
 </div>
