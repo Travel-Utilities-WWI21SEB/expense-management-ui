@@ -14,7 +14,7 @@
 	function onTripCardClick(trip: TravelData) {
 		currentTrip.update(() => trip);
 		if (trip.hasAcceptedInvite) {
-			goto(`/trips/${trip.tripId}`);
+			goto(`/trips/${trip.tripId}`, { noScroll: true });
 		} else {
 			goto(`/trips/${trip.tripId}/acceptInvite`);
 		}

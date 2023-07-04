@@ -24,8 +24,9 @@
 
 	$: validData = $costAllocationValid && $costDetailsValid && costPaidByValid;
 
-	let costPaidForUser: Array<CostPaidForUser> = trip.participants.flatMap(
-		(tripParticipants: User) => {
+	let costPaidForUser: Array<CostPaidForUser> = trip.participants
+		.filter((user) => user.hasAcceptedInvite)
+		.flatMap((tripParticipants: User) => {
 			const userInvolved = cost?.contributors
 				? cost.contributors.filter(
 						(involvedUser) => tripParticipants.username === involvedUser.username
@@ -49,8 +50,7 @@
 							checked: false
 					  };
 			return newUser;
-		}
-	);
+		});
 
 	//convert date to yyyy-mm-dd for date picker
 	let localeCost: CostDateAsString = {
