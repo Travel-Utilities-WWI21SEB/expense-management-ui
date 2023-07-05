@@ -11,5 +11,5 @@ export function getErrorMessage(expenseErrorCode: string): string {
 	const errorMessage = clientFn(`errors.${expenseErrorCode}`);
 
 	// This normally cannot happen, but if it does, we are prepared. :)
-	return errorMessage || clientFn('errors.EM-000') || 'An unknown error occurred.';
+	return errorMessage || clientFn('errors.EM-000');
 }
