@@ -19,8 +19,11 @@
 		startDate: new Date(Date.now()).toISOString().substring(0, 10),
 		endDate: new Date(Date.now()).toISOString().substring(0, 10)
 	};
-	let selectedUsers = [$currentUser.username];
-	let newCostCategories = ['Food', 'Mobility'];
+	let selectedUsers = [{ name: $currentUser.username, isNew: true }];
+	let newCostCategories = [
+		{ name: 'Food', isNew: true },
+		{ name: 'Mobility', isNew: true }
+	];
 	let newCostCategoryColors = ['#FF8585', '#00FF62'];
 
 	const createTrip = async () => {
@@ -111,17 +114,17 @@
 		const result = await createTrip();
 
 		await Promise.all(
-			selectedUsers.map(async (name) => {
-				if (name !== $currentUser.username) {
-					await inviteUsers(result.data.tripId, { username: name });
+			selectedUsers.map(async (participant) => {
+				if (participant.name !== $currentUser.username) {
+					await inviteUsers(result.data.tripId, { username: participant.name });
 				}
 			})
 		);
 
 		await Promise.all(
-			newCostCategories.map(async (name, index) => {
+			newCostCategories.map(async (category, index) => {
 				await createCostCategories(result.data.tripId, {
-					name: name,
+					name: category.name,
 					color: newCostCategoryColors[index]
 				});
 			})

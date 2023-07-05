@@ -40,6 +40,7 @@ export { default as TripDetailsEditCostItemPaidBy } from './tripDetails/Modal/_C
 export { default as TripDetailsCostItemModal } from './tripDetails/Modal/_CostItemTripDetailsModal.svelte';
 export { default as TripDetailsEditCostItem } from './tripDetails/Modal/_EditCostItemTripDetailsModal.svelte';
 export { default as TripDetailsShowCostItem } from './tripDetails/Modal/_ShowCostItemTripDetailsModal.svelte';
+export { default as EditTripModal } from './tripDetails/Modal/_EditTripModal.svelte';
 export {
 	default as CostsOverviewTripDetails,
 	default as TripDetailsCostOverview
