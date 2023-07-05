@@ -1,15 +1,7 @@
 <script lang="ts">
 	import {
-		CheckIcon,
-		ClosedEnvelopeIcon,
-		CrossIcon,
-		InfoIcon,
-		OpenEnvelopeIcon,
-		QuestionMarkIcon
-	} from '$icons';
-	import {
 		correctToken,
-		errorMessage,
+		errorCode,
 		loading,
 		startTimer,
 		stopTimer,
@@ -17,8 +9,17 @@
 		tokenErrorState,
 		tokenValues
 	} from '$stores';
-	import { keydownHandler, pasteHandler } from '$utils';
+	import { getErrorMessage, keydownHandler, pasteHandler } from '$utils';
 	import { i } from '@inlang/sdk-js';
+	import {
+		Check,
+		Envelope,
+		EnvelopeOpen,
+		InformationCircle,
+		QuestionMarkCircle,
+		XMark
+	} from '@steeze-ui/heroicons';
+	import { Icon } from '@steeze-ui/svelte-icon';
 	import { onDestroy } from 'svelte';
 
 	export let keyboardHandler: () => void;
@@ -84,25 +85,33 @@
 	<li>
 		{#if $correctToken}
 			<span class="badge-icon variant-filled-success w-4 h-4 justify-center">
-				<CheckIcon />
+				<Icon src={Check} class="w-6 h-6" />
 			</span>
 			<span class="flex-auto">{i('forms.signup.steps.token.correctToken')}</span>
 		{:else if validToken}
 			{#if $tokenErrorState}
-				<span class="badge-icon variant-filled-error w-4 h-4"><CrossIcon /></span>
-				<span class="flex-auto">{$errorMessage}</span>
+				<span class="badge-icon variant-filled-error w-4 h-4">
+					<Icon src={XMark} class="w-6 h-6" />
+				</span>
+				<span class="flex-auto">{getErrorMessage($errorCode)}</span>
 			{:else}
-				<span class="badge-icon variant-filled-warning w-4 h-4"><CrossIcon /></span>
+				<span class="badge-icon variant-filled-warning w-4 h-4">
+					<Icon src={XMark} class="w-6 h-6" />
+				</span>
 				<span class="flex-auto">{i('forms.signup.steps.token.incorrectToken')}</span>
 			{/if}
 		{:else}
-			<span class="badge-icon variant-filled-warning w-4 h-4"><QuestionMarkIcon /></span>
+			<span class="badge-icon variant-filled-warning w-4 h-4">
+				<Icon src={QuestionMarkCircle} class="w-6 h-6" />
+			</span>
 			<span class="flex-auto">{i('forms.signup.steps.token.initialValidation')}</span>
 		{/if}
 	</li>
 	{#if !$correctToken}
 		<li>
-			<span class="badge-icon variant-filled-tertiary w-4 h-4"><InfoIcon /></span>
+			<span class="badge-icon variant-filled-tertiary w-4 h-4">
+				<Icon src={InformationCircle} class="w-6 h-6" />
+			</span>
 			<span class="flex-auto">{i('forms.signup.steps.token.receiveCodeMessage')}</span>
 		</li>
 	{/if}
@@ -115,9 +124,9 @@
 	>
 		<span>
 			{#if elapsedSeconds}
-				<ClosedEnvelopeIcon />
+				<Icon src={Envelope} class="w-6 h-6" />
 			{:else}
-				<OpenEnvelopeIcon />
+				<Icon src={EnvelopeOpen} class="w-6 h-6" />
 			{/if}
 		</span>
 		<span

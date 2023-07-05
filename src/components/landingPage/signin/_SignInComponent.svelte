@@ -1,11 +1,10 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { ForgotPasswordStepper, VerifyToken, VerifyTokenAlert } from '$components';
-	import { CrossIcon } from '$icons';
 	import {
 		correctToken,
 		email,
-		errorMessage,
+		errorCode,
 		errorState,
 		loading,
 		notActivatedAlert,
@@ -14,9 +13,11 @@
 		tokenErrorState,
 		tokenValues
 	} from '$stores';
-	import { resetLandingPageStore } from '$utils';
+	import { getErrorMessage, resetLandingPageStore } from '$utils';
 	import { i } from '@inlang/sdk-js';
 	import { ProgressRadial, modalStore } from '@skeletonlabs/skeleton';
+	import { XMark } from '@steeze-ui/heroicons';
+	import { Icon } from '@steeze-ui/svelte-icon';
 	import { onDestroy } from 'svelte';
 
 	export let changeTab: (index: number) => void;
@@ -52,10 +53,10 @@
 
 		loading.set(false);
 		const body = await response.json();
-		const { success, activated, error, errorMessage: errorDisplayMessage } = body;
+		const { success, activated, error, errorCode: code } = body;
 
 		errorState.set(error);
-		errorMessage.set(errorDisplayMessage);
+		errorCode.set(code);
 
 		if (success) {
 			modalStore.close();
@@ -82,13 +83,13 @@
 			});
 
 			const body = await response.json();
-			const { error, errorMessage: message } = body;
+			const { error, errorCode: code } = body;
 
 			errorState.set(error);
-			errorMessage.set(message);
+			errorCode.set(code);
 		} catch (error: any) {
 			errorState.set(true);
-			errorMessage.set(error.message);
+			errorCode.set('EM-000');
 		} finally {
 			loading.set(false);
 		}
@@ -173,8 +174,10 @@
 			<ol class="list">
 				<li>
 					{#if $errorState}
-						<span class="badge-icon variant-filled-error w-4 h-4"><CrossIcon /></span>
-						<span class="flex-auto">{$errorMessage}</span>
+						<span class="badge-icon variant-filled-error w-4 h-4">
+							<Icon src={XMark} class="w-6 h-6" />
+						</span>
+						<span class="flex-auto">{getErrorMessage($errorCode)}</span>
 					{/if}
 				</li>
 			</ol>

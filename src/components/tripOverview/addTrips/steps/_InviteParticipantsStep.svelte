@@ -1,9 +1,10 @@
 <script lang="ts">
-	import { modifyUserSuggestions } from '$utils';
-	import { errorMessage, errorState, loading, currentUser } from '$stores';
-	import { Autocomplete, type AutocompleteOption } from '@skeletonlabs/skeleton';
-	import { RemoveIcon } from '$icons';
+	import { currentUser, errorCode, errorState, loading } from '$stores';
 	import type { NameExistsInterface } from '$tripDomain';
+	import { modifyUserSuggestions } from '$utils';
+	import { Autocomplete, type AutocompleteOption } from '@skeletonlabs/skeleton';
+	import { Trash } from '@steeze-ui/heroicons';
+	import { Icon } from '@steeze-ui/svelte-icon';
 
 	let inputValue = '';
 	export let selectedUsers: Array<NameExistsInterface>;
@@ -24,7 +25,7 @@
 			return body;
 		} catch (error: any) {
 			errorState.set(true);
-			errorMessage.set(error.message);
+			errorCode.set('EM-000');
 		} finally {
 			loading.set(false);
 		}
@@ -67,7 +68,7 @@
 			{participant.name}
 			<button on:click={() => onRemoveInvitationClick(participant.name)}>
 				{#if participant.name !== $currentUser.username && participant.isNew}
-					<RemoveIcon />
+					<Icon src={Trash} class="w-6 h-6" />
 				{/if}
 			</button>
 		</span>

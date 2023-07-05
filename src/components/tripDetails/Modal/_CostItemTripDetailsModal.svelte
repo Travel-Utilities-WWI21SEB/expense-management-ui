@@ -1,19 +1,21 @@
 <script lang="ts">
-	import type { Cost, CostDateAsString, TravelData } from '$tripDomain';
-	import type { CostPaidForUser, User } from '$userDomain';
-	import { TripDetailsShowCostItem, TripDetailsEditCostItem } from '$components';
+	import { invalidateAll } from '$app/navigation';
+	import { TripDetailsEditCostItem, TripDetailsShowCostItem } from '$components';
 	import {
 		costAllocationValid,
 		costDetailsValid,
 		costPaidByValid,
-		errorMessage,
+		currentCost,
+		errorCode,
 		errorState,
 		loading
 	} from '$stores';
+	import type { Cost, CostDateAsString, TravelData } from '$tripDomain';
+	import type { CostPaidForUser, User } from '$userDomain';
+	import { getErrorMessage } from '$utils';
 	import { modalStore, toastStore, type ToastSettings } from '@skeletonlabs/skeleton';
-	import { invalidateAll } from '$app/navigation';
-	import { currentCost } from '$stores';
-	import { DeleteIcon } from '$icons';
+	import { Trash } from '@steeze-ui/heroicons';
+	import { Icon } from '@steeze-ui/svelte-icon';
 
 	/* export let name: string; */
 	export let cost: Cost;
@@ -25,8 +27,9 @@
 
 	$: validData = $costAllocationValid && $costDetailsValid && costPaidByValid;
 
-	let costPaidForUser: Array<CostPaidForUser> = trip.participants.flatMap(
-		(tripParticipants: User) => {
+	let costPaidForUser: Array<CostPaidForUser> = trip.participants
+		.filter((user) => user.hasAcceptedInvite)
+		.flatMap((tripParticipants: User) => {
 			const userInvolved = cost?.contributors
 				? cost.contributors.filter(
 						(involvedUser) => tripParticipants.username === involvedUser.username
@@ -50,8 +53,7 @@
 							checked: false
 					  };
 			return newUser;
-		}
-	);
+		});
 
 	//convert date to yyyy-mm-dd for date picker
 	let localeCost: CostDateAsString = {
@@ -99,15 +101,15 @@
 
 			const body = await costsResponse.json();
 
-			const { error, errorMessage: errorDisplayMessage } = body;
+			const { error, errorCode: code } = body;
 
 			errorState.set(error);
-			errorMessage.set(errorDisplayMessage);
+			errorCode.set(code);
 
 			return body;
 		} catch (error: any) {
 			errorState.set(true);
-			errorMessage.set(error.message);
+			errorCode.set('EM-000');
 		} finally {
 			loading.set(false);
 		}
@@ -117,7 +119,7 @@
 		const result = await updateCost(localeCost, trip, costPaidForUser);
 
 		const message = result.error
-			? `Error: ${result.errorMessage}`
+			? `Error: ${getErrorMessage(result.errorCode)}`
 			: `Cost ${result.data.description} saved successfully`;
 		const t: ToastSettings = {
 			message: message,
@@ -149,7 +151,7 @@
 					onDelete(localeCost);
 				}}
 			>
-				<DeleteIcon />
+				<Icon src={Trash} class="w-6 h-6" />
 				<span>Delete</span>
 			</button>
 			<button

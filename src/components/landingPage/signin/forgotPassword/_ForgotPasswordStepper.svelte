@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { SelectEmailStep, SetNewPasswordStep, ValidateResetTokenStep } from '$components';
-	import { email, errorMessage, errorState, loading, password, tokenValues } from '$stores';
+	import { email, errorCode, errorState, loading, password, tokenValues } from '$stores';
 	import { i } from '@inlang/sdk-js';
 	import { Stepper, toastStore, type ToastSettings } from '@skeletonlabs/skeleton';
 	import { onDestroy, tick } from 'svelte/internal';
@@ -28,10 +28,10 @@
 		});
 
 		const body = await response.json();
-		const { error, errorMessage: errorDisplayMessage } = body;
+		const { error, errorCode: code } = body;
 
 		errorState.set(error);
-		errorMessage.set(errorDisplayMessage);
+		errorCode.set(code);
 		loading.set(false);
 	};
 
@@ -48,10 +48,10 @@
 		});
 
 		const body = await response.json();
-		const { success, error, errorMessage: errorDisplayMessage } = body;
+		const { success, error, errorCode: code } = body;
 
 		errorState.set(error);
-		errorMessage.set(errorDisplayMessage);
+		errorCode.set(code);
 
 		if (success) {
 			await tick();

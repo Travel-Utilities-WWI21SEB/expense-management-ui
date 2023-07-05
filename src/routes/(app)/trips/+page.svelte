@@ -1,10 +1,8 @@
 <script lang="ts">
-	import type { TravelData } from '$tripDomain';
 	import { goto } from '$app/navigation';
-	import { TripCard, HeaderBar, AlertWithAction } from '$components';
-	import { currentUser } from '$stores';
-	import { errorMessage, errorState } from '$stores';
-	import type { NewTripInputs } from '$tripDomain';
+	import { AlertWithAction, HeaderBar, TripCard } from '$components';
+	import { currentUser, errorCode, errorState } from '$stores';
+	import type { NewTripInputs, TravelData } from '$tripDomain';
 
 	let newTrip: NewTripInputs = {
 		name: '',
@@ -15,7 +13,7 @@
 
 	export let data;
 
-	errorMessage.set(data.errorMessage);
+	errorCode.set(data.errorCode);
 	errorState.set(data.error);
 	currentUser.set(data.userData.data);
 

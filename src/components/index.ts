@@ -2,6 +2,7 @@
 export { default as HeaderAndTwoPartsLayout } from './general/_HeaderAndTwoPartsLayout.svelte';
 export { default as ImprintComponent } from './general/_Imprint.svelte';
 export { default as LanguageSelector } from './general/_LanguageSelector.svelte';
+export { default as ThemeSwitcher } from './general/_ThemeSwitcher.svelte';
 export { default as CatchPhraseText } from './landingPage/_CatchPhraseText.svelte';
 export { default as ContactBox } from './landingPage/_ContactBox.svelte';
 export { default as LandingPageFeatureBoxLeft } from './landingPage/_FeatureBoxLeft.svelte';
@@ -50,6 +51,8 @@ export { default as TripDetailsHeader } from './tripDetails/_HeaderTripDetails.s
 export { default as HeaderTripDetailsLayout } from './tripDetails/_HeaderTripDetailsLayout.svelte';
 export { default as ParticipantIcon } from './tripDetails/_ParticipantIcon.svelte';
 export { default as Participants } from './tripDetails/_Participants.svelte';
+export { default as TripDetailsSortingPopUp } from './tripDetails/_SortingPopUp.svelte';
+export { default as TripDetailsFilterPopUp } from './tripDetails/_FilterPopUp.svelte';
 
 //Trip Overview
 export { default as DonutChart } from './tripOverview/_DonutChart.svelte';

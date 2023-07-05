@@ -1,5 +1,4 @@
 import { PUBLIC_BASE_URL } from '$env/static/public';
-import { getErrorMessage } from '$utils';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
@@ -15,21 +14,16 @@ export const GET: RequestHandler = async ({ fetch }) => {
 
 		if (response.ok) {
 			const body = await response.json();
-			return json({ error: false, errorMessage: '', data: body });
+			return json({ error: false, errorCode: '', data: body });
 		}
 
 		const body = await response.json();
-		const { errorCode } = body;
-		const errorMessage = getErrorMessage(errorCode);
-
-		return json({ data: null, error: true, errorMessage });
+		return json({ data: null, error: true, errorCode: body.errorCode });
 	} catch (exception) {
-		const message = getErrorMessage('EM-000'); // Default error message
-
 		return json({
 			data: null,
 			error: true,
-			errorMessage: message
+			errorCode: 'EM-000'
 		});
 	}
 };

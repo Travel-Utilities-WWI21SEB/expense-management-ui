@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { RemoveIcon } from '$icons';
 	import type { NameExistsInterface } from '$tripDomain';
+	import { XMark } from '@steeze-ui/heroicons';
+	import { Icon } from '@steeze-ui/svelte-icon';
 
 	let inputValue = '';
 
@@ -46,7 +47,7 @@
 			>
 				{category.name}
 				<button class="ml-2" on:click={() => onRemoveInvitationClick(category)}>
-					<RemoveIcon />
+					<Icon src={XMark} class="w-6 h-6" />
 				</button>
 			</button>
 		{/if}

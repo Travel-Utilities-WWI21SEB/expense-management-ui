@@ -1,14 +1,15 @@
 <script lang="ts">
 	import {
+		EditTripModal,
 		HeaderTripDetailsLayout,
-		TripInfos,
-		UserPaymentOverview,
 		Participants,
-		EditTripModal
+		TripInfos,
+		UserPaymentOverview
 	} from '$components';
 	import type { NameExistsInterface, TravelData } from '$tripDomain';
-	import { EditIcon } from '$icons';
-	import { modalStore, type ModalSettings, type ModalComponent } from '@skeletonlabs/skeleton';
+	import { modalStore, type ModalComponent, type ModalSettings } from '@skeletonlabs/skeleton';
+	import { Pencil } from '@steeze-ui/heroicons';
+	import { Icon } from '@steeze-ui/svelte-icon';
 
 	export let trip: TravelData;
 
@@ -83,8 +84,10 @@
 					class="btn variant-filled w-24 m-4"
 					on:click={() => {
 						modalStore.trigger(tripModal);
-					}}><EditIcon /></button
+					}}
 				>
+					<Icon src={Pencil} class="w-6 h-6" />
+				</button>
 			</div>
 		</span>
 	</HeaderTripDetailsLayout>

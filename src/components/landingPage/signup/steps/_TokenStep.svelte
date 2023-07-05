@@ -1,11 +1,10 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { AlertWithAction, ProgressCircleAnimated, TokenForm } from '$components';
-	import { CheckIcon } from '$icons';
 	import {
 		correctToken,
 		email,
-		errorMessage,
+		errorCode,
 		errorState,
 		loading,
 		tokenErrorState,
@@ -13,6 +12,8 @@
 	} from '$stores';
 	import { i } from '@inlang/sdk-js';
 	import { Step, modalStore } from '@skeletonlabs/skeleton';
+	import { Check } from '@steeze-ui/heroicons';
+	import { Icon } from '@steeze-ui/svelte-icon';
 	import _ from 'lodash';
 
 	export let register: () => Promise<void>;
@@ -43,18 +44,18 @@
 			});
 
 			const body = await response.json();
-			const { tokenCorrect, error, errorMessage: message } = body;
+			const { tokenCorrect, error, errorCode: code } = body;
 
 			correctToken.set(tokenCorrect);
 			tokenErrorState.set(error);
-			errorMessage.set(message);
+			errorCode.set(code);
 
 			if (tokenCorrect) {
 				loading.set(false);
 			}
 		} catch (error: any) {
 			errorState.set(true);
-			errorMessage.set(error.message);
+			errorCode.set('EM-000');
 		} finally {
 			loading.set(false);
 		}
@@ -77,13 +78,13 @@
 			});
 
 			const body = await response.json();
-			const { error, errorMessage: message } = body;
+			const { error, errorCode: code } = body;
 
 			errorState.set(error);
-			errorMessage.set(message);
+			errorCode.set(code);
 		} catch (error: any) {
 			errorState.set(true);
-			errorMessage.set(error.message);
+			errorCode.set('EM-000');
 		} finally {
 			loading.set(false);
 		}
@@ -123,7 +124,9 @@
 			{:else if $correctToken}
 				<aside class="alert variant-ghost-success">
 					<!-- Icon -->
-					<div><CheckIcon /></div>
+					<div>
+						<Icon src={Check} class="w-6 h-6" />
+					</div>
 					<!-- Message -->
 					<div class="alert-message">
 						<h3 class="h3">{i('forms.signup.steps.token.successMessage')}</h3>

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { EmailStep, PasswordStep, TokenStep, UsernameStep } from '$components';
-	import { email, errorMessage, errorState, loading, password, username } from '$stores';
+	import { email, errorCode, errorState, loading, password, username } from '$stores';
 	import { resetLandingPageStore } from '$utils';
 	import { i } from '@inlang/sdk-js';
 	import { Stepper } from '@skeletonlabs/skeleton';
@@ -23,14 +23,14 @@
 			});
 
 			const body = await response.json();
-			const { error, errorMessage: message } = body;
+			const { error, errorCode: code } = body;
 
 			// Writing in the store to let TokenStep know the results
 			errorState.set(error);
-			errorMessage.set(message);
+			errorCode.set(code);
 		} catch (error: any) {
 			errorState.set(true);
-			errorMessage.set(error.message);
+			errorCode.set('EM-000');
 		} finally {
 			loading.set(false);
 		}

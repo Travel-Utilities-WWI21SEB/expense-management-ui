@@ -1,13 +1,13 @@
 <script lang="ts">
+	import { AddTripForm } from '$components';
 	import {
 		Modal,
 		modalStore,
 		type ModalComponent,
 		type ModalSettings
 	} from '@skeletonlabs/skeleton';
-	import { AddTripForm } from '$components';
-	import { PlusIcon } from '$icons';
-	import type { NewTripInputs } from '$tripDomain';
+	import { Plus } from '@steeze-ui/heroicons';
+	import { Icon } from '@steeze-ui/svelte-icon';
 
 	const modalComponentRegistry: Record<string, ModalComponent> = {
 		// Custom Modal 1
@@ -41,6 +41,8 @@
 	class="btn variant-filled w-24 h-12 xl:w-56 col-end-7"
 	on:click={onButtonClick}
 >
-	<span><PlusIcon /> </span>
+	<span>
+		<Icon src={Plus} class="w-6 h-6" />
+	</span>
 	<span>Add Trip</span>
 </button>

@@ -1,18 +1,18 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
-	import type { Cost, CostDateAsString, TravelData } from '$tripDomain';
-	import { calculateDate, pickTextColorBasedOnBgColorSimple } from '$utils';
+	import { invalidateAll } from '$app/navigation';
 	import { TripDetailsCostItemModal } from '$components';
+	import { errorCode, errorState, loading } from '$stores';
+	import type { Cost, CostDateAsString, TravelData } from '$tripDomain';
+	import { calculateDate, getErrorMessage, pickTextColorBasedOnBgColorSimple } from '$utils';
 	import {
 		modalStore,
+		toastStore,
 		type ModalComponent,
 		type ModalSettings,
-		type ToastSettings,
-		toastStore
+		type ToastSettings
 	} from '@skeletonlabs/skeleton';
+	import { createEventDispatcher } from 'svelte';
 	import { currentCost } from '../../stores/costStore';
-	import { errorMessage, errorState, loading } from '$stores';
-	import { invalidateAll } from '$app/navigation';
 
 	export let cost: Cost;
 	export let i: number;
@@ -52,7 +52,6 @@
 				if (r) {
 					onDeleteCost(cost);
 				} else {
-					console.log('cancel pressed');
 					const modalCost: ModalSettings = {
 						type: 'component',
 						component: modalComponent
@@ -78,15 +77,15 @@
 
 			const body = await costsResponse.json();
 
-			const { error, errorMessage: errorDisplayMessage } = body;
+			const { error, errorCode: code } = body;
 
 			errorState.set(error);
-			errorMessage.set(errorDisplayMessage);
+			errorCode.set(code);
 
 			return body;
 		} catch (error: any) {
 			errorState.set(true);
-			errorMessage.set(error.message);
+			errorCode.set('EM-000');
 		} finally {
 			loading.set(false);
 		}
@@ -96,7 +95,7 @@
 		const result = await deleteCost(cost, trip);
 
 		const message = result.error
-			? `Error: ${result.errorMessage}`
+			? `Error: ${getErrorMessage(result.errorCode)}`
 			: `Cost ${cost.name} deleted successfully`;
 		const t: ToastSettings = {
 			message: message,
@@ -119,27 +118,27 @@
 	on:click={() => selectListItem(i)}
 >
 	<div class="grid grid-cols-12 md:gap-2">
-		<div class="col-span-12 sm:col-span-3 grid content-center p-2">
+		<div class="col-span-12 sm:col-span-3 grid content-center sm:p-2">
 			<div class="text-clip overflow-hidden content-center">
 				<p
 					style="background-color: {cost.costCategory.color}"
 					class="text-sm text-
 					text-[{pickTextColorBasedOnBgColorSimple(cost.costCategory.color, '#ffffff', '#000000')}]
-					 rounded-full border-0 font-semibold m-4 chip variant-filled"
+					 rounded-full border-0 font-semibold m-4 chip variant-filled truncate"
 				>
 					{cost.costCategory.name}
 				</p>
 			</div>
 		</div>
-		<div class="col-span-8 sm:col-span-7 grid content-center p-2">
-			<div class="text-clip overflow-hidden text-left">
+		<div class="col-span-8 sm:col-span-7 grid content-center px-2 pb-2 sm:p-2">
+			<div class="text-clip overflow-hidden text-left truncate">
 				{cost.name}
 				<br />
 				{calculateDate(cost.startDate)}
 				{#if cost.endDate} - {calculateDate(cost.endDate)} {/if}
 			</div>
 		</div>
-		<div class="col-span-4 sm:col-span-2 grid content-center p-2">
+		<div class="col-span-4 sm:col-span-2 grid content-center px-2 pb-2 sm:p-2">
 			<div class="text-clip font-semibold overflow-hidden w-full text-rigth text-error-500">
 				{cost.amount + ' ' + (cost.currency === '' ? '€' : cost.currency)}
 			</div>

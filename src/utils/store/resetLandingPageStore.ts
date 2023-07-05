@@ -2,7 +2,7 @@ import {
 	correctToken,
 	email,
 	emailValid,
-	errorMessage,
+	errorCode,
 	errorState,
 	loading,
 	notActivatedAlert,
@@ -17,7 +17,7 @@ import {
 } from '$stores';
 
 export function resetLandingPageStore() {
-	errorMessage.set('');
+	errorCode.set('');
 	errorState.set(false);
 	loading.set(false);
 

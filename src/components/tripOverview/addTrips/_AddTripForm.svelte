@@ -1,17 +1,17 @@
 <script lang="ts">
 	// Stores
-	import {
-		modalStore,
-		Stepper,
-		Step,
-		type ToastSettings,
-		toastStore
-	} from '@skeletonlabs/skeleton';
-	import { NewTripStep, InviteParticipantsStep } from '$components';
-	import { currentUser, errorMessage, errorState, loading } from '$stores';
 	import { invalidateAll } from '$app/navigation';
-	import AddCostCategories from './steps/_AddCostCategories.svelte';
+	import { InviteParticipantsStep, NewTripStep } from '$components';
+	import { currentUser, errorCode, errorState, loading } from '$stores';
 	import type { NewTripInputs } from '$tripDomain';
+	import {
+		Step,
+		Stepper,
+		modalStore,
+		toastStore,
+		type ToastSettings
+	} from '@skeletonlabs/skeleton';
+	import AddCostCategories from './steps/_AddCostCategories.svelte';
 
 	let newTrip: NewTripInputs = {
 		name: '',
@@ -40,15 +40,15 @@
 			});
 
 			const body = await response.json();
-			const { error, errorMessage: errorDisplayMessage } = body;
+			const { error, errorCode: code } = body;
 
 			errorState.set(error);
-			errorMessage.set(errorDisplayMessage);
+			errorCode.set(code);
 
 			return body;
 		} catch (error: any) {
 			errorState.set(true);
-			errorMessage.set(error.message);
+			errorCode.set('EM-000');
 		} finally {
 			loading.set(false);
 		}
@@ -68,13 +68,13 @@
 			});
 
 			const body = await response.json();
-			const { error, errorMessage: errorDisplayMessage } = body;
+			const { error, errorCode: code } = body;
 
 			errorState.set(error);
-			errorMessage.set(errorDisplayMessage);
+			errorCode.set(code);
 		} catch (error: any) {
 			errorState.set(true);
-			errorMessage.set(error.message);
+			errorCode.set('EM-000');
 		} finally {
 			loading.set(false);
 		}
@@ -97,13 +97,13 @@
 			});
 
 			const body = await response.json();
-			const { error, errorMessage: errorDisplayMessage } = body;
+			const { error, errorCode: code } = body;
 
 			errorState.set(error);
-			errorMessage.set(errorDisplayMessage);
+			errorCode.set(code);
 		} catch (error: any) {
 			errorState.set(true);
-			errorMessage.set(error.message);
+			errorCode.set('EM-000');
 		} finally {
 			loading.set(false);
 		}

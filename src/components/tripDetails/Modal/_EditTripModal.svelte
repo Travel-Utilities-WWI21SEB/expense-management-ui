@@ -1,8 +1,9 @@
 <script lang="ts">
-	import { DeleteIcon } from '$icons';
-	import { Tab, TabGroup } from '@skeletonlabs/skeleton';
-	import { NewTripStep, AddCostCategories, InviteParticipantsStep } from '$components';
+	import { AddCostCategories, InviteParticipantsStep, NewTripStep } from '$components';
 	import type { NameExistsInterface, NewTripInputs } from '$tripDomain';
+	import { Tab, TabGroup } from '@skeletonlabs/skeleton';
+	import { Trash } from '@steeze-ui/heroicons';
+	import { Icon } from '@steeze-ui/svelte-icon';
 	let tabSet = 0;
 
 	export let parent: any;
@@ -39,7 +40,7 @@
 				onDeleteClick();
 			}}
 		>
-			<DeleteIcon />
+			<Icon src={Trash} class="w-6 h-6" />
 			<span>Delete</span>
 		</button>
 		<button
