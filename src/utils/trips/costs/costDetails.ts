@@ -3,11 +3,9 @@ import { isEndDateAfterStartDate } from '../../date/calculateDate';
 import { validateAmountPrecision } from './amount';
 
 export function validateDetails(cost: CostDateAsString, endDate: boolean): boolean {
-	console.log('endDateCheck', endDate);
 	const endDateValid = endDate
 		? Boolean(cost.endDate) && isEndDateAfterStartDate(cost.startDate, cost.endDate)
 		: !cost.endDate || cost.endDate === cost.startDate;
-	console.log('validateDetails', endDateValid);
 	return (
 		cost.name !== '' &&
 		validateAmountPrecision(cost.amount) &&
