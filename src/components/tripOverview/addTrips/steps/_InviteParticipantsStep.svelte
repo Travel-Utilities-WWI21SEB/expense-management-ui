@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { currentUser, errorMessage, errorState, loading, selectedUsers } from '$stores';
+	import { currentUser, errorCode, errorState, loading, selectedUsers } from '$stores';
 	import { modifyUserSuggestions } from '$utils';
 	import { Autocomplete, type AutocompleteOption } from '@skeletonlabs/skeleton';
 	import { XMark } from '@steeze-ui/heroicons';
@@ -23,7 +23,7 @@
 			return body;
 		} catch (error: any) {
 			errorState.set(true);
-			errorMessage.set(error.message);
+			errorCode.set('EM-000');
 		} finally {
 			loading.set(false);
 		}

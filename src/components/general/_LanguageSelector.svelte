@@ -17,6 +17,12 @@
 		event: 'focus-click',
 		target: 'languageCombobox',
 		placement: 'bottom',
+		middleware: {
+			offset: {
+				// This is to offset the popup with the right border
+				crossAxis: -30
+			}
+		},
 		closeQuery: '.listbox-item'
 	};
 
@@ -40,7 +46,7 @@
 </script>
 
 <!-- LANGUAGE POPUP -->
-<div class="card w-48 shadow-xl py-2 z-50" data-popup="languageCombobox">
+<div class="card shadow-xl py-2 mr-4 z-50" data-popup="languageCombobox">
 	<ListBox rounded="rounded-none">
 		{#each languages as language}
 			<ListBoxItem

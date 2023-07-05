@@ -5,7 +5,7 @@ export {
 	correctToken,
 	email,
 	emailValid,
-	errorMessage,
+	errorCode,
 	errorState,
 	loading,
 	notActivatedAlert,

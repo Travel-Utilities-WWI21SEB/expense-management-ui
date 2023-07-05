@@ -1,7 +1,7 @@
 <script lang="ts">
 	import {
 		correctToken,
-		errorMessage,
+		errorCode,
 		loading,
 		startTimer,
 		stopTimer,
@@ -9,7 +9,7 @@
 		tokenErrorState,
 		tokenValues
 	} from '$stores';
-	import { keydownHandler, pasteHandler } from '$utils';
+	import { getErrorMessage, keydownHandler, pasteHandler } from '$utils';
 	import { i } from '@inlang/sdk-js';
 	import {
 		Check,
@@ -93,7 +93,7 @@
 				<span class="badge-icon variant-filled-error w-4 h-4">
 					<Icon src={XMark} class="w-6 h-6" />
 				</span>
-				<span class="flex-auto">{$errorMessage}</span>
+				<span class="flex-auto">{getErrorMessage($errorCode)}</span>
 			{:else}
 				<span class="badge-icon variant-filled-warning w-4 h-4">
 					<Icon src={XMark} class="w-6 h-6" />

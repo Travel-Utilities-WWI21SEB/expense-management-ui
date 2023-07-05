@@ -4,7 +4,7 @@
 	import {
 		correctToken,
 		email,
-		errorMessage,
+		errorCode,
 		errorState,
 		loading,
 		tokenErrorState,
@@ -44,18 +44,18 @@
 			});
 
 			const body = await response.json();
-			const { tokenCorrect, error, errorMessage: message } = body;
+			const { tokenCorrect, error, errorCode: code } = body;
 
 			correctToken.set(tokenCorrect);
 			tokenErrorState.set(error);
-			errorMessage.set(message);
+			errorCode.set(code);
 
 			if (tokenCorrect) {
 				loading.set(false);
 			}
 		} catch (error: any) {
 			errorState.set(true);
-			errorMessage.set(error.message);
+			errorCode.set('EM-000');
 		} finally {
 			loading.set(false);
 		}
@@ -78,13 +78,13 @@
 			});
 
 			const body = await response.json();
-			const { error, errorMessage: message } = body;
+			const { error, errorCode: code } = body;
 
 			errorState.set(error);
-			errorMessage.set(message);
+			errorCode.set(code);
 		} catch (error: any) {
 			errorState.set(true);
-			errorMessage.set(error.message);
+			errorCode.set('EM-000');
 		} finally {
 			loading.set(false);
 		}

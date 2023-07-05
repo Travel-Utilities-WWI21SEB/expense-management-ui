@@ -1,18 +1,9 @@
 import { PUBLIC_BASE_URL } from '$env/static/public';
-import { getErrorMessage } from '$utils';
 import { json, type RequestHandler } from '@sveltejs/kit';
 
 export const POST: RequestHandler = async ({ cookies, fetch, request }) => {
 	const body = await request.json();
 	const { email, password, rememberMe } = body;
-
-	if (!email || !password) {
-		return json({
-			success: false,
-			error: true,
-			errorMessage: 'Please enter a valid email and password'
-		});
-	}
 
 	try {
 		const response = await fetch(`${PUBLIC_BASE_URL}/api/v1/users/login`, {
@@ -37,30 +28,27 @@ export const POST: RequestHandler = async ({ cookies, fetch, request }) => {
 				cookies.delete('email', { path: '/' });
 			}
 
-			return json({ success: true, activated: true, error: false, errorMessage: '' });
+			return json({ success: true, activated: true, error: false, errorCode: '' });
 		}
 
 		const body = await response.json();
-		const { errorCode } = body;
-		const errorMessage = getErrorMessage(errorCode);
 
 		// 400: Bad Request -> No input given or invalid input
 		if (response.status === 400) {
 			return json({
 				success: false,
 				error: true,
-				errorMessage: 'Please enter a valid email and password'
+				errorCode: body.errorCode
 			});
 		}
 
 		// 403: Forbidden -> User is not activated yet
 		if (response.status === 403) {
-			return json({ success: false, activated: false, error: false, errorMessage });
+			return json({ success: false, activated: false, error: false, errorCode: body.errorCode });
 		}
 
-		return json({ success: false, error: true, errorMessage });
+		return json({ success: false, error: true, errorCode: body.errorCode });
 	} catch (error) {
-		const errorMessage = getErrorMessage('EM-000'); // Default error message
-		return json({ success: false, error: true, errorMessage });
+		return json({ success: false, error: true, errorCode: 'EM-000' });
 	}
 };

@@ -87,12 +87,6 @@
 			class="variant-ghost-primary"
 			icon={Banknotes}
 		/>
-	{:else if costs.length === 0 && $page.url.searchParams.size > 0}
-		<AlertWithAction
-			alertHeading="No costs match your filter criteria"
-			class="variant-ghost-primary"
-			icon={Banknotes}
-		/>
 	{:else}
 		<ul class="list p-2 max-h-[500px] overflow-auto">
 			{#key paginatedCosts}

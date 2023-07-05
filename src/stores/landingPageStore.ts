@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store';
 
 // Utility variables
-export const errorMessage = writable('');
+export const errorCode = writable('');
 export const errorState = writable(false);
 export const loading = writable(false);
 

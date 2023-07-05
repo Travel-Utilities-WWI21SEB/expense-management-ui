@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { AlertWithAction } from '$components';
-	import { errorMessage } from '$stores';
+	import { errorCode } from '$stores';
 	import { Avatar } from '@skeletonlabs/skeleton';
 
 	export let data;
 
-	const { error, errorMessage: message, user } = data;
-	errorMessage.set(message);
+	const { error, errorCode: code, user } = data;
+	errorCode.set(code);
 </script>
 
 {#if error}

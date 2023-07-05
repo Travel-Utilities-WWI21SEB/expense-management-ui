@@ -1,4 +1,25 @@
 {
+	"errors": {
+		"EM-000": "Es ist ein unbekannter Fehler aufgetreten. Bitte versuche es später erneut.",
+		"EM-001": "Ein Upstream-Dienst ist nicht verfügbar. Bitte versuche es später erneut.",
+		"EM-002": "Es ist ein unbekannter Serverfehler aufgetreten. Bitte versuche es später erneut.",
+		"EM-003": "Die angeforderte Ressource existiert nicht. Bitte überprüfe die URL.",
+		"EM-004": "Die Anfrage konnte aufgrund eines Konflikts mit dem aktuellen Zustand der Ressource nicht abgeschlossen werden. Bitte wende dich an das Support-Team.",
+		"EM-005": "Die Anfrage konnte aufgrund einer fehlerhaften Anfrage nicht abgeschlossen werden. Bitte wende dich an das Support-Team.",
+		"EM-006": "Der zur Authentifizierung verwendete Token ist ungültig oder abgelaufen. Du wirst nun zur Anmeldeseite weitergeleitet.",
+		"EM-007": "Das angegebene Passwort ist falsch. Bitte versuche es erneut.",
+		"EM-008": "Die Anfrage konnte aufgrund unzureichender Berechtigungen des authentifizierten Benutzers nicht abgeschlossen werden.",
+		"EM-009": "Es wurde kein Benutzer mit der angegebenen E-Mail-Adresse gefunden. Bitte überprüfe die E-Mail-Adresse und versuche es erneut.",
+		"EM-010": "Die Zielreise existiert nicht oder du hast nicht ausreichende Berechtigungen, um auf die Ressource zuzugreifen.",
+		"EM-011": "Das Zielkostenelement existiert nicht oder du hast nicht ausreichende Berechtigungen, um auf die Ressource zuzugreifen.",
+		"EM-012": "Die Registrierung ist fehlgeschlagen, da die angegebene E-Mail-Adresse oder der Benutzername bereits verwendet wird.",
+		"EM-013": "Dein Konto ist noch nicht aktiviert. Bitte überprüfe deine E-Mails und gib den Aktivierungscode ein, indem du auf den Button neben dieser Nachricht klickst.",
+		"EM-014": "Die Anfrage wurde erfolgreich verarbeitet, aber es konnte keine E-Mail gesendet werden.",
+		"EM-015": "Dein Konto ist bereits aktiviert. Bitte melde dich an.",
+		"EM-016": "Du hast die Einladung zu dieser Reise bereits akzeptiert.",
+		"EM-017": "Die angegebene E-Mail-Adresse wird bereits verwendet.",
+		"EM-018": "Der angegebene Benutzername wird bereits verwendet."
+	},
 	"header": {
 		"languages": {
 			"en": "Englisch",
@@ -124,6 +145,7 @@
 					"password": {
 						"title": "Neues Passwort festlegen",
 						"alertHeading": "Etwas ist schief gelaufen!",
+						"alertMessage": "Abbrechen.",
 						"nextStep": "Passwort setzen"
 					}
 				}

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { contactTimer, startContactTimer, stopContactTimer } from '$stores';
+	import { getErrorMessage } from '$utils';
 	import { i } from '@inlang/sdk-js';
 	import { toastStore, type ToastSettings } from '@skeletonlabs/skeleton';
 	import { InboxArrowDown } from '@steeze-ui/heroicons';
@@ -39,13 +40,13 @@
 			body: JSON.stringify({ name, email, message })
 		});
 
-		const { error, errorMessage } = await response.json();
+		const { error, errorCode } = await response.json();
 		let toast: ToastSettings;
 
 		if (error) {
 			toast = {
 				background: 'variant-filled-error',
-				message: errorMessage,
+				message: getErrorMessage(errorCode),
 				autohide: true,
 				timeout: 5000
 			};

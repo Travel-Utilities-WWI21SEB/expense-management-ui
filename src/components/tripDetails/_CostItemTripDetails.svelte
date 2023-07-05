@@ -1,18 +1,18 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
-	import type { Cost, CostDateAsString, TravelData } from '$tripDomain';
-	import { calculateDate, pickTextColorBasedOnBgColorSimple } from '$utils';
+	import { invalidateAll } from '$app/navigation';
 	import { TripDetailsCostItemModal } from '$components';
+	import { errorCode, errorState, loading } from '$stores';
+	import type { Cost, CostDateAsString, TravelData } from '$tripDomain';
+	import { calculateDate, getErrorMessage, pickTextColorBasedOnBgColorSimple } from '$utils';
 	import {
 		modalStore,
+		toastStore,
 		type ModalComponent,
 		type ModalSettings,
-		type ToastSettings,
-		toastStore
+		type ToastSettings
 	} from '@skeletonlabs/skeleton';
+	import { createEventDispatcher } from 'svelte';
 	import { currentCost } from '../../stores/costStore';
-	import { errorMessage, errorState, loading } from '$stores';
-	import { invalidateAll } from '$app/navigation';
 
 	export let cost: Cost;
 	export let i: number;
@@ -77,15 +77,15 @@
 
 			const body = await costsResponse.json();
 
-			const { error, errorMessage: errorDisplayMessage } = body;
+			const { error, errorCode: code } = body;
 
 			errorState.set(error);
-			errorMessage.set(errorDisplayMessage);
+			errorCode.set(code);
 
 			return body;
 		} catch (error: any) {
 			errorState.set(true);
-			errorMessage.set(error.message);
+			errorCode.set('EM-000');
 		} finally {
 			loading.set(false);
 		}
@@ -95,7 +95,7 @@
 		const result = await deleteCost(cost, trip);
 
 		const message = result.error
-			? `Error: ${result.errorMessage}`
+			? `Error: ${getErrorMessage(result.errorCode)}`
 			: `Cost ${cost.name} deleted successfully`;
 		const t: ToastSettings = {
 			message: message,

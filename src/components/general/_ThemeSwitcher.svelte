@@ -4,7 +4,6 @@
 		ListBox,
 		ListBoxItem,
 		getModeOsPrefers,
-		modeCurrent,
 		popup,
 		setInitialClassState,
 		setModeCurrent,
@@ -56,21 +55,24 @@
 		// Get value from the clicked item
 		const { value } = e.target as HTMLInputElement;
 		activeTheme.set(value);
+		let newTheme: boolean;
 
 		switch (value) {
 			case 'light':
-				setModeCurrent(true);
+				newTheme = true;
 				break;
 			case 'dark':
-				setModeCurrent(false);
+				newTheme = false;
 				break;
 			case 'system':
-				setModeCurrent(getModeOsPrefers());
+				newTheme = getModeOsPrefers();
 				break;
+			default:
+				newTheme = false;
 		}
 
-		setModeUserPrefers($modeCurrent);
-		setModeCurrent($modeCurrent);
+		setModeUserPrefers(newTheme);
+		setModeCurrent(newTheme);
 	};
 
 	// Popup
@@ -89,6 +91,13 @@
 		}
 	});
 </script>
+
+<svelte:head>
+	<!-- Workaround for a svelte parsing error: https://github.com/sveltejs/eslint-plugin-svelte/issues/492 -->
+	<!-- Disabling the XSS error, since we prevent this by disallowing external sources in our svelte config -->
+	<!-- eslint-disable -->
+	{@html `<\u{73}cript nonce="%sveltekit.nonce%">(${setInitialClassState.toString()})();</script>`}
+</svelte:head>
 
 <!-- THEME SWITCH POPUP -->
 <div class="card shadow-xl py-2 z-50" data-popup="themePopup">
@@ -111,13 +120,6 @@
 	<div class="arrow bg-surface-100-800-token" />
 </div>
 <!-- THEME SWITCH POPUP -->
-
-<svelte:head>
-	<!-- Workaround for a svelte parsing error: https://github.com/sveltejs/eslint-plugin-svelte/issues/492 -->
-	<!-- Disabling the XSS error, since we prevent this by disallowing external sources in our svelte config -->
-	<!-- eslint-disable -->
-	{@html `<\u{73}cript nonce="%sveltekit.nonce%">(${setInitialClassState.toString()})();</script>`}
-</svelte:head>
 
 <button type="button" class="btn-icon variant-ringed my-auto" use:popup={themePopup}>
 	<span>

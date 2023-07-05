@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { errorMessage, loading } from '$stores';
+	import { errorCode, loading } from '$stores';
+	import { getErrorMessage } from '$utils';
 	import { XMark, type IconSource } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
 
@@ -23,7 +24,7 @@
 	<!-- Message -->
 	<div class="alert-message">
 		<h3 class="h3">{alertHeading}</h3>
-		<p>{$errorMessage}</p>
+		<p>{getErrorMessage($errorCode)}</p>
 	</div>
 	<!-- Actions -->
 	{#if enableAction}

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { errorMessage, errorState, loading, username, usernameValid } from '$stores';
-	import { validateUsername } from '$utils';
+	import { errorCode, errorState, loading, username, usernameValid } from '$stores';
+	import { getErrorMessage, validateUsername } from '$utils';
 	import { i } from '@inlang/sdk-js';
 	import { ProgressRadial, Step } from '@skeletonlabs/skeleton';
 	import { Check, QuestionMarkCircle, XMark } from '@steeze-ui/heroicons';
@@ -33,11 +33,11 @@
 		});
 
 		const body = await response.json();
-		const { error, errorMessage: errorDisplayMessage, exists, valid } = body;
+		const { error, errorCode: code, exists, valid } = body;
 
 		loading.set(false);
 		errorState.set(error);
-		errorMessage.set(errorDisplayMessage);
+		errorCode.set(code);
 		usernameValid.set(valid);
 		usernameExists = exists;
 		lockUserStep = $errorState || !usernameValid;
@@ -122,7 +122,7 @@
 						<span class="badge-icon variant-filled-error w-4 h-4">
 							<Icon src={XMark} class="w-6 h-6" />
 						</span>
-						<span class="flex-auto">{$errorMessage}</span>
+						<span class="flex-auto">{getErrorMessage($errorCode)}</span>
 					{:else if $loading || usernameExists === undefined}
 						<span class="badge-icon variant-filled-warning w-4 h-4">
 							<Icon src={QuestionMarkCircle} class="w-6 h-6" />
