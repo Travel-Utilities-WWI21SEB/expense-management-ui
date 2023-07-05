@@ -4,4 +4,4 @@ export type { CostCategory } from './CostCategory';
 export type { CostList } from './CostList';
 export type { NewTripInputs, BackendTripType, TravelData } from './TravelData';
 export type { Debt, DebtUser, SortedDebts } from './Debt';
-export type { Transaction, NewTransaction } from './Transaction';
+export type { Transaction, NewTransaction, UserTransactions } from './Transaction';

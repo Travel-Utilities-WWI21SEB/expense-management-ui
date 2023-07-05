@@ -1,18 +1,14 @@
 <script lang="ts">
 	import { AlertWithAction } from '$components';
 	import { CostIcon } from '$icons';
-	import type { Transaction, TravelData } from '$tripDomain';
+	import type { Transaction, TravelData, UserTransactions } from '$tripDomain';
 	import { modalStore, type ModalComponent, type ModalSettings } from '@skeletonlabs/skeleton';
 	import { onMount } from 'svelte';
 	import { AddNewTransactionModal } from '$components';
 
-	export let transactions: Transaction[];
+	export let transactions: UserTransactions;
 	export let trip: TravelData;
 	export let currentUserId: string;
-
-	onMount(() => {
-		console.log(transactions);
-	}); //TODO: remove
 
 	const addNewTransaction = () => {
 		const modal: ModalSettings = {
@@ -36,33 +32,26 @@
 			<span>Add</span>
 		</button>
 	</div>
-	<!-- {#if debts.creditorDebts.length === 0 && debts.debitorDebts.length === 0}
+	{#if transactions.confirmedTransactions.length === 0 && transactions.unconfirmedTransactions.length === 0}
 		<AlertWithAction
-			alertHeading="This trip has no debts yet"
+			alertHeading="This trip has no transaction your included in yet"
 			class="variant-ghost-primary"
 			icon={CostIcon}
 		/>
 	{:else}
 		<div class="grid grid-cols-1 gap-2">
 			<div>
-				{#if debts.creditorDebts.length === 0}
-					<span class="flex justify-center invisible">Placeholder</span>
-					<AlertWithAction
-						alertHeading="You get nothing"
-						class="variant-ghost-primary p-2 mt-2"
-						icon={CostIcon}
-					/>
-				{:else}
-					<span class="flex justify-center font-semibold">You get</span>
+				{#if transactions.unconfirmedTransactions.length !== 0}
+					<span class="flex justify-center font-semibold">Transaction you can confirm</span>
 					<ul class="list p-2 max-h-[500px] overflow-auto">
-						{#each debts.creditorDebts as debt, i}
+						{#each transactions.unconfirmedTransactions as transaction, i}
 							<li>//item</li>
 						{/each}
 					</ul>
 				{/if}
 			</div>
 			<div>
-				{#if debts.debitorDebts.length === 0}
+				{#if transactions.confirmedTransactions.length === 0}
 					<span class="flex justify-center invisible">Placeholder</span>
 					<AlertWithAction
 						alertHeading="You have to pay nothing"
@@ -70,14 +59,14 @@
 						icon={CostIcon}
 					/>
 				{:else}
-					<span class="flex justify-center font-semibold">You owe</span>
+					<span class="flex justify-center font-semibold">History</span>
 					<ul class="list p-2 max-h-[500px] overflow-auto">
-						{#each debts.debitorDebts as debt, i}
+						{#each transactions.confirmedTransactions as transaction, i}
 							<li>//item</li>
 						{/each}
 					</ul>
 				{/if}
 			</div>
 		</div>
-	{/if} -->
+	{/if}
 </div>

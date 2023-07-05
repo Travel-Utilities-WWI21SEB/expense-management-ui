@@ -1,4 +1,4 @@
-import { modifyDebtData, modifyTrip } from '$utils';
+import { modifyDebtData, modifyTransactions, modifyTrip } from '$utils';
 import { getCurrentUser } from '$utils';
 import type { PageServerLoad } from './$types';
 
@@ -56,7 +56,7 @@ export const load: PageServerLoad = async ({ params, fetch, cookies }) => {
 		tripData: modifyTrip(tripBody.data, userBody.data),
 		userData: userBody,
 		debtData: modifyDebtData(debtBody.data, userId),
-		transactionData: transactionBody,
+		transactionData: modifyTransactions(transactionBody.data, userId),
 		currentUserId: userId
 	};
 };

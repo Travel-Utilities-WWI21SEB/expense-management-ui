@@ -41,3 +41,4 @@ export { modifyDebtData } from './debt/modifyDeptData';
 export { getCurrentUser } from './token/getUser';
 //TRANSACTION
 export { validateNewTransaction } from './transactions/validate/validateNewTransaction';
+export { modifyTransactions } from './transactions/modifyTransactions';
