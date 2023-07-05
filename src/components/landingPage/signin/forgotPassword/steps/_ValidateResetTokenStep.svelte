@@ -3,7 +3,7 @@
 	import {
 		correctToken,
 		email,
-		errorMessage,
+		errorCode,
 		errorState,
 		loading,
 		tokenErrorState,
@@ -38,11 +38,11 @@
 		});
 
 		const body = await response.json();
-		const { valid, error, errorMessage: errorDisplayMessage } = body;
+		const { valid, error, errorCode: code } = body;
 
 		correctToken.set(valid);
 		tokenErrorState.set(error);
-		errorMessage.set(errorDisplayMessage);
+		errorCode.set(code);
 		loading.set(false);
 	};
 </script>

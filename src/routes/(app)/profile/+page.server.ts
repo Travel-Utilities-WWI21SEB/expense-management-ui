@@ -1,11 +1,10 @@
 import type { UserDetails } from '$userDomain';
-import { getErrorMessage } from '$utils';
 import type { ServerLoadEvent } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
 type dataResponse = {
 	error: boolean;
-	errorMessage: string;
+	errorCode: string;
 	user: UserDetails;
 };
 
@@ -20,18 +19,16 @@ export const load: PageServerLoad = async (event: ServerLoadEvent) => {
 	const body = await response.json();
 
 	if (!response.ok) {
-		const { errorCode } = body;
-		const errorMessage = getErrorMessage(errorCode);
 		return {
 			error: true,
-			errorMessage,
+			errorCode: body.errorCode,
 			user: null
 		} as unknown as dataResponse;
 	}
 
 	return {
 		error: false,
-		errorMessage: '',
+		errorCode: '',
 		user: body.data
 	} as unknown as dataResponse;
 };

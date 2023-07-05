@@ -1,6 +1,8 @@
 <script lang="ts">
-	import { ErrorIcon } from '$icons';
-	import { errorMessage, loading } from '$stores';
+	import { errorCode, loading } from '$stores';
+	import { getErrorMessage } from '$utils';
+	import { XMark, type IconSource } from '@steeze-ui/heroicons';
+	import { Icon } from '@steeze-ui/svelte-icon';
 
 	export let errorAction = () => {
 		console.log('Function not yet specified');
@@ -9,20 +11,20 @@
 	export let actionText = '';
 	export let enableAction = false;
 
-	export let icon: any = ErrorIcon;
+	export let icon: IconSource = XMark;
 </script>
 
 <aside class="alert {$$props.class} w-full">
 	<!-- Icon -->
 	<div>
 		<span class="badge-icon w-15 h-15">
-			<svelte:component this={icon} />
+			<Icon src={icon} class="w-12 h-12" />
 		</span>
 	</div>
 	<!-- Message -->
 	<div class="alert-message">
 		<h3 class="h3">{alertHeading}</h3>
-		<p>{$errorMessage}</p>
+		<p>{getErrorMessage($errorCode)}</p>
 	</div>
 	<!-- Actions -->
 	{#if enableAction}

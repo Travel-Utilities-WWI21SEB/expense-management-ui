@@ -1,16 +1,10 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import {
-		CostIcon,
-		DarkIcon,
-		GlobeIcon,
-		HomepageIcon,
-		LightIcon,
-		TimeIcon,
-		UserIcon
-	} from '$icons';
+	import { DarkIcon, LightIcon } from '$icons';
 	import { i } from '@inlang/sdk-js';
 	import { drawerStore, modeCurrent } from '@skeletonlabs/skeleton';
+	import { Banknotes, Clock, GlobeAlt, Home, User } from '@steeze-ui/heroicons';
+	import { Icon } from '@steeze-ui/svelte-icon';
 
 	$: classesActive = (href: string) => (href === $page.url.pathname ? '!bg-primary-500' : '');
 
@@ -43,7 +37,7 @@
 					data-sveltekit-preload-data="hover"
 				>
 					<span class="badge">
-						<HomepageIcon width={8} height={8} />
+						<Icon src={Home} theme="solid" class="w-8 h-8 mx-auto" />
 					</span>
 					<span class="flex-auto">{i('sidebar.homepage.home')}</span>
 				</a>
@@ -59,7 +53,7 @@
 					data-sveltekit-preload-data="hover"
 				>
 					<span class="badge">
-						<GlobeIcon sidebarIcon={true} />
+						<Icon src={GlobeAlt} theme="solid" class="w-8 h-8 mx-auto" />
 					</span>
 					<span class="flex-auto">{i('sidebar.trips.trips')}</span>
 				</a>
@@ -72,7 +66,7 @@
 					data-sveltekit-preload-data="hover"
 				>
 					<span class="badge">
-						<CostIcon width={8} height={8} />
+						<Icon src={Banknotes} theme="solid" class="w-8 h-8 mx-auto" />
 					</span>
 					<span class="flex-auto">{i('sidebar.trips.costs')}</span>
 				</a>
@@ -85,7 +79,7 @@
 					data-sveltekit-preload-data="hover"
 				>
 					<span class="badge">
-						<TimeIcon width={8} height={8} />
+						<Icon src={Clock} theme="solid" class="w-8 h-8 mx-auto" />
 					</span>
 					<span class="flex-auto">{i('sidebar.trips.history')}</span>
 				</a>
@@ -103,7 +97,7 @@
 					data-sveltekit-preload-data="hover"
 				>
 					<span class="badge">
-						<UserIcon width={8} height={8} />
+						<Icon src={User} theme="solid" class="w-8 h-8 mx-auto" />
 					</span>
 					<span class="flex-auto">{i('sidebar.account.profile')}</span>
 				</a>

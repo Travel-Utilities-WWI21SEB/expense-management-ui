@@ -1,9 +1,10 @@
 <script lang="ts">
-	import { CheckIcon, CrossIcon, QuestionMarkIcon } from '$icons';
-	import { email, errorMessage, errorState, loading } from '$stores';
-	import { validateEmail } from '$utils';
+	import { email, errorCode, errorState, loading } from '$stores';
+	import { getErrorMessage, validateEmail } from '$utils';
 	import { i } from '@inlang/sdk-js';
 	import { ProgressRadial, Step } from '@skeletonlabs/skeleton';
+	import { Check, QuestionMarkCircle, XMark } from '@steeze-ui/heroicons';
+	import { Icon } from '@steeze-ui/svelte-icon';
 	import _ from 'lodash';
 
 	export let changeTab: (index: number) => void;
@@ -35,16 +36,16 @@
 			});
 
 			const body = await response.json();
-			const { error, errorMessage: errorDisplayMessage, exists, valid } = body;
+			const { error, errorCode: code, exists, valid } = body;
 
 			errorState.set(error);
-			errorMessage.set(errorDisplayMessage);
+			errorCode.set(code);
 			emailValid = valid;
 			emailExists = exists;
 			lockEmailStep = $errorState || !emailValid;
 		} catch (error: any) {
 			errorState.set(true);
-			errorMessage.set(error.message);
+			errorCode.set('EM-000');
 		} finally {
 			loading.set(false);
 		}
@@ -106,10 +107,14 @@
 			<ol class="list">
 				<li>
 					{#if emailValid}
-						<span class="badge-icon variant-filled-success w-4 h-4"><CheckIcon /></span>
+						<span class="badge-icon variant-filled-success w-4 h-4">
+							<Icon src={Check} class="w-6 h-6" />
+						</span>
 						<span class="flex-auto">{i('forms.signup.steps.email.validEmail')}</span>
 					{:else}
-						<span class="badge-icon variant-filled-error w-4 h-4"><CrossIcon /></span>
+						<span class="badge-icon variant-filled-error w-4 h-4">
+							<Icon src={XMark} class="w-6 h-6" />
+						</span>
 						<span class="flex-auto">{i('forms.signup.steps.email.invalidEmail')}</span>
 					{/if}
 				</li>
@@ -123,13 +128,19 @@
 						/>
 						<span class="flex-auto">{i('forms.signup.steps.email.ongoingValidation')}</span>
 					{:else if $errorState}
-						<span class="badge-icon variant-filled-error w-4 h-4"><CrossIcon /></span>
-						<span class="flex-auto">{$errorMessage}</span>
+						<span class="badge-icon variant-filled-error w-4 h-4">
+							<Icon src={XMark} class="w-6 h-6" />
+						</span>
+						<span class="flex-auto">{getErrorMessage($errorCode)}</span>
 					{:else if $loading || emailExists === undefined}
-						<span class="badge-icon variant-filled-warning w-4 h-4"><QuestionMarkIcon /></span>
+						<span class="badge-icon variant-filled-warning w-4 h-4">
+							<Icon src={QuestionMarkCircle} class="w-6 h-6" />
+						</span>
 						<span class="flex-auto">{i('forms.signup.steps.email.initialValidation')}</span>
 					{:else}
-						<span class="badge-icon variant-filled-success w-4 h-4"><CheckIcon /></span>
+						<span class="badge-icon variant-filled-success w-4 h-4">
+							<Icon src={Check} class="w-6 h-6" />
+						</span>
 						<span class="flex-auto">{i('forms.signup.steps.email.available')}</span>
 					{/if}
 				</li>

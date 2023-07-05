@@ -2,6 +2,7 @@
 export { default as HeaderAndTwoPartsLayout } from './general/_HeaderAndTwoPartsLayout.svelte';
 export { default as ImprintComponent } from './general/_Imprint.svelte';
 export { default as LanguageSelector } from './general/_LanguageSelector.svelte';
+export { default as ThemeSwitcher } from './general/_ThemeSwitcher.svelte';
 export { default as CatchPhraseText } from './landingPage/_CatchPhraseText.svelte';
 export { default as ContactBox } from './landingPage/_ContactBox.svelte';
 export { default as LandingPageFeatureBoxLeft } from './landingPage/_FeatureBoxLeft.svelte';

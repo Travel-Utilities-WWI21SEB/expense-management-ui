@@ -1,8 +1,10 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { CrossIcon } from '$icons';
-	import { currentTrip, errorMessage, errorState, loading } from '$stores';
+	import { currentTrip, errorCode, errorState, loading } from '$stores';
 	import type { TravelData } from '$tripDomain';
+	import { getErrorMessage } from '$utils';
+	import { XMark } from '@steeze-ui/heroicons';
+	import { Icon } from '@steeze-ui/svelte-icon';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
@@ -24,13 +26,13 @@
 			});
 
 			const body = await response.json();
-			const { error, errorMessage: errorDisplayMessage } = body;
+			const { error, errorCode: code } = body;
 
 			errorState.set(error);
-			errorMessage.set(errorDisplayMessage);
+			errorCode.set(code);
 		} catch (error: any) {
 			errorState.set(true);
-			errorMessage.set(error.message);
+			errorCode.set('EM-000');
 		} finally {
 			loading.set(false);
 		}
@@ -79,7 +81,9 @@
 		<button on:click={onRejectClick} class="btn variant-ghost">Reject</button>
 	</div>
 	{#if $errorState}
-		<span class="badge-icon variant-filled-error w-4 h-4"><CrossIcon /></span>
-		<span class="flex-auto">{$errorMessage}</span>
+		<span class="badge-icon variant-filled-error w-4 h-4">
+			<Icon src={XMark} class="w-4 h-4" />
+		</span>
+		<span class="flex-auto">{getErrorMessage($errorCode)}</span>
 	{/if}
 </div>

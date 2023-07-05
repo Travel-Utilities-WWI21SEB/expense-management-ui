@@ -1,9 +1,11 @@
 // Landing page store
 export {
+	activeTheme,
+	contactTimer,
 	correctToken,
 	email,
 	emailValid,
-	errorMessage,
+	errorCode,
 	errorState,
 	loading,
 	notActivatedAlert,
@@ -11,7 +13,9 @@ export {
 	password,
 	passwordValid,
 	passwordsMatch,
+	startContactTimer,
 	startTimer,
+	stopContactTimer,
 	stopTimer,
 	timer,
 	tokenErrorState,

@@ -1,15 +1,16 @@
 <script lang="ts">
+	import { costDetailsValid, costSplitType } from '$stores';
 	import type { CostDateAsString, TravelData } from '$tripDomain';
 	import type { CostPaidForUser } from '$userDomain';
-	import { SlideToggle } from '@skeletonlabs/skeleton';
-	import { CheckIcon, CrossIcon } from '$icons';
 	import {
 		calculateTomorrowForInputFormat,
 		changeToEqual,
 		isEndDateAfterStartDate,
 		validateDetails
 	} from '$utils';
-	import { costDetailsValid, costSplitType } from '$stores';
+	import { SlideToggle } from '@skeletonlabs/skeleton';
+	import { Check, XMark } from '@steeze-ui/heroicons';
+	import { Icon } from '@steeze-ui/svelte-icon';
 
 	export let cost: CostDateAsString;
 	export let trip: TravelData;
@@ -111,10 +112,14 @@
 	<ol class="list">
 		<li>
 			{#if $costDetailsValid}
-				<span class="badge-icon variant-filled-success w-4 h-4"><CheckIcon /></span>
+				<span class="badge-icon variant-filled-success w-4 h-4">
+					<Icon src={Check} class="w-6 h-6" />
+				</span>
 				<span class="flex-auto">Cost Details are valid</span>
 			{:else}
-				<span class="badge-icon variant-filled-error w-4 h-4"><CrossIcon /></span>
+				<span class="badge-icon variant-filled-error w-4 h-4">
+					<Icon src={XMark} class="w-6 h-6" />
+				</span>
 				<span class="flex-auto">Please provide valid cost details</span>
 			{/if}
 		</li>

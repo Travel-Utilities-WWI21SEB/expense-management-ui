@@ -4,7 +4,7 @@ import type { PageServerLoad } from './$types';
 
 type LoadResponse = {
 	error: boolean;
-	errorMessage: string;
+	errorCode: string;
 	costOverview: CostOverview;
 };
 
@@ -16,11 +16,11 @@ export const load: PageServerLoad = async (event: ServerLoadEvent) => {
 		}
 	});
 
-	const { error, errorMessage, data } = await response.json();
+	const { error, errorCode, data } = await response.json();
 
 	return {
 		error,
-		errorMessage,
+		errorCode,
 		costOverview: data
 	} as LoadResponse;
 };
