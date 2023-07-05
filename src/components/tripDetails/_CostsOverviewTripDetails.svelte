@@ -43,13 +43,13 @@
 		props: { trip: trip }
 	};
 
-	function addNewCostItem() {
+	const addNewCostItem = () => {
 		const modal: ModalSettings = {
 			type: 'component',
 			component: modalComponent
 		};
 		modalStore.trigger(modal);
-	}
+	};
 
 	const popUpSorting: PopupSettings = {
 		event: 'click',

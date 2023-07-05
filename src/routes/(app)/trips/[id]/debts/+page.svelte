@@ -1,7 +1,10 @@
 <script lang="ts">
-	import { TripDetailsHeader, HeaderAndTwoPartsLayout } from '$components';
+	import {
+		TripDetailsHeader,
+		HeaderAndTwoPartsLayout,
+		TransactionOverviewTripDetails
+	} from '$components';
 	import { DebtOverviewTripDetails } from '$components';
-	import { onMount } from 'svelte';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
@@ -24,7 +27,13 @@
 	</span>
 	<span slot="right_element">
 		{#if data.tripData}
-			<div class="h-full" />
+			<div class="h-full">
+				<TransactionOverviewTripDetails
+					transactions={data.transactionData}
+					trip={data.tripData}
+					currentUserId={data.currentUserId}
+				/>
+			</div>
 		{/if}
 	</span>
 </HeaderAndTwoPartsLayout>

@@ -56,6 +56,8 @@ export { default as DebtItemTripDetails } from './tripDebtDetails/_DebtItemTripD
 export { default as DebtOverviewTripDetails } from './tripDebtDetails/_DebtOverview.svelte';
 export { default as DebtItemModalTripDetails } from './tripDebtDetails/Modal/_DeptItemModalTripDetails.svelte';
 export { default as ParticipantIconDebt } from './tripDebtDetails/_ParticipantIconDebt.svelte';
+export { default as TransactionOverviewTripDetails } from './tripDebtDetails/_TransactionOverviewTripDetails.svelte';
+export { default as AddNewTransactionModal } from './tripDebtDetails/Modal/_AddNewTransactionModal.svelte';
 
 //Trip Overview
 export { default as DonutChart } from './tripOverview/_DonutChart.svelte';

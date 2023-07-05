@@ -24,28 +24,39 @@ export const load: PageServerLoad = async ({ params, fetch, cookies }) => {
 		}
 	});
 
-	const [tripResponse, debtResponse, userResponse] = await Promise.all([
+	const transactionPromise = fetch(`/api/trips/${params.id}/transactions`, {
+		method: 'GET',
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	});
+
+	const [tripResponse, debtResponse, userResponse, transactionResponse] = await Promise.all([
 		tripPromise,
 		debtPromise,
-		userPromise
+		userPromise,
+		transactionPromise
 	]);
 
 	const tripBody = await tripResponse.json();
 	const userBody = await userResponse.json();
 	const debtBody = await debtResponse.json();
+	const transactionBody = await transactionResponse.json();
 
 	const token = cookies.get('token');
 	if (token === undefined) {
 		return {
 			data: 'nodata'
 		};
-	}
+	} //TODO: Error handling
 	const userId = getCurrentUser(token);
 
 	return {
 		...tripBody,
 		tripData: modifyTrip(tripBody.data, userBody.data),
 		userData: userBody,
-		debtData: modifyDebtData(debtBody.data, userId)
+		debtData: modifyDebtData(debtBody.data, userId),
+		transactionData: transactionBody,
+		currentUserId: userId
 	};
 };

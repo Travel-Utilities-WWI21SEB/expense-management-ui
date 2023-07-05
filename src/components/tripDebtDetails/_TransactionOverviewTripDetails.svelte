@@ -1,22 +1,42 @@
 <script lang="ts">
-	import { AlertWithAction, DebtItemTripDetails } from '$components';
+	import { AlertWithAction } from '$components';
 	import { CostIcon } from '$icons';
-	import type { SortedDebts } from '$tripDomain';
+	import type { Transaction, TravelData } from '$tripDomain';
+	import { modalStore, type ModalComponent, type ModalSettings } from '@skeletonlabs/skeleton';
+	import { onMount } from 'svelte';
+	import { AddNewTransactionModal } from '$components';
 
-	export let debts: SortedDebts;
+	export let transactions: Transaction[];
+	export let trip: TravelData;
+	export let currentUserId: string;
 
-	let selectionIndex = -1;
+	onMount(() => {
+		console.log(transactions);
+	}); //TODO: remove
 
-	const handleSelectItem = (event: CustomEvent<any>) => {
-		selectionIndex = event.detail.index;
+	const addNewTransaction = () => {
+		const modal: ModalSettings = {
+			type: 'component',
+			component: modalComponent
+		};
+		modalStore.trigger(modal);
+	};
+
+	const modalComponent: ModalComponent = {
+		ref: AddNewTransactionModal,
+		props: { trip: trip, currentUserId: currentUserId }
 	};
 </script>
 
 <div class="card h-full p-4">
 	<div class="flex justify-between pt-4 px-4">
-		<h3 class="h3">Debts</h3>
+		<h3 class="h3">Transactions</h3>
+		<button type="button" class="btn variant-filled" on:click={addNewTransaction}>
+			<span>+</span>
+			<span>Add</span>
+		</button>
 	</div>
-	{#if debts.creditorDebts.length === 0 && debts.debitorDebts.length === 0}
+	<!-- {#if debts.creditorDebts.length === 0 && debts.debitorDebts.length === 0}
 		<AlertWithAction
 			alertHeading="This trip has no debts yet"
 			class="variant-ghost-primary"
@@ -36,15 +56,7 @@
 					<span class="flex justify-center font-semibold">You get</span>
 					<ul class="list p-2 max-h-[500px] overflow-auto">
 						{#each debts.creditorDebts as debt, i}
-							<li>
-								<DebtItemTripDetails
-									isDebt={false}
-									{debt}
-									{i}
-									{selectionIndex}
-									on:select_item={(e) => handleSelectItem(e)}
-								/>
-							</li>
+							<li>//item</li>
 						{/each}
 					</ul>
 				{/if}
@@ -61,19 +73,11 @@
 					<span class="flex justify-center font-semibold">You owe</span>
 					<ul class="list p-2 max-h-[500px] overflow-auto">
 						{#each debts.debitorDebts as debt, i}
-							<li>
-								<DebtItemTripDetails
-									isDebt={true}
-									{debt}
-									{i}
-									{selectionIndex}
-									on:select_item={(e) => handleSelectItem(e)}
-								/>
-							</li>
+							<li>//item</li>
 						{/each}
 					</ul>
 				{/if}
 			</div>
 		</div>
-	{/if}
+	{/if} -->
 </div>
