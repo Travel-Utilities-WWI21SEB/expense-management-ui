@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { EmailStep, PasswordStep, TokenStep, UsernameStep } from '$components';
+	import { DataStep, EmailStep, PasswordStep, TokenStep, UsernameStep } from '$components';
 	import { email, errorCode, errorState, loading, password, username } from '$stores';
 	import { resetLandingPageStore } from '$utils';
 	import { i } from '@inlang/sdk-js';
@@ -43,7 +43,7 @@
 		const { step, state } = e.detail;
 
 		// If last step is reached, fire registration
-		if (step === 2 && state.current === 3) {
+		if (step === 3 && state.current === 4) {
 			register();
 		}
 	};
@@ -57,6 +57,7 @@
 <Stepper class="p-3 m-3 h-full" on:next={nextStepHandler} stepTerm={i('forms.step')}>
 	<EmailStep {changeTab} />
 	<UsernameStep />
+	<DataStep />
 	<PasswordStep />
 	<TokenStep {register} />
 	<!-- ... -->

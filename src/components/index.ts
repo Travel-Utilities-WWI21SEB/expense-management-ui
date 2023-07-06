@@ -18,6 +18,7 @@ export { default as ForgotPasswordStepper } from './landingPage/signin/forgotPas
 export { default as SelectEmailStep } from './landingPage/signin/forgotPassword/steps/_SelectEmailStep.svelte';
 export { default as SetNewPasswordStep } from './landingPage/signin/forgotPassword/steps/_SetNewPasswordStep.svelte';
 export { default as ValidateResetTokenStep } from './landingPage/signin/forgotPassword/steps/_ValidateResetTokenStep.svelte';
+export { default as DataStep } from './landingPage/signup/steps/_DataStep.svelte';
 export { default as EmailStep } from './landingPage/signup/steps/_EmailStep.svelte';
 export { default as PasswordStep } from './landingPage/signup/steps/_PasswordStep.svelte';
 export { default as TokenStep } from './landingPage/signup/steps/_TokenStep.svelte';
@@ -47,12 +48,12 @@ export {
 	default as TripDetailsCostOverview
 } from './tripDetails/_CostsOverviewTripDetails.svelte';
 export { default as TripDetailsDashboard } from './tripDetails/_DashboardTripDetails.svelte';
+export { default as TripDetailsFilterPopUp } from './tripDetails/_FilterPopUp.svelte';
 export { default as TripDetailsHeader } from './tripDetails/_HeaderTripDetails.svelte';
 export { default as HeaderTripDetailsLayout } from './tripDetails/_HeaderTripDetailsLayout.svelte';
 export { default as ParticipantIcon } from './tripDetails/_ParticipantIcon.svelte';
 export { default as Participants } from './tripDetails/_Participants.svelte';
 export { default as TripDetailsSortingPopUp } from './tripDetails/_SortingPopUp.svelte';
-export { default as TripDetailsFilterPopUp } from './tripDetails/_FilterPopUp.svelte';
 
 //Trip Overview
 export { default as DonutChart } from './tripOverview/_DonutChart.svelte';
