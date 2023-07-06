@@ -1,9 +1,8 @@
 <script lang="ts">
 	import { AlertWithAction } from '$components';
 	import { CostIcon } from '$icons';
-	import type { Transaction, TravelData, UserTransactions } from '$tripDomain';
+	import type { TravelData, UserTransactions } from '$tripDomain';
 	import { modalStore, type ModalComponent, type ModalSettings } from '@skeletonlabs/skeleton';
-	import { onMount } from 'svelte';
 	import { AddNewTransactionModal } from '$components';
 
 	export let transactions: UserTransactions;

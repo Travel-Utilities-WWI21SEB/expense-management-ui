@@ -1,7 +1,7 @@
 import { modifyCosts, modifyTrip } from '$utils';
 import type { PageServerLoad } from './$types';
 
-export const load = async ({ params, fetch, url }) => {
+export const load: PageServerLoad = async ({ params, fetch, url }) => {
 	const sort = String(url.searchParams.get('sortBy') ?? 'deducted_at');
 	const sortOrder = String(url.searchParams.get('sortOrder') ?? 'desc');
 
