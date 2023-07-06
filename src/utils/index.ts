@@ -45,3 +45,4 @@ export { modifyTransactions } from './transactions/modifyTransactions';
 //REQUESTS
 export { createCostCategories } from './requests/createCostCategories';
 export { inviteUsers } from './requests/inviteUsers';
+export { deleteTransaction } from './requests/deleteTransactions';

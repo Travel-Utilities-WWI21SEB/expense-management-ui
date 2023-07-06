@@ -1,48 +1,29 @@
 <script lang="ts">
 	import { invalidateAll } from '$app/navigation';
-	import { errorCode, errorState, loading } from '$stores';
 	import type { Transaction } from '$tripDomain';
-	import { getErrorMessage } from '$utils';
+	import { deleteTransaction, getErrorMessage } from '$utils';
 	import { type ToastSettings, toastStore, modalStore } from '@skeletonlabs/skeleton';
 
 	export let transaction: Transaction;
 	export let parent: any;
 
-	const deleteTransaction = async (transactionId: string, tripId: string) => {
-		loading.set(true);
-		errorState.set(false);
-
-		try {
-			const costsResponse = await fetch(`/api/trips/${tripId}/transactions/${transactionId}`, {
-				method: 'DELETE',
-				headers: {
-					'Content-Type': 'application/json'
-				}
-			});
-
-			const body = await costsResponse.json();
-
-			const { error, errorCode: code } = body;
-
-			errorState.set(error);
-			errorCode.set(code);
-
-			return body;
-		} catch (error: any) {
-			errorState.set(true);
-			errorCode.set('EM-000');
-		} finally {
-			loading.set(false);
-		}
-	};
-
 	const postConfirmTransaction = async () => {
 		console.log('confirm transaction');
-		return { error: false };
+		return { error: false, errorCode: '' };
 	};
 
 	const confirmTransaction = async () => {
 		const result = await postConfirmTransaction();
+
+		const { errorCode } = result;
+		const message = result.error
+			? `Error: ${getErrorMessage(errorCode)}`
+			: `Transaction  confirmation not implemented yet`; //TODO: confirm transaction
+		const t: ToastSettings = {
+			message: message,
+			background: result.error ? 'variant-filled-warning' : 'variant-filled-success'
+		};
+		toastStore.trigger(t);
 
 		if (!result.error) {
 			await invalidateAll();

@@ -2,9 +2,17 @@
 	import type { Transaction } from '$tripDomain';
 	import { ParticipantIconDebt } from '$components';
 	import TransactionItemModalTripdetails from './Modal/_TransactionItemModalTripdetails.svelte';
-	import { modalStore, type ModalComponent, type ModalSettings } from '@skeletonlabs/skeleton';
+	import {
+		modalStore,
+		type ModalComponent,
+		type ModalSettings,
+		toastStore,
+		type ToastSettings
+	} from '@skeletonlabs/skeleton';
 	import TransactionConfirmationModal from './Modal/_TransactionConfirmationModal.svelte';
 	import { onMount } from 'svelte';
+	import { deleteTransaction, getErrorMessage } from '$utils';
+	import { invalidateAll } from '$app/navigation';
 
 	export let transaction: Transaction;
 	export let needsConfirmation: boolean;
@@ -22,9 +30,51 @@
 		modalStore.trigger(modal);
 	}
 
+	const abortTransaction = async (transactionId: string, tripId: string) => {
+		modalStore.close();
+		const modal: ModalSettings = {
+			type: 'confirm',
+			// Data
+			title: 'Please Confirm',
+			body: 'Are you sure you want to delete this cost?',
+			// TRUE if confirm pressed, FALSE if cancel pressed
+			response: (r: boolean) => {
+				if (r) {
+					onDeleteTransaction(transactionId, tripId);
+				} else {
+					const modalTransaction: ModalSettings = {
+						type: 'component',
+						component: modalComponent
+					};
+					modalStore.trigger(modalTransaction);
+				}
+			}
+		};
+		modalStore.trigger(modal);
+	};
+
+	const onDeleteTransaction = async (transactionId: string, tripId: string) => {
+		const result = await deleteTransaction(transactionId, tripId);
+
+		const { errorCode } = result;
+		const message = result.error
+			? `Error: ${getErrorMessage(errorCode)}`
+			: `Transaction  deleted successfully`;
+		const t: ToastSettings = {
+			message: message,
+			background: result.error ? 'variant-filled-warning' : 'variant-filled-success'
+		};
+		toastStore.trigger(t);
+
+		if (!result.error) {
+			await invalidateAll();
+			modalStore.close();
+		}
+	};
+
 	const modalComponent: ModalComponent = {
 		ref: TransactionItemModalTripdetails,
-		props: { transaction: transaction }
+		props: { transaction: transaction, abortTransaction: abortTransaction }
 	};
 	const modalConfirmComponent: ModalComponent = {
 		ref: TransactionConfirmationModal,
