@@ -4,7 +4,7 @@ import type { RequestHandler } from './$types';
 
 export const POST: RequestHandler = async ({ fetch, request }) => {
 	const body = await request.json();
-	const { email, password, username } = body;
+	const { email, password, username, firstName, lastName, location, birthday, createdAt } = body;
 
 	try {
 		const response = await fetch(`${PUBLIC_BASE_URL}/api/v1/users/register`, {
@@ -12,7 +12,16 @@ export const POST: RequestHandler = async ({ fetch, request }) => {
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({ email, password, username })
+			body: JSON.stringify({
+				email,
+				password,
+				username,
+				firstName,
+				lastName,
+				location,
+				birthday,
+				createdAt
+			})
 		});
 
 		if (response.status === 201 || response.status === 206) {

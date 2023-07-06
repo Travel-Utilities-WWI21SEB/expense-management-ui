@@ -93,6 +93,13 @@
 					"unavailable": "This username is already taken",
 					"nextStep": "Next step"
 				},
+				"data": {
+					"title": "Enter your personal data",
+					"firstName": "First name",
+					"lastName": "Last name",
+					"location": "Location",
+					"nextStep": "Next step"
+				},
 				"password": {
 					"title": "Select your password",
 					"word": "Password",

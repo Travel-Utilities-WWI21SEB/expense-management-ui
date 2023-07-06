@@ -93,6 +93,13 @@
 					"unavailable": "Dieser Benutzername ist bereits vergeben",
 					"nextStep": "Nächster Schritt"
 				},
+				"data": {
+					"title": "Füllen Sie Ihre Daten aus",
+					"firstName": "Vorname",
+					"lastName": "Nachname",
+					"location": "Wohnort",
+					"nextStep": "Nächster Schritt"
+				},
 				"password": {
 					"title": "Wählen Sie Ihr Passwort",
 					"word": "Passwort",
