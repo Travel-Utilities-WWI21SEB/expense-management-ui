@@ -2,7 +2,7 @@
 	import { invalidateAll } from '$app/navigation';
 	import { AddCostCategories, InviteParticipantsStep, NewTripStep } from '$components';
 	import { errorCode, errorState, loading } from '$stores';
-	import type { CostCategory, NameExistsInterface, NewTripInputs } from '$tripDomain';
+	import type { NameExistsInterface, NewTripInputs } from '$tripDomain';
 	import { createCostCategories, getErrorMessage, inviteUsers } from '$utils';
 	import {
 		Tab,

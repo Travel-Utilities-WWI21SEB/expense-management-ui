@@ -64,7 +64,7 @@
 					class="opacity-0 h-0"
 				/>
 			{:else}
-				<div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
+				<div class="input-group input-group-divider grid-cols-[auto_1fr_auto] my-2">
 					<input type="search" bind:value={category.name} placeholder="Change category..." />
 					<div>
 						<input

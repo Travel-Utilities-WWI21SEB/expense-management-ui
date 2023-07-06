@@ -21,7 +21,7 @@ export const createCostCategories = async (
 
 		errorState.set(error);
 		errorCode.set(code);
-	} catch (error: any) {
+	} catch (error) {
 		errorState.set(true);
 		errorCode.set('EM-000');
 	} finally {

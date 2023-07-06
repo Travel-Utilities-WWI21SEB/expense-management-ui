@@ -18,7 +18,7 @@ export const inviteUsers = async (tripId: number, user: { username: string }) =>
 
 		errorState.set(error);
 		errorCode.set(code);
-	} catch (error: any) {
+	} catch (error) {
 		errorState.set(true);
 		errorCode.set('EM-000');
 	} finally {

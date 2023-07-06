@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { invalidateAll } from '$app/navigation';
+	import { goto, invalidateAll } from '$app/navigation';
 	import {
 		EditTripModal,
 		HeaderTripDetailsLayout,
@@ -49,22 +49,23 @@
 			loading.set(false);
 		}
 	}
-	const onTripDelete = async () => {
-		const result = await deleteTrip(trip);
 
-		const message = result.error
-			? `Error: ${getErrorMessage(result.errorCode)}`
-			: `Trip ${trip.name} deleted successfully`;
+	const onTripDelete = async () => {
+		await deleteTrip(trip);
+		let toastMessage = `Trip ${trip.name} deleted successfully`;
+
+		if (!$errorState) {
+			goto('/trips');
+			modalStore.close();
+		} else {
+			toastMessage = `Error: ${getErrorMessage($errorCode)}`;
+		}
+		modalStore.close();
 		const t: ToastSettings = {
-			message: message,
-			background: result.error ? 'variant-filled-warning' : 'variant-filled-success'
+			message: toastMessage,
+			background: $errorState ? 'variant-filled-warning' : 'variant-filled-success'
 		};
 		toastStore.trigger(t);
-
-		if (!result.error) {
-			await invalidateAll();
-			modalStore.close();
-		}
 	};
 
 	const onDeleteClick = () => {
@@ -87,7 +88,6 @@
 		modalStore.trigger(alertModal);
 	};
 
-	console.log(trip);
 	const tripModalComponent: ModalComponent = {
 		ref: EditTripModal,
 		props: {
