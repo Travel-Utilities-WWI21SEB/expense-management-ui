@@ -42,3 +42,6 @@ export { getCurrentUser } from './token/getUser';
 //TRANSACTION
 export { validateNewTransaction } from './transactions/validate/validateNewTransaction';
 export { modifyTransactions } from './transactions/modifyTransactions';
+//REQUESTS
+export { createCostCategories } from './requests/createCostCategories';
+export { inviteUsers } from './requests/inviteUsers';

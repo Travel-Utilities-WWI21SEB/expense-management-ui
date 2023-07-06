@@ -36,3 +36,9 @@ export interface NewTripInputs {
 	endDate: string;
 	location: string;
 }
+
+export interface NameExistsInterface {
+	id?: string;
+	name: string;
+	isNew: boolean;
+}

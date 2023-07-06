@@ -14,7 +14,7 @@
 	};
 </script>
 
-<div class="gap-8 flex flex-col flex-shrink bg-gray-50 dark:bg-gray-900 md:w-1/2">
+<div class="gap-8 flex flex-col flex-shrink bg-gray-50 dark:bg-gray-900 w-full md:w-1/2">
 	<TabGroup
 		justify="justify-center"
 		active="variant-filled-primary"

@@ -14,6 +14,8 @@
 	import type { CostPaidForUser, User } from '$userDomain';
 	import { getErrorMessage } from '$utils';
 	import { modalStore, toastStore, type ToastSettings } from '@skeletonlabs/skeleton';
+	import { Trash } from '@steeze-ui/heroicons';
+	import { Icon } from '@steeze-ui/svelte-icon';
 
 	/* export let name: string; */
 	export let cost: Cost;
@@ -149,7 +151,7 @@
 					onDelete(localeCost);
 				}}
 			>
-				<span>&#128465</span>
+				<Icon src={Trash} class="w-6 h-6" />
 				<span>Delete</span>
 			</button>
 			<button

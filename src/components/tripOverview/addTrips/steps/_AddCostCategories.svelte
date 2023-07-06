@@ -1,23 +1,25 @@
 <script lang="ts">
-	import { newCostCategories, newCostCategoryColors } from '$stores';
+	import type { NameExistsInterface } from '$tripDomain';
 	import { XMark } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
 
 	let inputValue = '';
 
-	newCostCategories.set(['Food', 'Mobility']);
-	newCostCategoryColors.set(['#FF8585', '#00FF62']);
+	export let newCostCategories: Array<NameExistsInterface>;
+	export let newCostCategoryColors: Array<string>;
+	export let newCostCategoryElements: Array<NameExistsInterface>;
+	export let existingCostCategoryElements: Array<NameExistsInterface>;
 
 	function onSelection(): void {
-		if ($newCostCategories.indexOf(inputValue) === -1) {
-			newCostCategories.set([...$newCostCategories, inputValue]);
-			newCostCategoryColors.set([...$newCostCategoryColors, '#6590D5']);
+		if (!newCostCategories.some((c) => c.name === inputValue)) {
+			newCostCategories = [...newCostCategories, { name: inputValue, isNew: true }];
+			newCostCategoryColors = [...newCostCategoryColors, '#6590D5'];
 			inputValue = '';
 		}
 	}
 
-	const onRemoveInvitationClick = (name: string) => {
-		newCostCategories.set($newCostCategories.filter((m) => m !== name));
+	const onRemoveInvitationClick = (name: NameExistsInterface) => {
+		newCostCategories = newCostCategories.filter((m) => m !== name);
 	};
 </script>
 
@@ -29,31 +31,51 @@
 	on:change={onSelection}
 	placeholder="Input new Cost Category"
 />
-{#each $newCostCategories as _, i}
-	<input
-		id={`nativeColorPicker${i}`}
-		bind:value={$newCostCategoryColors[i]}
-		type="color"
-		class="opacity-0 h-0"
-	/>
-{/each}
-
 <div class="h-auto p-4" tabindex="-1">
-	{#if $newCostCategories.length > 0}
+	{#if newCostCategoryElements.length > 0}
 		<p>You can change the color by clicking!</p>
 	{/if}
-	{#each $newCostCategories as name, i}
-		<button
-			class="m-4 chip variant-filled h-8"
-			style="background-color: {$newCostCategoryColors[i]};"
-			on:click={() => {
-				document.getElementById(`nativeColorPicker${i}`)?.click();
-			}}
-		>
-			{name}
-			<button on:click={() => onRemoveInvitationClick(name)}>
-				<Icon src={XMark} class="w-6 h-6" />
+	{#each newCostCategories as category, i}
+		{#if category.isNew}
+			<button
+				class="m-4 chip variant-filled h-8"
+				style="background-color: {newCostCategoryColors[i]};"
+				on:click={() => {
+					document.getElementById(`nativeColorPicker${i}`)?.click();
+				}}
+			>
+				{category.name}
+				<button class="ml-2" on:click={() => onRemoveInvitationClick(category)}>
+					<Icon src={XMark} class="w-6 h-6" />
+				</button>
 			</button>
-		</button>
+		{/if}
 	{/each}
+	{#if existingCostCategoryElements.length > 0}
+		<hr class="!border-t-4 my-4" />
+	{/if}
+	<div class="lg:grid lg:grid-cols-2 lg:gap-4">
+		{#each newCostCategories as category, i}
+			{#if category.isNew}
+				<input
+					id={`nativeColorPicker${i}`}
+					bind:value={newCostCategoryColors[i]}
+					type="color"
+					class="opacity-0 h-0"
+				/>
+			{:else}
+				<div class="input-group input-group-divider grid-cols-[auto_1fr_auto] my-2">
+					<input type="search" bind:value={category.name} placeholder="Change category..." />
+					<div>
+						<input
+							id={`nativeColorPicker${i}`}
+							bind:value={newCostCategoryColors[i]}
+							type="color"
+							class="h-full w-full"
+						/>
+					</div>
+				</div>
+			{/if}
+		{/each}
+	</div>
 </div>

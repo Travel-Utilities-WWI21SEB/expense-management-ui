@@ -1,4 +1,5 @@
-import { writable } from 'svelte/store';
+import { localStorageStore } from '@skeletonlabs/skeleton';
+import { writable, type Writable } from 'svelte/store';
 
 // Utility variables
 export const errorCode = writable('');
@@ -11,7 +12,7 @@ export const correctToken = writable<boolean | undefined>();
 export const tokenErrorState = writable(false);
 
 // Theme variables
-export const activeTheme = writable('system');
+export const activeTheme: Writable<string> = localStorageStore('activeTheme', 'system');
 
 // Token timer variables
 interface Timer {

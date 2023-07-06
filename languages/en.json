@@ -80,7 +80,7 @@
 					"ongoingValidation": "Checking availability...",
 					"available": "This email is available",
 					"unavailable": "This email is already taken",
-					"nextStep": "Select your username"
+					"nextStep": "Next step"
 				},
 				"username": {
 					"title": "Select your username",
@@ -91,7 +91,7 @@
 					"ongoingValidation": "Checking availability...",
 					"available": "This username is available",
 					"unavailable": "This username is already taken",
-					"nextStep": "Select your password"
+					"nextStep": "Next step"
 				},
 				"password": {
 					"title": "Select your password",
