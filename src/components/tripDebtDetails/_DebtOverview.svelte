@@ -1,9 +1,15 @@
 <script lang="ts">
 	import { ImformationAlertWithAction, DebtItemTripDetails } from '$components';
-	import type { SortedDebts } from '$tripDomain';
 	import { Banknotes } from '@steeze-ui/heroicons';
+	import type { SortedDebts } from '$tripDomain';
 
 	export let debts: SortedDebts;
+
+	let selectionIndex = -1;
+
+	const handleSelectItem = (event: CustomEvent<any>) => {
+		selectionIndex = event.detail.index;
+	};
 </script>
 
 <div class="card h-full p-4">
