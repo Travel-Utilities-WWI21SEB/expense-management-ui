@@ -51,7 +51,7 @@
 			</div>
 			<div>
 				{#if transactions.confirmedTransactions.length !== 0}
-					<span class="flex justify-center font-semibold">History</span>
+					<span class="flex justify-center font-semibold">Other Transactions</span>
 					<ul class="list p-2 max-h-[500px] overflow-auto">
 						{#each transactions.confirmedTransactions as transaction, i}
 							<li><TransactionItemTripDetails {transaction} needsConfirmation={false} /></li>
