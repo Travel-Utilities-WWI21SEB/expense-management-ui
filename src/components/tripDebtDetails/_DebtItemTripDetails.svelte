@@ -2,6 +2,8 @@
 	import type { Debt } from '$tripDomain';
 	import { modalStore, type ModalSettings, type ModalComponent } from '@skeletonlabs/skeleton';
 	import { DebtItemModalTripDetails, ParticipantIconDebt } from '$components';
+	import { ArrowLongRight } from '@steeze-ui/heroicons';
+	import { Icon } from '@steeze-ui/svelte-icon';
 
 	export let debt: Debt;
 	export let i: number;
@@ -31,7 +33,9 @@
 				<h3 class="font-semibold h3 mr-1">{debt.amount}</h3>
 				{`${debt.currency}`}
 			</div>
-			<div class="col-span-4 flex justify-center items-center">&#8594;</div>
+			<div class="col-span-4 flex justify-center items-center">
+				<Icon src={ArrowLongRight} class="w-6 h-6" />
+			</div>
 			<div class="col-span-4">
 				<ParticipantIconDebt
 					participant={debt.creditor}
@@ -52,7 +56,9 @@
 					background="bg-success-300 dark:bg-success-500"
 				/>
 			</div>
-			<div class="col-span-4 flex justify-center items-center w-full">&#8594;</div>
+			<div class="col-span-4 flex justify-center items-center w-full">
+				<Icon src={ArrowLongRight} class="w-6 h-6" />
+			</div>
 			<div
 				class="col-span-4 flex justify-center items-center text-success-700 dark:text-success-500"
 			>

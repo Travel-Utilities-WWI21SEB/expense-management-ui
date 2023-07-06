@@ -13,6 +13,8 @@
 	import { onMount } from 'svelte';
 	import { deleteTransaction, getErrorMessage } from '$utils';
 	import { invalidateAll } from '$app/navigation';
+	import { ArrowLongRight } from '@steeze-ui/heroicons';
+	import { Icon } from '@steeze-ui/svelte-icon';
 
 	export let transaction: Transaction;
 	export let needsConfirmation: boolean;
@@ -36,7 +38,7 @@
 			type: 'confirm',
 			// Data
 			title: 'Please Confirm',
-			body: 'Are you sure you want to delete this cost?',
+			body: 'Are you sure you want to delete this transaction?',
 			// TRUE if confirm pressed, FALSE if cancel pressed
 			response: (r: boolean) => {
 				if (r) {
@@ -98,7 +100,9 @@
 				<h3 class="font-semibold h3 mr-1">{transaction.amount}</h3>
 				<!-- {`${transaction.currencyCode}`} --> EUR
 			</div>
-			<div class="col-span-4 flex justify-center items-center">&#8594;</div>
+			<div class="col-span-4 flex justify-center items-center">
+				<Icon src={ArrowLongRight} class="w-6 h-6" />
+			</div>
 			<div class="col-span-4">
 				<ParticipantIconDebt
 					participant={transaction.debtor}
@@ -125,7 +129,9 @@
 						: 'bg-warning-300 dark:bg-warning-500'}
 				/>
 			</div>
-			<div class="col-span-4 flex justify-center items-center w-full">&#8594;</div>
+			<div class="col-span-4 flex justify-center items-center w-full">
+				<Icon src={ArrowLongRight} class="w-6 h-6" />
+			</div>
 			<div
 				class="col-span-4 flex justify-center items-center {transaction.isConfirmed
 					? 'text-success-700 dark:text-success-500'
