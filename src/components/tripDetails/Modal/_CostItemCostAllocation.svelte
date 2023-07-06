@@ -1,17 +1,18 @@
 <script lang="ts">
-	import type { CostPaidForUser } from '$userDomain';
+	import { costAllocationValid, costSplitType } from '$stores';
 	import type { CostDateAsString } from '$tripDomain';
-	import { CheckIcon, CrossIcon } from '$icons';
+	import type { CostPaidForUser } from '$userDomain';
 	import {
-		validateCostAllocation,
+		calculateRestAmount,
 		changeToEqual,
 		deselectAllPeople,
-		selectAllPeople,
 		isSplitEqually,
-		calculateRestAmount
+		selectAllPeople,
+		validateCostAllocation
 	} from '$utils';
-	import { costAllocationValid, costSplitType } from '$stores';
 	import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
+	import { Check, XMark } from '@steeze-ui/heroicons';
+	import { Icon } from '@steeze-ui/svelte-icon';
 
 	export let users: Array<CostPaidForUser>;
 	export let usersInvolved: Array<CostPaidForUser>;
@@ -99,19 +100,27 @@
 	<ol class="list">
 		<li>
 			{#if usersInvolved.length === 0}
-				<span class="badge-icon variant-filled-error w-4 h-4"><CrossIcon /></span>
+				<span class="badge-icon variant-filled-error w-4 h-4">
+					<Icon src={XMark} class="w-6 h-6" />
+				</span>
 				<span class="flex-auto">No one is involved in this cost</span>
 			{:else if !$costAllocationValid}
-				<span class="badge-icon variant-filled-error w-4 h-4"><CrossIcon /></span>
+				<span class="badge-icon variant-filled-error w-4 h-4">
+					<Icon src={XMark} class="w-6 h-6" />
+				</span>
 				<span class="flex-auto">Please provide a valid cost allocation</span>
 			{:else}
-				<span class="badge-icon variant-filled-success w-4 h-4"><CheckIcon /></span>
+				<span class="badge-icon variant-filled-success w-4 h-4">
+					<Icon src={Check} class="w-6 h-6" />
+				</span>
 				<span class="flex-auto">Cost allocation is valid</span>
 			{/if}
 		</li>
 		<li>
 			{#if !$costAllocationValid}
-				<span class="badge-icon variant-filled-error w-4 h-4"><CrossIcon /></span>
+				<span class="badge-icon variant-filled-error w-4 h-4">
+					<Icon src={XMark} class="w-6 h-6" />
+				</span>
 				<span class="flex-auto"
 					>{`${Math.abs(restAmount).toString()} € ${
 						restAmount > 0 ? 'are left to split' : 'are split too much'

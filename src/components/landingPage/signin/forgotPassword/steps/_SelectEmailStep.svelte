@@ -1,8 +1,10 @@
 <script lang="ts">
-	import { CheckIcon, CrossIcon } from '$icons';
 	import { email, emailValid } from '$stores';
 	import { validateEmail } from '$utils';
+	import { i } from '@inlang/sdk-js';
 	import { Step } from '@skeletonlabs/skeleton';
+	import { Check, XMark } from '@steeze-ui/heroicons';
+	import { Icon } from '@steeze-ui/svelte-icon';
 
 	$: emailValid.set(validateEmail($email));
 
@@ -22,7 +24,7 @@
 
 <Step
 	locked={!$emailValid}
-	buttonNextLabel="Receive reset code"
+	buttonNextLabel={i('forms.signin.forgotPassword.steps.email.nextStep')}
 	buttonBack="invisible"
 	buttonNext="btn variant-filled-primary hover:variant-soft-primary dark:hover:variant-soft-primary-dark {!emailValid
 		? 'pointer-events-none opacity-50'
@@ -32,7 +34,7 @@
 		<h1
 			class="h1 text-xl text-center font-bold leading-tight tracking-tight md:text-2xl dark:text-white"
 		>
-			What is your email?
+			{i('forms.signin.forgotPassword.steps.email.title')}
 		</h1>
 		<hr class="w-16 h-1 bg-primary-500 rounded-full flex justify-center mt-2" />
 	</svelte:fragment>
@@ -55,11 +57,17 @@
 			<ol class="list">
 				<li>
 					{#if $emailValid}
-						<span class="badge-icon variant-filled-success w-4 h-4"><CheckIcon /></span>
-						<span class="flex-auto">Email is valid</span>
+						<span class="badge-icon variant-filled-success w-4 h-4">
+							<Icon src={Check} class="w-6 h-6" />
+						</span>
+						<span class="flex-auto">{i('forms.signin.forgotPassword.steps.email.validEmail')}</span>
 					{:else}
-						<span class="badge-icon variant-filled-error w-4 h-4"><CrossIcon /></span>
-						<span class="flex-auto">Please provide a valid email</span>
+						<span class="badge-icon variant-filled-error w-4 h-4"
+							><Icon src={XMark} class="w-6 h-6" /></span
+						>
+						<span class="flex-auto"
+							>{i('forms.signin.forgotPassword.steps.email.invalidEmail')}</span
+						>
 					{/if}
 				</li>
 			</ol>

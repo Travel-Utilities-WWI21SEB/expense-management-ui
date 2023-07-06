@@ -1,7 +1,8 @@
 <script lang="ts">
+	import { AlertWithAction, PasswordForm, ProgressCircleAnimated } from '$components';
 	import { errorState, loading, password, passwordValid, passwordsMatch } from '$stores';
+	import { i } from '@inlang/sdk-js';
 	import { Step } from '@skeletonlabs/skeleton';
-	import { AlertWithAction, ProgressCircleAnimated, PasswordForm } from '$components';
 
 	export let closeForgotPassword: () => void;
 
@@ -15,7 +16,7 @@
 
 <Step
 	locked={lockCompletion}
-	buttonCompleteLabel="Reset password"
+	buttonCompleteLabel={i('forms.signin.forgotPassword.steps.password.nextStep')}
 	buttonNext="btn variant-filled-primary hover:variant-soft-primary dark:hover:variant-soft-primary-dark {lockCompletion
 		? 'pointer-events-none opacity-50'
 		: ''}"
@@ -24,7 +25,7 @@
 		<h1
 			class="h1 text-xl text-center font-bold leading-tight tracking-tight md:text-2xl dark:text-white"
 		>
-			Set new password
+			{i('forms.signin.forgotPassword.steps.password.title')}
 		</h1>
 		<hr class="w-16 h-1 bg-primary-500 rounded-full flex justify-center mt-2" />
 	</svelte:fragment>
@@ -36,8 +37,8 @@
 				<AlertWithAction
 					enableAction={true}
 					errorAction={closeForgotPassword}
-					alertHeading="Something went wrong!"
-					actionText="Abort!"
+					alertHeading={i('forms.signin.forgotPassword.steps.password.alertHeading')}
+					actionText={i('forms.signin.forgotPassword.steps.password.alertMessage')}
 					class="variant-filled-error"
 				/>
 			{:else}

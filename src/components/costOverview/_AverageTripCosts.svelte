@@ -1,7 +1,8 @@
 <script lang="ts">
 	import type { CostOverview } from '$costDomain';
-	import { GlobeIcon } from '$icons';
 	import { formatCostString } from '$utils';
+	import { GlobeAmericas } from '@steeze-ui/heroicons';
+	import { Icon } from '@steeze-ui/svelte-icon';
 
 	export let costOverview: CostOverview;
 
@@ -15,10 +16,9 @@
 	<hr class="!border-t-2 mt-2" />
 	<section class="p-4">
 		<div class="flex flex-row">
-			<div class="flex justify-start grow !w-12 !h-12">
-				<GlobeIcon sidebarIcon={false} />
-			</div>
-			<h5 class="h5 my-auto justify-end ml-2">
+			<Icon src={GlobeAmericas} class="w-12 h-12 mx-auto" />
+			<div class="flex justify-start grow" />
+			<h5 class="h5 my-auto justify-end">
 				<span
 					class="bg-gradient-to-br from-primary-800 to-primary-600 dark:from-primary-400 dark:to-primary-200 bg-clip-text text-transparent box-decoration-clone"
 				>

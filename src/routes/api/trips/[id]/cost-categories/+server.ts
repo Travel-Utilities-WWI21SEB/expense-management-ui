@@ -17,19 +17,14 @@ export const GET: RequestHandler = async ({ fetch, params }) => {
 		if (response.ok) {
 			const body = await response.json();
 
-			return json({ error: false, errorMessage: '', data: body });
+			return json({ error: false, errorCode: '', data: body });
 		}
 		const body = await response.json();
-		const { errorCode } = body;
-		const errorMessage = getErrorMessage(errorCode);
-
-		return json({ error: true, errorMessage });
+		return json({ error: true, errorCode: body.errorCode });
 	} catch (exception) {
 		return json({
-			exists: false,
-			valid: true,
 			error: true,
-			errorMessage: 'Something went wrong. Please try again later'
+			errorCode: 'EM-000'
 		});
 	}
 };
@@ -50,20 +45,15 @@ export const POST: RequestHandler = async ({ fetch, request }) => {
 		);
 
 		if (response.ok) {
-			return json({ exists: false, error: false, errorMessage: '' });
+			return json({ error: false, errorCode: '' });
 		}
 
 		const body = await response.json();
-		const { errorCode } = body;
-		const errorMessage = getErrorMessage(errorCode);
-
-		return json({ exists: false, error: true, errorMessage });
+		return json({ error: true, errorCode: body.errorCode });
 	} catch (exception) {
 		return json({
-			exists: false,
-			valid: true,
 			error: true,
-			errorMessage: 'Something went wrong. Please try again later'
+			errorCode: 'EM-000'
 		});
 	}
 };

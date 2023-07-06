@@ -1,7 +1,9 @@
 <script lang="ts">
-	import { CheckIcon, CrossIcon } from '$icons';
 	import { passwordValid, passwordsMatch } from '$stores';
 	import { validatePassword, validatePasswordsMatch } from '$utils';
+	import { i } from '@inlang/sdk-js';
+	import { Check, XMark } from '@steeze-ui/heroicons';
+	import { Icon } from '@steeze-ui/svelte-icon';
 
 	export let onInputHandler: (e: Event & { currentTarget: EventTarget & HTMLInputElement }) => void;
 
@@ -27,7 +29,7 @@
 
 <form class="space-y-4 md:space-y-6" novalidate on:keydown={keydownHandler}>
 	<label class="label mb-2">
-		<span>Password</span>
+		<span>{i('forms.signup.steps.password.word')}</span>
 		<input
 			class="input"
 			title="password"
@@ -39,7 +41,7 @@
 		/>
 	</label>
 	<label class="label">
-		<span>Confirm Password</span>
+		<span>{i('forms.signup.steps.password.repeatWord')}</span>
 		<input
 			class="input"
 			title="verifyPassword"
@@ -53,20 +55,28 @@
 <ol class="list">
 	<li>
 		{#if $passwordValid}
-			<span class="badge-icon variant-filled-success w-4 h-4"><CheckIcon /></span>
-			<span class="flex-auto">Minimum length fulfilled</span>
+			<span class="badge-icon variant-filled-success w-4 h-4">
+				<Icon src={Check} class="w-6 h-6" />
+			</span>
+			<span class="flex-auto">{i('forms.signup.steps.password.validPassword')}</span>
 		{:else}
-			<span class="badge-icon variant-filled-error w-4 h-4"><CrossIcon /></span>
-			<span class="flex-auto">Password must be at least 8 characters long</span>
+			<span class="badge-icon variant-filled-error w-4 h-4">
+				<Icon src={XMark} class="w-6 h-6" />
+			</span>
+			<span class="flex-auto">{i('forms.signup.steps.password.invalidPassword')}</span>
 		{/if}
 	</li>
 	<li>
 		{#if $passwordsMatch}
-			<span class="badge-icon variant-filled-success w-4 h-4"><CheckIcon /></span>
-			<span class="flex-auto">Passwords match</span>
+			<span class="badge-icon variant-filled-success w-4 h-4">
+				<Icon src={Check} class="w-6 h-6" />
+			</span>
+			<span class="flex-auto">{i('forms.signup.steps.password.passwordsMatch')}</span>
 		{:else}
-			<span class="badge-icon variant-filled-error w-4 h-4"><CrossIcon /></span>
-			<span class="flex-auto">Passwords don't match</span>
+			<span class="badge-icon variant-filled-error w-4 h-4">
+				<Icon src={XMark} class="w-6 h-6" />
+			</span>
+			<span class="flex-auto">{i('forms.signup.steps.password.passwordsDontMatch')}</span>
 		{/if}
 	</li>
 </ol>

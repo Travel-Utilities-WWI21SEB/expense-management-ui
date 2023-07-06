@@ -17,6 +17,12 @@
 		event: 'focus-click',
 		target: 'languageCombobox',
 		placement: 'bottom',
+		middleware: {
+			offset: {
+				// This is to offset the popup with the right border
+				crossAxis: -30
+			}
+		},
 		closeQuery: '.listbox-item'
 	};
 
@@ -40,7 +46,7 @@
 </script>
 
 <!-- LANGUAGE POPUP -->
-<div class="card w-48 shadow-xl py-2" data-popup="languageCombobox">
+<div class="card shadow-xl py-2 mr-4 z-50" data-popup="languageCombobox">
 	<ListBox rounded="rounded-none">
 		{#each languages as language}
 			<ListBoxItem
@@ -51,7 +57,7 @@
 				on:mouseover={preloadLanguageHandler}
 			>
 				<svelte:fragment slot="lead">
-					<svelte:component this={language.icon} size="20" />
+					<svelte:component this={language.icon} size="20" tabindex="-1" />
 				</svelte:fragment>
 				<svelte:fragment slot="trail">
 					<span>{language.title}</span>
@@ -63,14 +69,14 @@
 </div>
 <!-- LANGUAGE POPUP -->
 
-<div class="mt-auto">
+<div class="my-auto">
 	<button
 		type="button"
 		class="btn variant-ringed-surface pt-2 justify-between"
 		use:popup={languageCombobox}
 	>
 		<span>
-			<svelte:component this={activateLanguageIcon} size="20" />
+			<svelte:component this={activateLanguageIcon} class="w-6 h-6" />
 		</span>
 		<span class="hidden md:block">{activateLanguageTitle}</span>
 	</button>

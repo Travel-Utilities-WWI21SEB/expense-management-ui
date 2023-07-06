@@ -1,6 +1,5 @@
 <script lang="ts">
-	import type { CostDateAsString, TravelData } from '$tripDomain';
-	import type { CostPaidForUser, User } from '$userDomain';
+	import { invalidateAll } from '$app/navigation';
 	import {
 		TripDetailsEditCostItemCostAllocation,
 		TripDetailsEditCostItemDetails,
@@ -11,19 +10,20 @@
 		costDetailsValid,
 		costPaidByValid,
 		costSplitType,
-		errorMessage,
+		errorCode,
 		errorState,
 		loading
 	} from '$stores';
+	import type { CostDateAsString, TravelData } from '$tripDomain';
+	import type { CostPaidForUser, User } from '$userDomain';
+	import { changeToEqual, getErrorMessage } from '$utils';
 	import {
 		Step,
 		Stepper,
 		modalStore,
-		type ToastSettings,
-		toastStore
+		toastStore,
+		type ToastSettings
 	} from '@skeletonlabs/skeleton';
-	import { changeToEqual } from '$utils';
-	import { invalidateAll } from '$app/navigation';
 
 	export let trip: TravelData;
 
@@ -88,15 +88,15 @@
 
 			const body = await costsResponse.json();
 
-			const { error, errorMessage: errorDisplayMessage } = body;
+			const { error, errorCode: code } = body;
 
 			errorState.set(error);
-			errorMessage.set(errorDisplayMessage);
+			errorCode.set(code);
 
 			return body;
 		} catch (error: any) {
 			errorState.set(true);
-			errorMessage.set(error.message);
+			errorCode.set('EM-000');
 		} finally {
 			loading.set(false);
 		}
@@ -106,7 +106,7 @@
 		const result = await createCost(cost, trip, costPaidForUser);
 
 		const message = result.error
-			? `Error: ${result.errorMessage}`
+			? `Error: ${getErrorMessage(result.errorCode)}`
 			: `Cost ${result.data.description} created successfully`;
 		const t: ToastSettings = {
 			message: message,

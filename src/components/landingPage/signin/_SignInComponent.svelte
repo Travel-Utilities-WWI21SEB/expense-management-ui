@@ -1,11 +1,10 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { ForgotPasswordStepper, VerifyToken, VerifyTokenAlert } from '$components';
-	import { CrossIcon } from '$icons';
 	import {
 		correctToken,
 		email,
-		errorMessage,
+		errorCode,
 		errorState,
 		loading,
 		notActivatedAlert,
@@ -14,8 +13,11 @@
 		tokenErrorState,
 		tokenValues
 	} from '$stores';
-	import { resetLandingPageStore } from '$utils';
+	import { getErrorMessage, resetLandingPageStore } from '$utils';
+	import { i } from '@inlang/sdk-js';
 	import { ProgressRadial, modalStore } from '@skeletonlabs/skeleton';
+	import { XMark } from '@steeze-ui/heroicons';
+	import { Icon } from '@steeze-ui/svelte-icon';
 	import { onDestroy } from 'svelte';
 
 	export let changeTab: (index: number) => void;
@@ -51,10 +53,10 @@
 
 		loading.set(false);
 		const body = await response.json();
-		const { success, activated, error, errorMessage: errorDisplayMessage } = body;
+		const { success, activated, error, errorCode: code } = body;
 
 		errorState.set(error);
-		errorMessage.set(errorDisplayMessage);
+		errorCode.set(code);
 
 		if (success) {
 			modalStore.close();
@@ -81,13 +83,13 @@
 			});
 
 			const body = await response.json();
-			const { error, errorMessage: message } = body;
+			const { error, errorCode: code } = body;
 
 			errorState.set(error);
-			errorMessage.set(message);
+			errorCode.set(code);
 		} catch (error: any) {
 			errorState.set(true);
-			errorMessage.set(error.message);
+			errorCode.set('EM-000');
 		} finally {
 			loading.set(false);
 		}
@@ -121,7 +123,7 @@
 			<h1
 				class="h1 text-xl font-bold leading-tight tracking-tight md:text-2xl dark:text-white text-center"
 			>
-				Sign in to your account
+				{i('forms.signin.componentTitle')}
 			</h1>
 			<hr class="w-16 h-1 bg-primary-500 rounded-full" />
 			<form class="space-y-4 md:space-y-6" novalidate on:keydown={keydownHandler}>
@@ -138,7 +140,7 @@
 					/>
 				</label>
 				<label class="label">
-					<span>Password</span>
+					<span>{i('forms.signin.password')}</span>
 					<input
 						class="input"
 						title="password"
@@ -159,32 +161,36 @@
 						class="w-4 h-4 checkbox"
 						bind:checked={rememberMe}
 					/>
-					<p>Remember me</p>
+					<p>{i('forms.signin.rememberMe')}</p>
 				</label>
 				<button
 					on:click={() => {
 						forgotPassword = true;
 					}}
 					class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500 ml-2"
-					>Forgot password?</button
+					>{i('forms.signin.forgotPassword.title')}</button
 				>
 			</div>
 			<ol class="list">
 				<li>
 					{#if $errorState}
-						<span class="badge-icon variant-filled-error w-4 h-4"><CrossIcon /></span>
-						<span class="flex-auto">{$errorMessage}</span>
+						<span class="badge-icon variant-filled-error w-4 h-4">
+							<Icon src={XMark} class="w-6 h-6" />
+						</span>
+						<span class="flex-auto">{getErrorMessage($errorCode)}</span>
 					{/if}
 				</li>
 			</ol>
 
 			<p class="text-sm font-light text-gray-500 dark:text-gray-400">
-				Don't have an account yet? <button
+				{i('forms.signin.noAccount')}
+				<button
 					on:click={() => {
 						changeTab(0);
 					}}
-					class="variant-soft-primary">Sign up</button
-				>
+					class="variant-soft-primary"
+					>{i('forms.signin.noAccountAction')}
+				</button>
 			</p>
 			<div class="flex flex-row justify-end">
 				<button
@@ -193,7 +199,7 @@
 					on:click={login}
 				>
 					{#if !$loading}
-						Sign in
+						{i('forms.signin.submit')}
 					{:else}
 						<ProgressRadial width="w-6" />
 					{/if}

@@ -1,28 +1,23 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import {
-		TripDetailsCostItem,
-		TripDetailsAddNewCostItem,
 		AlertWithAction,
-		TripDetailsSortingPopUp,
-		TripDetailsFilterPopUp
+		TripDetailsAddNewCostItem,
+		TripDetailsCostItem,
+		TripDetailsFilterPopUp,
+		TripDetailsSortingPopUp
 	} from '$components';
 	import type { Cost, TravelData } from '$tripDomain';
-	import {
-		Paginator,
-		type ModalComponent,
-		type ModalSettings,
-		type PopupSettings
-	} from '@skeletonlabs/skeleton';
-	import { modalStore, popup } from '@skeletonlabs/skeleton';
-	import { CostIcon } from '$icons';
-	import { page } from '$app/stores';
+	import type { ModalComponent, ModalSettings, PopupSettings } from '@skeletonlabs/skeleton';
+	import { Paginator, modalStore, popup } from '@skeletonlabs/skeleton';
+	import { Banknotes } from '@steeze-ui/heroicons';
 
 	export let costs: Array<Cost>;
 	export let trip: TravelData;
 
 	let selectionIndex = -1;
 
-	let paginationPagePage = {
+	let paginationSettings = {
 		offset: 0,
 		limit: 5,
 		size: costs.length,
@@ -30,8 +25,8 @@
 	};
 
 	$: paginatedCosts = costs.slice(
-		paginationPagePage.offset * paginationPagePage.limit, // start
-		paginationPagePage.offset * paginationPagePage.limit + paginationPagePage.limit // end
+		paginationSettings.offset * paginationSettings.limit, // start
+		paginationSettings.offset * paginationSettings.limit + paginationSettings.limit // end
 	);
 
 	const handleSelectItem = (event: CustomEvent<any>) => {
@@ -84,13 +79,13 @@
 		<AlertWithAction
 			alertHeading="This trip has no costs yet"
 			class="variant-ghost-primary"
-			icon={CostIcon}
+			icon={Banknotes}
 		/>
 	{:else if costs.length === 0 && $page.url.searchParams.size > 0}
 		<AlertWithAction
 			alertHeading="No costs match your filter criteria"
 			class="variant-ghost-primary"
-			icon={CostIcon}
+			icon={Banknotes}
 		/>
 	{:else}
 		<ul class="list p-2 max-h-[500px] overflow-auto">
@@ -109,7 +104,7 @@
 			{/key}
 		</ul>
 		<Paginator
-			bind:settings={paginationPagePage}
+			bind:settings={paginationSettings}
 			showFirstLastButtons={false}
 			showPreviousNextButtons={true}
 			justify="justify-center"

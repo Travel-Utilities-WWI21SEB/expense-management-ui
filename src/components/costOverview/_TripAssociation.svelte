@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { CostOverview } from '$costDomain';
-	import { GlobeIcon } from '$icons';
+	import { GlobeAsiaAustralia, GlobeEuropeAfrica } from '@steeze-ui/heroicons';
+	import { Icon } from '@steeze-ui/svelte-icon';
 	import { formatCostString } from '../../utils/cost/formatCostString';
 
 	export let costOverview: CostOverview;
@@ -9,8 +10,10 @@
 	export let trip = leastExpensiveTrip
 		? costOverview.leastExpensiveTrip
 		: costOverview.mostExpensiveTrip;
+
 	const title = leastExpensiveTrip ? 'Least expensive trip' : 'Most expensive trip';
 	const formattedCostString = formatCostString(trip.amount);
+	const icon = leastExpensiveTrip ? GlobeAsiaAustralia : GlobeEuropeAfrica;
 </script>
 
 <div class="card rounded-lg shadow-md">
@@ -20,9 +23,8 @@
 	<hr class="!border-t-2 mt-2" />
 	<section class="p-4">
 		<div class="flex flex-row">
-			<div class="flex justify-start grow !w-10">
-				<GlobeIcon sidebarIcon={false} />
-			</div>
+			<Icon src={icon} class="w-12 h-12 mx-auto" />
+			<div class="flex justify-start grow" />
 			<nav
 				class="list-nav flex justify-end my-auto bg-primary-500/20 dark:bg-primary-200/20 rounded-xl ml-2"
 			>

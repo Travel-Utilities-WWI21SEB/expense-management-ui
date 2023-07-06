@@ -7,11 +7,11 @@
 		TripAssociation
 	} from '$components';
 	import type { ChartData } from '$tripDomain';
-	import { formatCostString, generateRandomColor } from '$utils';
+	import { formatCostString, generateRandomColor, getErrorMessage } from '$utils';
 
 	export let data;
 
-	const { error, errorMessage, costOverview } = data;
+	const { error, errorCode, costOverview } = data;
 	let tripChartData: ChartData;
 	let costChartData: ChartData;
 
@@ -67,7 +67,7 @@
 	</div>
 	{#if error}
 		<div class="card p-2 rounded-lg shadow-xl">
-			<p class="text-red-500">{errorMessage}</p>
+			<p class="text-red-500">{getErrorMessage(errorCode)}</p>
 		</div>
 	{:else if !costOverview.tripDistribution || !costOverview.costDistribution}
 		<section class=" mt-4">

@@ -1,47 +1,48 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
+export function generateRandomColor(numOfSteps: number, step: number, alpha = 0.3): string {
+	let red, green, blue;
+	const hue = step / numOfSteps;
+	const sector = Math.floor(hue * 6);
+	const fraction = hue * 6 - sector;
+	const complement = 1 - fraction;
 
-export function generateRandomColor(numOfSteps: number, step: number) {
-	let r, g, b;
-	const h = step / numOfSteps;
-	const i = ~~(h * 6);
-	const f = h * 6 - i;
-	const q = 1 - f;
-	switch (i % 6) {
+	switch (sector % 6) {
 		case 0:
-			r = 1;
-			g = f;
-			b = 0;
+			red = 1;
+			green = fraction;
+			blue = 0;
 			break;
 		case 1:
-			r = q;
-			g = 1;
-			b = 0;
+			red = complement;
+			green = 1;
+			blue = 0;
 			break;
 		case 2:
-			r = 0;
-			g = 1;
-			b = f;
+			red = 0;
+			green = 1;
+			blue = fraction;
 			break;
 		case 3:
-			r = 0;
-			g = q;
-			b = 1;
+			red = 0;
+			green = complement;
+			blue = 1;
 			break;
 		case 4:
-			r = f;
-			g = 0;
-			b = 1;
+			red = fraction;
+			green = 0;
+			blue = 1;
 			break;
 		case 5:
-			r = 1;
-			g = 0;
-			b = q;
+			red = 1;
+			green = 0;
+			blue = complement;
 			break;
+		default:
+			red = 0;
+			green = 0;
+			blue = 0;
 	}
-	const c =
-		'#' +
-		('00' + (~~(r! * 255)).toString(16)).slice(-2) +
-		('00' + (~~(g! * 255)).toString(16)).slice(-2) +
-		('00' + (~~(b! * 255)).toString(16)).slice(-2);
-	return c;
+
+	return `rgba(${Math.floor(red * 255)}, ${Math.floor(green * 255)}, ${Math.floor(
+		blue * 255
+	)}, ${alpha})`;
 }

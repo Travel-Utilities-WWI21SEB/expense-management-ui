@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { PasswordForm } from '$components';
 	import { password, passwordValid, passwordsMatch } from '$stores';
+	import { i } from '@inlang/sdk-js';
 	import { Step } from '@skeletonlabs/skeleton';
 
 	// Lock step
@@ -14,7 +15,7 @@
 
 <Step
 	locked={lockRegisterStep}
-	buttonNextLabel="Register →"
+	buttonNextLabel={i('forms.signup.steps.password.nextStep')}
 	buttonNext="btn variant-filled-primary hover:variant-soft-primary dark:hover:variant-soft-primary-dark {lockRegisterStep
 		? 'pointer-events-none opacity-50'
 		: ''}"
@@ -23,7 +24,7 @@
 		<h1
 			class="h1 text-xl text-center font-bold leading-tight tracking-tight md:text-2xl dark:text-white"
 		>
-			Set password
+			{i('forms.signup.steps.password.title')}
 		</h1>
 		<hr class="w-16 h-1 bg-primary-500 rounded-full flex justify-center mt-2" />
 	</svelte:fragment>

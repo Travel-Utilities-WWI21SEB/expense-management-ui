@@ -1,5 +1,4 @@
 import { PUBLIC_BASE_URL } from '$env/static/public';
-import { getErrorMessage } from '$utils';
 import { json, type RequestHandler } from '@sveltejs/kit';
 
 export const POST: RequestHandler = async ({ cookies, fetch, request }) => {
@@ -20,21 +19,14 @@ export const POST: RequestHandler = async ({ cookies, fetch, request }) => {
 			cookies.set('token', token, { path: '/' });
 			cookies.set('refreshToken', refreshToken, { path: '/' });
 
-			return json({ tokenCorrect: true, error: false, errorMessage: '' });
+			return json({ tokenCorrect: true, error: false, errorCode: '' });
+		} else if (response.status !== 500) {
+			return json({ valid: false, error: false, errorCode: '' });
 		}
 
 		const body = await response.json();
-		const { errorCode } = body;
-		const errorMessage = getErrorMessage(errorCode);
-
-		// 400: Bad Request -> User entered wrong token
-		if (response.status === 400) {
-			return json({ tokenCorrect: false, error: false, errorMessage });
-		}
-
-		return json({ error: true, errorMessage });
+		return json({ error: true, errorCode: body.errorCode });
 	} catch (error) {
-		const errorMessage = getErrorMessage('EM-000'); // Default error message
-		return json({ success: false, error: true, errorMessage });
+		return json({ success: false, error: true, errorCode: 'EM-000' });
 	}
 };

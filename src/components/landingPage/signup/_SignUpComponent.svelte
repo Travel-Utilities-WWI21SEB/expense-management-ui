@@ -1,9 +1,10 @@
 <script lang="ts">
-	import { email, errorMessage, errorState, loading, password, username } from '$stores';
+	import { EmailStep, PasswordStep, TokenStep, UsernameStep } from '$components';
+	import { email, errorCode, errorState, loading, password, username } from '$stores';
 	import { resetLandingPageStore } from '$utils';
+	import { i } from '@inlang/sdk-js';
 	import { Stepper } from '@skeletonlabs/skeleton';
 	import { onDestroy } from 'svelte';
-	import { EmailStep, PasswordStep, TokenStep, UsernameStep } from '$components';
 
 	export let changeTab: (index: number) => void;
 
@@ -22,14 +23,14 @@
 			});
 
 			const body = await response.json();
-			const { error, errorMessage: message } = body;
+			const { error, errorCode: code } = body;
 
 			// Writing in the store to let TokenStep know the results
 			errorState.set(error);
-			errorMessage.set(message);
+			errorCode.set(code);
 		} catch (error: any) {
 			errorState.set(true);
-			errorMessage.set(error.message);
+			errorCode.set('EM-000');
 		} finally {
 			loading.set(false);
 		}
@@ -53,7 +54,7 @@
 	});
 </script>
 
-<Stepper class="p-3 m-3 h-full" on:next={nextStepHandler}>
+<Stepper class="p-3 m-3 h-full" on:next={nextStepHandler} stepTerm={i('forms.step')}>
 	<EmailStep {changeTab} />
 	<UsernameStep />
 	<PasswordStep />

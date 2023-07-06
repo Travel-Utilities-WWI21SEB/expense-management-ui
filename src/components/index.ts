@@ -2,6 +2,7 @@
 export { default as HeaderAndTwoPartsLayout } from './general/_HeaderAndTwoPartsLayout.svelte';
 export { default as ImprintComponent } from './general/_Imprint.svelte';
 export { default as LanguageSelector } from './general/_LanguageSelector.svelte';
+export { default as ThemeSwitcher } from './general/_ThemeSwitcher.svelte';
 export { default as CatchPhraseText } from './landingPage/_CatchPhraseText.svelte';
 export { default as ContactBox } from './landingPage/_ContactBox.svelte';
 export { default as LandingPageFeatureBoxLeft } from './landingPage/_FeatureBoxLeft.svelte';
@@ -32,7 +33,7 @@ export { default as Footer } from './layout/_Footer.svelte';
 export { default as Header } from './layout/_Header.svelte';
 export { default as Sidebar } from './layout/_Sidebar.svelte';
 export { default as TripDetailsCostItem } from './tripDetails/_CostItemTripDetails.svelte';
-//Trip Cost Details
+//Trip Details
 export { default as TripDetailsAddNewCostItem } from './tripDetails/Modal/_AddNewCostItemModal.svelte';
 export { default as TripDetailsEditCostItemCostAllocation } from './tripDetails/Modal/_CostItemCostAllocation.svelte';
 export { default as TripDetailsEditCostItemDetails } from './tripDetails/Modal/_CostItemDetails.svelte';
@@ -49,6 +50,7 @@ export { default as TripDetailsHeader } from './tripDetails/_HeaderTripDetails.s
 export { default as HeaderTripDetailsLayout } from './tripDetails/_HeaderTripDetailsLayout.svelte';
 export { default as ParticipantIcon } from './tripDetails/_ParticipantIcon.svelte';
 export { default as Participants } from './tripDetails/_Participants.svelte';
+export { default as TripDetailsSortingPopUp } from './tripDetails/_SortingPopUp.svelte';
 export { default as TripDetailsFilterPopUp } from './tripDetails/_FilterPopUp.svelte';
 export { default as TripDetailsSortingPopUp } from './tripDetails/_SortingPopUp.svelte';
 //Trip Debt Details

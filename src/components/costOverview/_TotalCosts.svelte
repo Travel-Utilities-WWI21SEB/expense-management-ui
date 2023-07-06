@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { CostIcon } from '$icons';
 	import { formatCostString } from '$utils';
+	import { Banknotes } from '@steeze-ui/heroicons';
+	import { Icon } from '@steeze-ui/svelte-icon';
 
 	export let totalCosts: string;
 
@@ -12,7 +13,7 @@
 	<hr class="!border-t-2 mt-2" />
 	<section class="p-4">
 		<div class="flex flex-row">
-			<CostIcon width={12} height={12} />
+			<Icon src={Banknotes} class="w-12 h-12 mx-auto" />
 			<div class="flex justify-start grow" />
 			<h4 class="h4 my-auto justify-end">
 				<span

@@ -1,5 +1,4 @@
 import { PUBLIC_BASE_URL } from '$env/static/public';
-import { getErrorMessage } from '$utils';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
@@ -16,26 +15,18 @@ export const POST: RequestHandler = async ({ fetch, request }) => {
 		});
 
 		if (response.ok) {
-			return json({ valid: true, error: false, errorMessage: '' });
+			return json({ valid: true, error: false, errorCode: '' });
+		} else if (response.status !== 500) {
+			return json({ valid: false, error: false, errorCode: '' });
 		}
 
 		const body = await response.json();
-		const { errorCode } = body;
-		const errorMessage = getErrorMessage(errorCode);
-
-		// 404: Not found -> Token is invalid
-		if (response.status === 404) {
-			return json({ valid: false, error: false, errorMessage });
-		}
-
-		return json({ valid: false, error: true, errorMessage });
+		return json({ valid: false, error: true, errorCode: body.errorCode });
 	} catch (exception) {
-		const errorMessage = getErrorMessage('EM-000'); // Default error message
-
 		return json({
 			success: false,
 			error: true,
-			errorMessage
+			errorCode: 'EM-000'
 		});
 	}
 };

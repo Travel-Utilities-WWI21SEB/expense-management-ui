@@ -1,18 +1,18 @@
 <script lang="ts">
 	// Stores
-	import { modalStore, Stepper, Step } from '@skeletonlabs/skeleton';
-	import { NewTripStep, InviteParticipantsStep } from '$components';
+	import { invalidateAll } from '$app/navigation';
+	import { InviteParticipantsStep, NewTripStep } from '$components';
 	import {
 		currentUser,
-		newTripForm,
-		errorMessage,
+		errorCode,
 		errorState,
 		loading,
-		selectedUsers,
 		newCostCategories,
-		newCostCategoryColors
+		newCostCategoryColors,
+		newTripForm,
+		selectedUsers
 	} from '$stores';
-	import { invalidateAll } from '$app/navigation';
+	import { Step, Stepper, modalStore } from '@skeletonlabs/skeleton';
 	import AddCostCategories from './steps/_AddCostCategories.svelte';
 
 	selectedUsers.set([$currentUser.username]);
@@ -31,15 +31,15 @@
 			});
 
 			const body = await response.json();
-			const { error, errorMessage: errorDisplayMessage } = body;
+			const { error, errorCode: code } = body;
 
 			errorState.set(error);
-			errorMessage.set(errorDisplayMessage);
+			errorCode.set(code);
 
 			return body;
 		} catch (error: any) {
 			errorState.set(true);
-			errorMessage.set(error.message);
+			errorCode.set('EM-000');
 		} finally {
 			loading.set(false);
 		}
@@ -59,13 +59,13 @@
 			});
 
 			const body = await response.json();
-			const { error, errorMessage: errorDisplayMessage } = body;
+			const { error, errorCode: code } = body;
 
 			errorState.set(error);
-			errorMessage.set(errorDisplayMessage);
+			errorCode.set(code);
 		} catch (error: any) {
 			errorState.set(true);
-			errorMessage.set(error.message);
+			errorCode.set('EM-000');
 		} finally {
 			loading.set(false);
 		}
@@ -88,13 +88,13 @@
 			});
 
 			const body = await response.json();
-			const { error, errorMessage: errorDisplayMessage } = body;
+			const { error, errorCode: code } = body;
 
 			errorState.set(error);
-			errorMessage.set(errorDisplayMessage);
+			errorCode.set(code);
 		} catch (error: any) {
 			errorState.set(true);
-			errorMessage.set(error.message);
+			errorCode.set('EM-000');
 		} finally {
 			loading.set(false);
 		}

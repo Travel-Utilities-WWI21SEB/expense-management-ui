@@ -1,18 +1,20 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { CheckIcon } from '$icons';
+	import { AlertWithAction, ProgressCircleAnimated, TokenForm } from '$components';
 	import {
 		correctToken,
 		email,
-		errorMessage,
+		errorCode,
 		errorState,
 		loading,
 		tokenErrorState,
 		tokenValues
 	} from '$stores';
+	import { i } from '@inlang/sdk-js';
 	import { Step, modalStore } from '@skeletonlabs/skeleton';
+	import { Check } from '@steeze-ui/heroicons';
+	import { Icon } from '@steeze-ui/svelte-icon';
 	import _ from 'lodash';
-	import { AlertWithAction, ProgressCircleAnimated, TokenForm } from '$components';
 
 	export let register: () => Promise<void>;
 
@@ -42,18 +44,18 @@
 			});
 
 			const body = await response.json();
-			const { tokenCorrect, error, errorMessage: message } = body;
+			const { tokenCorrect, error, errorCode: code } = body;
 
 			correctToken.set(tokenCorrect);
 			tokenErrorState.set(error);
-			errorMessage.set(message);
+			errorCode.set(code);
 
 			if (tokenCorrect) {
 				loading.set(false);
 			}
 		} catch (error: any) {
 			errorState.set(true);
-			errorMessage.set(error.message);
+			errorCode.set('EM-000');
 		} finally {
 			loading.set(false);
 		}
@@ -76,13 +78,13 @@
 			});
 
 			const body = await response.json();
-			const { error, errorMessage: message } = body;
+			const { error, errorCode: code } = body;
 
 			errorState.set(error);
-			errorMessage.set(message);
+			errorCode.set(code);
 		} catch (error: any) {
 			errorState.set(true);
-			errorMessage.set(error.message);
+			errorCode.set('EM-000');
 		} finally {
 			loading.set(false);
 		}
@@ -103,7 +105,7 @@
 		<h1
 			class="h1 text-xl text-center font-bold leading-tight tracking-tight md:text-2xl dark:text-white"
 		>
-			Verify your email
+			{i('forms.signup.steps.token.title')}
 		</h1>
 		<hr class="w-16 h-1 bg-primary-500 rounded-full flex justify-center mt-2" />
 	</svelte:fragment>
@@ -122,18 +124,21 @@
 			{:else if $correctToken}
 				<aside class="alert variant-ghost-success">
 					<!-- Icon -->
-					<div><CheckIcon /></div>
+					<div>
+						<Icon src={Check} class="w-6 h-6" />
+					</div>
 					<!-- Message -->
 					<div class="alert-message">
-						<h3 class="h3">The Verification was successful!</h3>
+						<h3 class="h3">{i('forms.signup.steps.token.successMessage')}</h3>
 						<p>
-							Thank you for trusting Costventures, click on the button on the right to automatically
-							login and navigate to the homepage.
+							{i('forms.signup.steps.token.successAction')}
 						</p>
 					</div>
 					<!-- Actions -->
 					<div class="alert-actions">
-						<button on:click={navigationHandler} class="btn variant-filled">Login</button>
+						<button on:click={navigationHandler} class="btn variant-filled"
+							>{i('forms.signup.steps.token.successMessageLink')}</button
+						>
 					</div>
 				</aside>
 			{:else}
