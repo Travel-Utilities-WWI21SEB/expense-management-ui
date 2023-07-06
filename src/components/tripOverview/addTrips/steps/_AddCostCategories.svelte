@@ -7,9 +7,8 @@
 
 	export let newCostCategories: Array<NameExistsInterface>;
 	export let newCostCategoryColors: Array<string>;
-
-	$: newElements = newCostCategories.filter((category) => category.isNew);
-	$: existingElements = newCostCategories.filter((category) => !category.isNew);
+	export let newCostCategoryElements: Array<NameExistsInterface>;
+	export let existingCostCategoryElements: Array<NameExistsInterface>;
 
 	function onSelection(): void {
 		if (!newCostCategories.some((c) => c.name === inputValue)) {
@@ -33,7 +32,7 @@
 	placeholder="Input new Cost Category"
 />
 <div class="h-auto p-4" tabindex="-1">
-	{#if newElements.length > 0}
+	{#if newCostCategoryElements.length > 0}
 		<p>You can change the color by clicking!</p>
 	{/if}
 	{#each newCostCategories as category, i}
@@ -52,7 +51,7 @@
 			</button>
 		{/if}
 	{/each}
-	{#if existingElements.length > 0}
+	{#if existingCostCategoryElements.length > 0}
 		<hr class="!border-t-4 my-4" />
 	{/if}
 	<div class="lg:grid lg:grid-cols-2 lg:gap-4">

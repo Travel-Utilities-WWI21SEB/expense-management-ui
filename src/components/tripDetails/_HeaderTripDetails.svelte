@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { invalidateAll } from '$app/navigation';
 	import {
 		EditTripModal,
 		HeaderTripDetailsLayout,
@@ -6,12 +7,65 @@
 		TripInfos,
 		UserPaymentOverview
 	} from '$components';
+	import { errorCode, errorState, loading } from '$stores';
 	import type { NameExistsInterface, TravelData } from '$tripDomain';
-	import { modalStore, type ModalComponent, type ModalSettings } from '@skeletonlabs/skeleton';
+	import { getErrorMessage } from '$utils';
+	import {
+		modalStore,
+		type ModalComponent,
+		type ModalSettings,
+		type ToastSettings,
+		toastStore
+	} from '@skeletonlabs/skeleton';
 	import { Pencil } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
 
 	export let trip: TravelData;
+
+	async function deleteTrip(trip: TravelData) {
+		loading.set(true);
+		errorState.set(false);
+
+		try {
+			const costsResponse = await fetch(`/api/trips/${trip.tripId}`, {
+				method: 'DELETE',
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			});
+
+			const body = await costsResponse.json();
+
+			const { error, errorCode: code } = body;
+
+			errorState.set(error);
+			errorCode.set(code);
+
+			return body;
+		} catch (error: any) {
+			errorState.set(true);
+			errorCode.set('EM-000');
+		} finally {
+			loading.set(false);
+		}
+	}
+	const onTripDelete = async () => {
+		const result = await deleteTrip(trip);
+
+		const message = result.error
+			? `Error: ${getErrorMessage(result.errorCode)}`
+			: `Trip ${trip.name} deleted successfully`;
+		const t: ToastSettings = {
+			message: message,
+			background: result.error ? 'variant-filled-warning' : 'variant-filled-success'
+		};
+		toastStore.trigger(t);
+
+		if (!result.error) {
+			await invalidateAll();
+			modalStore.close();
+		}
+	};
 
 	const onDeleteClick = () => {
 		modalStore.close();
@@ -23,7 +77,7 @@
 			// TRUE if confirm pressed, FALSE if cancel pressed
 			response: (r: boolean) => {
 				if (r) {
-					// Delete
+					onTripDelete();
 					modalStore.close();
 				} else {
 					modalStore.trigger(tripModal);
@@ -33,17 +87,20 @@
 		modalStore.trigger(alertModal);
 	};
 
+	console.log(trip);
 	const tripModalComponent: ModalComponent = {
 		ref: EditTripModal,
 		props: {
+			tripId: trip.tripId,
 			onDeleteClick: onDeleteClick,
 			newTrip: {
-				...trip,
+				name: trip.name,
+				location: trip.location,
 				startDate: trip.startDate.toISOString().substring(0, 10),
 				endDate: trip.endDate.toISOString().substring(0, 10)
 			},
 			newCostCategories: trip.costCategories.map((c): NameExistsInterface => {
-				return { name: c.name, isNew: false };
+				return { id: c.costCategoryId, name: c.name, isNew: false };
 			}),
 			newCostCategoryColors: trip.costCategories.map((c): string => {
 				return c.color;

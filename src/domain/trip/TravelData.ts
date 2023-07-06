@@ -38,6 +38,7 @@ export interface NewTripInputs {
 }
 
 export interface NameExistsInterface {
+	id?: string;
 	name: string;
 	isNew: boolean;
 }

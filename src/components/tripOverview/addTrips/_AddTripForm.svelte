@@ -1,9 +1,10 @@
 <script lang="ts">
 	// Stores
 	import { invalidateAll } from '$app/navigation';
-	import { InviteParticipantsStep, NewTripStep } from '$components';
+	import { InviteParticipantsStep, NewTripStep, AddCostCategories } from '$components';
 	import { currentUser, errorCode, errorState, loading } from '$stores';
 	import type { NewTripInputs } from '$tripDomain';
+	import { createCostCategories, inviteUsers } from '$utils';
 	import {
 		Step,
 		Stepper,
@@ -11,7 +12,9 @@
 		toastStore,
 		type ToastSettings
 	} from '@skeletonlabs/skeleton';
-	import AddCostCategories from './steps/_AddCostCategories.svelte';
+
+	$: newCostCategoryElements = newCostCategories.filter((category) => category.isNew);
+	$: existingCostCategoryElements = newCostCategories.filter((category) => !category.isNew);
 
 	let newTrip: NewTripInputs = {
 		name: '',
@@ -46,61 +49,6 @@
 			errorCode.set(code);
 
 			return body;
-		} catch (error: any) {
-			errorState.set(true);
-			errorCode.set('EM-000');
-		} finally {
-			loading.set(false);
-		}
-	};
-
-	const inviteUsers = async (tripId: number, user: { username: string }) => {
-		loading.set(true);
-		errorState.set(false);
-
-		try {
-			const response = await fetch(`/api/trips/${tripId}/invite`, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({ body: user, id: tripId })
-			});
-
-			const body = await response.json();
-			const { error, errorCode: code } = body;
-
-			errorState.set(error);
-			errorCode.set(code);
-		} catch (error: any) {
-			errorState.set(true);
-			errorCode.set('EM-000');
-		} finally {
-			loading.set(false);
-		}
-	};
-
-	const createCostCategories = async (
-		tripId: number,
-		costCategory: { name: string; color: string }
-	) => {
-		loading.set(true);
-		errorState.set(false);
-
-		try {
-			const response = await fetch(`/api/trips/${tripId}/cost-categories`, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({ body: costCategory, id: tripId })
-			});
-
-			const body = await response.json();
-			const { error, errorCode: code } = body;
-
-			errorState.set(error);
-			errorCode.set(code);
 		} catch (error: any) {
 			errorState.set(true);
 			errorCode.set('EM-000');
@@ -164,7 +112,12 @@
 			</Step>
 			<Step>
 				<svelte:fragment slot="header">Add Cost Categories</svelte:fragment>
-				<AddCostCategories bind:newCostCategories bind:newCostCategoryColors />
+				<AddCostCategories
+					{existingCostCategoryElements}
+					{newCostCategoryElements}
+					bind:newCostCategories
+					bind:newCostCategoryColors
+				/>
 			</Step>
 			<Step>
 				<svelte:fragment slot="header">Invite Participants</svelte:fragment>

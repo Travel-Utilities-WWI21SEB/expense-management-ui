@@ -1,17 +1,142 @@
 <script lang="ts">
+	import { invalidateAll } from '$app/navigation';
 	import { AddCostCategories, InviteParticipantsStep, NewTripStep } from '$components';
-	import type { NameExistsInterface, NewTripInputs } from '$tripDomain';
-	import { Tab, TabGroup } from '@skeletonlabs/skeleton';
+	import { errorCode, errorState, loading } from '$stores';
+	import type { CostCategory, NameExistsInterface, NewTripInputs } from '$tripDomain';
+	import { createCostCategories, getErrorMessage, inviteUsers } from '$utils';
+	import {
+		Tab,
+		TabGroup,
+		modalStore,
+		type ToastSettings,
+		toastStore
+	} from '@skeletonlabs/skeleton';
 	import { Trash } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	let tabSet = 0;
 
 	export let parent: any;
 	export let newTrip: NewTripInputs;
+	export let tripId: string;
 	export let onDeleteClick: () => void;
 	export let newCostCategories: Array<NameExistsInterface>;
 	export let newCostCategoryColors: Array<string>;
 	export let selectedUsers: Array<NameExistsInterface>;
+
+	$: newCostCategoryElements = newCostCategories.filter((category) => category.isNew);
+	$: existingCostCategoryElements = newCostCategories.filter((category) => !category.isNew);
+
+	const updateTrip = async () => {
+		loading.set(true);
+		errorState.set(false);
+
+		try {
+			const costsResponse = await fetch(`/api/trips/${tripId}`, {
+				method: 'PATCH',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					name: newTrip.name,
+					location: newTrip.location,
+					startDate: newTrip.startDate,
+					endDate: newTrip.endDate
+				})
+			});
+
+			const body = await costsResponse.json();
+
+			const { error, errorCode: code } = body;
+
+			errorState.set(error);
+			errorCode.set(code);
+
+			return body;
+		} catch (error: any) {
+			errorState.set(true);
+			errorCode.set('EM-000');
+		} finally {
+			loading.set(false);
+		}
+	};
+
+	const updateCostCategory = async (costCategory: { id: string; name: string; color: string }) => {
+		loading.set(true);
+		errorState.set(false);
+
+		try {
+			const costsResponse = await fetch(`/api/trips/${tripId}/cost-categories/${costCategory.id}`, {
+				method: 'PATCH',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					id: tripId,
+					body: {
+						name: costCategory.name,
+						color: costCategory.color
+					}
+				})
+			});
+
+			const body = await costsResponse.json();
+
+			const { error, errorCode: code } = body;
+
+			errorState.set(error);
+			errorCode.set(code);
+
+			return body;
+		} catch (error: any) {
+			errorState.set(true);
+			errorCode.set('EM-000');
+		} finally {
+			loading.set(false);
+		}
+	};
+
+	const onSaveClick = async () => {
+		let result = await updateTrip();
+		let toastMessage = `Trip ${result.data.name} saved successfully`;
+
+		const costCategoryPromises = newCostCategories.map(async (category, index) => {
+			if (category.isNew) {
+				createCostCategories(result.data.tripId, {
+					name: category.name,
+					color: newCostCategoryColors[index]
+				});
+			} else {
+				if (category.id) {
+					updateCostCategory({
+						id: category.id,
+						name: category.name,
+						color: newCostCategoryColors[index]
+					});
+				}
+			}
+		});
+
+		const userPromises = selectedUsers.map(async (participant) => {
+			if (participant.isNew) {
+				inviteUsers(result.data.tripId, { username: participant.name });
+			}
+		});
+
+		await Promise.all([...costCategoryPromises, ...userPromises]);
+
+		if (!$errorState) {
+			invalidateAll();
+			modalStore.close();
+		} else {
+			toastMessage = `Error: ${getErrorMessage($errorCode)}`;
+		}
+		modalStore.close();
+		const t: ToastSettings = {
+			message: toastMessage,
+			background: $errorState ? 'variant-filled-warning' : 'variant-filled-success'
+		};
+		toastStore.trigger(t);
+	};
 </script>
 
 <div class="card p-4 md:w-1/2">
@@ -25,7 +150,12 @@
 				{#if tabSet === 0}
 					<NewTripStep bind:newTrip />
 				{:else if tabSet === 1}
-					<AddCostCategories bind:newCostCategories bind:newCostCategoryColors />
+					<AddCostCategories
+						{newCostCategoryElements}
+						{existingCostCategoryElements}
+						bind:newCostCategories
+						bind:newCostCategoryColors
+					/>
 				{:else if tabSet === 2}
 					<InviteParticipantsStep bind:selectedUsers />
 				{/if}
@@ -46,7 +176,7 @@
 		<button
 			class="btn variant-filled"
 			on:click={() => {
-				//onFormSubmit();
+				onSaveClick();
 			}}
 		>
 			Save

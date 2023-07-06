@@ -35,3 +35,7 @@ export {
 	selectAllPeople
 } from './trips/costs/costAllocation';
 export { modifyCosts } from './trips/costs/modifyCostData';
+
+//REQUESTS
+export { createCostCategories } from './requests/createCostCategories';
+export { inviteUsers } from './requests/inviteUsers';

@@ -3,7 +3,7 @@
 	import type { NameExistsInterface } from '$tripDomain';
 	import { modifyUserSuggestions } from '$utils';
 	import { Autocomplete, type AutocompleteOption } from '@skeletonlabs/skeleton';
-	import { Trash } from '@steeze-ui/heroicons';
+	import { XMark } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
 
 	let inputValue = '';
@@ -68,7 +68,7 @@
 			{participant.name}
 			<button on:click={() => onRemoveInvitationClick(participant.name)}>
 				{#if participant.name !== $currentUser.username && participant.isNew}
-					<Icon src={Trash} class="w-6 h-6" />
+					<Icon src={XMark} class="w-6 h-6" />
 				{/if}
 			</button>
 		</span>
