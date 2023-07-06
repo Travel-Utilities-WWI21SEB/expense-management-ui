@@ -133,8 +133,10 @@
 </div>
 <!-- THEME SWITCH POPUP -->
 
-<button type="button" class="btn-icon variant-ringed my-auto" use:popup={themePopup}>
-	<span>
-		<Icon src={activeIcon} class={`w-6 h-6 ${activeClass}`} />
-	</span>
-</button>
+<div class="my-auto">
+	<button type="button" class="btn-icon variant-ringed my-auto" use:popup={themePopup}>
+		<span>
+			<Icon src={activeIcon} class={`w-6 h-6 ${activeClass}`} />
+		</span>
+	</button>
+</div>
