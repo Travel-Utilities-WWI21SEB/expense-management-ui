@@ -62,12 +62,12 @@
 		const result = await createTrip();
 		const invitationPromises = selectedUsers.map(async (participant) => {
 			if (participant.name !== $currentUser.username) {
-				await inviteUsers(result.data.tripId, { username: participant.name });
+				inviteUsers(result.data.tripId, { username: participant.name });
 			}
 		});
 
 		const costCategoryPromises = newCostCategories.map(async (category, index) => {
-			await createCostCategories(result.data.tripId, {
+			createCostCategories(result.data.tripId, {
 				name: category.name,
 				color: newCostCategoryColors[index]
 			});
