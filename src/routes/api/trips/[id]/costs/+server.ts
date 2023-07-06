@@ -2,7 +2,7 @@ import { PUBLIC_BASE_URL } from '$env/static/public';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from '../$types';
 
-export const POST: RequestHandler = async ({ url, fetch, request }) => {
+export const POST: RequestHandler = async ({ params, fetch, request }) => {
 	console.log('POST');
 	const requestBody = await request.json();
 	try {

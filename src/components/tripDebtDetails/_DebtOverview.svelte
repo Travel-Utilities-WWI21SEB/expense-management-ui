@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { AlertWithAction, DebtItemTripDetails } from '$components';
-	import { CostIcon } from '$icons';
 	import type { SortedDebts } from '$tripDomain';
+	import { Banknotes } from '@steeze-ui/heroicons';
 
 	export let debts: SortedDebts;
 
@@ -20,7 +20,7 @@
 		<AlertWithAction
 			alertHeading="This trip has no debts yet"
 			class="variant-ghost-primary"
-			icon={CostIcon}
+			icon={Banknotes}
 		/>
 	{:else}
 		<div class="grid grid-cols-1 gap-2">
@@ -30,7 +30,7 @@
 					<AlertWithAction
 						alertHeading="You get nothing"
 						class="variant-ghost-primary p-2 mt-2"
-						icon={CostIcon}
+						icon={Banknotes}
 					/>
 				{:else}
 					<span class="flex justify-center font-semibold">You get</span>
@@ -55,7 +55,7 @@
 					<AlertWithAction
 						alertHeading="You have to pay nothing"
 						class="variant-ghost-primary p-2"
-						icon={CostIcon}
+						icon={Banknotes}
 					/>
 				{:else}
 					<span class="flex justify-center font-semibold">You owe</span>

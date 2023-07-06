@@ -52,7 +52,6 @@ export { default as ParticipantIcon } from './tripDetails/_ParticipantIcon.svelt
 export { default as Participants } from './tripDetails/_Participants.svelte';
 export { default as TripDetailsSortingPopUp } from './tripDetails/_SortingPopUp.svelte';
 export { default as TripDetailsFilterPopUp } from './tripDetails/_FilterPopUp.svelte';
-export { default as TripDetailsSortingPopUp } from './tripDetails/_SortingPopUp.svelte';
 //Trip Debt Details
 export { default as DebtItemTripDetails } from './tripDebtDetails/_DebtItemTripDetails.svelte';
 export { default as DebtOverviewTripDetails } from './tripDebtDetails/_DebtOverview.svelte';

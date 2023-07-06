@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { invalidateAll } from '$app/navigation';
-	import { CheckIcon, CrossIcon } from '$icons';
-	import { errorMessage, errorState, loading } from '$stores';
+	import { errorCode, errorState, loading } from '$stores';
 	import type { NewTransaction, TravelData } from '$tripDomain';
 	import { validateNewTransaction } from '$utils';
 	import { modalStore, toastStore, type ToastSettings } from '@skeletonlabs/skeleton';
+	import { Check, XCircle } from '@steeze-ui/heroicons';
+	import { Icon } from '@steeze-ui/svelte-icon';
 
 	export let trip: TravelData;
 	export let currentUserId: string;
@@ -47,12 +48,12 @@
 			const { error, errorMessage: errorDisplayMessage } = body;
 
 			errorState.set(error);
-			errorMessage.set(errorDisplayMessage);
+			errorCode.set(errorDisplayMessage);
 
 			return body;
 		} catch (error: any) {
 			errorState.set(true);
-			errorMessage.set(error.message);
+			errorCode.set(error.errorCode);
 		} finally {
 			loading.set(false);
 		}
@@ -114,10 +115,12 @@
 	<ol class="list">
 		<li>
 			{#if !validData}
-				<span class="badge-icon variant-filled-error w-4 h-4"><CrossIcon /></span>
+				<span class="badge-icon variant-filled-error w-4 h-4"> <Icon src={XCircle} /> </span>
 				<span class="flex-auto">Please provide a valid transaction</span>
 			{:else}
-				<span class="badge-icon variant-filled-success w-4 h-4"><CheckIcon /></span>
+				<span class="badge-icon variant-filled-success w-4 h-4">
+					<Icon src={Check} />
+				</span>
 				<span class="flex-auto">New Transaction is valid</span>
 			{/if}
 		</li>

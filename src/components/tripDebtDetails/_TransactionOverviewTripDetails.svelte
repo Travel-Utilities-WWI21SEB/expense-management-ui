@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { AlertWithAction } from '$components';
-	import { CostIcon } from '$icons';
 	import type { TravelData, UserTransactions } from '$tripDomain';
 	import { modalStore, type ModalComponent, type ModalSettings } from '@skeletonlabs/skeleton';
 	import { AddNewTransactionModal } from '$components';
+	import { Banknotes } from '@steeze-ui/heroicons';
 
 	export let transactions: UserTransactions;
 	export let trip: TravelData;
@@ -35,7 +35,7 @@
 		<AlertWithAction
 			alertHeading="This trip has no transaction your included in yet"
 			class="variant-ghost-primary"
-			icon={CostIcon}
+			icon={Banknotes}
 		/>
 	{:else}
 		<div class="grid grid-cols-1 gap-2">
@@ -55,7 +55,7 @@
 					<AlertWithAction
 						alertHeading="You have to pay nothing"
 						class="variant-ghost-primary p-2"
-						icon={CostIcon}
+						icon={Banknotes}
 					/>
 				{:else}
 					<span class="flex justify-center font-semibold">History</span>

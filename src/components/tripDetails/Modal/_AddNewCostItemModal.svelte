@@ -105,8 +105,9 @@
 	async function onFormSubmit(): Promise<void> {
 		const result = await createCost(cost, trip, costPaidForUser);
 
+		let error = getErrorMessage(result.errorCode);
 		const message = result.error
-			? `Error: ${getErrorMessage(result.errorCode)}`
+			? `Error: ${error}`
 			: `Cost ${result.data.description} created successfully`;
 		const t: ToastSettings = {
 			message: message,
