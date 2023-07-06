@@ -10,7 +10,8 @@
 	import type { Cost, TravelData } from '$tripDomain';
 	import type { ModalComponent, ModalSettings, PopupSettings } from '@skeletonlabs/skeleton';
 	import { Paginator, modalStore, popup } from '@skeletonlabs/skeleton';
-	import { Banknotes } from '@steeze-ui/heroicons';
+	import { Banknotes, Plus } from '@steeze-ui/heroicons';
+	import { Icon } from '@steeze-ui/svelte-icon';
 
 	export let costs: Array<Cost>;
 	export let trip: TravelData;
@@ -63,7 +64,9 @@
 	<div class="flex justify-between pt-4 px-4">
 		<h3 class="h3">Costs</h3>
 		<button type="button" class="btn variant-filled" on:click={addNewCostItem}>
-			<span>+</span>
+			<span>
+				<Icon src={Plus} class="w-6 h-6" />
+			</span>
 			<span>Add</span>
 		</button>
 	</div>
