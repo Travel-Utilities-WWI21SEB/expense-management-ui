@@ -60,23 +60,20 @@
 	// We've created a custom submit function to pass the response and close the modal.
 	async function onFormSubmit(): Promise<void> {
 		const result = await createTrip();
+		const invitationPromises = selectedUsers.map(async (participant) => {
+			if (participant.name !== $currentUser.username) {
+				await inviteUsers(result.data.tripId, { username: participant.name });
+			}
+		});
 
-		await Promise.all(
-			selectedUsers.map(async (participant) => {
-				if (participant.name !== $currentUser.username) {
-					await inviteUsers(result.data.tripId, { username: participant.name });
-				}
-			})
-		);
+		const costCategoryPromises = newCostCategories.map(async (category, index) => {
+			await createCostCategories(result.data.tripId, {
+				name: category.name,
+				color: newCostCategoryColors[index]
+			});
+		});
 
-		await Promise.all(
-			newCostCategories.map(async (category, index) => {
-				await createCostCategories(result.data.tripId, {
-					name: category.name,
-					color: newCostCategoryColors[index]
-				});
-			})
-		);
+		await Promise.all([...invitationPromises, ...costCategoryPromises]);
 
 		const message = result.error
 			? `Error: ${result.errorMessage}`

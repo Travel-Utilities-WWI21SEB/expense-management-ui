@@ -116,13 +116,13 @@
 			}
 		});
 
-		const userPromises = selectedUsers.map(async (participant) => {
+		const invitationPromises = selectedUsers.map(async (participant) => {
 			if (participant.isNew) {
 				inviteUsers(result.data.tripId, { username: participant.name });
 			}
 		});
 
-		await Promise.all([...costCategoryPromises, ...userPromises]);
+		await Promise.all([...costCategoryPromises, ...invitationPromises]);
 
 		if (!$errorState) {
 			invalidateAll();
