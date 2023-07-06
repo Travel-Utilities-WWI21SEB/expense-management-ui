@@ -16,12 +16,17 @@
 		type ModalComponent,
 		type ModalSettings,
 		type ToastSettings,
-		toastStore
+		toastStore,
+		SlideToggle,
+		TabAnchor,
+		TabGroup
 	} from '@skeletonlabs/skeleton';
 	import { Pencil } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
 
 	export let trip: TravelData;
+
+	let isCostsPage = $page.url.pathname.includes('costs');
 
 	$: buttonInfo = {
 		text: $page.url.pathname.includes('debts') ? 'Costs' : 'Debts',
@@ -151,6 +156,24 @@
 				>
 					<Icon src={Pencil} class="w-6 h-6" />
 				</button>
+			</div>
+		</span>
+		<span slot="toggle">
+			<div class="h-full flex items-center justify-center">
+				<TabGroup justify="justify-center">
+					<TabAnchor
+						href="/trips/{trip.tripId}/costs"
+						selected={$page.url.pathname.includes('costs')}
+					>
+						<span>Costs</span>
+					</TabAnchor>
+					<TabAnchor
+						href="/trips/{trip.tripId}/debts"
+						selected={$page.url.pathname.includes('debts')}
+					>
+						<span>Debts</span>
+					</TabAnchor>
+				</TabGroup>
 			</div>
 		</span>
 	</HeaderTripDetailsLayout>

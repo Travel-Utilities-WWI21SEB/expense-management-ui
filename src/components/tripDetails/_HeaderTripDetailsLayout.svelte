@@ -5,4 +5,5 @@
 		<slot name="people" />
 	</div>
 	<div class="md:col-start-7"><slot name="actions" /></div>
+	<div class="md:col-span-7"><slot name="toggle" /></div>
 </div>
