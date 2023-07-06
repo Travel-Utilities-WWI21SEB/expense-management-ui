@@ -1,15 +1,9 @@
 <script lang="ts">
-	import { AlertWithAction, DebtItemTripDetails } from '$components';
+	import { ImformationAlertWithAction, DebtItemTripDetails } from '$components';
 	import type { SortedDebts } from '$tripDomain';
 	import { Banknotes } from '@steeze-ui/heroicons';
 
 	export let debts: SortedDebts;
-
-	let selectionIndex = -1;
-
-	const handleSelectItem = (event: CustomEvent<any>) => {
-		selectionIndex = event.detail.index;
-	};
 </script>
 
 <div class="card h-full p-4">
@@ -17,7 +11,7 @@
 		<h3 class="h3">Debts</h3>
 	</div>
 	{#if debts.creditorDebts.length === 0 && debts.debitorDebts.length === 0}
-		<AlertWithAction
+		<ImformationAlertWithAction
 			alertHeading="This trip has no debts yet"
 			class="variant-ghost-primary"
 			icon={Banknotes}
@@ -27,7 +21,7 @@
 			<div>
 				{#if debts.creditorDebts.length === 0}
 					<span class="flex justify-center invisible">Placeholder</span>
-					<AlertWithAction
+					<ImformationAlertWithAction
 						alertHeading="You get nothing"
 						class="variant-ghost-primary p-2 mt-2"
 						icon={Banknotes}
@@ -37,13 +31,7 @@
 					<ul class="list p-2 max-h-[500px] overflow-auto">
 						{#each debts.creditorDebts as debt, i}
 							<li>
-								<DebtItemTripDetails
-									isDebt={false}
-									{debt}
-									{i}
-									{selectionIndex}
-									on:select_item={(e) => handleSelectItem(e)}
-								/>
+								<DebtItemTripDetails isDebt={false} {debt} {i} />
 							</li>
 						{/each}
 					</ul>
@@ -52,7 +40,7 @@
 			<div>
 				{#if debts.debitorDebts.length === 0}
 					<span class="flex justify-center invisible">Placeholder</span>
-					<AlertWithAction
+					<ImformationAlertWithAction
 						alertHeading="You have to pay nothing"
 						class="variant-ghost-primary p-2"
 						icon={Banknotes}
@@ -62,13 +50,7 @@
 					<ul class="list p-2 max-h-[500px] overflow-auto">
 						{#each debts.debitorDebts as debt, i}
 							<li>
-								<DebtItemTripDetails
-									isDebt={true}
-									{debt}
-									{i}
-									{selectionIndex}
-									on:select_item={(e) => handleSelectItem(e)}
-								/>
+								<DebtItemTripDetails isDebt={true} {debt} {i} />
 							</li>
 						{/each}
 					</ul>

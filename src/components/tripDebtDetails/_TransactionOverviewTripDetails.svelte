@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { AlertWithAction } from '$components';
+	import { ImformationAlertWithAction, TransactionItemTripDetails } from '$components';
 	import type { TravelData, UserTransactions } from '$tripDomain';
 	import { modalStore, type ModalComponent, type ModalSettings } from '@skeletonlabs/skeleton';
 	import { AddNewTransactionModal } from '$components';
@@ -32,7 +32,7 @@
 		</button>
 	</div>
 	{#if transactions.confirmedTransactions.length === 0 && transactions.unconfirmedTransactions.length === 0}
-		<AlertWithAction
+		<ImformationAlertWithAction
 			alertHeading="This trip has no transaction your included in yet"
 			class="variant-ghost-primary"
 			icon={Banknotes}
@@ -44,7 +44,7 @@
 					<span class="flex justify-center font-semibold">Transaction you can confirm</span>
 					<ul class="list p-2 max-h-[500px] overflow-auto">
 						{#each transactions.unconfirmedTransactions as transaction, i}
-							<li>//item</li>
+							<li><TransactionItemTripDetails {transaction} needsConfirmation={true} /></li>
 						{/each}
 					</ul>
 				{/if}
@@ -52,8 +52,8 @@
 			<div>
 				{#if transactions.confirmedTransactions.length === 0}
 					<span class="flex justify-center invisible">Placeholder</span>
-					<AlertWithAction
-						alertHeading="You have to pay nothing"
+					<ImformationAlertWithAction
+						alertHeading="There is no history of transactions youre included in yet"
 						class="variant-ghost-primary p-2"
 						icon={Banknotes}
 					/>
@@ -61,7 +61,7 @@
 					<span class="flex justify-center font-semibold">History</span>
 					<ul class="list p-2 max-h-[500px] overflow-auto">
 						{#each transactions.confirmedTransactions as transaction, i}
-							<li>//item</li>
+							<li><TransactionItemTripDetails {transaction} needsConfirmation={false} /></li>
 						{/each}
 					</ul>
 				{/if}

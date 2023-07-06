@@ -15,6 +15,8 @@ export interface Transaction {
 		startDate: string;
 		tripId: string;
 	};
+	isDebt: boolean;
+	createdAt: string;
 }
 
 export interface NewTransaction {

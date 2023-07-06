@@ -1,21 +1,13 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
 	import type { Debt } from '$tripDomain';
 	import { modalStore, type ModalSettings, type ModalComponent } from '@skeletonlabs/skeleton';
 	import { DebtItemModalTripDetails, ParticipantIconDebt } from '$components';
 
 	export let debt: Debt;
 	export let i: number;
-	export let selectionIndex: number;
 	export let isDebt: boolean;
 
-	const dispatch = createEventDispatcher();
-
 	function selectListItem(i: number) {
-		dispatch('select_item', {
-			index: i
-		});
-
 		const modal: ModalSettings = {
 			type: 'component',
 			component: modalComponent
@@ -31,9 +23,7 @@
 
 {#if isDebt}
 	<button
-		class="card card-hover hover:bg-error-100 hover:dark:text-error-900 w-full {selectionIndex === i
-			? 'bg-error-200  outline outline-1'
-			: ''}"
+		class="card card-hover hover:bg-error-100 hover:dark:text-error-900 w-full"
 		on:click={() => selectListItem(i)}
 	>
 		<div class="grid grid-cols-12 md:gap-2">
@@ -52,10 +42,7 @@
 	</button>
 {:else}
 	<button
-		class="card card-hover hover:bg-success-100 hover:dark:text-success-900 w-full {selectionIndex ===
-		i
-			? 'bg-success-200  outline outline-1'
-			: ''}"
+		class="card card-hover hover:bg-success-100 hover:dark:text-success-900 w-full"
 		on:click={() => selectListItem(i)}
 	>
 		<div class="grid grid-cols-12 md:gap-2">
