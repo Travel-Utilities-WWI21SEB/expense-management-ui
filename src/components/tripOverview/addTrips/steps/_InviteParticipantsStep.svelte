@@ -1,11 +1,13 @@
 <script lang="ts">
-	import { currentUser, errorCode, errorState, loading, selectedUsers } from '$stores';
+	import { currentUser, errorCode, errorState, loading } from '$stores';
+	import type { NameExistsInterface } from '$tripDomain';
 	import { modifyUserSuggestions } from '$utils';
 	import { Autocomplete, type AutocompleteOption } from '@skeletonlabs/skeleton';
 	import { XMark } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
 
 	let inputValue = '';
+	export let selectedUsers: Array<NameExistsInterface>;
 
 	const suggestUsers = async (input: string) => {
 		loading.set(true);
@@ -32,13 +34,13 @@
 	let options: AutocompleteOption[] = [];
 
 	function onSelection(event: any): void {
-		if ($selectedUsers.indexOf(event.detail.label) === -1)
-			selectedUsers.set([...$selectedUsers, event.detail.label]);
+		if (selectedUsers.indexOf(event.detail.label) === -1)
+			selectedUsers = [...selectedUsers, { name: event.detail.label, isNew: true }];
 	}
 
 	const onRemoveInvitationClick = (name: string) => {
 		if (name !== $currentUser.username) {
-			selectedUsers.set($selectedUsers.filter((m) => m !== name));
+			selectedUsers = selectedUsers.filter((m) => m.name !== name);
 		}
 	};
 
@@ -61,11 +63,11 @@
 	<Autocomplete bind:input={inputValue} {options} on:selection={onSelection} />
 </div>
 <div class="h-auto p-4" tabindex="-1">
-	{#each $selectedUsers as name}
+	{#each selectedUsers as participant}
 		<span class="m-4 chip variant-filled h-8">
-			{name}
-			<button on:click={() => onRemoveInvitationClick(name)}>
-				{#if name !== $currentUser.username}
+			{participant.name}
+			<button on:click={() => onRemoveInvitationClick(participant.name)}>
+				{#if participant.name !== $currentUser.username && participant.isNew}
 					<Icon src={XMark} class="w-6 h-6" />
 				{/if}
 			</button>

@@ -80,7 +80,7 @@
 					"ongoingValidation": "Überprüfung der Verfügbarkeit...",
 					"available": "Diese E-Mail ist verfügbar",
 					"unavailable": "Diese E-Mail ist bereits vergeben",
-					"nextStep": "Wählen Sie Ihren Benutzernamen"
+					"nextStep": "Nächster Schritt"
 				},
 				"username": {
 					"title": "Wählen Sie Ihren Benutzernamen",
@@ -91,7 +91,7 @@
 					"ongoingValidation": "Überprüfung der Verfügbarkeit...",
 					"available": "Dieser Benutzername ist verfügbar",
 					"unavailable": "Dieser Benutzername ist bereits vergeben",
-					"nextStep": "Wählen Sie Ihr Passwort"
+					"nextStep": "Nächster Schritt"
 				},
 				"password": {
 					"title": "Wählen Sie Ihr Passwort",
@@ -135,12 +135,12 @@
 						"title": "Was ist Ihre E-Mail-Adresse?",
 						"invalidEmail": "Bitte geben Sie eine gültige E-Mail an",
 						"validEmail": "E-Mail ist gültig",
-						"nextStep": "Erhalte Rücksetz-Code"
+						"nextStep": "Code anfordern"
 					},
 					"token": {
 						"alertHeading": "Etwas ist schief gelaufen!",
 						"alertMessage": "Versuchen Sie es erneut",
-						"nextStep": "Neues Passwort eingeben"
+						"nextStep": "Bestätigen"
 					},
 					"password": {
 						"title": "Neues Passwort festlegen",

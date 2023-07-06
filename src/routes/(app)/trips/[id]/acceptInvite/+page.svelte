@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { currentTrip, errorCode, errorState, loading } from '$stores';
+	import { errorCode, errorState, loading } from '$stores';
 	import type { TravelData } from '$tripDomain';
 	import { getErrorMessage } from '$utils';
 	import { XMark } from '@steeze-ui/heroicons';
@@ -8,10 +8,6 @@
 	import type { PageData } from './$types';
 
 	export let data: PageData;
-
-	const onRejectClick = () => {
-		goto('/trips');
-	};
 
 	const acceptTrip = async (currentTrip: TravelData) => {
 		loading.set(true);
@@ -38,11 +34,43 @@
 		}
 	};
 
+	const rejectTrip = async (currentTrip: TravelData) => {
+		loading.set(true);
+		errorState.set(false);
+		try {
+			const response = await fetch(`/api/trips/${currentTrip.tripId}/decline`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({ body: presenceTimes, id: currentTrip.tripId })
+			});
+
+			const body = await response.json();
+			const { error, errorCode: code } = body;
+
+			errorState.set(error);
+			errorCode.set(code);
+		} catch (error: any) {
+			errorState.set(true);
+			errorCode.set('EM-000');
+		} finally {
+			loading.set(false);
+		}
+	};
+
+	const onRejectClick = async () => {
+		await rejectTrip(data.tripData);
+		if (!$errorState) {
+			goto('/trips');
+		}
+	};
+
 	const onAcceptClick = async () => {
-		await acceptTrip($currentTrip);
+		await acceptTrip(data.tripData);
 
 		if (!$errorState) {
-			goto(`/trips/${$currentTrip.tripId}`);
+			goto(`/trips/${data.tripData.tripId}`);
 		}
 	};
 
@@ -50,6 +78,10 @@
 		presenceStartDate: data.tripData.startDate.toISOString().substring(0, 10),
 		presenceEndDate: data.tripData.endDate.toISOString().substring(0, 10)
 	};
+
+	if (data.tripData.hasAcceptedInvite) {
+		goto(`/trips/${data.tripData.tripId}`);
+	}
 </script>
 
 <div class="modal-form card m-8 p-4 space-y-4 lg:mx-64 lg:my-28">

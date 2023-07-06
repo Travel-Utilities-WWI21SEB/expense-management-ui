@@ -4,6 +4,7 @@
 		ListBox,
 		ListBoxItem,
 		getModeOsPrefers,
+		modeCurrent,
 		popup,
 		setInitialClassState,
 		setModeCurrent,
@@ -85,10 +86,21 @@
 
 	// Lifecycle
 	onMount(() => {
-		// Sync lightswitch with the theme
-		if (!('modeCurrent' in localStorage)) {
-			setModeCurrent(getModeOsPrefers());
+		if ($activeTheme !== '') {
+			let newTheme = $activeTheme === 'system' ? getModeOsPrefers() : $activeTheme === 'light';
+			setModeCurrent(newTheme);
+			return;
 		}
+
+		if ('modeUserPrefers' in localStorage) {
+			setModeCurrent(JSON.parse(localStorage.getItem('modeUserPrefers') as string));
+		} else {
+			setModeCurrent(getModeOsPrefers());
+			activeTheme.set('system');
+			return;
+		}
+
+		activeTheme.set($modeCurrent ? 'light' : 'dark');
 	});
 </script>
 
@@ -121,8 +133,10 @@
 </div>
 <!-- THEME SWITCH POPUP -->
 
-<button type="button" class="btn-icon variant-ringed my-auto" use:popup={themePopup}>
-	<span>
-		<Icon src={activeIcon} class={`w-6 h-6 ${activeClass}`} />
-	</span>
-</button>
+<div class="my-auto">
+	<button type="button" class="btn-icon variant-ringed my-auto" use:popup={themePopup}>
+		<span>
+			<Icon src={activeIcon} class={`w-6 h-6 ${activeClass}`} />
+		</span>
+	</button>
+</div>
