@@ -36,15 +36,27 @@
 		}
 	};
 
-	const confirmTransaction = () => {
+	const postConfirmTransaction = async () => {
 		console.log('confirm transaction');
+		return { error: false };
+	};
+
+	const confirmTransaction = async () => {
+		const result = await postConfirmTransaction();
+
+		if (!result.error) {
+			await invalidateAll();
+			modalStore.close();
+		}
 	};
 
 	const rejectTransaction = async () => {
 		const result = await deleteTransaction(transaction.transactionId, transaction.trip.tripId);
 
-		const error = getErrorMessage(result.errorCode);
-		const message = result.error ? `Error: ${error}` : `Transaction  deleted successfully`;
+		const { errorCode } = result;
+		const message = result.error
+			? `Error: ${getErrorMessage(errorCode)}`
+			: `Transaction  deleted successfully`;
 		const t: ToastSettings = {
 			message: message,
 			background: result.error ? 'variant-filled-warning' : 'variant-filled-success'

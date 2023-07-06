@@ -45,7 +45,7 @@
 
 			const body = await costsResponse.json();
 
-			const { error, errorMessage: errorDisplayMessage } = body;
+			const { error, errorCode: errorDisplayMessage } = body;
 
 			errorState.set(error);
 			errorCode.set(errorDisplayMessage);

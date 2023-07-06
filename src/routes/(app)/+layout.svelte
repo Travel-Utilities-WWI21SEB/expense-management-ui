@@ -9,7 +9,7 @@
 </Drawer>
 <!-- MOBILE ONLY! -->
 
-<Toast zIndex="z-[999]" />
+<Toast zIndex="z-[1000]" />
 
 <!-- MODAL PLACEHOLDER -->
 <Modal />

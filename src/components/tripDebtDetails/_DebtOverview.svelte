@@ -19,14 +19,7 @@
 	{:else}
 		<div class="grid grid-cols-1 gap-2">
 			<div>
-				{#if debts.creditorDebts.length === 0}
-					<span class="flex justify-center invisible">Placeholder</span>
-					<ImformationAlertWithAction
-						alertHeading="You get nothing"
-						class="variant-ghost-primary p-2 mt-2"
-						icon={Banknotes}
-					/>
-				{:else}
+				{#if debts.creditorDebts.length !== 0}
 					<span class="flex justify-center font-semibold">You get</span>
 					<ul class="list p-2 max-h-[500px] overflow-auto">
 						{#each debts.creditorDebts as debt, i}
@@ -38,14 +31,7 @@
 				{/if}
 			</div>
 			<div>
-				{#if debts.debitorDebts.length === 0}
-					<span class="flex justify-center invisible">Placeholder</span>
-					<ImformationAlertWithAction
-						alertHeading="You have to pay nothing"
-						class="variant-ghost-primary p-2"
-						icon={Banknotes}
-					/>
-				{:else}
+				{#if debts.debitorDebts.length !== 0}
 					<span class="flex justify-center font-semibold">You owe</span>
 					<ul class="list p-2 max-h-[500px] overflow-auto">
 						{#each debts.debitorDebts as debt, i}

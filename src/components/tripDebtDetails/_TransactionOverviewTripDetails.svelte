@@ -50,14 +50,7 @@
 				{/if}
 			</div>
 			<div>
-				{#if transactions.confirmedTransactions.length === 0}
-					<span class="flex justify-center invisible">Placeholder</span>
-					<ImformationAlertWithAction
-						alertHeading="There is no history of transactions youre included in yet"
-						class="variant-ghost-primary p-2"
-						icon={Banknotes}
-					/>
-				{:else}
+				{#if transactions.confirmedTransactions.length !== 0}
 					<span class="flex justify-center font-semibold">History</span>
 					<ul class="list p-2 max-h-[500px] overflow-auto">
 						{#each transactions.confirmedTransactions as transaction, i}
