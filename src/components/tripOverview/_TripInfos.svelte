@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { TravelData } from '$tripDomain';
 	import { calculateDate } from '$utils';
+	import { i } from '@inlang/sdk-js';
 
 	export let trip: TravelData;
 </script>
@@ -9,5 +10,5 @@
 	{`${calculateDate(trip.startDate)} - ${calculateDate(trip.endDate)}`}
 </p>
 <p>
-	Location: {trip.location}
+	{i("tripOverview.tripCard.location")} {trip.location}
 </p>

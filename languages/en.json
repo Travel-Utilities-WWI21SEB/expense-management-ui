@@ -236,10 +236,63 @@
 		}
 	},
 	"tripOverview": {
-		"HeaderBar": {},
-		"TripCard": {},
 		"errorCode": "404",
 		"noTripsText": "You don't have any trips yet",
-		"noTripsExplanation": "Please start adding trips by clicking on the button in the top right corner"
+		"noTripsExplanation": "Please start adding trips by clicking on the button in the top right corner",
+		"headerTitle": "Your Trips",
+		"addTripButton": "Add Trip",
+		"addTripModal": {
+			"title": "Add new Trip",
+			"tripDetailsTitle": "Trip Details",
+			"headline": "",
+			"nameFieldTitle": "Name",
+			"nameInField": "Enter name...",
+			"locationFieldTitle": "Location",
+			"locationInField": "Enter location...",
+			"startDateFieldTitle": "Start Date",
+			"endDateFieldTitle": "End Date",
+			"backButton": "Back",
+			"nextButton": "Next",
+			"costCategoriesTitle": "Add Cost Categories",
+			"costCategoriesInField": "Create your own cost category...",
+			"colorChangeExplanation": "You can change the color by clicking on the category!",
+			"foodCategory": "Food",
+			"mobilityCategory": "Mobility",
+			"completeButton": "Complete",
+			"iviteParticitpatsTitle": "Invite Participants",
+			"iviteParticitpatsInField": "Enter email or user name...",
+			"noResultsMessage": "No Results Found."
+		},
+		"tripCard":{
+			"totalCost": "Total Cost: ",
+			"location": "Location:",
+			"nothingToGet": "Nothing to get",
+			"youGet": "You will get  ",
+			"nothingToPay": "Nothing to pay",
+			"youPay": "You still need to pay ",
+			"members": "Members",
+			"noAccessMessage": "No Access To Data"
+		}
+	},
+	"costOverview":{
+		"headerTitle": "Your Cost Overview",
+		"noCostsYet":{
+			"errorCode": "404",
+			"noCostsText": "You don't have any costs yet",
+			"noCostsExplanation": "You can start adding costs by creating a trip and adding costs to it.",
+			"createTripButton": "Create A Trip"
+		},
+		"totalCots": "Total Costs",
+		"averageCosts": "Average Trip Costs",
+		"across": "across",
+		"averageContributionToolTip": "The average percentage of expenses you contribute to each trip, calculated based on your total contributions.",
+		"trip": "trip",
+		"ending": "s",
+		"averageContribution": "Average Contribution Percentage",
+		"costDistribution": "Cost Distribution",
+		"tripDistribution": "Trip Distribution",
+		"mostExpensiveTrip": "Most Expensive Trip",
+		"leastExpensiveTrip": "Least Expensive Trip"	
+
 	}
 }

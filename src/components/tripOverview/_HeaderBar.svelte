@@ -6,6 +6,7 @@
 		type ModalComponent,
 		type ModalSettings
 	} from '@skeletonlabs/skeleton';
+	import {i} from '@inlang/sdk-js';
 	import { Plus } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
 
@@ -23,7 +24,7 @@
 			type: 'component',
 			// Pass the component registry key as a string:
 			component: 'AddTripForm',
-			title: 'Add new Trip'
+			title: i('tripOverview.addTripModal.title')
 		};
 		modalStore.trigger(modal);
 	}
@@ -33,7 +34,7 @@
 <h1 class="h1 col-start-1">
 	<span
 		class="bg-gradient-to-br from-primary-800 to-primary-400 bg-clip-text text-transparent box-decoration-clone"
-		>Your trips</span
+		>{i('tripOverview.headerTitle')}</span
 	>
 </h1>
 <button
@@ -44,5 +45,5 @@
 	<span>
 		<Icon src={Plus} class="w-6 h-6" />
 	</span>
-	<span>Add Trip</span>
+	<span>{i('tripOverview.addTripButton')}</span>
 </button>

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { NewTripInputs } from '$tripDomain';
+	import {i} from '@inlang/sdk-js';
 
 	export let newTrip: NewTripInputs;
 
@@ -12,20 +13,20 @@
 
 <form class="modal-form p-4 space-y-4">
 	<label class="label">
-		<span>Name</span>
-		<input class="input" type="text" bind:value={newTrip.name} placeholder="Enter name..." />
+		<span>{i("tripOverview.addTripModal.nameFieldTitle")}</span>
+		<input class="input" type="text" bind:value={newTrip.name} placeholder={i("tripOverview.addTripModal.nameInField")} />
 	</label>
 	<label class="label">
-		<span>Location</span>
+		<span>{i("tripOverview.addTripModal.locationFieldTitle")}</span>
 		<input
 			class="input"
 			type="text"
 			bind:value={newTrip.location}
-			placeholder="Enter location..."
+			placeholder="{i("tripOverview.addTripModal.locationInField")}"
 		/>
 	</label>
 	<label class="label">
-		<span>Start Date:</span>
+		<span>{i("tripOverview.addTripModal.startDateFieldTitle")}</span>
 		<input
 			min={new Date(Date.now()).toISOString().substring(0, 10)}
 			class="input"
@@ -36,7 +37,7 @@
 		/>
 	</label>
 	<label class="label">
-		<span>End Date:</span>
+		<span>{i("tripOverview.addTripModal.endDateFieldTitle")}</span>
 		<input
 			min={newTrip.startDate}
 			class="input"

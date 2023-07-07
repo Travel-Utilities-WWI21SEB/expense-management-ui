@@ -5,6 +5,7 @@
 	import { Autocomplete, type AutocompleteOption } from '@skeletonlabs/skeleton';
 	import { XMark } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
+	import { i } from '@inlang/sdk-js';
 
 	let inputValue = '';
 	export let selectedUsers: Array<NameExistsInterface>;
@@ -57,10 +58,10 @@
 	name="demo"
 	bind:value={inputValue}
 	on:input={onSearchInput}
-	placeholder="Search..."
+	placeholder={i('tripOverview.addTripModal.iviteParticitpatsInField')}
 />
 <div class="card overflow-y-auto h-auto max-h-32">
-	<Autocomplete bind:input={inputValue} {options} on:selection={onSelection} />
+	<Autocomplete bind:input={inputValue} {options} on:selection={onSelection} emptyState={i('tripOverview.addTripModal.noResultsMessage')}/>
 </div>
 <div class="h-auto p-4" tabindex="-1">
 	{#each selectedUsers as participant}

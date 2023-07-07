@@ -2,6 +2,7 @@
 	import type { NameExistsInterface } from '$tripDomain';
 	import { XMark } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
+	import { i } from '@inlang/sdk-js';
 
 	let inputValue = '';
 
@@ -29,19 +30,19 @@
 	name="demo"
 	bind:value={inputValue}
 	on:change={onSelection}
-	placeholder="Input new Cost Category"
+	placeholder={i("tripOverview.addTripModal.costCategoriesInField")}
 />
 <div class="h-auto p-4" tabindex="-1">
 	{#if newCostCategoryElements.length > 0}
-		<p>You can change the color by clicking!</p>
+		<p>{i("tripOverview.addTripModal.colorChangeExplanation")}</p>
 	{/if}
-	{#each newCostCategories as category, i}
+	{#each newCostCategories as category, id}
 		{#if category.isNew}
 			<button
 				class="m-4 chip variant-filled h-8"
-				style="background-color: {newCostCategoryColors[i]};"
+				style="background-color: {newCostCategoryColors[id]};"
 				on:click={() => {
-					document.getElementById(`nativeColorPicker${i}`)?.click();
+					document.getElementById(`nativeColorPicker${id}`)?.click();
 				}}
 			>
 				{category.name}
@@ -55,11 +56,11 @@
 		<hr class="!border-t-4 my-4" />
 	{/if}
 	<div class="lg:grid lg:grid-cols-2 lg:gap-4">
-		{#each newCostCategories as category, i}
+		{#each newCostCategories as category, id}
 			{#if category.isNew}
 				<input
-					id={`nativeColorPicker${i}`}
-					bind:value={newCostCategoryColors[i]}
+					id={`nativeColorPicker${id}`}
+					bind:value={newCostCategoryColors[id]}
 					type="color"
 					class="opacity-0 h-0"
 				/>
@@ -68,8 +69,8 @@
 					<input type="search" bind:value={category.name} placeholder="Change category..." />
 					<div>
 						<input
-							id={`nativeColorPicker${i}`}
-							bind:value={newCostCategoryColors[i]}
+							id={`nativeColorPicker${id}`}
+							bind:value={newCostCategoryColors[id]}
 							type="color"
 							class="h-full w-full"
 						/>

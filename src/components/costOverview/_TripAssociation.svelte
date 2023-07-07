@@ -3,6 +3,7 @@
 	import { GlobeAsiaAustralia, GlobeEuropeAfrica } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { formatCostString } from '../../utils/cost/formatCostString';
+	import { i } from '@inlang/sdk-js';
 
 	export let costOverview: CostOverview;
 	export let leastExpensiveTrip: boolean;
@@ -11,7 +12,7 @@
 		? costOverview.leastExpensiveTrip
 		: costOverview.mostExpensiveTrip;
 
-	const title = leastExpensiveTrip ? 'Least expensive trip' : 'Most expensive trip';
+	const title = leastExpensiveTrip ? i("costOverview.leastExpensiveTrip") : i("costOverview.mostExpensiveTrip");
 	const formattedCostString = formatCostString(trip.amount);
 	const icon = leastExpensiveTrip ? GlobeAsiaAustralia : GlobeEuropeAfrica;
 </script>
