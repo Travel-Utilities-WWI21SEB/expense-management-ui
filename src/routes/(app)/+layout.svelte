@@ -15,7 +15,7 @@
 <Modal />
 <!-- MODAL PLACEHOLDER -->
 
-<AppShell slotSidebarLeft="bg-surface-500/25 w-0 lg:w-2/12 border-r border-current">
+<AppShell slotSidebarLeft="bg-surface-500/25 w-0 lg:w-2/12 lg:border-r lg:border-current">
 	<!-- Header -->
 	<svelte:fragment slot="pageHeader">
 		<Header />
