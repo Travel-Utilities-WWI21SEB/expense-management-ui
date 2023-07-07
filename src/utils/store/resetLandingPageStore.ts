@@ -4,7 +4,10 @@ import {
 	emailValid,
 	errorCode,
 	errorState,
+	firstName,
+	lastName,
 	loading,
+	location,
 	notActivatedAlert,
 	notActivatedWorkflow,
 	password,
@@ -15,6 +18,7 @@ import {
 	username,
 	usernameValid
 } from '$stores';
+import { birthDate } from '../../stores/landingPageStore';
 
 export function resetLandingPageStore() {
 	errorCode.set('');
@@ -27,6 +31,11 @@ export function resetLandingPageStore() {
 
 	username.set('');
 	usernameValid.set(false);
+
+	firstName.set('');
+	lastName.set('');
+	location.set('');
+	birthDate.set('');
 
 	email.set('');
 	emailValid.set(false);

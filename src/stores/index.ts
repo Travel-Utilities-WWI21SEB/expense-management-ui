@@ -1,6 +1,7 @@
 // Landing page store
 export {
 	activeTheme,
+	birthDate,
 	contactTimer,
 	correctToken,
 	email,
@@ -8,6 +9,7 @@ export {
 	errorCode,
 	errorState,
 	firstName,
+	imageUrl,
 	lastName,
 	loading,
 	location,
