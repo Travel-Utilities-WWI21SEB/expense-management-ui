@@ -3,25 +3,13 @@ import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
 export const POST: RequestHandler = async ({ fetch, request }) => {
-	const body = await request.json();
-	const { email, password, username, firstName, lastName, location, birthday, createdAt } = body;
+	// Get multipart form data
+	const formData = await request.formData();
 
 	try {
 		const response = await fetch(`${PUBLIC_BASE_URL}/api/v1/users/register`, {
 			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				email,
-				password,
-				username,
-				firstName,
-				lastName,
-				location,
-				birthday,
-				createdAt
-			})
+			body: formData
 		});
 
 		if (response.status === 201 || response.status === 206) {

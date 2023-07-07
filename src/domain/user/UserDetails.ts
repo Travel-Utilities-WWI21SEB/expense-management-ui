@@ -1,8 +1,9 @@
 export interface UserDetails {
+	id: string;
 	firstName: string;
 	lastName: string;
 	location: string;
-	userName: string;
+	username: string;
 	email: string;
 	birthday: string;
 	profilePicture: string;

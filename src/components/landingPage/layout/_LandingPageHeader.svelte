@@ -1,24 +1,18 @@
 <script lang="ts">
 	import { LanguageSelector, ThemeSwitcher } from '$components';
 	import { DarkIcon, LightIcon } from '$icons';
+	import { activeTheme } from '$stores';
 	import { AppBar, getModeOsPrefers } from '@skeletonlabs/skeleton';
-	import { activeTheme } from '../../../stores/landingPageStore';
 
 	const icons = [
 		{ theme: 'dark', component: DarkIcon },
 		{ theme: 'light', component: LightIcon }
 	];
 
-	const mapTheme = (bool: boolean) => {
-		console.log('checking bool', bool);
-		console.log('checking bool', bool ? 'light' : 'dark');
-		return bool ? 'light' : 'dark';
-	};
+	const mapTheme = (bool: boolean) => (bool ? 'light' : 'dark');
 
 	$: currentTheme = $activeTheme === 'system' ? mapTheme(getModeOsPrefers()) : $activeTheme;
-	$: console.log('active theme', $activeTheme);
 	$: activeIcon = icons.find((icon) => icon.theme === currentTheme)?.component;
-	$: console.log('active icon', activeIcon?.name);
 </script>
 
 <AppBar

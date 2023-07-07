@@ -1,10 +1,23 @@
 <script lang="ts">
 	import { DataStep, EmailStep, PasswordStep, TokenStep, UsernameStep } from '$components';
-	import { email, errorCode, errorState, loading, password, username } from '$stores';
+	import {
+		birthDate,
+		email,
+		errorCode,
+		errorState,
+		firstName,
+		imageUrl,
+		lastName,
+		loading,
+		location,
+		password,
+		username
+	} from '$stores';
 	import { resetLandingPageStore } from '$utils';
 	import { i } from '@inlang/sdk-js';
 	import { Stepper } from '@skeletonlabs/skeleton';
 	import { onDestroy } from 'svelte';
+	import ProfilePictureStep from './steps/_ProfilePictureStep.svelte';
 
 	export let changeTab: (index: number) => void;
 
@@ -14,12 +27,25 @@
 		errorState.set(false);
 
 		try {
+			// Create multipart form data
+			const formData = new FormData();
+
+			// Append all the data to the form data
+			formData.append('email', $email);
+			formData.append('firstName', $firstName);
+			formData.append('lastName', $lastName);
+			formData.append('password', $password);
+			formData.append('username', $username);
+			formData.append('birthday', $birthDate);
+			formData.append('location', $location);
+
+			// Fetch the image as a Blob object and append it to the form data
+			const blob = await fetch($imageUrl).then((r) => r.blob());
+			formData.append('profilePicture', blob);
+
 			const response = await fetch('/api/users/register', {
 				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({ email: $email, password: $password, username: $username })
+				body: formData
 			});
 
 			const body = await response.json();
@@ -43,7 +69,7 @@
 		const { step, state } = e.detail;
 
 		// If last step is reached, fire registration
-		if (step === 3 && state.current === 4) {
+		if (step === 4 && state.current === 5) {
 			register();
 		}
 	};
@@ -57,6 +83,7 @@
 <Stepper class="p-3 m-3 h-full" on:next={nextStepHandler} stepTerm={i('forms.step')}>
 	<EmailStep {changeTab} />
 	<UsernameStep />
+	<ProfilePictureStep />
 	<DataStep />
 	<PasswordStep />
 	<TokenStep {register} />

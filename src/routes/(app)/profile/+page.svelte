@@ -16,8 +16,8 @@
 		<div class="card variant-ghost-surface shadow-xl p-4">
 			<header class="card-header flex flex-col items-center mb-2">
 				<Avatar
-					initials={user.username.substring(0, 2)}
-					width="w-1/2"
+					src={user.profilePicture}
+					width="w-1/4"
 					border="border border-current"
 					rounded="rounded-full"
 				/>
@@ -32,21 +32,21 @@
 						<span class="badge bg-primary-500">1</span>
 						<span class="flex-auto">
 							<dt>Traveller since:</dt>
-							<dd>23.06.2023</dd>
+							<dd>{user.createdAt}</dd>
 						</span>
 					</div>
 					<div>
 						<span class="badge bg-primary-500">2</span>
 						<span class="flex-auto">
 							<dt>Trips joined:</dt>
-							<dd>0</dd>
+							<dd>{user.tripsJoined}</dd>
 						</span>
 					</div>
 					<div>
 						<span class="badge bg-primary-500">3</span>
 						<span class="flex-auto">
 							<dt>Open debts:</dt>
-							<dd>0</dd>
+							<dd>{user.openDebts}</dd>
 						</span>
 					</div>
 					<!-- ... -->
@@ -58,15 +58,15 @@
 			<ul class="mt-2">
 				<li class="flex border-y border-current py-2">
 					<span class="font-bold w-24">Full name:</span>
-					<span>Luca Chmielarski</span>
+					<span>{`${user.firstName} ${user.lastName}`}</span>
 				</li>
 				<li class="flex border-b border-current py-2">
 					<span class="font-bold w-24">Birthday:</span>
-					<span>24. Juni 2023</span>
+					<span>{user.birthday}</span>
 				</li>
 				<li class="flex border-b border-current py-2">
 					<span class="font-bold w-24">Joined:</span>
-					<span>10. Januar 2023</span>
+					<span>{user.createdAt}</span>
 				</li>
 				<li class="flex border-b border-current py-2">
 					<span class="font-bold w-24">Email:</span>
@@ -74,7 +74,7 @@
 				</li>
 				<li class="flex border-b border-current py-2">
 					<span class="font-bold w-24">Location:</span>
-					<span>Mannheim</span>
+					<span>{user.location}</span>
 				</li>
 			</ul>
 		</div>

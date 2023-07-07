@@ -106,6 +106,7 @@ export const firstName = writable('');
 export const lastName = writable('');
 export const location = writable('');
 export const birthDate = writable('');
+export const imageUrl = writable('');
 
 // Activate account variables
 export const notActivatedAlert = writable(false);

@@ -73,7 +73,7 @@
 			"title": "Registrieren",
 			"steps": {
 				"email": {
-					"title": "Wählen Sie Ihre E-Mail",
+					"title": "Wähle deine E-Mail",
 					"invalidEmail": "Bitte geben Sie eine gültige E-Mail an",
 					"validEmail": "E-Mail ist gültig",
 					"initialValidation": "Bitte geben Sie eine gültige E-Mail-Adresse ein, um die Verfügbarkeit zu prüfen",
@@ -83,7 +83,7 @@
 					"nextStep": "Nächster Schritt"
 				},
 				"username": {
-					"title": "Wählen Sie Ihren Benutzernamen",
+					"title": "Wähle deinen Benutzernamen",
 					"word": "Benutzername",
 					"invalidUsername": "Benutzername muss zwischen 4 und 15 Zeichen lang sein",
 					"validUsername": "Benutzername ist gültig",
@@ -94,14 +94,22 @@
 					"nextStep": "Nächster Schritt"
 				},
 				"data": {
-					"title": "Füllen Sie Ihre Daten aus",
+					"title": "Füllen deine Daten aus",
 					"firstName": "Vorname",
 					"lastName": "Nachname",
 					"location": "Wohnort",
+					"birthDate": "Geburtsdatum",
+					"nextStep": "Nächster Schritt"
+				},
+				"profilePicture": {
+					"title": "Wähle dein Profilbild aus",
+					"imageDescription": "Solltest du kein Bild auswählen, wird ein Standardbild verwendet.",
+					"uploadMessage": "Lade ein Foto hoch oder zieh es hierher",
+					"uploadDescription": "Wir unterstützen nur JPG- und PNG-Dateien bis zu einer Größe von 5 MB.",
 					"nextStep": "Nächster Schritt"
 				},
 				"password": {
-					"title": "Wählen Sie Ihr Passwort",
+					"title": "Wähle dein Passwort",
 					"word": "Passwort",
 					"wordRepeat": "Passwort wiederholen",
 					"invalidPassword": "Passwort muss mindestens 8 Zeichen lang sein",
@@ -111,7 +119,7 @@
 					"nextStep": "Registrieren"
 				},
 				"token": {
-					"title": "Bestätigen Sie Ihre E-Mail",
+					"title": "Bestätige deine E-Mail",
 					"description": "Bitte geben Sie den Token ein, den Sie per E-Mail erhalten haben!",
 					"initialValidation": "Geben Sie den Token ein, um die Validierung zu starten",
 					"ongoingValidation": "Validierung...",

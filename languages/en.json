@@ -98,6 +98,14 @@
 					"firstName": "First name",
 					"lastName": "Last name",
 					"location": "Location",
+					"birthDate": "Birth date",
+					"nextStep": "Next step"
+				},
+				"profilePicture": {
+					"title": "Select your profile picture",
+					"imageDescription": "If you don't want to upload a profile picture, we'll use a default avatar.",
+					"uploadMessage": "Upload a profile picture or drag and drop it here",
+					"uploadDescription": "We support JPG and PNG files up to 5MB",
 					"nextStep": "Next step"
 				},
 				"password": {
