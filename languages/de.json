@@ -219,5 +219,12 @@
 			"placeholder": "Was möchtest du uns mitteilen?",
 			"button": "Senden"
 		}
+	},
+	"tripOverview": {
+		"HeaderBar": {},
+		"TripCard": {},
+		"errorCode": "404",
+		"noTripsText": "Du hast noch keine Reisen angelegt",
+		"noTripsExplanation": "Bitte beginne mit dem Hinzufügen von Reisen, indem du auf die  Schaltfläche in der oberen rechten Ecke klickst"
 	}
 }

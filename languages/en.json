@@ -219,5 +219,12 @@
 			"placeholder": "Whatever you want to say...",
 			"button": "Send"
 		}
+	},
+	"tripOverview": {
+		"HeaderBar": {},
+		"TripCard": {},
+		"errorCode": "404",
+		"noTripsText": "You don't have any trips yet",
+		"noTripsExplanation": "Please start adding trips by clicking on the button in the top right corner"
 	}
 }
