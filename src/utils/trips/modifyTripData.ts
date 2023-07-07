@@ -1,4 +1,4 @@
-import type { ChartData, CostCategory, Debt, SortedDebts, TravelData } from '$tripDomain';
+import type { ChartData, CostCategory, SortedDebts, TravelData } from '$tripDomain';
 import type { User } from '$userDomain';
 import { modifyDebtData } from '../debt/modifyDeptData';
 
@@ -70,7 +70,7 @@ export function modifyTrip(trip: TravelData, userData: User, debtData: SortedDeb
 	return trip;
 }
 
-export async function modifyTripData(tripData: Array<TravelData>, userData: User, userId: string) {
+export function modifyTripData(tripData: Array<TravelData>, userData: User, userId: string) {
 	return tripData.map(async (trip) => {
 		const response = await fetch(`/api/trips/${trip.tripId}/debts`, {
 			method: 'GET',
