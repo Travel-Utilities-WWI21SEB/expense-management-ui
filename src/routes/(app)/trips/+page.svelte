@@ -5,7 +5,6 @@
 	import type { TravelData } from '$tripDomain';
 
 	export let data;
-	console.log(data);
 	errorCode.set(data.errorCode);
 	errorState.set(data.error);
 	currentUser.set(data.userData.data);

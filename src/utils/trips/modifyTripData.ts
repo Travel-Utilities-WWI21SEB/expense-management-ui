@@ -13,7 +13,6 @@ const costCategoriesFilled = (categories: Array<CostCategory>): boolean => {
 };
 
 export function modifyTrip(trip: TravelData, userData: User, debtData: SortedDebts) {
-	console.log(debtData);
 	trip = {
 		...trip,
 		participants: trip.participants.map((participant) => {

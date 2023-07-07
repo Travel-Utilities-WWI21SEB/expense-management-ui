@@ -2,7 +2,6 @@
 	import type { TravelData } from '$tripDomain';
 
 	export let trip: TravelData;
-	console.log(trip);
 </script>
 
 <div class="p-8">
