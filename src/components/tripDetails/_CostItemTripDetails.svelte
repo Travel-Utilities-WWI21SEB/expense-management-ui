@@ -13,9 +13,10 @@
 	} from '@skeletonlabs/skeleton';
 	import { createEventDispatcher } from 'svelte';
 	import { currentCost } from '../../stores/costStore';
+	import {i} from '@inlang/sdk-js';
 
 	export let cost: Cost;
-	export let i: number;
+	export let id: number;
 	export let selectionIndex: number;
 	export let trip: TravelData;
 
@@ -23,7 +24,7 @@
 
 	function selectListItem(i: number) {
 		dispatch('select_item', {
-			index: i
+			index: id
 		});
 
 		currentCost.set(cost);
@@ -96,7 +97,7 @@
 
 		const message = result.error
 			? `Error: ${getErrorMessage(result.errorCode)}`
-			: `Cost ${cost.name} deleted successfully`;
+			: `The cost item ${cost.name} was deleted successfully`;
 		const t: ToastSettings = {
 			message: message,
 			background: result.error ? 'variant-filled-warning' : 'variant-filled-success'
@@ -112,10 +113,10 @@
 
 <button
 	class="card card-hover hover:bg-secondary-100 hover:dark:text-secondary-900 w-full {selectionIndex ===
-	i
+	id
 		? 'bg-secondary-200  outline outline-1'
 		: ''}"
-	on:click={() => selectListItem(i)}
+	on:click={() => selectListItem(id)}
 >
 	<div class="grid grid-cols-12 md:gap-2">
 		<div class="col-span-12 sm:col-span-3 grid content-center sm:p-2">

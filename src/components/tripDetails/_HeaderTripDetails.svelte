@@ -19,6 +19,7 @@
 	} from '@skeletonlabs/skeleton';
 	import { Pencil } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
+	import {i} from '@inlang/sdk-js';
 
 	export let trip: TravelData;
 
@@ -52,13 +53,13 @@
 
 	const onTripDelete = async () => {
 		await deleteTrip(trip);
-		let toastMessage = `Trip ${trip.name} deleted successfully`;
+		let toastMessage = i("toast.trip") + i("toast.deleted");
 
 		if (!$errorState) {
 			goto('/trips');
 			modalStore.close();
 		} else {
-			toastMessage = `Error: ${getErrorMessage($errorCode)}`;
+			toastMessage = i("toast.error") + getErrorMessage($errorCode);
 		}
 		modalStore.close();
 		const t: ToastSettings = {

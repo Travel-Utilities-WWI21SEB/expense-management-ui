@@ -293,6 +293,15 @@
 		"tripDistribution": "Trip Distribution",
 		"mostExpensiveTrip": "Most Expensive Trip",
 		"leastExpensiveTrip": "Least Expensive Trip"	
-
+	},
+	"toast":{
+		"error": "Error: ",
+		"sentMessage": "Your message was sent successfully!",
+		"resetPassword": "Your password was successfully reset!",
+		"costItem": "The cost item ",
+		"trip": "The trip ",
+		"deleted": "was deleted successfully",
+		"created": "was created successfully",
+		"saved": "was saved successfully"
 	}
 }

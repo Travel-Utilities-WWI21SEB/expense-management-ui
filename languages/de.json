@@ -293,6 +293,15 @@
 		"tripDistribution": "Kostenverteilung nach Reisen",
 		"mostExpensiveTrip": "Teuerste Reise",
 		"leastExpensiveTrip": "Günstigste Reise"
-
+	},
+	"toast":{
+		"error": "Fehler: ",
+		"sentMessage": "Deine Nachricht wurde erfolgreich versendet!",
+		"resetPassword": "Ihr Passwort wurde erfolgreich zurückgesetzt!",
+		"costItem": "Die Kostenposition ",
+		"trip": "Die Reise ",
+		"deleted": "wurde erfolgreich gelöscht",
+		"created": "wurde erfolgreich erstellt",
+		"saved": "wurde erfolgreich gespeichert"
 	}
 }

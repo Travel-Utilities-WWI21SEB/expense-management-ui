@@ -13,6 +13,7 @@
 	} from '@skeletonlabs/skeleton';
 	import { Trash } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
+	import {i}	from '@inlang/sdk-js';
 	let tabSet = 0;
 
 	export let parent: any;
@@ -97,7 +98,7 @@
 
 	const onSaveClick = async () => {
 		let result = await updateTrip();
-		let toastMessage = `Trip ${result.data.name} saved successfully`;
+		let toastMessage = i("toast.trip") + result.data.name + i("toast.saved");
 
 		const costCategoryPromises = newCostCategories.map(async (category, index) => {
 			if (category.isNew) {
