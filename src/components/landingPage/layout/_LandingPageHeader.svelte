@@ -28,10 +28,6 @@
 		{/if}
 	</div>
 	<svelte:fragment slot="trail">
-		<!-- LANGUAGE SELECTOR -->
-		<LanguageSelector />
-		<!-- LANGUAGE SELECTOR -->
-
 		<!-- Theme Switch -->
 		<ThemeSwitcher />
 		<!-- Theme Switch -->
