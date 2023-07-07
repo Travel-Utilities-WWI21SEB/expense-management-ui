@@ -3,6 +3,7 @@
 	import type { Transaction } from '$tripDomain';
 	import { deleteTransaction, getErrorMessage } from '$utils';
 	import { type ToastSettings, toastStore, modalStore } from '@skeletonlabs/skeleton';
+	import { errorCode, errorState } from '$stores';
 
 	export let transaction: Transaction;
 	export let parent: any;
@@ -32,22 +33,21 @@
 	};
 
 	const rejectTransaction = async () => {
-		const result = await deleteTransaction(transaction.transactionId, transaction.trip.tripId);
+		await deleteTransaction(transaction.transactionId, transaction.trip.tripId);
 
-		const { errorCode } = result;
-		const message = result.error
-			? `Error: ${getErrorMessage(errorCode)}`
-			: `Transaction  deleted successfully`;
+		let toastMessage = `Transaction  deleted successfully`;
+		if (!$errorState) {
+			invalidateAll();
+			modalStore.close();
+		} else {
+			toastMessage = `Error: ${getErrorMessage($errorCode)}`;
+		}
+		modalStore.close();
 		const t: ToastSettings = {
-			message: message,
-			background: result.error ? 'variant-filled-warning' : 'variant-filled-success'
+			message: toastMessage,
+			background: $errorState ? 'variant-filled-warning' : 'variant-filled-success'
 		};
 		toastStore.trigger(t);
-
-		if (!result.error) {
-			await invalidateAll();
-			modalStore.close();
-		}
 	};
 </script>
 

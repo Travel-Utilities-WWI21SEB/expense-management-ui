@@ -3,7 +3,7 @@ export interface Debt {
 	creditor: DebtUser;
 	debtor: DebtUser;
 	trip: DebtTrip;
-	amount: number;
+	amount: string;
 	currency: string;
 	createdAt: string;
 	updatedAt: string;

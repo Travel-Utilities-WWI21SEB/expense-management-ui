@@ -10,11 +10,11 @@
 		type ToastSettings
 	} from '@skeletonlabs/skeleton';
 	import TransactionConfirmationModal from './Modal/_TransactionConfirmationModal.svelte';
-	import { onMount } from 'svelte';
 	import { deleteTransaction, getErrorMessage } from '$utils';
 	import { invalidateAll } from '$app/navigation';
 	import { ArrowLongRight } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
+	import { errorCode, errorState } from '$stores';
 
 	export let transaction: Transaction;
 	export let needsConfirmation: boolean;
@@ -58,20 +58,19 @@
 	const onDeleteTransaction = async (transactionId: string, tripId: string) => {
 		const result = await deleteTransaction(transactionId, tripId);
 
-		const { errorCode } = result;
-		const message = result.error
-			? `Error: ${getErrorMessage(errorCode)}`
-			: `Transaction  deleted successfully`;
+		let toastMessage = `Transaction  deleted successfully`;
+		if (!$errorState) {
+			invalidateAll();
+			modalStore.close();
+		} else {
+			toastMessage = `Error: ${getErrorMessage($errorCode)}`;
+		}
+		modalStore.close();
 		const t: ToastSettings = {
-			message: message,
-			background: result.error ? 'variant-filled-warning' : 'variant-filled-success'
+			message: toastMessage,
+			background: $errorState ? 'variant-filled-warning' : 'variant-filled-success'
 		};
 		toastStore.trigger(t);
-
-		if (!result.error) {
-			await invalidateAll();
-			modalStore.close();
-		}
 	};
 
 	const modalComponent: ModalComponent = {

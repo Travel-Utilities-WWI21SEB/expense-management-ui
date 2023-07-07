@@ -18,9 +18,7 @@ export const deleteTransaction = async (transactionId: string, tripId: string) =
 
 		errorState.set(error);
 		errorCode.set(code);
-
-		return body;
-	} catch (error: any) {
+	} catch (error) {
 		errorState.set(true);
 		errorCode.set('EM-000');
 	} finally {

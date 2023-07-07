@@ -1,5 +1,6 @@
-import type { ChartData, CostCategory, TravelData } from '$tripDomain';
+import type { ChartData, CostCategory, Debt, SortedDebts, TravelData } from '$tripDomain';
 import type { User } from '$userDomain';
+import { modifyDebtData } from '../debt/modifyDeptData';
 
 const costCategoriesFilled = (categories: Array<CostCategory>): boolean => {
 	let ctr = 0;
@@ -11,7 +12,7 @@ const costCategoriesFilled = (categories: Array<CostCategory>): boolean => {
 	return ctr !== 0;
 };
 
-export function modifyTrip(trip: TravelData, userData: User) {
+export function modifyTrip(trip: TravelData, userData: User, debtData: SortedDebts) {
 	trip = {
 		...trip,
 		participants: trip.participants.map((participant) => {
@@ -24,7 +25,21 @@ export function modifyTrip(trip: TravelData, userData: User) {
 		startDate: new Date(trip.startDate),
 		endDate: new Date(trip.endDate),
 		hasAcceptedInvite: trip.participants.filter((user) => user.username === userData.username)[0]
-			.hasAcceptedInvite
+			.hasAcceptedInvite,
+		userDebt:
+			debtData.debitorDebts.length < 1
+				? 0
+				: debtData?.debitorDebts.reduce(
+						(partialSum, debt) => parseFloat(partialSum + debt.amount),
+						0
+				  ),
+		userCredit:
+			debtData.creditorDebts.length < 1
+				? 0
+				: debtData?.creditorDebts.reduce(
+						(partialSum, credit) => parseFloat(partialSum + credit.amount),
+						0
+				  )
 	};
 
 	//calculate data to be consumed by Chart JS
@@ -55,8 +70,17 @@ export function modifyTrip(trip: TravelData, userData: User) {
 	return trip;
 }
 
-export function modifyTripData(tripData: Array<TravelData>, userData: User) {
-	return tripData.map((trip) => {
-		return modifyTrip(trip, userData);
+export async function modifyTripData(tripData: Array<TravelData>, userData: User, userId: string) {
+	return tripData.map(async (trip) => {
+		const response = await fetch(`/api/trips/${trip.tripId}/debts`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		});
+
+		const debtBody = await response.json();
+
+		return modifyTrip(trip, userData, modifyDebtData(debtBody.data, userId));
 	});
 }

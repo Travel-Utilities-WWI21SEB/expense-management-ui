@@ -53,7 +53,7 @@ export const load: PageServerLoad = async ({ params, fetch, cookies }) => {
 
 	return {
 		...tripBody,
-		tripData: modifyTrip(tripBody.data, userBody.data),
+		tripData: modifyTrip(tripBody.data, userBody.data, modifyDebtData(debtBody.data, userId)),
 		userData: userBody,
 		debtData: modifyDebtData(debtBody.data, userId),
 		transactionData: modifyTransactions(transactionBody.data, userId),

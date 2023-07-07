@@ -13,7 +13,7 @@ export interface TravelData {
 	totalCost?: number;
 	location: string;
 	participants: Array<User>;
-	userDept?: number;
+	userDebt?: number;
 	userCredit?: number;
 	hasAcceptedInvite?: boolean;
 }
