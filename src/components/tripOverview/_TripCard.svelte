@@ -4,6 +4,7 @@
 	import AlertWithAction from '../general/_AlertWithAction.svelte';
 
 	export let trip: TravelData;
+	console.log(trip);
 </script>
 
 <h3 class="h3 justify-center p-4">

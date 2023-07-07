@@ -33,7 +33,7 @@ export const load: PageServerLoad = async ({ fetch, cookies }) => {
 	if (tripBody.data) {
 		return {
 			...tripBody,
-			tripData: modifyTripData(tripBody.data, userBody.data, userId),
+			tripData: modifyTripData(tripBody.data, userBody.data, userId, fetch),
 			userData: userBody
 		};
 	}
