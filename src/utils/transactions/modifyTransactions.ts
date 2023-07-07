@@ -12,23 +12,31 @@ export const modifyTransactions = (
 	transactions: Array<Transaction>,
 	userId: string
 ): UserTransactions => {
-	const nonConfirmed: Array<Transaction> = transactions
-		.filter(
-			(transaction: Transaction) => transaction.debtor.userId === userId && !transaction.isConfirmed
-		)
-		.sort((a: Transaction, b: Transaction) => sortByDateDesc(a, b));
-	const confirmed: Array<Transaction> = transactions
-		.filter(
-			(transaction: Transaction) =>
-				(transaction.debtor.userId === userId && transaction.isConfirmed) ||
-				transaction.creditor.userId === userId
-		)
-		.sort((a: Transaction, b: Transaction) => sortByDateDesc(a, b))
-		.map((transaction: Transaction) => {
-			return { ...transaction, isDebt: transaction.debtor.userId === userId ? false : true };
-		});
-	return {
-		unconfirmedTransactions: nonConfirmed,
-		confirmedTransactions: confirmed
-	};
+	if (transactions) {
+		const nonConfirmed: Array<Transaction> = transactions
+			.filter(
+				(transaction: Transaction) =>
+					transaction.debtor.userId === userId && !transaction.isConfirmed
+			)
+			.sort((a: Transaction, b: Transaction) => sortByDateDesc(a, b));
+		const confirmed: Array<Transaction> = transactions
+			.filter(
+				(transaction: Transaction) =>
+					(transaction.debtor.userId === userId && transaction.isConfirmed) ||
+					transaction.creditor.userId === userId
+			)
+			.sort((a: Transaction, b: Transaction) => sortByDateDesc(a, b))
+			.map((transaction: Transaction) => {
+				return { ...transaction, isDebt: transaction.debtor.userId === userId ? false : true };
+			});
+		return {
+			unconfirmedTransactions: nonConfirmed,
+			confirmedTransactions: confirmed
+		};
+	} else {
+		return {
+			unconfirmedTransactions: [],
+			confirmedTransactions: []
+		};
+	}
 };
