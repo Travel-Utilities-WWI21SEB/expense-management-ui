@@ -263,7 +263,7 @@
 			"iviteParticitpatsInField": "E-Mail oder Benutzernamen eingeben...",
 			"noResultsMessage": "Keine Ergebnisse gefunden."
 		},
-		"tripCard":{
+		"tripCard": {
 			"totalCost": "Gesamtkosten: ",
 			"location": "Reiseziel:",
 			"nothingToGet": "Nichts zu erhalten.",
@@ -274,15 +274,15 @@
 			"noAccessMessage": "Kein Datenzugriff"
 		}
 	},
-	"costOverview":{
+	"costOverview": {
 		"headerTitle": "Dein Kostenüberblick",
-		"noCostsYet":{
+		"noCostsYet": {
 			"errorCode": "404",
 			"noCostsText": "Du hast noch keine Kosten",
 			"noCostsExplanation": "Du kannst mit dem Hinzufügen von Kosten beginnen, indem du eine Reise anlegst und Kosten hinzufügst.",
 			"createTripButton": "Reise erstellen"
 		},
-		"totalCots": "Gesamtkosten",
+		"totalCosts": "Gesamtkosten",
 		"averageCosts": "Durchschnittliche Reisekosten",
 		"averageContributionToolTip": "Durchschnittlicher Prozentsatz der Ausgaben, den du zu jeder Reise beiträgst, berechnet auf der Grundlage deiner Gesamtbeiträge.",
 		"across": "bei",
@@ -294,7 +294,7 @@
 		"mostExpensiveTrip": "Teuerste Reise",
 		"leastExpensiveTrip": "Günstigste Reise"
 	},
-	"toast":{
+	"toast": {
 		"error": "Fehler: ",
 		"sentMessage": "Deine Nachricht wurde erfolgreich versendet!",
 		"resetPassword": "Ihr Passwort wurde erfolgreich zurückgesetzt!",

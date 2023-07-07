@@ -263,7 +263,7 @@
 			"iviteParticitpatsInField": "Enter email or user name...",
 			"noResultsMessage": "No Results Found."
 		},
-		"tripCard":{
+		"tripCard": {
 			"totalCost": "Total Cost: ",
 			"location": "Location:",
 			"nothingToGet": "Nothing to get",
@@ -274,15 +274,15 @@
 			"noAccessMessage": "No Access To Data"
 		}
 	},
-	"costOverview":{
+	"costOverview": {
 		"headerTitle": "Your Cost Overview",
-		"noCostsYet":{
+		"noCostsYet": {
 			"errorCode": "404",
 			"noCostsText": "You don't have any costs yet",
 			"noCostsExplanation": "You can start adding costs by creating a trip and adding costs to it.",
 			"createTripButton": "Create A Trip"
 		},
-		"totalCots": "Total Costs",
+		"totalCosts": "Total Costs",
 		"averageCosts": "Average Trip Costs",
 		"across": "across",
 		"averageContributionToolTip": "The average percentage of expenses you contribute to each trip, calculated based on your total contributions.",
@@ -292,9 +292,9 @@
 		"costDistribution": "Cost Distribution",
 		"tripDistribution": "Trip Distribution",
 		"mostExpensiveTrip": "Most Expensive Trip",
-		"leastExpensiveTrip": "Least Expensive Trip"	
+		"leastExpensiveTrip": "Least Expensive Trip"
 	},
-	"toast":{
+	"toast": {
 		"error": "Error: ",
 		"sentMessage": "Your message was sent successfully!",
 		"resetPassword": "Your password was successfully reset!",
