@@ -1,7 +1,18 @@
 <script lang="ts">
 	import { LanguageSelector, ThemeSwitcher } from '$components';
 	import { DarkIcon, LightIcon } from '$icons';
-	import { AppBar, modeCurrent } from '@skeletonlabs/skeleton';
+	import { activeTheme } from '$stores';
+	import { AppBar, getModeOsPrefers } from '@skeletonlabs/skeleton';
+
+	const icons = [
+		{ theme: 'dark', component: DarkIcon },
+		{ theme: 'light', component: LightIcon }
+	];
+
+	const mapTheme = (bool: boolean) => (bool ? 'light' : 'dark');
+
+	$: currentTheme = $activeTheme === 'system' ? mapTheme(getModeOsPrefers()) : $activeTheme;
+	$: activeIcon = icons.find((icon) => icon.theme === currentTheme)?.component;
 </script>
 
 <AppBar
@@ -13,19 +24,11 @@
 >
 	<svelte:fragment slot="lead">
 		<div class="md:hidden block">
-			{#if !$modeCurrent}
-				<DarkIcon width={70} height={10} />
-			{:else}
-				<LightIcon width={70} height={10} />
-			{/if}
+			<svelte:component this={activeIcon} width={70} height={10} />
 		</div>
 	</svelte:fragment>
 	<div class="hidden md:block">
-		{#if !$modeCurrent}
-			<DarkIcon width={70} height={10} />
-		{:else}
-			<LightIcon width={70} height={10} />
-		{/if}
+		<svelte:component this={activeIcon} width={70} height={10} />
 	</div>
 	<svelte:fragment slot="trail">
 		<!-- Theme Switch -->

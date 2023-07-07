@@ -18,6 +18,7 @@ export { default as ForgotPasswordStepper } from './landingPage/signin/forgotPas
 export { default as SelectEmailStep } from './landingPage/signin/forgotPassword/steps/_SelectEmailStep.svelte';
 export { default as SetNewPasswordStep } from './landingPage/signin/forgotPassword/steps/_SetNewPasswordStep.svelte';
 export { default as ValidateResetTokenStep } from './landingPage/signin/forgotPassword/steps/_ValidateResetTokenStep.svelte';
+export { default as DataStep } from './landingPage/signup/steps/_DataStep.svelte';
 export { default as EmailStep } from './landingPage/signup/steps/_EmailStep.svelte';
 export { default as PasswordStep } from './landingPage/signup/steps/_PasswordStep.svelte';
 export { default as TokenStep } from './landingPage/signup/steps/_TokenStep.svelte';

@@ -4,6 +4,7 @@ export {
 	calculateTomorrowForInputFormat,
 	isEndDateAfterStartDate
 } from './date/calculateDate';
+export { humanReadableDate } from './date/humanReadableDate';
 // ERROR HANDLING
 export { getErrorMessage } from './error/getErrorMessage';
 // CLIPBOARD FORM UTILS

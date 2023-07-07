@@ -101,6 +101,13 @@ export const password = writable('');
 export const passwordValid = writable(false);
 export const passwordsMatch = writable(false);
 
+// User variables
+export const firstName = writable('');
+export const lastName = writable('');
+export const location = writable('');
+export const birthDate = writable('');
+export const imageUrl = writable('');
+
 // Activate account variables
 export const notActivatedAlert = writable(false);
 export const notActivatedWorkflow = writable(false);
