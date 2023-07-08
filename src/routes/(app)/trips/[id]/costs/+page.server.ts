@@ -1,4 +1,4 @@
-import { getCurrentUser, modifyCosts, modifyDebtData, modifyTrip } from '$utils';
+import { modifyCosts, modifyTrip } from '$utils';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ params, fetch, url, cookies }) => {
@@ -48,37 +48,20 @@ export const load: PageServerLoad = async ({ params, fetch, url, cookies }) => {
 		}
 	});
 
-	const debtPromise = fetch(`/api/trips/${params.id}/debts`, {
-		method: 'GET',
-		headers: {
-			'Content-Type': 'application/json'
-		}
-	});
-
-	const [tripResponse, costsResponse, userResponse, debtResponse] = await Promise.all([
+	const [tripResponse, costsResponse, userResponse] = await Promise.all([
 		tripPromise,
 		costPromise,
-		userPromise,
-		debtPromise
+		userPromise
 	]);
 
 	const tripBody = await tripResponse.json();
 	const costsBody = await costsResponse.json();
 	const userBody = await userResponse.json();
-	const debtBody = await debtResponse.json();
-
-	const token = cookies.get('token');
-	if (token === undefined) {
-		return {
-			data: 'nodata'
-		};
-	} //TODO: Error handling
-	const userId = getCurrentUser(token);
 
 	if (tripBody.data) {
 		return {
 			...tripBody,
-			tripData: modifyTrip(tripBody.data, userBody.data, modifyDebtData(debtBody.data, userId)),
+			tripData: modifyTrip(tripBody.data, userBody.data),
 			userData: userBody,
 			costsData: modifyCosts(costsBody.data, tripBody.data.costCategories)
 		};

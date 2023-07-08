@@ -60,6 +60,7 @@
 	};
 
 	const onFormSubmit = async () => {
+		console.log(newTransaction);
 		const result = await createTransaction(newTransaction);
 
 		const message = result.error

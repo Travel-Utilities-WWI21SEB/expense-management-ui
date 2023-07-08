@@ -1,6 +1,5 @@
-import type { ChartData, CostCategory, SortedDebts, TravelData } from '$tripDomain';
+import type { ChartData, CostCategory, TravelData, TravelDataAPI } from '$tripDomain';
 import type { User } from '$userDomain';
-import { modifyDebtData } from '../debt/modifyDeptData';
 
 const costCategoriesFilled = (categories: Array<CostCategory>): boolean => {
 	let ctr = 0;
@@ -12,8 +11,8 @@ const costCategoriesFilled = (categories: Array<CostCategory>): boolean => {
 	return ctr !== 0;
 };
 
-export function modifyTrip(trip: TravelData, userData: User, debtData: SortedDebts) {
-	trip = {
+export function modifyTrip(trip: TravelDataAPI, userData: User): TravelData {
+	let convertedTrip = {
 		...trip,
 		participants: trip.participants.map((participant) => {
 			return {
@@ -26,20 +25,8 @@ export function modifyTrip(trip: TravelData, userData: User, debtData: SortedDeb
 		endDate: new Date(trip.endDate),
 		hasAcceptedInvite: trip.participants.filter((user) => user.username === userData.username)[0]
 			.hasAcceptedInvite,
-		userDebt:
-			debtData.debitorDebts.length < 1
-				? 0
-				: debtData?.debitorDebts.reduce(
-						(partialSum, debt) => Math.ceil(parseFloat(partialSum + debt.amount) * 100) / 100,
-						0
-				  ),
-		userCredit:
-			debtData.creditorDebts.length < 1
-				? 0
-				: debtData?.creditorDebts.reduce(
-						(partialSum, credit) => Math.ceil(parseFloat(partialSum + credit.amount) * 100) / 100,
-						0
-				  )
+		userDebt: parseFloat(trip.userDebt) < 0 ? 0 : parseFloat(trip.userDebt),
+		userCredit: parseFloat(trip.userCredit) < 0 ? 0 : parseFloat(trip.userCredit)
 	};
 
 	//calculate data to be consumed by Chart JS
@@ -59,36 +46,19 @@ export function modifyTrip(trip: TravelData, userData: User, debtData: SortedDeb
 			tripChartData.datasets[0].data.push(category.totalCost);
 			tripChartData.datasets[0].backgroundColor.push(category.color);
 		});
-		trip.data = tripChartData;
+		convertedTrip.data = tripChartData;
 	} else {
-		trip.data = {
+		convertedTrip.data = {
 			labels: ['no cost specified'],
 			datasets: [{ data: [-1], backgroundColor: ['#808080'] }]
 		};
 	}
 
-	return trip;
+	return convertedTrip;
 }
 
-export async function modifyTripData(
-	tripData: Array<TravelData>,
-	userData: User,
-	userId: string,
-	fetch: (input: RequestInfo | URL, init?: RequestInit | undefined) => Promise<Response>
-) {
-	const result = await Promise.all(
-		tripData.map(async (trip) => {
-			const response = await fetch(`/api/trips/${trip.tripId}/debts`, {
-				method: 'GET',
-				headers: {
-					'Content-Type': 'application/json'
-				}
-			});
-
-			const debtBody = await response.json();
-			return modifyTrip(trip, userData, modifyDebtData(debtBody.data, userId));
-		})
-	);
-
-	return result;
+export function modifyTripData(tripData: Array<TravelDataAPI>, userData: User) {
+	return tripData.map((trip) => {
+		return modifyTrip(trip, userData);
+	});
 }
