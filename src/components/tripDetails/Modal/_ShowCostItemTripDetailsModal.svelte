@@ -1,8 +1,26 @@
 <script lang="ts">
-	import { calculateDate, pickTextColorBasedOnBgColorSimple } from '$utils';
 	import type { CostDateAsString } from '$tripDomain';
+	import { calculateDate, pickTextColorBasedOnBgColorSimple } from '$utils';
+	import { language } from '@inlang/sdk-js';
 
 	export let cost: CostDateAsString;
+
+	const dateFormats: {
+		[key: string]: string;
+		en: string;
+		de: string;
+	} = {
+		en: 'en-US',
+		de: 'de-de'
+	};
+
+	// get the date format based on the current language
+	$: dateFormat = dateFormats[language];
+	$: startDate = calculateDate(new Date(cost.startDate), dateFormat, 'medium');
+	$: endDate =
+		cost.endDate && cost.endDate !== cost.startDate
+			? calculateDate(new Date(cost.endDate), dateFormat, 'medium')
+			: '';
 </script>
 
 <div class="grid grid-cols-1 gap-y-4 lg:grid-cols-2">
@@ -22,9 +40,9 @@
 			{/if}
 		</h3>
 		<h3 class="h3 font-semibold dark:text-primary-500 text-primary-600">
-			{calculateDate(new Date(cost.startDate))}
+			{startDate}
 			{#if cost.endDate !== cost.startDate && cost.endDate}
-				- {calculateDate(new Date(cost.endDate))}
+				- {endDate}
 			{/if}
 		</h3>
 	</div>

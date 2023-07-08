@@ -21,11 +21,11 @@
 		const tripLength = costOverview.tripDistribution.length;
 		const costLength = costOverview.costDistribution.length;
 
-		for (let i = 0; i < costOverview.tripDistribution.length; i++) {
+		for (let i = 0; i < tripLength; i++) {
 			tripColors.push(generateRandomColor(tripLength, i));
 		}
 
-		for (let i = 0; i < costOverview.costDistribution.length; i++) {
+		for (let i = 0; i < costLength; i++) {
 			costColors.push(generateRandomColor(costLength, i));
 		}
 

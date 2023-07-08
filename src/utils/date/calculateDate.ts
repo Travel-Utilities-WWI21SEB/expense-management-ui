@@ -1,5 +1,7 @@
-export function calculateDate(date: Date): string {
-	return new Intl.DateTimeFormat('de-de').format(date);
+type dateStyle = 'full' | 'medium' | 'short' | 'long';
+
+export function calculateDate(date: Date, format: string, dateStyle: dateStyle): string {
+	return new Intl.DateTimeFormat(format, { dateStyle }).format(date);
 }
 
 export function calculateTomorrowForInputFormat(date: string): string {

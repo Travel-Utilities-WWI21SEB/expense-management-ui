@@ -4,7 +4,7 @@
 	import { Avatar, FileDropzone, Step } from '@skeletonlabs/skeleton';
 
 	let files: FileList;
-	let currentAvatar = 'default_avatar.png';
+	let currentAvatar = '$lib/assets/default_avatar.png';
 
 	const onChangeHandler = (event: Event) => {
 		const target = event.target as HTMLInputElement;

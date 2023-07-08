@@ -1,9 +1,24 @@
 <script lang="ts">
-	import { popup, Avatar, type PopupSettings } from '@skeletonlabs/skeleton';
 	import type { User } from '$userDomain';
 	import { calculateDate } from '$utils';
+	import { language } from '@inlang/sdk-js';
+	import { Avatar, popup, type PopupSettings } from '@skeletonlabs/skeleton';
 
 	export let participant: User;
+
+	const dateFormats: {
+		[key: string]: string;
+		en: string;
+		de: string;
+	} = {
+		en: 'en-US',
+		de: 'de-de'
+	};
+
+	// get the date format based on the current language
+	$: dateFormat = dateFormats[language];
+	$: startDate = calculateDate(participant.presenceStartDate, dateFormat, 'medium');
+	$: endDate = calculateDate(participant.presenceEndDate, dateFormat, 'medium');
 
 	const avatarPopup: PopupSettings = {
 		event: 'click',
@@ -17,9 +32,7 @@
 	<h4 class="p-2">{participant.username}</h4>
 	<p class="p-2">
 		Time present in Trip: <br />
-		{`${calculateDate(participant.presenceStartDate)} - ${calculateDate(
-			participant.presenceEndDate
-		)}`}
+		{`${startDate} - ${endDate}`}
 	</p>
 	<p
 		class="p-2 {participant.hasAcceptedInvite

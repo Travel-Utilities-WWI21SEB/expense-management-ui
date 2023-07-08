@@ -2,7 +2,7 @@
 	import { AlertWithAction } from '$components';
 	import { PUBLIC_IMAGE_SERVICE_URL } from '$env/static/public';
 	import { errorCode } from '$stores';
-	import { humanReadableDate } from '$utils';
+	import { calculateDate } from '$utils';
 	import { language } from '@inlang/sdk-js';
 	import { Avatar } from '@skeletonlabs/skeleton';
 
@@ -19,8 +19,8 @@
 
 	// get the date format based on the current language
 	$: dateFormat = dateFormats[language];
-	$: creationDate = humanReadableDate(new Date(data.user.createdAt), dateFormat);
-	$: birthday = humanReadableDate(new Date(data.user.birthday), dateFormat);
+	$: creationDate = calculateDate(new Date(data.user.createdAt), dateFormat, 'full');
+	$: birthday = calculateDate(new Date(data.user.birthday), dateFormat, 'full');
 
 	let pictureSource = `${PUBLIC_IMAGE_SERVICE_URL}/images/${data.user.profilePicture}`;
 	const { error, errorCode: code, user } = data;
