@@ -1,5 +1,4 @@
 import type { Transaction } from '$tripDomain';
-import { calculateDate } from '$utils';
 
 export const transactionHistory = (transactions: Array<Transaction>, userId: string) => {
 	if (transactions) {
