@@ -5,7 +5,6 @@ import type { RequestHandler } from '../$types';
 export const POST: RequestHandler = async ({ fetch, request, params }) => {
 	console.log('POST');
 	const requestBody = await request.json();
-	console.log(requestBody);
 	try {
 		const response = await fetch(`${PUBLIC_BASE_URL}/api/v1/trips/${params.id}/transactions`, {
 			method: 'POST',

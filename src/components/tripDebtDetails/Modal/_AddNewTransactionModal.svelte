@@ -2,7 +2,7 @@
 	import { invalidateAll } from '$app/navigation';
 	import { errorCode, errorState, loading } from '$stores';
 	import type { NewTransaction, TravelData } from '$tripDomain';
-	import { validateNewTransaction } from '$utils';
+	import { getErrorMessage, validateNewTransaction } from '$utils';
 	import { modalStore, toastStore, type ToastSettings } from '@skeletonlabs/skeleton';
 	import { Check, XCircle } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
@@ -61,21 +61,21 @@
 
 	const onFormSubmit = async () => {
 		console.log(newTransaction);
-		const result = await createTransaction(newTransaction);
+		await createTransaction(newTransaction);
 
-		const message = result.error
-			? `Error: ${result.errorMessage}`
-			: `Transaction created successfully`;
-		const t: ToastSettings = {
-			message: message,
-			background: result.error ? 'variant-filled-warning' : 'variant-filled-success'
-		};
-		toastStore.trigger(t);
-
-		if (!result.error) {
+		let toastMessage = `Transaction created successfully`;
+		if (!$errorState) {
 			invalidateAll();
 			modalStore.close();
+		} else {
+			let errorMessage: string = getErrorMessage($errorCode);
+			toastMessage = `Error: ${errorMessage}`;
 		}
+		const t: ToastSettings = {
+			message: toastMessage,
+			background: $errorState ? 'variant-filled-warning' : 'variant-filled-success'
+		};
+		toastStore.trigger(t);
 	};
 </script>
 

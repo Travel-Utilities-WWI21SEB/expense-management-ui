@@ -63,7 +63,8 @@
 			invalidateAll();
 			modalStore.close();
 		} else {
-			toastMessage = `Error: ${getErrorMessage($errorCode)}`;
+			let errorMessage: string = getErrorMessage($errorCode);
+			toastMessage = `Error: ${errorMessage}`;
 		}
 		modalStore.close();
 		const t: ToastSettings = {

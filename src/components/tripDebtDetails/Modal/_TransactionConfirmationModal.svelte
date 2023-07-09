@@ -1,46 +1,98 @@
 <script lang="ts">
 	import { invalidateAll } from '$app/navigation';
 	import type { Transaction } from '$tripDomain';
-	import { deleteTransaction, getErrorMessage } from '$utils';
+	import { getErrorMessage } from '$utils';
 	import { type ToastSettings, toastStore, modalStore } from '@skeletonlabs/skeleton';
-	import { errorCode, errorState } from '$stores';
+	import { errorCode, errorState, loading } from '$stores';
 
 	export let transaction: Transaction;
 	export let parent: any;
 
-	const postConfirmTransaction = async () => {
-		console.log('confirm transaction');
-		return { error: false, errorCode: '' };
-	};
+	const postConfirmTransaction = async (tripId: string, transactionId: string) => {
+		loading.set(true);
+		errorState.set(false);
 
-	const confirmTransaction = async () => {
-		const result = await postConfirmTransaction();
+		try {
+			const costsResponse = await fetch(
+				`/api/trips/${tripId}/transactions/${transactionId}/accept`,
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					}
+				}
+			);
 
-		const { errorCode } = result;
-		const message = result.error
-			? `Error: ${getErrorMessage(errorCode)}`
-			: `Transaction  confirmation not implemented yet`; //TODO: confirm transaction
-		const t: ToastSettings = {
-			message: message,
-			background: result.error ? 'variant-filled-warning' : 'variant-filled-success'
-		};
-		toastStore.trigger(t);
+			const body = await costsResponse.json();
 
-		if (!result.error) {
-			await invalidateAll();
-			modalStore.close();
+			const { error, errorCode: code } = body;
+
+			errorState.set(error);
+			errorCode.set(code);
+		} catch (error) {
+			errorState.set(true);
+			errorCode.set('EM-000');
+		} finally {
+			loading.set(false);
 		}
 	};
 
-	const rejectTransaction = async () => {
-		await deleteTransaction(transaction.transactionId, transaction.trip.tripId);
+	const postRejectTransaction = async (tripId: string, transactionId: string) => {
+		loading.set(true);
+		errorState.set(false);
 
-		let toastMessage = `Transaction  deleted successfully`;
+		try {
+			const costsResponse = await fetch(
+				`/api/trips/${tripId}/transactions/${transactionId}/decline`,
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					}
+				}
+			);
+
+			const body = await costsResponse.json();
+
+			const { error, errorCode: code } = body;
+
+			errorState.set(error);
+			errorCode.set(code);
+		} catch (error) {
+			errorState.set(true);
+			errorCode.set('EM-000');
+		} finally {
+			loading.set(false);
+		}
+	};
+
+	const confirmTransaction = async () => {
+		await postConfirmTransaction(transaction.trip.tripId, transaction.transactionId);
+
+		let toastMessage = `Transaction confirmed successfully`;
 		if (!$errorState) {
-			invalidateAll();
-			modalStore.close();
+			await invalidateAll();
 		} else {
-			toastMessage = `Error: ${getErrorMessage($errorCode)}`;
+			let errorMessage: string = getErrorMessage($errorCode);
+			toastMessage = `Error: ${errorMessage}`;
+		}
+		modalStore.close();
+		const t: ToastSettings = {
+			message: toastMessage,
+			background: $errorState ? 'variant-filled-warning' : 'variant-filled-success'
+		};
+		toastStore.trigger(t);
+	};
+
+	const rejectTransaction = async () => {
+		await postRejectTransaction(transaction.trip.tripId, transaction.transactionId);
+
+		let toastMessage = `Transaction rejected successfully`;
+		if (!$errorState) {
+			await invalidateAll();
+		} else {
+			let errorMessage: string = getErrorMessage($errorCode);
+			toastMessage = `Error: ${errorMessage}`;
 		}
 		modalStore.close();
 		const t: ToastSettings = {

@@ -128,9 +128,9 @@
 			invalidateAll();
 			modalStore.close();
 		} else {
-			toastMessage = `Error: ${getErrorMessage($errorCode)}`;
+			let errorMessage: string = getErrorMessage($errorCode);
+			toastMessage = `Error: ${errorMessage}`;
 		}
-		modalStore.close();
 		const t: ToastSettings = {
 			message: toastMessage,
 			background: $errorState ? 'variant-filled-warning' : 'variant-filled-success'
