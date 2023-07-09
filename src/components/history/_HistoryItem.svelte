@@ -4,6 +4,7 @@
 	import { ArrowLongRight } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { goto } from '$app/navigation';
+	import { calculateDate } from '$utils';
 
 	export let transaction: Transaction;
 	console.log(transaction);
@@ -19,7 +20,7 @@
 >
 	<div class="grid grid-cols-3 pb-2">
 		<h1>{`Trip: ${transaction.trip.name}`}</h1>
-		<p>{`Created: ${transaction.createdAt}`}</p>
+		<p>{`Created: ${calculateDate(new Date(transaction.createdAt))}`}</p>
 	</div>
 	{#if transaction.isDebt}
 		<div class="outline outline-offset-2 outline-1 w-full">

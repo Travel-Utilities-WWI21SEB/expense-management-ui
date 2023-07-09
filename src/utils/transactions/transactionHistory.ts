@@ -6,7 +6,7 @@ export const transactionHistory = (transactions: Array<Transaction>, userId: str
 		const history: Array<Transaction> = transactions.map((transaction: Transaction) => {
 			return {
 				...transaction,
-				createdAt: calculateDate(new Date(transaction.createdAt.split(' ')[0])),
+				createdAt: transaction.createdAt.split(' ')[0],
 				isDebt: transaction.debtor.userId === userId ? false : true
 			};
 		});

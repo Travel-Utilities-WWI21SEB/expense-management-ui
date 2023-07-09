@@ -33,5 +33,6 @@ export const load: PageServerLoad = async ({ fetch, url, cookies }) => {
 	} else {
 		errorCode.set(transactionBody.errorCode);
 		errorState.set(true);
+		return transactionBody;
 	}
 };
