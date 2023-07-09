@@ -47,13 +47,23 @@ export {
 	default as CostsOverviewTripDetails,
 	default as TripDetailsCostOverview
 } from './tripDetails/_CostsOverviewTripDetails.svelte';
-export { default as TripDetailsDashboard } from './tripDetails/_DashboardTripDetails.svelte';
-export { default as TripDetailsFilterPopUp } from './tripDetails/_FilterPopUp.svelte';
+export { default as TripDetailsCostDashboard } from './tripDetails/_DashboardTripDetails.svelte';
 export { default as TripDetailsHeader } from './tripDetails/_HeaderTripDetails.svelte';
 export { default as HeaderTripDetailsLayout } from './tripDetails/_HeaderTripDetailsLayout.svelte';
 export { default as ParticipantIcon } from './tripDetails/_ParticipantIcon.svelte';
 export { default as Participants } from './tripDetails/_Participants.svelte';
 export { default as TripDetailsSortingPopUp } from './tripDetails/_SortingPopUp.svelte';
+export { default as TripDetailsFilterPopUp } from './tripDetails/_FilterPopUp.svelte';
+//Trip Debt Details
+export { default as DebtItemTripDetails } from './tripDebtDetails/_DebtItemTripDetails.svelte';
+export { default as DebtOverviewTripDetails } from './tripDebtDetails/_DebtOverview.svelte';
+export { default as DebtItemModalTripDetails } from './tripDebtDetails/Modal/_DeptItemModalTripDetails.svelte';
+export { default as ParticipantIconDebt } from './tripDebtDetails/_ParticipantIconDebt.svelte';
+export { default as TransactionOverviewTripDetails } from './tripDebtDetails/_TransactionOverviewTripDetails.svelte';
+export { default as AddNewTransactionModal } from './tripDebtDetails/Modal/_AddNewTransactionModal.svelte';
+export { default as ImformationAlertWithAction } from './general/_InformationAlertWithAction.svelte';
+export { default as TransactionItemTripDetails } from './tripDebtDetails/_TransactionItemTripDetails.svelte';
+export { default as TransactionItemModalTripDetails } from './tripDebtDetails/Modal/_TransactionItemModalTripdetails.svelte';
 
 //Trip Overview
 export { default as DonutChart } from './tripOverview/_DonutChart.svelte';

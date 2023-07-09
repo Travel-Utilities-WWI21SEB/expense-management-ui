@@ -92,8 +92,6 @@
 
 			errorState.set(error);
 			errorCode.set(code);
-
-			return body;
 		} catch (error: any) {
 			errorState.set(true);
 			errorCode.set('EM-000');
@@ -103,21 +101,21 @@
 	}
 
 	async function onFormSubmit(): Promise<void> {
-		const result = await createCost(cost, trip, costPaidForUser);
+		await createCost(cost, trip, costPaidForUser);
 
-		const message = result.error
-			? `Error: ${getErrorMessage(result.errorCode)}`
-			: `Cost ${result.data.description} created successfully`;
-		const t: ToastSettings = {
-			message: message,
-			background: result.error ? 'variant-filled-warning' : 'variant-filled-success'
-		};
-		toastStore.trigger(t);
-
-		if (!result.error) {
+		let toastMessage = `Cost ${cost.name} created successfully`;
+		if (!$errorState) {
 			invalidateAll();
 			modalStore.close();
+		} else {
+			let errorMessage: string = getErrorMessage($errorCode);
+			toastMessage = `Error: ${errorMessage}`;
 		}
+		const t: ToastSettings = {
+			message: toastMessage,
+			background: $errorState ? 'variant-filled-warning' : 'variant-filled-success'
+		};
+		toastStore.trigger(t);
 	}
 
 	$: involvedUsers = costPaidForUser.filter((user) => user.checked);

@@ -37,6 +37,13 @@ export {
 } from './trips/costs/costAllocation';
 export { modifyCosts } from './trips/costs/modifyCostData';
 
+//DEBT
+export { modifyDebtData } from './debt/modifyDeptData';
+export { getCurrentUser } from './token/getUser';
+//TRANSACTION
+export { validateNewTransaction } from './transactions/validate/validateNewTransaction';
+export { modifyTransactions } from './transactions/modifyTransactions';
 //REQUESTS
 export { createCostCategories } from './requests/createCostCategories';
 export { inviteUsers } from './requests/inviteUsers';
+export { deleteTransaction } from './requests/deleteTransactions';

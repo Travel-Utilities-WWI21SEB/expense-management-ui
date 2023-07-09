@@ -13,8 +13,24 @@ export interface TravelData {
 	totalCost?: number;
 	location: string;
 	participants: Array<User>;
-	userDept?: number;
-	userCredit?: number;
+	userDebt: number;
+	userCredit: number;
+	hasAcceptedInvite?: boolean;
+}
+
+export interface TravelDataAPI {
+	tripId: string;
+	name: string;
+	description: string;
+	costCategories: Array<CostCategory>;
+	data?: ChartData;
+	startDate: Date;
+	endDate: Date;
+	totalCost?: number;
+	location: string;
+	participants: Array<User>;
+	userDebt: string;
+	userCredit: string;
 	hasAcceptedInvite?: boolean;
 }
 

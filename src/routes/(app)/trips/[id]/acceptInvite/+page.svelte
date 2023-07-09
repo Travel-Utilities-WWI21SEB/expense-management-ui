@@ -70,7 +70,7 @@
 		await acceptTrip(data.tripData);
 
 		if (!$errorState) {
-			goto(`/trips/${data.tripData.tripId}`);
+			goto(`/trips/${data.tripData.tripId}/costs`);
 		}
 	};
 
