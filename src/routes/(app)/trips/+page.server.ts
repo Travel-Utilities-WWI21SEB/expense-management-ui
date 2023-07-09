@@ -1,7 +1,7 @@
 import { modifyTripData } from '$utils';
 import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({ fetch, cookies }) => {
+export const load: PageServerLoad = async ({ fetch }) => {
 	const tripPromise = fetch('/api/trips', {
 		method: 'GET',
 		headers: {

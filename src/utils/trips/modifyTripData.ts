@@ -12,7 +12,7 @@ const costCategoriesFilled = (categories: Array<CostCategory>): boolean => {
 };
 
 export function modifyTrip(trip: TravelDataAPI, userData: User): TravelData {
-	let convertedTrip = {
+	const convertedTrip = {
 		...trip,
 		participants: trip.participants.map((participant) => {
 			return {
