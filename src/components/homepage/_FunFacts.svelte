@@ -3,10 +3,12 @@
 	import type { UserDetails } from '$userDomain';
 	import { Banknotes, CreditCard, GlobeAlt, User, UserGroup } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
+	import type { DebtOverview } from '../../domain/debt/DebtOverview';
 
 	export let data: {
 		error: boolean;
 		errorCode: string;
+		debts: DebtOverview;
 		trips: TravelData[];
 		user: UserDetails;
 	};
@@ -58,11 +60,11 @@
 	</a>
 	<a class="logo-item" href="/">
 		<span><Icon src={Banknotes} class="w-8 h-8" /></span>
-		<span>Spent more than 4.529€</span>
+		<span>Received a total of {data.debts.totalReceived}€ in debts</span>
 	</a>
 	<a class="logo-item" href="/">
 		<span><Icon src={CreditCard} class="w-8 h-8" /></span>
-		<span>Paid back a total of 3.523€ in debts</span>
+		<span>Paid back a total of {data.debts.totalSpent}€ in debts</span>
 	</a>
 	<a class="logo-item" href="/">
 		<span><Icon src={GlobeAlt} class="w-8 h-8" /></span>

@@ -66,7 +66,7 @@
 			</div>
 			<div class="md:col-span-2">
 				<div class="card">
-					<DebtOverview trips={data.trips} />
+					<DebtOverview debts={data.debts} />
 				</div>
 			</div>
 		</div>

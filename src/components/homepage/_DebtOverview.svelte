@@ -1,71 +1,68 @@
 <script lang="ts">
-	import type { TravelData } from '$tripDomain';
+	import { generateRandomColor } from '$utils';
+	import { Minus, Plus } from '@steeze-ui/heroicons';
+	import { Icon } from '@steeze-ui/svelte-icon';
+	import type { DebtOverview } from '../../domain/debt/DebtOverview';
 	import BarChart from './_BarChart.svelte';
-	import LineChart from './_LineChart.svelte';
 
-	export let trips: TravelData[];
-	console.log(trips);
+	export let debts: DebtOverview;
 
-	const openDebts = trips
-		? trips
-				.map((trip) => trip.userDept)
-				.filter((dept) => dept && dept > 0)
-				.reduce((a, b) => (a ?? 0) + (b ?? 0), 0)
-		: 0;
-	const openCredits = trips
-		? trips
-				.map((trip) => trip.userCredit)
-				.filter((credit) => credit && credit > 0)
-				.reduce((a, b) => (a ?? 0) + (b ?? 0), 0)
-		: 0;
+	let debtChartData: any;
+	let mappedDebtData: Array<{
+		debtor: string;
+		openDebt: number;
+		openCredit: number;
+	}> = [];
 
-	// Give me some example debt data pls, I'll get it from the backend later
-	// I get the month as the key with the amount in that month as the value
-	const debtChartData = {
-		labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-		datasets: [
-			{
-				label: 'Debt',
-				data: [12, 19, 3, 5, 2, 3, 4],
-				fill: false,
-				borderColor: 'rgb(75, 192, 192)',
-				tension: 0.1
-			},
-			{
-				label: 'Credit',
-				data: [2, 3, 20, 5, 1, 4, 5],
-				fill: false,
-				borderColor: 'rgb(255, 99, 132)',
-				tension: 0.1
+	if (debts.debts && debts.debts.length > 0) {
+		const debtColors: any[] = [];
+		const debtLength = debts.debts.length;
+
+		for (let i = 0; i < 2; i++) {
+			debtColors.push(generateRandomColor(debtLength, i));
+		}
+
+		// Have first color for open debts and second color for open credits
+		const openDebtsColors = debts.debts.map((entry) => debtColors[0]);
+		const openCreditsColors = debts.debts.map((entry) => debtColors[1]);
+
+		// Map open debts and open to different datasets
+		// Open debts are negative values in the amount
+		// Open credits are positive values in the amount
+		for (const debt of debts.debts) {
+			const parsedAmount = parseFloat(debt.amount);
+
+			if (parsedAmount < 0) {
+				mappedDebtData.push({
+					debtor: debt.debtor.username,
+					openDebt: parsedAmount * -1,
+					openCredit: 0
+				});
+			} else {
+				mappedDebtData.push({
+					debtor: debt.debtor.username,
+					openDebt: 0,
+					openCredit: parsedAmount
+				});
 			}
-		]
-	};
+		}
 
-	// Give me more example data pls, I'll get it from the backend later
-	// I get a user id as the key with the open and total balance as the value
-	// The total balance is the total accumulated debt/credit of the user while
-	// the open balance is the amount of debt/credit that is not yet paid back
-	// A negative value means that the user has to pay back money
-	// Can you give me correct numbers please, yours are wrong
-	const userDebtData = {
-		labels: ['User 1', 'User 2', 'User 3', 'User 4', 'User 5'],
-		datasets: [
-			{
-				label: 'Debt',
-				data: [123.5, 0, 32, 2],
-				fill: false,
-				backgroundColor: 'rgb(255, 99, 132)',
-				borderColor: 'rgba(255, 99, 132, 0.2)'
-			},
-			{
-				label: 'Credit',
-				data: [0, 40.5, 0, 0],
-				fill: false,
-				backgroundColor: 'rgb(32, 2, 122)',
-				borderColor: 'rgba(255, 99, 132, 0.2)'
-			}
-		]
-	};
+		debtChartData = {
+			labels: mappedDebtData.map((entry) => entry.debtor),
+			datasets: [
+				{
+					label: 'Open debts',
+					data: mappedDebtData.map((entry) => entry.openDebt),
+					backgroundColor: openDebtsColors
+				},
+				{
+					label: 'Open credits',
+					data: mappedDebtData.map((entry) => entry.openCredit),
+					backgroundColor: openCreditsColors
+				}
+			]
+		};
+	}
 </script>
 
 <div class="relative">
@@ -77,14 +74,24 @@
 			>
 		</h1>
 		<hr class="mt-2" />
-		<div class="grid grid-rows-2 grid-cols-none lg:grid-rows-none lg:grid-cols-2">
-			{#if trips}
-				<div class="pr-2">
-					<LineChart data={debtChartData} />
-					<hr class="mt-2" />
+		<div class="grid grid-rows-2 grid-cols-none lg:grid-rows-none lg:grid-cols-3">
+			{#if debts.debts && debts.debts.length > 0}
+				<div class="p-4 row-span-1 lg:col-span-1">
+					<div
+						class="logo-cloud grid-cols-2 lg:grid-rows-2 lg:grid-cols-none gap-4 [&>.logo-item]:pointer-events-none [&>.logo-item]:p-3 h-full"
+					>
+						<a class="logo-item variant-ghost-warning" href="/">
+							<span><Icon src={Minus} class="w-12 h-12" /></span>
+							<span>You have {debts.openDebtAmount * -1}€ open debts</span>
+						</a>
+						<a class="logo-item variant-ghost-success" href="/">
+							<span><Icon src={Plus} class="w-12 h-12" /></span>
+							<span>You have {debts.openCreditAmount}€ open credits</span>
+						</a>
+					</div>
 				</div>
-				<div class="pl-2">
-					<BarChart data={userDebtData} />
+				<div class="p-4 row-span-1 lg:col-span-2">
+					<BarChart data={debtChartData} />
 				</div>
 			{:else}
 				<section class="mt-4">
