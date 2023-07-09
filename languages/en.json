@@ -106,6 +106,8 @@
 					"imageDescription": "If you don't want to upload a profile picture, we'll use a default avatar.",
 					"uploadMessage": "Upload a profile picture or drag and drop it here",
 					"uploadDescription": "We support JPG and PNG files up to 5MB",
+					"fileType": "File type is not supported",
+					"fileSize": "File size is too big",
 					"nextStep": "Next step"
 				},
 				"password": {

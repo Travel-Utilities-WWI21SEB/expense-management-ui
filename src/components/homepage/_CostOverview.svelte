@@ -1,37 +1,65 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { PieChart } from '$components';
-	import type { TripDistribution } from '$costDomain';
+	import type { CostDistribution, TripDistribution } from '$costDomain';
 	import type { ChartData } from '$tripDomain';
 	import { generateRandomColor } from '$utils';
+	import { ArrowLeft, ArrowRight } from '@steeze-ui/heroicons';
+	import { Icon } from '@steeze-ui/svelte-icon';
+	import Carousel from 'svelte-carousel';
 
-	export let costs: TripDistribution[];
+	export let tripDistribution: TripDistribution[];
+	export let costDistribution: CostDistribution[];
 
 	let tripChartData: ChartData;
+	let costChartData: ChartData;
 
-	if (costs) {
+	if (tripDistribution) {
 		const tripColors = [];
-		const tripLength = costs.length;
+		const tripLength = tripDistribution.length;
 
 		for (let i = 0; i < tripLength; i++) {
 			tripColors.push(generateRandomColor(tripLength, i));
 		}
 
 		tripChartData = {
-			labels: costs.map((entry) => entry.tripName),
+			labels: tripDistribution.map((entry) => entry.tripName),
 			datasets: [
 				{
-					data: costs.map((entry) => Number(parseFloat(entry.amount).toFixed(2))),
+					data: tripDistribution.map((entry) => Number(parseFloat(entry.amount).toFixed(2))),
 					backgroundColor: tripColors
 				}
 			]
 		};
 	}
+
+	if (costDistribution) {
+		const costColors = [];
+		const costLength = costDistribution.length;
+
+		for (let i = 0; i < costLength; i++) {
+			costColors.push(generateRandomColor(costLength, i));
+		}
+
+		costChartData = {
+			labels: costDistribution.map((entry) => entry.costCategoryName),
+			datasets: [
+				{
+					data: costDistribution.map((entry) => Number(parseFloat(entry.amount).toFixed(2))),
+					backgroundColor: costColors
+				}
+			]
+		};
+	}
+
+	let carousel;
+
+	const showArrows = (tripDistribution && tripDistribution.length > 1) ?? false;
 </script>
 
-<div class="relative w-full">
-	<div class="relative overflow-hidden rounded-lg w-full">
-		<h1 class="h1 col-start-1 flex justify-center">
+<div class="relative">
+	<div class="relative overflow-hidden rounded-lg">
+		<h1 class="h1 col-start-1 flex justify-center pt-2">
 			<span
 				class="bg-gradient-to-br from-primary-800 to-primary-400 bg-clip-text text-transparent box-decoration-clone"
 				>Cost overview</span
@@ -39,10 +67,41 @@
 		</h1>
 		<hr class="mt-2" />
 		<div class="flex flex-col items-center">
-			{#if costs && costs.length > 0}
-				<div class="pt-2 pb-2">
-					<PieChart data={tripChartData} />
-				</div>
+			{#if tripDistribution && tripDistribution.length > 0}
+				<Carousel
+					bind:this={carousel}
+					let:showPrevPage
+					let:showNextPage
+					autoplay={true}
+					autoplayDuration={4000}
+					pauseOnFocus={true}
+					arrows={showArrows}
+				>
+					<div slot="prev" class="mt-2 ml-2">
+						<button
+							class="btn-icon variant-ghost-primary w-6 h-6 md:w-8 md:h-8"
+							on:click={() => showPrevPage()}
+						>
+							<Icon src={ArrowLeft} class="w-4 h-4 md:w-6 md:h-6" />
+						</button>
+					</div>
+					<div slot="next" class="mt-2 mr-2">
+						<button
+							class="btn-icon variant-ghost-primary w-6 h-6 md:w-8 md:h-8"
+							on:click={() => showNextPage()}
+						>
+							<Icon src={ArrowRight} class="w-4 h-4 md:w-6 md:h-6" />
+						</button>
+					</div>
+					<div class="pt-2 pb-2 flex flex-col items-center">
+						<h4 class="h4 hidden md:block">Costs per trip</h4>
+						<PieChart data={tripChartData} />
+					</div>
+					<div class="pt-2 pb-2 flex flex-col items-center">
+						<h4 class="h4 hidden md:block">Costs per category</h4>
+						<PieChart data={costChartData} />
+					</div>
+				</Carousel>
 			{:else}
 				<section class="mt-4">
 					<div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">

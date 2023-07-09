@@ -42,7 +42,7 @@
 </script>
 
 <div
-	class="logo-cloud grid-cols-2 lg:!grid-cols-3 gap-1 [&>.logo-item]:pointer-events-none [&>.logo-item]:variant-ghost-surface h-full"
+	class="logo-cloud grid-cols-2 lg:!grid-cols-3 gap-1 [&>.logo-item]:pointer-events-none [&>.logo-item]:variant-ghost-surface [&>.logo-item]:p-3"
 >
 	<a class="logo-item" href="/">
 		<span><Icon src={GlobeAlt} class="w-8 h-8" /></span>

@@ -8,6 +8,4 @@ export interface UserDetails {
 	birthday: string;
 	profilePicture: string;
 	createdAt: string;
-	openDebts: number;
-	tripsJoined: number;
 }

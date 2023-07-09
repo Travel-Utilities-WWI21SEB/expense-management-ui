@@ -137,7 +137,7 @@
 					<!-- Actions -->
 					<div class="alert-actions">
 						<button on:click={navigationHandler} class="btn variant-filled"
-							>{i('forms.signup.steps.token.successMessageLink')}</button
+							>{i('forms.signup.steps.token.successActionLink')}</button
 						>
 					</div>
 				</aside>

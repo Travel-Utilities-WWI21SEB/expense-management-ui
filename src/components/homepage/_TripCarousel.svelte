@@ -16,14 +16,14 @@
 <div class="relative">
 	<!-- Carousel wrapper -->
 	<div class="relative overflow-hidden rounded-lg">
-		<h1 class="h1 col-start-1 flex justify-center">
+		<h1 class="h1 col-start-1 flex justify-center pt-2">
 			<span
 				class="bg-gradient-to-br from-primary-800 to-primary-400 bg-clip-text text-transparent box-decoration-clone"
 				>Trip overview</span
 			>
 		</h1>
 		<hr class="mt-2" />
-		{#if trips}
+		{#if trips && trips.length > 0}
 			<Carousel
 				bind:this={carousel}
 				let:showPrevPage
@@ -34,13 +34,19 @@
 				arrows={showArrows}
 			>
 				<div slot="prev" class="mt-2 ml-2">
-					<button class="btn-icon variant-ghost-primary" on:click={() => showPrevPage()}>
-						<Icon src={ArrowLeft} class="w-6 h-6" />
+					<button
+						class="btn-icon variant-ghost-primary w-6 h-6 md:w-8 md:h-8"
+						on:click={() => showPrevPage()}
+					>
+						<Icon src={ArrowLeft} class="w-4 h-4 md:w-6 md:h-6" />
 					</button>
 				</div>
 				<div slot="next" class="mt-2 mr-2">
-					<button class="btn-icon variant-ghost-primary" on:click={() => showNextPage()}>
-						<Icon src={ArrowRight} class="w-6 h-6" />
+					<button
+						class="btn-icon variant-ghost-primary w-6 h-6 md:w-8 md:h-8"
+						on:click={() => showNextPage()}
+					>
+						<Icon src={ArrowRight} class="w-4 h-4 md:w-6 md:h-6" />
 					</button>
 				</div>
 				{#each trips as trip}

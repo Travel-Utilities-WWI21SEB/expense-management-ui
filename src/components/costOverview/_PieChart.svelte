@@ -11,6 +11,6 @@
 <Doughnut
 	{data}
 	options={{
-		responsive: true
+		responsive: false
 	}}
 />
