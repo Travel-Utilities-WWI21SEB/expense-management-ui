@@ -118,7 +118,7 @@
 					<header class="card-header">
 						<h4 class="h4">Cost distribution</h4>
 					</header>
-					<div class="lg:w-10/12 p-3">
+					<div class="lg:w-10/12 p-3 flex justify-center">
 						<PieChart data={costChartData} />
 					</div>
 				</div>
@@ -130,7 +130,7 @@
 					<header class="card-header">
 						<h4 class="h4">Trip distribution</h4>
 					</header>
-					<div class="lg:w-10/12 p-3">
+					<div class="lg:w-10/12 p-3 flex justify-center">
 						<PieChart data={tripChartData} />
 					</div>
 				</div>
