@@ -82,3 +82,7 @@ export { default as AverageTripCosts } from './costOverview/_AverageTripCosts.sv
 export { default as PieChart } from './costOverview/_PieChart.svelte';
 export { default as TotalCosts } from './costOverview/_TotalCosts.svelte';
 export { default as TripAssociation } from './costOverview/_TripAssociation.svelte';
+
+//History
+export { default as HistoryItem } from './history/_HistoryItem.svelte';
+export { default as SortTransactionsPopup } from './history/_SortTransactionsPopup.svelte';
