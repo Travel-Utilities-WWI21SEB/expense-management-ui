@@ -21,11 +21,11 @@
 		const tripLength = costOverview.tripDistribution.length;
 		const costLength = costOverview.costDistribution.length;
 
-		for (let i = 0; i < costOverview.tripDistribution.length; i++) {
+		for (let i = 0; i < tripLength; i++) {
 			tripColors.push(generateRandomColor(tripLength, i));
 		}
 
-		for (let i = 0; i < costOverview.costDistribution.length; i++) {
+		for (let i = 0; i < costLength; i++) {
 			costColors.push(generateRandomColor(costLength, i));
 		}
 
@@ -118,7 +118,7 @@
 					<header class="card-header">
 						<h4 class="h4">Cost distribution</h4>
 					</header>
-					<div class="lg:w-10/12 p-3">
+					<div class="lg:w-10/12 p-3 flex justify-center">
 						<PieChart data={costChartData} />
 					</div>
 				</div>
@@ -130,7 +130,7 @@
 					<header class="card-header">
 						<h4 class="h4">Trip distribution</h4>
 					</header>
-					<div class="lg:w-10/12 p-3">
+					<div class="lg:w-10/12 p-3 flex justify-center">
 						<PieChart data={tripChartData} />
 					</div>
 				</div>

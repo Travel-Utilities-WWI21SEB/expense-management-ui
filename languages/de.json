@@ -106,6 +106,8 @@
 					"imageDescription": "Solltest du kein Bild auswählen, wird ein Standardbild verwendet.",
 					"uploadMessage": "Lade ein Foto hoch oder zieh es hierher",
 					"uploadDescription": "Wir unterstützen nur JPG- und PNG-Dateien bis zu einer Größe von 5 MB.",
+					"fileType": "Dateityp nicht unterstützt",
+					"fileSize": "Datei ist zu groß",
 					"nextStep": "Nächster Schritt"
 				},
 				"password": {

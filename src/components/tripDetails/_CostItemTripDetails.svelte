@@ -4,6 +4,7 @@
 	import { errorCode, errorState, loading } from '$stores';
 	import type { Cost, CostDateAsString, TravelData } from '$tripDomain';
 	import { calculateDate, getErrorMessage, pickTextColorBasedOnBgColorSimple } from '$utils';
+	import { language } from '@inlang/sdk-js';
 	import {
 		modalStore,
 		toastStore,
@@ -18,6 +19,20 @@
 	export let i: number;
 	export let selectionIndex: number;
 	export let trip: TravelData;
+
+	const dateFormats: {
+		[key: string]: string;
+		en: string;
+		de: string;
+	} = {
+		en: 'en-US',
+		de: 'de-de'
+	};
+
+	// get the date format based on the current language
+	$: dateFormat = dateFormats[language];
+	$: startDate = calculateDate(cost.startDate, dateFormat, 'medium');
+	$: endDate = cost.endDate ? calculateDate(cost.endDate, dateFormat, 'medium') : '';
 
 	const dispatch = createEventDispatcher();
 
@@ -134,8 +149,8 @@
 			<div class="text-clip overflow-hidden text-left truncate">
 				{cost.name}
 				<br />
-				{calculateDate(cost.startDate)}
-				{#if cost.endDate} - {calculateDate(cost.endDate)} {/if}
+				{startDate}
+				{#if cost.endDate} - {endDate} {/if}
 			</div>
 		</div>
 		<div class="col-span-4 sm:col-span-2 grid content-center px-2 pb-2 sm:p-2">

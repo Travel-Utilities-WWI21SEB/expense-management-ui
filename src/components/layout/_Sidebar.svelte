@@ -3,7 +3,7 @@
 	import { DarkIcon, LightIcon } from '$icons';
 	import { i } from '@inlang/sdk-js';
 	import { drawerStore, modeCurrent } from '@skeletonlabs/skeleton';
-	import { Banknotes, Clock, GlobeAlt, Home, User } from '@steeze-ui/heroicons';
+	import { Banknotes, Clock, CreditCard, GlobeAlt, Home, User } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
 
 	$: classesActive = (href: string) => (href === $page.url.pathname ? '!bg-primary-500' : '');
@@ -58,6 +58,11 @@
 					<span class="flex-auto">{i('sidebar.trips.trips')}</span>
 				</a>
 			</li>
+			<li class="my-px">
+				<span class="flex font-medium text-sm px-4 my-4 uppercase"
+					>{i('sidebar.overviews.title') || 'Overview'}</span
+				>
+			</li>
 			<li>
 				<a
 					href="/costs"
@@ -68,7 +73,20 @@
 					<span class="badge">
 						<Icon src={Banknotes} theme="solid" class="w-8 h-8 mx-auto" />
 					</span>
-					<span class="flex-auto">{i('sidebar.trips.costs')}</span>
+					<span class="flex-auto">{i('sidebar.overview.costs') || 'Costs'}</span>
+				</a>
+			</li>
+			<li>
+				<a
+					href="/debts"
+					class={classesActive('/debts')}
+					on:click={drawerClose}
+					data-sveltekit-preload-data="hover"
+				>
+					<span class="badge">
+						<Icon src={CreditCard} theme="solid" class="w-8 h-8 mx-auto" />
+					</span>
+					<span class="flex-auto">{i('sidebar.overview.debts') || 'Debts'}</span>
 				</a>
 			</li>
 			<li>

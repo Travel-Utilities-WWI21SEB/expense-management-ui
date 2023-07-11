@@ -1,12 +1,27 @@
 <script lang="ts">
 	import type { TravelData } from '$tripDomain';
 	import { calculateDate } from '$utils';
+	import { language } from '@inlang/sdk-js';
 
 	export let trip: TravelData;
+
+	const dateFormats: {
+		[key: string]: string;
+		en: string;
+		de: string;
+	} = {
+		en: 'en-US',
+		de: 'de-de'
+	};
+
+	// get the date format based on the current language
+	$: dateFormat = dateFormats[language];
+	$: startDate = calculateDate(trip.startDate, dateFormat, 'medium');
+	$: endDate = calculateDate(trip.endDate, dateFormat, 'medium');
 </script>
 
 <p>
-	{`${calculateDate(trip.startDate)} - ${calculateDate(trip.endDate)}`}
+	{`${startDate} - ${endDate}`}
 </p>
 <p>
 	Location: {trip.location}

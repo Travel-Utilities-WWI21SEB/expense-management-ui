@@ -1,17 +1,29 @@
 <script lang="ts">
-	import type { Transaction } from '$tripDomain';
+	import { goto } from '$app/navigation';
 	import { ParticipantIconDebt } from '$components';
+	import type { Transaction } from '$tripDomain';
+	import { calculateDate } from '$utils';
+	import { language } from '@inlang/sdk-js';
 	import { ArrowLongRight } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import { goto } from '$app/navigation';
-	import { calculateDate } from '$utils';
 
 	export let transaction: Transaction;
-	console.log(transaction);
 
 	const onTransactionClick = () => {
 		goto(`/trips/${transaction.trip.tripId}/debts`);
 	};
+
+	const dateFormats: {
+		[key: string]: string;
+		en: string;
+		de: string;
+	} = {
+		en: 'en-US',
+		de: 'de-de'
+	};
+
+	$: dateFormat = dateFormats[language];
+	$: creationDate = calculateDate(new Date(transaction.createdAt), dateFormat, 'full');
 </script>
 
 <button
@@ -20,7 +32,7 @@
 >
 	<div class="grid grid-cols-3 pb-2">
 		<h1>{`Trip: ${transaction.trip.name}`}</h1>
-		<p>{`Created: ${calculateDate(new Date(transaction.createdAt))}`}</p>
+		<p>{`Created: ${creationDate}`}</p>
 	</div>
 	{#if transaction.isDebt}
 		<div class="outline outline-offset-2 outline-1 w-full">
