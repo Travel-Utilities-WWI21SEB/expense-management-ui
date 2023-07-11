@@ -55,7 +55,7 @@
 
 			toast = {
 				background: 'variant-filled-success',
-				message: 'Your message was sent successfully!',
+				message: i('toast.sentMessage'),
 				autohide: true,
 				timeout: 5000
 			};

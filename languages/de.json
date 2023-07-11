@@ -236,5 +236,77 @@
 			"placeholder": "Was möchtest du uns mitteilen?",
 			"button": "Senden"
 		}
+	},
+	"tripOverview": {
+		"errorCode": "404",
+		"noTripsText": "Du hast noch keine Reisen angelegt",
+		"noTripsExplanation": "Bitte beginne mit dem Hinzufügen von Reisen, indem du auf die  Schaltfläche in der oberen rechten Ecke klickst",
+		"headerTitle": "Deine Reisen",
+		"addTripButton": "Neue Reise hinzufügen",
+		"addTripModal": {
+			"title": "Neue Reise Anlegen",
+			"tripDetailsTitle": "Reiseinformationen",
+			"headline": "",
+			"nameFieldTitle": "Reisename",
+			"nameInField": "Gib einen Namen für deine Reise ein...",
+			"locationFieldTitle": "Reiseziel",
+			"locationInField": "Gib dein Reiseziel ein...",
+			"startDateFieldTitle": "Anfangsdatum",
+			"endDateFieldTitle": "Enddatum",
+			"backButton": "Zurück",
+			"nextButton": "Weiter",
+			"costCategoriesTitle": "Kostenkategorien hinzufügen",
+			"costCategoriesInField": "Erstelle deine eigenen Kostenkategorien...",
+			"colorChangeExplanation": "Klicke auf die Kategorie, um die Farbe zu ändern!",
+			"foodCategory": "Essen",
+			"mobilityCategory": "Mobilität",
+			"completeButton": "Abschließen",
+			"iviteParticitpatsTitle": "Weitere Teilnehmer einladen",
+			"iviteParticitpatsInField": "E-Mail oder Benutzernamen eingeben...",
+			"noResultsMessage": "Keine Ergebnisse gefunden."
+		},
+		"tripCard": {
+			"totalCost": "Gesamtkosten: ",
+			"location": "Reiseziel:",
+			"nothingToGet": "Nichts zu erhalten.",
+			"youGet": "Du bekommst noch",
+			"nothingToPay": "Nichts zu bezahlen.",
+			"youPay": "Noch zu zahlen sind:  ",
+			"members": "Teilnehmer",
+			"noAccessMessage": "Kein Datenzugriff"
+		}
+	},
+	"costOverview": {
+		"headerTitle": "Dein Kostenüberblick",
+		"noCostsYet": {
+			"errorCode": "404",
+			"noCostsText": "Du hast noch keine Kosten",
+			"noCostsExplanation": "Du kannst mit dem Hinzufügen von Kosten beginnen, indem du eine Reise anlegst und Kosten hinzufügst.",
+			"createTripButton": "Reise erstellen"
+		},
+		"totalCosts": "Gesamtkosten",
+		"averageCosts": "Durchschnittliche Reisekosten",
+		"averageContributionToolTip": "Durchschnittlicher Prozentsatz der Ausgaben, den du zu jeder Reise beiträgst, berechnet auf der Grundlage deiner Gesamtbeiträge.",
+		"across": "bei",
+		"trip": "Reise",
+		"ending": "n",
+		"averageContribution": "Durchschnittlicher Beitragssatz",
+		"costDistribution": "Gesamtkostenaufteilung",
+		"tripDistribution": "Kostenverteilung nach Reisen",
+		"mostExpensiveTrip": "Teuerste Reise",
+		"leastExpensiveTrip": "Günstigste Reise"
+	},
+	"toast": {
+		"error": "Fehler: ",
+		"sentMessage": "Deine Nachricht wurde erfolgreich versendet!",
+		"resetPassword": "Ihr Passwort wurde erfolgreich zurückgesetzt!",
+		"costItem": "Die Kostenposition ",
+		"trip": "Die Reise ",
+		"transaction": "Die Transaktion ",
+		"deleted": " wurde erfolgreich gelöscht",
+		"created": " wurde erfolgreich erstellt",
+		"saved": " wurde erfolgreich gespeichert",
+		"confirmed": " wurde erfolgreich bestätigt",
+		"rejected": " wurde erfolgreich abgelehnt"
 	}
 }

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { TravelData } from '$tripDomain';
+	import { i } from '@inlang/sdk-js';
 
 	export let trip: TravelData;
 </script>
@@ -7,8 +8,8 @@
 <div class="p-8">
 	<strong class="h6 text-success-500">
 		{trip.userCredit && trip.userCredit > 0
-			? `You will get ${trip.userCredit}€`
-			: 'Nothing to get.'}
+			? i('tripOverview.tripCard.youGet') + trip.userCredit + ' €'
+			: i('tripOverview.tripCard.nothingToGet')}
 	</strong> <br />
 	<strong class="h6 {trip.userDebt && trip.userDebt > 0 ? 'text-error-500' : 'text-success-500'}">
 		{trip.userDebt && trip.userDebt > 0

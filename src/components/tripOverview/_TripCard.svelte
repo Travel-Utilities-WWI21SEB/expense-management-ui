@@ -2,6 +2,7 @@
 	import { DonutChart, Participants, TripInfos, UserPaymentOverview } from '$components';
 	import type { TravelData } from '$tripDomain';
 	import AlertWithAction from '../general/_AlertWithAction.svelte';
+	import { i } from '@inlang/sdk-js';
 
 	export let trip: TravelData;
 </script>
@@ -25,11 +26,13 @@
 		<div class="pr-4 pb-4">
 			{#if trip.data && trip.hasAcceptedInvite}
 				<h6 class="h6 p-4 flex justify-center">
-					{trip.totalCost ? `Total cost: ${trip.totalCost}€` : `Total cost: 0€`}
+					{trip.totalCost
+						? i('tripOverview.tripCard.totalCost') + trip.totalCost + ' €'
+						: i('tripOverview.tripCard.totalCost') + ' 0€'}
 				</h6>
 				<DonutChart data={trip.data} />
 			{:else}
-				<h6 class="h6 p-4">No Access to data</h6>
+				<h6 class="h6 p-4">{i('tripOverview.tripCard.noAccessMesage')}</h6>
 				<div class="flex justify-center">
 					<div class="mx-6 placeholder-circle w-72 animate-pulse" />
 				</div>

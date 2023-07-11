@@ -4,6 +4,7 @@
 	import { getErrorMessage } from '$utils';
 	import { type ToastSettings, toastStore, modalStore } from '@skeletonlabs/skeleton';
 	import { errorCode, errorState, loading } from '$stores';
+	import { i } from '@inlang/sdk-js';
 
 	export let transaction: Transaction;
 	export let parent: any;
@@ -69,12 +70,12 @@
 	const confirmTransaction = async () => {
 		await postConfirmTransaction(transaction.trip.tripId, transaction.transactionId);
 
-		let toastMessage = `Transaction confirmed successfully`;
+		let toastMessage = i('toast.transaction') + i('toast.confirmed');
 		if (!$errorState) {
 			await invalidateAll();
 		} else {
 			let errorMessage: string = getErrorMessage($errorCode);
-			toastMessage = `Error: ${errorMessage}`;
+			toastMessage = i('toast.error') + errorMessage;
 		}
 		modalStore.close();
 		const t: ToastSettings = {
@@ -87,12 +88,12 @@
 	const rejectTransaction = async () => {
 		await postRejectTransaction(transaction.trip.tripId, transaction.transactionId);
 
-		let toastMessage = `Transaction rejected successfully`;
+		let toastMessage = i('toast.transaction') + i('toast.rejected');
 		if (!$errorState) {
 			await invalidateAll();
 		} else {
 			let errorMessage: string = getErrorMessage($errorCode);
-			toastMessage = `Error: ${errorMessage}`;
+			toastMessage = i('toast.error') + errorMessage;
 		}
 		modalStore.close();
 		const t: ToastSettings = {

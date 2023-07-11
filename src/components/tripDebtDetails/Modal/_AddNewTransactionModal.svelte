@@ -6,6 +6,7 @@
 	import { modalStore, toastStore, type ToastSettings } from '@skeletonlabs/skeleton';
 	import { Check, XCircle } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
+	import { i } from '@inlang/sdk-js';
 
 	export let trip: TravelData;
 	export let currentUserId: string;
@@ -63,13 +64,13 @@
 		console.log(newTransaction);
 		await createTransaction(newTransaction);
 
-		let toastMessage = `Transaction created successfully`;
+		let toastMessage = i('toast.transaction') + i('toast.deleted');
 		if (!$errorState) {
 			invalidateAll();
 			modalStore.close();
 		} else {
 			let errorMessage: string = getErrorMessage($errorCode);
-			toastMessage = `Error: ${errorMessage}`;
+			toastMessage = i('toast.error') + errorMessage;
 		}
 		const t: ToastSettings = {
 			message: toastMessage,

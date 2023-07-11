@@ -12,6 +12,7 @@
 		toastStore,
 		type ToastSettings
 	} from '@skeletonlabs/skeleton';
+	import { i } from '@inlang/sdk-js';
 
 	$: newCostCategoryElements = newCostCategories.filter((category) => category.isNew);
 	$: existingCostCategoryElements = newCostCategories.filter((category) => !category.isNew);
@@ -24,8 +25,8 @@
 	};
 	let selectedUsers = [{ name: $currentUser.username, isNew: true }];
 	let newCostCategories = [
-		{ name: 'Food', isNew: true },
-		{ name: 'Mobility', isNew: true }
+		{ name: i('tripOverview.addTripModal.foodCategory'), isNew: true },
+		{ name: i('tripOverview.addTripModal.mobilityCategory'), isNew: true }
 	];
 	let newCostCategoryColors = ['#FF8585', '#00FF62'];
 
@@ -76,8 +77,8 @@
 		await Promise.all([...invitationPromises, ...costCategoryPromises]);
 
 		const message = result.error
-			? `Error: ${result.errorMessage}`
-			: `Trip ${result.data.name} created successfully`;
+			? i('toast.error') + result.errorMessage
+			: i('toast.trip') + result.data.name + i('toast.created');
 		const t: ToastSettings = {
 			message: message,
 			background: result.error ? 'variant-filled-warning' : 'variant-filled-success'
@@ -102,13 +103,24 @@
 {#if $modalStore[0]}
 	<div class={cBase}>
 		<header class={cHeader}>{$modalStore[0].title ?? '(title missing)'}</header>
-		<Stepper on:complete={async () => await onFormSubmit()} on:close={() => alert('test')}>
+		<Stepper
+			on:complete={async () => await onFormSubmit()}
+			on:close={() => alert('test')}
+			buttonNextLabel={i('tripOverview.addTripModal.nextButton')}
+			buttonBackLabel={i('tripOverview.addTripModal.backButton')}
+			buttonCompleteLabel={i('tripOverview.addTripModal.completeButton')}
+			stepTerm={i('forms.step')}
+		>
 			<Step locked={newTrip.name.length < 1 || newTrip.location.length < 1}>
-				<svelte:fragment slot="header">Trip Details</svelte:fragment>
+				<svelte:fragment slot="header"
+					>{i('tripOverview.addTripModal.tripDetailsTitle')}</svelte:fragment
+				>
 				<NewTripStep bind:newTrip />
 			</Step>
 			<Step>
-				<svelte:fragment slot="header">Add Cost Categories</svelte:fragment>
+				<svelte:fragment slot="header"
+					>{i('tripOverview.addTripModal.costCategoriesTitle')}</svelte:fragment
+				>
 				<AddCostCategories
 					{existingCostCategoryElements}
 					{newCostCategoryElements}
@@ -117,7 +129,9 @@
 				/>
 			</Step>
 			<Step>
-				<svelte:fragment slot="header">Invite Participants</svelte:fragment>
+				<svelte:fragment slot="header"
+					>{i('tripOverview.addTripModal.iviteParticitpatsTitle')}</svelte:fragment
+				>
 				<InviteParticipantsStep bind:selectedUsers />
 			</Step>
 		</Stepper>

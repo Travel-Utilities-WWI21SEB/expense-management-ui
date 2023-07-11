@@ -2,9 +2,11 @@
 	import { goto } from '$app/navigation';
 	import { AlertWithAction, HeaderBar, TripCard } from '$components';
 	import { currentUser, errorCode, errorState } from '$stores';
+	import { i } from '@inlang/sdk-js';
 	import type { TravelData } from '$tripDomain';
 
 	export let data;
+	console.log(data.tripData);
 
 	errorCode.set(data.errorCode);
 	errorState.set(data.error);
@@ -40,15 +42,15 @@
 					<h1
 						class="mb-4 text-7xl tracking-tight font-extrabold lg:text-9xl text-primary-600 dark:text-primary-500"
 					>
-						404
+						{i('tripOverview.errorCode')}
 					</h1>
 					<p
 						class="mb-4 text-3xl tracking-tight font-bold text-gray-900 md:text-4xl dark:text-white"
 					>
-						You don't have any trips yet
+						{i('tripOverview.noTripsText')}
 					</p>
 					<p class="mb-4 text-lg font-light text-gray-500 dark:text-gray-400">
-						Please start adding trips by clicking on the button in the top right corner
+						{i('tripOverview.noTripsExplanation')}
 					</p>
 				</div>
 			</div>

@@ -81,8 +81,8 @@
 		}
 
 		// Have first color for open debts and second color for open credits
-		const openDebtsColors = debts.debts.map((entry) => debtColors[0]);
-		const openCreditsColors = debts.debts.map((entry) => debtColors[1]);
+		const openDebtsColors = debts.debts.map(() => debtColors[0]);
+		const openCreditsColors = debts.debts.map(() => debtColors[1]);
 
 		// Map open debts and open to different datasets
 		// Open debts are negative values in the amount

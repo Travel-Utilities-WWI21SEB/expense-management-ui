@@ -4,7 +4,7 @@
 	import { errorCode, errorState, loading } from '$stores';
 	import type { Cost, CostDateAsString, TravelData } from '$tripDomain';
 	import { calculateDate, getErrorMessage, pickTextColorBasedOnBgColorSimple } from '$utils';
-	import { language } from '@inlang/sdk-js';
+	import { i, language } from '@inlang/sdk-js';
 	import {
 		modalStore,
 		toastStore,
@@ -16,7 +16,7 @@
 	import { currentCost } from '../../stores/costStore';
 
 	export let cost: Cost;
-	export let i: number;
+	export let idx: number;
 	export let selectionIndex: number;
 	export let trip: TravelData;
 
@@ -38,7 +38,7 @@
 
 	function selectListItem(i: number) {
 		dispatch('select_item', {
-			index: i
+			index: idx
 		});
 
 		currentCost.set(cost);
@@ -110,8 +110,8 @@
 		const result = await deleteCost(cost, trip);
 
 		const message = result.error
-			? `Error: ${getErrorMessage(result.errorCode)}`
-			: `Cost ${cost.name} deleted successfully`;
+			? i('toast.error') + getErrorMessage(result.errorCode)
+			: i('toast.costItem') + cost.name + i('toast.deleted');
 		const t: ToastSettings = {
 			message: message,
 			background: result.error ? 'variant-filled-warning' : 'variant-filled-success'
@@ -127,10 +127,10 @@
 
 <button
 	class="card card-hover hover:bg-secondary-100 hover:dark:text-secondary-900 w-full {selectionIndex ===
-	i
+	idx
 		? 'bg-secondary-200  outline outline-1'
 		: ''}"
-	on:click={() => selectListItem(i)}
+	on:click={() => selectListItem(idx)}
 >
 	<div class="grid grid-cols-12 md:gap-2">
 		<div class="col-span-12 sm:col-span-3 grid content-center sm:p-2">
