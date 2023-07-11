@@ -6,6 +6,7 @@
 	import { XMark } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import type { PageData } from './$types';
+	import { i } from '@inlang/sdk-js';
 
 	export let data: PageData;
 
@@ -85,9 +86,9 @@
 </script>
 
 <div class="modal-form card m-8 p-4 space-y-4 lg:mx-64 lg:my-28">
-	<h1 class="text-center">Accept your Trip Invitation!</h1>
+	<h1 class="text-center">{i("tripOverview.tripCard.acceptTrip.acceptText")}</h1>
 	<label class="label mx-8">
-		<span>Presence in Trip starting on:</span>
+		<span>{i("tripOverview.tripCard.acceptTrip.presenceStart")}</span>
 		<input
 			min={data.tripData.startDate.toISOString().substring(0, 10)}
 			max={data.tripData.endDate.toISOString().substring(0, 10)}
@@ -98,7 +99,7 @@
 		/>
 	</label>
 	<label class="label mx-8">
-		<span>Presence in Trip ending on:</span>
+		<span>{i("tripOverview.tripCard.acceptTrip.presenceEnd")}</span>
 		<input
 			max={data.tripData.endDate.toISOString().substring(0, 10)}
 			min={data.tripData.startDate.toISOString().substring(0, 10)}
@@ -109,8 +110,8 @@
 		/>
 	</label>
 	<div class="flex justify-center gap-4 p-8">
-		<button on:click={onAcceptClick} class="btn variant-filled">Accept</button>
-		<button on:click={onRejectClick} class="btn variant-ghost">Reject</button>
+		<button on:click={onAcceptClick} class="btn variant-filled">{i("tripOverview.tripCard.acceptTrip.acceptButton")}</button>
+		<button on:click={onRejectClick} class="btn variant-ghost">{i("tripOverview.tripCard.acceptTrip.rejectButton")}</button>
 	</div>
 	{#if $errorState}
 		<span class="badge-icon variant-filled-error w-4 h-4">

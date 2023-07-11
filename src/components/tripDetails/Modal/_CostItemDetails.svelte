@@ -11,6 +11,7 @@
 	import { SlideToggle } from '@skeletonlabs/skeleton';
 	import { Check, XMark } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
+	import { i } from '@inlang/sdk-js';
 
 	export let cost: CostDateAsString;
 	export let trip: TravelData;
@@ -49,17 +50,17 @@
 
 <div class="grid grid-cols-2 gap-2">
 	<label class="label col-span-2">
-		<span class="font-semibold">Name</span>
+		<span class="font-semibold">{i('tripDetails.addCostModal.name')}</span>
 		<input class="input" type="text" bind:value={cost.name} />
 	</label>
 	<SlideToggle
 		class="col-span-2 font-semibold"
 		name="Time Period"
 		bind:checked
-		on:change={() => changeTimeToggle()}>{!checked ? 'One-Time Cost' : 'Period Cost'}</SlideToggle
+		on:change={() => changeTimeToggle()}>{!checked ? i('tripDetails.addCostModal.oneTimeCost') : i('tripDetails.addCostModal.periodCost')}</SlideToggle
 	>
 	<label class="label col-span-2 {checked ? 'sm:col-span-1' : 'sm:col-span-2'}">
-		<span class="font-semibold">Start Date</span>
+		<span class="font-semibold">{i('tripDetails.addCostModal.startDate')}</span>
 		<input
 			class="input"
 			type="date"
@@ -72,7 +73,7 @@
 
 	{#if checked}
 		<label class="label col-span-2 sm:col-span-1">
-			<span class="font-semibold">End Date</span>
+			<span class="font-semibold">{i('tripDetails.addCostModal.endDate')}</span>
 			<input
 				class="input"
 				type="date"
@@ -83,7 +84,7 @@
 		</label>
 	{/if}
 	<label class="label col-span-2 sm:col-span-1">
-		<span class="font-semibold">Amount</span>
+		<span class="font-semibold">{i('tripDetails.addCostModal.amount')}</span>
 		<div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
 			<div class="input-group-shim">{cost.currency === 'EUR' ? '€' : '$'}</div>
 			<input
@@ -102,7 +103,7 @@
 		</div>
 	</label>
 	<label class="label col-span-2 sm:col-span-1">
-		<span class="font-semibold">Category</span>
+		<span class="font-semibold">{i('tripDetails.addCostModal.category')}</span>
 		<select class="select" bind:value={cost.costCategory.costCategoryId}>
 			{#each trip.costCategories as category}
 				<option value={category.costCategoryId}>{category.name} </option>
@@ -115,12 +116,12 @@
 				<span class="badge-icon variant-filled-success w-4 h-4">
 					<Icon src={Check} class="w-6 h-6" />
 				</span>
-				<span class="flex-auto">Cost Details are valid</span>
+				<span class="flex-auto">{i('tripDetails.addCostModal.costAllowed')}</span>
 			{:else}
 				<span class="badge-icon variant-filled-error w-4 h-4">
 					<Icon src={XMark} class="w-6 h-6" />
 				</span>
-				<span class="flex-auto">Please provide valid cost details</span>
+				<span class="flex-auto">{i('tripDetails.addCostModal.costWarning')}</span>
 			{/if}
 		</li>
 	</ol>

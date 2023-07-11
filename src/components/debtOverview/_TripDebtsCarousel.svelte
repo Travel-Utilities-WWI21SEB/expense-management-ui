@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { i } from '@inlang/sdk-js';
 	import { ArrowLeft, ArrowRight, Banknotes, CreditCard } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import Carousel from 'svelte-carousel';
@@ -20,7 +21,7 @@
 
 <div class="card rounded-lg shadow-md">
 	<header class="card-header flex justify-center">
-		<h4 class="h4">Trip carousel</h4>
+		<h4 class="h4">{i("debtsPage.tripCarousel")}</h4>
 	</header>
 	<hr class="!border-t-2 mt-2" />
 	<section class="p-4">
@@ -63,14 +64,14 @@
 						<a class="logo-item variant-ghost-success" href="/">
 							<span><Icon src={Banknotes} class="w-8 h-8" /></span>
 							<span
-								>{mappedTrip.amountOpenCredits} open credit(s) accounting to a total value of
+								>{mappedTrip.amountOpenCredits} {i("debtsPage.openCreditsAccouting")}
 								{mappedTrip.openCredit}€</span
 							>
 						</a>
 						<a class="logo-item variant-ghost-warning" href="/">
 							<span><Icon src={CreditCard} class="w-8 h-8" /></span>
 							<span
-								>{mappedTrip.amountOpenDebts} open debt(s) accounting to a total of {mappedTrip.openDebt}€</span
+								>{mappedTrip.amountOpenDebts} {i("debtsPage.openDebtsAccouting")} {mappedTrip.openDebt}€</span
 							>
 						</a>
 					</div>
