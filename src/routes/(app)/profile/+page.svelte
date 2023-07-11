@@ -3,7 +3,7 @@
 	import { PUBLIC_IMAGE_SERVICE_URL } from '$env/static/public';
 	import { errorCode } from '$stores';
 	import { calculateDate } from '$utils';
-	import { language } from '@inlang/sdk-js';
+	import { i, language } from '@inlang/sdk-js';
 	import { Avatar } from '@skeletonlabs/skeleton';
 	import { Check, Pencil } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
@@ -40,16 +40,16 @@
 				<span
 					class="bg-gradient-to-br from-primary-800 to-primary-600 dark:from-primary-400 dark:to-primary-200 bg-clip-text text-transparent box-decoration-clone"
 				>
-					Your profile
+					{i("profile.title")}
 				</span>
 			</h1>
 			<button class="btn variant-ghost-primary" on:click={() => (editMode = !editMode)}>
 				{#if editMode}
 					<span><Icon src={Check} class="w-6 h-6" /></span>
-					<span>Save</span>
+					<span>{i("profile.saveButton")}</span>
 				{:else}
 					<span><Icon src={Pencil} class="w-6 h-6" /></span>
-					<span>Edit</span>
+					<span>{i("profile.editButton")}</span>
 				{/if}
 			</button>
 		</header>
@@ -73,15 +73,15 @@
 						<div>
 							<span class="badge bg-primary-500">1</span>
 							<span class="flex-auto">
-								<dt>Traveller since:</dt>
+								<dt>{i("profile.travellerSince")}</dt>
 								<dd>{creationDate}</dd>
 							</span>
 						</div>
 						<div>
 							<span class="badge bg-primary-500">2</span>
 							<span class="flex-auto">
-								<dt>Description:</dt>
-								<dd>Here could be a short description about you, but we were too lazy. :)</dd>
+								<dt>{i("profile.description")}</dt>
+								<dd>{i("profile.descriptionExplanation")}</dd>
 							</span>
 						</div>
 						<!-- ... -->
@@ -89,49 +89,49 @@
 				</footer>
 			</div>
 			<div class="flex-1 !bg-transparent border border-surface-500 rounded-lg shadow-xl p-8">
-				<h4 class="h4">Personal Info</h4>
+				<h4 class="h4">{i("profile.personalInfo")}</h4>
 				<ul class="mt-2">
 					<li class="flex border-y border-current py-2">
-						<span class="font-bold w-24">First name:</span>
+						<span class="font-bold w-24">{i("profile.firstName")}</span>
 						{#if editMode}
 							<input
 								type="text"
 								class="input"
 								bind:value={user.firstName}
-								placeholder="First name"
+								placeholder={i("profile.firstName")}
 							/>
 						{:else}
 							<span>{user.firstName}</span>
 						{/if}
 					</li>
 					<li class="flex border-b border-current py-2">
-						<span class="font-bold w-24">Last name:</span>
+						<span class="font-bold w-24">{i("profile.lastName")}</span>
 						{#if editMode}
-							<input type="text" class="input" bind:value={user.lastName} placeholder="Last name" />
+							<input type="text" class="input" bind:value={user.lastName} placeholder= {i("profile.lastName")} />
 						{:else}
 							<span>{user.lastName}</span>
 						{/if}
 					</li>
 					<li class="flex border-b border-current py-2">
-						<span class="font-bold w-24">Birthday:</span>
+						<span class="font-bold w-24">{i("profile.birthDate")}</span>
 						{#if editMode}
-							<input type="date" class="input" bind:value={user.birthday} placeholder="Birthday" />
+							<input type="date" class="input" bind:value={user.birthday} placeholder={i("profile.birthDate")} />
 						{:else}
 							<span>{birthday}</span>
 						{/if}
 					</li>
 					<li class="flex border-b border-current py-2">
-						<span class="font-bold w-24">Joined:</span>
+						<span class="font-bold w-24">{i("profile.joinedAt")}</span>
 						<span>{creationDate}</span>
 					</li>
 					<li class="flex border-b border-current py-2">
-						<span class="font-bold w-24">Email:</span>
+						<span class="font-bold w-24">{i("profile.email")}</span>
 						<span class="overflow-x-auto">{user.email}</span>
 					</li>
 					<li class="flex border-b border-current py-2">
-						<span class="font-bold w-24">Location:</span>
+						<span class="font-bold w-24">{i("profile.location")}</span>
 						{#if editMode}
-							<input type="text" class="input" bind:value={user.location} placeholder="Location" />
+							<input type="text" class="input" bind:value={user.location} placeholder={i("profile.location")} />
 						{:else}
 							<span>{user.location}</span>
 						{/if}

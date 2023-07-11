@@ -5,6 +5,7 @@
 	import { Check, XMark } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { createEventDispatcher } from 'svelte';
+	import { i } from '@inlang/sdk-js';
 
 	export let users: Array<CostPaidForUser>;
 	export let paidBy: string;
@@ -20,7 +21,7 @@
 </script>
 
 <label class="label pb-4">
-	<span class="font-semibold">Paid by</span>
+	<span class="font-semibold">{i('tripDetails.addCostModal.paidBy')}</span>
 	<select
 		class="select"
 		on:change={(e) => {
@@ -40,12 +41,12 @@
 			<span class="badge-icon variant-filled-success w-4 h-4">
 				<Icon src={Check} class="w-6 h-6" />
 			</span>
-			<span class="flex-auto">Paid By is valid</span>
+			<span class="flex-auto">{i('tripDetails.addCostModal.paidByAllowed')}</span>
 		{:else}
 			<span class="badge-icon variant-filled-error w-4 h-4">
 				<Icon src={XMark} class="w-6 h-6" />
 			</span>
-			<span class="flex-auto">Please provide a valid paid by</span>
+			<span class="flex-auto">{i('tripDetails.addCostModal.paidByWarning')}</span>
 		{/if}
 	</li>
 </ol>
