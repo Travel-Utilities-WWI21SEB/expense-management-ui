@@ -120,8 +120,8 @@
 		const result = await updateCost(localeCost, trip, costPaidForUser);
 
 		const message = result.error
-			? i("toast.error") + getErrorMessage(result.errorCode)
-			: i("toast.costItem")+ result.data.description + i("toast.saved");
+			? i('toast.error') + getErrorMessage(result.errorCode)
+			: i('toast.costItem') + result.data.description + i('toast.saved');
 		const t: ToastSettings = {
 			message: message,
 			background: result.error ? 'variant-filled-warning' : 'variant-filled-success'

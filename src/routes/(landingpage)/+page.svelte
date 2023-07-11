@@ -8,8 +8,16 @@
 		SignUpModal,
 		StatisticBox
 	} from '$components';
+	import aleksLogo from '$lib/assets/aleksIcon.jpg';
+	import justinLogo from '$lib/assets/justinIcon.jpg';
+	import nicoLogo from '$lib/assets/nicoIcon.jpg';
 	import { i } from '@inlang/sdk-js';
-	import { modalStore, type ModalComponent, type ModalSettings } from '@skeletonlabs/skeleton';
+	import {
+		Avatar,
+		modalStore,
+		type ModalComponent,
+		type ModalSettings
+	} from '@skeletonlabs/skeleton';
 	import { CreditCard, GlobeEuropeAfrica, Users } from '@steeze-ui/heroicons';
 
 	export let data;
@@ -105,25 +113,34 @@
 	<div class="container px-5 py-24 mx-auto">
 		<div class="lg:flex lg:flex-wrap -m-4">
 			<LandingPageReviewBox
-				imageLink="/aleksIcon.jpg"
 				quote={i('landingPage.reviews.aleks')}
 				name="ALEKS GEORGIEV"
 				jobTitle="Senior Product Designer"
-			/>
+			>
+				<svelte:fragment slot="icon">
+					<Avatar class="mx-auto mb-4 w-20 h-20" rounded="rounded-full" src={aleksLogo} />
+				</svelte:fragment>
+			</LandingPageReviewBox>
 			<hr class="!border-t-2 lg:border-0 !border-double" />
 			<LandingPageReviewBox
-				imageLink="/justinIcon.jpg"
 				quote={i('landingPage.reviews.thomas')}
 				name="JUSTIN SCHWAB"
 				jobTitle="Spast"
-			/>
+			>
+				<svelte:fragment slot="icon">
+					<Avatar class="mx-auto mb-4 w-20 h-20" rounded="rounded-full" src={justinLogo} />
+				</svelte:fragment>
+			</LandingPageReviewBox>
 			<hr class="!border-t-2 lg:border-0 !border-double" />
 			<LandingPageReviewBox
-				imageLink="/nicoIcon.jpg"
 				quote={i('landingPage.reviews.nico')}
 				name="NICO NIEBISCH"
 				jobTitle="Chief Executive Officer"
-			/>
+			>
+				<svelte:fragment slot="icon">
+					<Avatar class="mx-auto mb-4 w-20 h-20" rounded="rounded-full" src={nicoLogo} />
+				</svelte:fragment>
+			</LandingPageReviewBox>
 		</div>
 	</div>
 </section>

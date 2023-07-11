@@ -4,6 +4,7 @@
 	import { errorCode, errorState, loading } from '$stores';
 	import type { Cost, CostDateAsString, TravelData } from '$tripDomain';
 	import { calculateDate, getErrorMessage, pickTextColorBasedOnBgColorSimple } from '$utils';
+	import { i, language } from '@inlang/sdk-js';
 	import {
 		modalStore,
 		toastStore,
@@ -13,18 +14,31 @@
 	} from '@skeletonlabs/skeleton';
 	import { createEventDispatcher } from 'svelte';
 	import { currentCost } from '../../stores/costStore';
-	import {i} from '@inlang/sdk-js';
 
 	export let cost: Cost;
-	export let id: number;
+	export let idx: number;
 	export let selectionIndex: number;
 	export let trip: TravelData;
+
+	const dateFormats: {
+		[key: string]: string;
+		en: string;
+		de: string;
+	} = {
+		en: 'en-US',
+		de: 'de-de'
+	};
+
+	// get the date format based on the current language
+	$: dateFormat = dateFormats[language];
+	$: startDate = calculateDate(cost.startDate, dateFormat, 'medium');
+	$: endDate = cost.endDate ? calculateDate(cost.endDate, dateFormat, 'medium') : '';
 
 	const dispatch = createEventDispatcher();
 
 	function selectListItem(i: number) {
 		dispatch('select_item', {
-			index: id
+			index: idx
 		});
 
 		currentCost.set(cost);
@@ -96,8 +110,8 @@
 		const result = await deleteCost(cost, trip);
 
 		const message = result.error
-			?  i("toast.error") + getErrorMessage(result.errorCode)
-			: i("toast.costItem") + cost.name + i("toast.deleted");
+			? i('toast.error') + getErrorMessage(result.errorCode)
+			: i('toast.costItem') + cost.name + i('toast.deleted');
 		const t: ToastSettings = {
 			message: message,
 			background: result.error ? 'variant-filled-warning' : 'variant-filled-success'
@@ -113,10 +127,10 @@
 
 <button
 	class="card card-hover hover:bg-secondary-100 hover:dark:text-secondary-900 w-full {selectionIndex ===
-	id
+	idx
 		? 'bg-secondary-200  outline outline-1'
 		: ''}"
-	on:click={() => selectListItem(id)}
+	on:click={() => selectListItem(idx)}
 >
 	<div class="grid grid-cols-12 md:gap-2">
 		<div class="col-span-12 sm:col-span-3 grid content-center sm:p-2">
@@ -135,8 +149,8 @@
 			<div class="text-clip overflow-hidden text-left truncate">
 				{cost.name}
 				<br />
-				{calculateDate(cost.startDate)}
-				{#if cost.endDate} - {calculateDate(cost.endDate)} {/if}
+				{startDate}
+				{#if cost.endDate} - {endDate} {/if}
 			</div>
 		</div>
 		<div class="col-span-4 sm:col-span-2 grid content-center px-2 pb-2 sm:p-2">

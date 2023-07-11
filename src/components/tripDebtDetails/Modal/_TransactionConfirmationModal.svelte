@@ -70,12 +70,12 @@
 	const confirmTransaction = async () => {
 		await postConfirmTransaction(transaction.trip.tripId, transaction.transactionId);
 
-		let toastMessage = i("toast.transaction") +i("toast.confirmed");
+		let toastMessage = i('toast.transaction') + i('toast.confirmed');
 		if (!$errorState) {
 			await invalidateAll();
 		} else {
 			let errorMessage: string = getErrorMessage($errorCode);
-			toastMessage = i("toast.error") + errorMessage;
+			toastMessage = i('toast.error') + errorMessage;
 		}
 		modalStore.close();
 		const t: ToastSettings = {
@@ -88,12 +88,12 @@
 	const rejectTransaction = async () => {
 		await postRejectTransaction(transaction.trip.tripId, transaction.transactionId);
 
-		let toastMessage = i("toast.transaction") +i("toast.rejected");
+		let toastMessage = i('toast.transaction') + i('toast.rejected');
 		if (!$errorState) {
 			await invalidateAll();
 		} else {
 			let errorMessage: string = getErrorMessage($errorCode);
-			toastMessage = i("toast.error") + errorMessage;
+			toastMessage = i('toast.error') + errorMessage;
 		}
 		modalStore.close();
 		const t: ToastSettings = {

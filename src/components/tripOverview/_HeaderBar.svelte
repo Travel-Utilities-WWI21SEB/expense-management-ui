@@ -6,7 +6,7 @@
 		type ModalComponent,
 		type ModalSettings
 	} from '@skeletonlabs/skeleton';
-	import {i} from '@inlang/sdk-js';
+	import { i } from '@inlang/sdk-js';
 	import { Plus } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
 

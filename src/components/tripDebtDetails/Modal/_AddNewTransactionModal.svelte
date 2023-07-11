@@ -64,13 +64,13 @@
 		console.log(newTransaction);
 		await createTransaction(newTransaction);
 
-		let toastMessage = i("toast.transaction") + i("toast.deleted");
+		let toastMessage = i('toast.transaction') + i('toast.deleted');
 		if (!$errorState) {
 			invalidateAll();
 			modalStore.close();
 		} else {
 			let errorMessage: string = getErrorMessage($errorCode);
-			toastMessage = i("toast.error") + errorMessage;
+			toastMessage = i('toast.error') + errorMessage;
 		}
 		const t: ToastSettings = {
 			message: toastMessage,

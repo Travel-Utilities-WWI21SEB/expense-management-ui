@@ -9,7 +9,7 @@
 
 <div>
 	<div class="flex items-center space-x-2 text-base {justifyCenter ? 'justify-center' : ''}">
-		<h4>{i("tripOverview.tripCard.members")}</h4>
+		<h4>{i('tripOverview.tripCard.members')}</h4>
 		<span class="rounded-full bg-slate-100 px-2 py-1 text-xs font-semibold text-slate-700"
 			>{participants.length}</span
 		>

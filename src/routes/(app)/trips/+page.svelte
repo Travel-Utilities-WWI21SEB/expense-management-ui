@@ -3,7 +3,7 @@
 	import { AlertWithAction, HeaderBar, TripCard } from '$components';
 	import { currentUser, errorCode, errorState } from '$stores';
 	import { i } from '@inlang/sdk-js';
-	import type {TravelData } from '$tripDomain';
+	import type { TravelData } from '$tripDomain';
 
 	export let data;
 	console.log(data.tripData);

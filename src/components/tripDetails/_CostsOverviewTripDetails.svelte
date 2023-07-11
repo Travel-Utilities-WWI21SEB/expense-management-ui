@@ -93,12 +93,12 @@
 	{:else}
 		<ul class="list p-2 max-h-[500px] overflow-auto">
 			{#key paginatedCosts}
-				{#each paginatedCosts as cost, i}
+				{#each paginatedCosts as cost, idx}
 					<li>
 						<TripDetailsCostItem
 							{cost}
 							{selectionIndex}
-							{i}
+							{idx}
 							{trip}
 							on:select_item={(e) => handleSelectItem(e)}
 						/>

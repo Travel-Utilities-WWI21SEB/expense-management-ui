@@ -24,7 +24,7 @@
 		toastStore,
 		type ToastSettings
 	} from '@skeletonlabs/skeleton';
-	import {i} from '@inlang/sdk-js'
+	import { i } from '@inlang/sdk-js';
 
 	export let trip: TravelData;
 
@@ -104,13 +104,13 @@
 	async function onFormSubmit(): Promise<void> {
 		await createCost(cost, trip, costPaidForUser);
 
-		let toastMessage = i("toast.costItem") + cost.name + i("toast.created");
+		let toastMessage = i('toast.costItem') + cost.name + i('toast.created');
 		if (!$errorState) {
 			invalidateAll();
 			modalStore.close();
 		} else {
 			let errorMessage: string = getErrorMessage($errorCode);
-			toastMessage = i("toast.error") + errorMessage;
+			toastMessage = i('toast.error') + errorMessage;
 		}
 		const t: ToastSettings = {
 			message: toastMessage,

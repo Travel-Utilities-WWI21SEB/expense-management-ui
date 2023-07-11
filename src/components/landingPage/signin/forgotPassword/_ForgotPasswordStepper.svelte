@@ -10,7 +10,7 @@
 
 	const successToast: ToastSettings = {
 		background: 'variant-filled-success',
-		message: i("toast.resetPassword"),
+		message: i('toast.resetPassword'),
 		autohide: true,
 		timeout: 5000
 	};

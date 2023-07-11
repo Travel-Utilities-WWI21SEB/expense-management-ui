@@ -40,8 +40,10 @@
 			formData.append('location', $location);
 
 			// Fetch the image as a Blob object and append it to the form data
-			const blob = await fetch($imageUrl).then((r) => r.blob());
-			formData.append('profilePicture', blob);
+			if ($imageUrl !== '') {
+				const blob = await fetch($imageUrl).then((r) => r.blob());
+				formData.append('profilePicture', blob);
+			}
 
 			const response = await fetch('/api/users/register', {
 				method: 'POST',

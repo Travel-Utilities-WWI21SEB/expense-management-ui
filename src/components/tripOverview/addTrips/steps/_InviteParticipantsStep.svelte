@@ -61,7 +61,12 @@
 	placeholder={i('tripOverview.addTripModal.iviteParticitpatsInField')}
 />
 <div class="card overflow-y-auto h-auto max-h-32">
-	<Autocomplete bind:input={inputValue} {options} on:selection={onSelection} emptyState={i('tripOverview.addTripModal.noResultsMessage')}/>
+	<Autocomplete
+		bind:input={inputValue}
+		{options}
+		on:selection={onSelection}
+		emptyState={i('tripOverview.addTripModal.noResultsMessage')}
+	/>
 </div>
 <div class="h-auto p-4" tabindex="-1">
 	{#each selectedUsers as participant}

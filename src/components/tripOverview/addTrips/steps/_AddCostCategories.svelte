@@ -30,11 +30,11 @@
 	name="demo"
 	bind:value={inputValue}
 	on:change={onSelection}
-	placeholder={i("tripOverview.addTripModal.costCategoriesInField")}
+	placeholder={i('tripOverview.addTripModal.costCategoriesInField')}
 />
 <div class="h-auto p-4" tabindex="-1">
 	{#if newCostCategoryElements.length > 0}
-		<p>{i("tripOverview.addTripModal.colorChangeExplanation")}</p>
+		<p>{i('tripOverview.addTripModal.colorChangeExplanation')}</p>
 	{/if}
 	{#each newCostCategories as category, id}
 		{#if category.isNew}

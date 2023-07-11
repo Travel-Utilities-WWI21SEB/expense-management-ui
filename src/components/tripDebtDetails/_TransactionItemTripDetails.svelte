@@ -15,7 +15,7 @@
 	import { ArrowLongRight } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { errorCode, errorState } from '$stores';
-	import {i} from '@inlang/sdk-js';
+	import { i } from '@inlang/sdk-js';
 
 	export let transaction: Transaction;
 	export let needsConfirmation: boolean;
@@ -59,13 +59,13 @@
 	const onDeleteTransaction = async (transactionId: string, tripId: string) => {
 		const result = await deleteTransaction(transactionId, tripId);
 
-		let toastMessage = i("toast.transaction") + transactionId + i("toast.deleted");
+		let toastMessage = i('toast.transaction') + transactionId + i('toast.deleted');
 		if (!$errorState) {
 			invalidateAll();
 			modalStore.close();
 		} else {
 			let errorMessage: string = getErrorMessage($errorCode);
-			toastMessage = i("toast.error") + errorMessage;
+			toastMessage = i('toast.error') + errorMessage;
 		}
 		modalStore.close();
 		const t: ToastSettings = {
