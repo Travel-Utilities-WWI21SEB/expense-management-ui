@@ -3,6 +3,7 @@
 	import { page } from '$app/stores';
 	import type { TravelData } from '$tripDomain';
 	import { onMount } from 'svelte';
+	import { i } from '@inlang/sdk-js';
 
 	export let trip: TravelData;
 
@@ -21,7 +22,7 @@
 
 	let filterOptions: Array<FilterOptions> = [
 		{
-			name: 'Minimal Start Date',
+			name: i("tripDetails.filterModal.minimalStart"),
 			queryParam: 'minDeductionDate',
 			value: startDateTrip,
 			checked: false,
@@ -30,7 +31,7 @@
 			isMin: true
 		},
 		{
-			name: 'Maximal Start Date',
+			name: i("tripDetails.filterModal.maximalStart"),
 			queryParam: 'maxDeductionDate',
 			value: endDateTrip,
 			checked: false,
@@ -39,7 +40,7 @@
 			isMin: false
 		},
 		{
-			name: 'Minimal End Date',
+			name: i("tripDetails.filterModal.minimalEnd"),
 			queryParam: 'minEndDate',
 			value: startDateTrip,
 			checked: false,
@@ -48,7 +49,7 @@
 			isMin: true
 		},
 		{
-			name: 'Maximal End Date',
+			name: i("tripDetails.filterModal.maximalEnd"),
 			queryParam: 'maxEndDate',
 			value: endDateTrip,
 			checked: false,
@@ -102,24 +103,24 @@
 	}
 
 	$: {
-		filterOptions = filterOptions.map((option, i) => {
+		filterOptions = filterOptions.map((option, index) => {
 			return {
 				...option,
-				minValue: option.isMin ? startDateTrip : filterOptions[i - 1].value,
-				maxValue: option.isMin ? filterOptions[i + 1].value : endDateTrip
+				minValue: option.isMin ? startDateTrip : filterOptions[index - 1].value,
+				maxValue: option.isMin ? filterOptions[index + 1].value : endDateTrip
 			};
 		});
 	}
 </script>
 
-{#each filterOptions as option, i}
+{#each filterOptions as option, index}
 	<label class="label col-span-2 p-2">
 		<input
 			class="checkbox"
 			type="checkbox"
 			bind:checked={option.checked}
 			on:click={(e) => {
-				onChangeCheck(e, i);
+				onChangeCheck(e, index);
 			}}
 		/>
 		<span class="font-semibold">{option.name}</span>
@@ -130,7 +131,7 @@
 				min={option.minValue}
 				max={option.maxValue}
 				bind:value={option.value}
-				on:change={(e) => changeDate(e, i)}
+				on:change={(e) => changeDate(e, index)}
 			/>
 		{/if}
 	</label>
@@ -149,12 +150,12 @@
 			}
 		});
 		goto(`?${url.searchParams.toString()}`);
-	}}>Apply</button
+	}}>{i("tripDetails.filterModal.applyButton")}</button
 >
 <button
 	type="button"
 	class="btn variant-outline my-2 w-full"
 	on:click={() => {
 		clearFilter();
-	}}>Clear</button
+	}}>{i("tripDetails.filterModal.clearButton")}</button
 >

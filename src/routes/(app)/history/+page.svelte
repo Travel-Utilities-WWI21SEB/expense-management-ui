@@ -2,6 +2,7 @@
 	import { HistoryItem, SortTransactionsPopup } from '$components';
 	import type { PopupSettings } from '@skeletonlabs/skeleton/';
 	import { popup } from '@skeletonlabs/skeleton';
+	import { i } from '@inlang/sdk-js';
 
 	export let data;
 
@@ -18,11 +19,11 @@
 			<span
 				class="bg-gradient-to-br from-primary-800 to-primary-600 dark:from-primary-400 dark:to-primary-200 bg-clip-text text-transparent box-decoration-clone"
 			>
-				Transaction history
+				{i("transactionsPage.title")}
 			</span>
 		</h1>
 		<button class="btn variant-filled w-24 justify-self-end m-4" use:popup={popUpSorting}
-			>Sort</button
+			>{i("transactionsPage.sortButton")}</button
 		>
 	</div>
 	{#if data.transactionHistory}
@@ -45,15 +46,15 @@
 					<p
 						class="mb-4 text-3xl tracking-tight font-bold text-gray-900 md:text-4xl dark:text-white"
 					>
-						You don't have a transaction history
+						{i("transactionsPage.noTransactions")}
 					</p>
 					<p class="mb-4 text-lg font-light text-gray-500 dark:text-gray-400">
-						To start look into your trips
+						{i("transactionsPage.noTransactionsExplanation")}
 					</p>
 					<a
 						href="trips"
 						class="inline-flex text-white bg-primary-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-primary-900 my-4"
-						>Go to Trips</a
+						>{i("transactionsPage.goToTrips")}</a
 					>
 				</div>
 			</div>
