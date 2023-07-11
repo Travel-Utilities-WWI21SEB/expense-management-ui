@@ -3,14 +3,7 @@
 	import { AlertWithAction, HeaderBar, TripCard } from '$components';
 	import { currentUser, errorCode, errorState } from '$stores';
 	import { i } from '@inlang/sdk-js';
-	import type { NewTripInputs, TravelData } from '$tripDomain';
-
-	let newTrip: NewTripInputs = {
-		name: '',
-		location: '',
-		startDate: new Date(Date.now()).toISOString().substring(0, 10),
-		endDate: new Date(Date.now()).toISOString().substring(0, 10)
-	};
+	import type {TravelData } from '$tripDomain';
 
 	export let data;
 	console.log(data.tripData);
@@ -21,7 +14,7 @@
 
 	function onTripCardClick(trip: TravelData) {
 		if (trip.hasAcceptedInvite) {
-			goto(`/trips/${trip.tripId}`);
+			goto(`/trips/${trip.tripId}/costs`);
 		} else {
 			goto(`/trips/${trip.tripId}/acceptInvite`);
 		}

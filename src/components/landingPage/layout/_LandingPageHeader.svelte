@@ -16,8 +16,8 @@
 </script>
 
 <AppBar
-	gridColumns="grid-cols-3"
 	background="bg-surface-500/25"
+	gridColumns="grid-cols-3"
 	slotDefault="place-self-center"
 	slotTrail="place-content-end"
 	border="border-b border-current"

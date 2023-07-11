@@ -11,10 +11,10 @@
 			? i("tripOverview.tripCard.youGet") + trip.userCredit +" €"
 			: i("tripOverview.tripCard.nothingToGet")}
 	</strong> <br />
-	<strong class="h6 {trip.userDept && trip.userDept > 0 ? 'text-error-500' : 'text-success-500'}">
-		{trip.userCredit && trip.userCredit > 0
-			? i("tripOverview.tripCard.youPay") + trip.userCredit +" €"
-			: i("tripOverview.tripCard.nothingToPay")}
+	<strong class="h6 {trip.userDebt && trip.userDebt > 0 ? 'text-error-500' : 'text-success-500'}">
+		{trip.userDebt && trip.userDebt > 0
+			? `You still need to pay ${trip.userDebt}€`
+			: 'Nothing to pay.'}
 	</strong>
 </div>
 

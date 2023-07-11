@@ -1,4 +1,4 @@
-import type { ChartData, CostCategory, TravelData } from '$tripDomain';
+import type { ChartData, CostCategory, TravelData, TravelDataAPI } from '$tripDomain';
 import type { User } from '$userDomain';
 
 const costCategoriesFilled = (categories: Array<CostCategory>): boolean => {
@@ -11,8 +11,8 @@ const costCategoriesFilled = (categories: Array<CostCategory>): boolean => {
 	return ctr !== 0;
 };
 
-export function modifyTrip(trip: TravelData, userData: User) {
-	trip = {
+export function modifyTrip(trip: TravelDataAPI, userData: User): TravelData {
+	const convertedTrip = {
 		...trip,
 		participants: trip.participants.map((participant) => {
 			return {
@@ -24,7 +24,9 @@ export function modifyTrip(trip: TravelData, userData: User) {
 		startDate: new Date(trip.startDate),
 		endDate: new Date(trip.endDate),
 		hasAcceptedInvite: trip.participants.filter((user) => user.username === userData.username)[0]
-			.hasAcceptedInvite
+			.hasAcceptedInvite,
+		userDebt: parseFloat(trip.userDebt) < 0 ? 0 : parseFloat(trip.userDebt),
+		userCredit: parseFloat(trip.userCredit) < 0 ? 0 : parseFloat(trip.userCredit)
 	};
 
 	//calculate data to be consumed by Chart JS
@@ -44,18 +46,18 @@ export function modifyTrip(trip: TravelData, userData: User) {
 			tripChartData.datasets[0].data.push(category.totalCost);
 			tripChartData.datasets[0].backgroundColor.push(category.color);
 		});
-		trip.data = tripChartData;
+		convertedTrip.data = tripChartData;
 	} else {
-		trip.data = {
+		convertedTrip.data = {
 			labels: ['no cost specified'],
 			datasets: [{ data: [-1], backgroundColor: ['#808080'] }]
 		};
 	}
 
-	return trip;
+	return convertedTrip;
 }
 
-export function modifyTripData(tripData: Array<TravelData>, userData: User) {
+export function modifyTripData(tripData: Array<TravelDataAPI>, userData: User) {
 	return tripData.map((trip) => {
 		return modifyTrip(trip, userData);
 	});

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto, invalidateAll } from '$app/navigation';
+	import { page } from '$app/stores';
 	import {
 		EditTripModal,
 		HeaderTripDetailsLayout,
@@ -15,13 +16,23 @@
 		type ModalComponent,
 		type ModalSettings,
 		type ToastSettings,
-		toastStore
+		toastStore,
+		SlideToggle,
+		TabAnchor,
+		TabGroup
 	} from '@skeletonlabs/skeleton';
 	import { Pencil } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import {i} from '@inlang/sdk-js';
 
 	export let trip: TravelData;
+
+	let isCostsPage = $page.url.pathname.includes('costs');
+
+	$: buttonInfo = {
+		text: $page.url.pathname.includes('debts') ? 'Costs' : 'Debts',
+		pathParam: $page.url.pathname.includes('debts') ? 'costs' : 'debts'
+	};
 
 	async function deleteTrip(trip: TravelData) {
 		loading.set(true);
@@ -59,9 +70,9 @@
 			goto('/trips');
 			modalStore.close();
 		} else {
-			toastMessage = i("toast.error") + getErrorMessage($errorCode);
+			let errorMessage: string = getErrorMessage($errorCode);
+			toastMessage = `Error: ${errorMessage}`;
 		}
-		modalStore.close();
 		const t: ToastSettings = {
 			message: toastMessage,
 			background: $errorState ? 'variant-filled-warning' : 'variant-filled-success'
@@ -146,6 +157,24 @@
 				>
 					<Icon src={Pencil} class="w-6 h-6" />
 				</button>
+			</div>
+		</span>
+		<span slot="toggle">
+			<div class="h-full flex items-center justify-center">
+				<TabGroup justify="justify-center">
+					<TabAnchor
+						href="/trips/{trip.tripId}/costs"
+						selected={$page.url.pathname.includes('costs')}
+					>
+						<span>Costs</span>
+					</TabAnchor>
+					<TabAnchor
+						href="/trips/{trip.tripId}/debts"
+						selected={$page.url.pathname.includes('debts')}
+					>
+						<span>Debts</span>
+					</TabAnchor>
+				</TabGroup>
 			</div>
 		</span>
 	</HeaderTripDetailsLayout>

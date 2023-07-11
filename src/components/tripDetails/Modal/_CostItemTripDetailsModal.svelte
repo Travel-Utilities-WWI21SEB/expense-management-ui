@@ -14,7 +14,7 @@
 	import type { CostPaidForUser, User } from '$userDomain';
 	import { getErrorMessage } from '$utils';
 	import { modalStore, toastStore, type ToastSettings } from '@skeletonlabs/skeleton';
-	import { Trash } from '@steeze-ui/heroicons';
+	import { Pencil, Trash } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
 
 	/* export let name: string; */
@@ -170,7 +170,9 @@
 					isEditing = true;
 				}}
 			>
-				<span>&#9998</span>
+				<span>
+					<Icon src={Pencil} class="w-4 h-4" />
+				</span>
 				<span>Edit</span>
 			</button>
 		{/if}
