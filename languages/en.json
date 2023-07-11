@@ -300,8 +300,11 @@
 		"resetPassword": "Your password was successfully reset!",
 		"costItem": "The cost item ",
 		"trip": "The trip ",
-		"deleted": "was deleted successfully",
-		"created": "was created successfully",
-		"saved": "was saved successfully"
+		"transaction": "The transaction",
+		"deleted": " was deleted successfully",
+		"created": " was created successfully",
+		"saved": " was saved successfully",
+		"confirmed": " was confirmed successfully",
+		"rejected": " was rejected successfully"
 	}
 }

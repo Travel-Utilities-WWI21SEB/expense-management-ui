@@ -16,6 +16,7 @@
 	import { modalStore, toastStore, type ToastSettings } from '@skeletonlabs/skeleton';
 	import { Pencil, Trash } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
+	import { i } from '@inlang/sdk-js';
 
 	/* export let name: string; */
 	export let cost: Cost;
@@ -119,8 +120,8 @@
 		const result = await updateCost(localeCost, trip, costPaidForUser);
 
 		const message = result.error
-			? `Error: ${getErrorMessage(result.errorCode)}`
-			: `Cost ${result.data.description} saved successfully`;
+			? i("toast.error") + getErrorMessage(result.errorCode)
+			: i("toast.costItem")+ result.data.description + i("toast.saved");
 		const t: ToastSettings = {
 			message: message,
 			background: result.error ? 'variant-filled-warning' : 'variant-filled-success'

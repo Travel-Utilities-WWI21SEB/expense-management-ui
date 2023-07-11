@@ -77,8 +77,8 @@
 		await Promise.all([...invitationPromises, ...costCategoryPromises]);
 
 		const message = result.error
-			? `Error: ${result.errorMessage}`
-			: `Trip ${result.data.name} created successfully`;
+			? i("toast.error") + result.errorMessage
+			: i("toast.trip") + result.data.name + i("toast.created");
 		const t: ToastSettings = {
 			message: message,
 			background: result.error ? 'variant-filled-warning' : 'variant-filled-success'

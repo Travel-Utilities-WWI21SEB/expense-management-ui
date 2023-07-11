@@ -71,7 +71,7 @@
 			modalStore.close();
 		} else {
 			let errorMessage: string = getErrorMessage($errorCode);
-			toastMessage = `Error: ${errorMessage}`;
+			toastMessage = i("toast.error") + errorMessage;
 		}
 		const t: ToastSettings = {
 			message: toastMessage,

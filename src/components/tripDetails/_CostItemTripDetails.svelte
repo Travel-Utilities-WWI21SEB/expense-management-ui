@@ -96,8 +96,8 @@
 		const result = await deleteCost(cost, trip);
 
 		const message = result.error
-			? `Error: ${getErrorMessage(result.errorCode)}`
-			: `The cost item ${cost.name} was deleted successfully`;
+			?  i("toast.error") + getErrorMessage(result.errorCode)
+			: i("toast.costItem") + cost.name + i("toast.deleted");
 		const t: ToastSettings = {
 			message: message,
 			background: result.error ? 'variant-filled-warning' : 'variant-filled-success'

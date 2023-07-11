@@ -300,8 +300,11 @@
 		"resetPassword": "Ihr Passwort wurde erfolgreich zurückgesetzt!",
 		"costItem": "Die Kostenposition ",
 		"trip": "Die Reise ",
-		"deleted": "wurde erfolgreich gelöscht",
-		"created": "wurde erfolgreich erstellt",
-		"saved": "wurde erfolgreich gespeichert"
+		"transaction": "Die Transaktion ",
+		"deleted": " wurde erfolgreich gelöscht",
+		"created": " wurde erfolgreich erstellt",
+		"saved": " wurde erfolgreich gespeichert",
+		"confirmed": " wurde erfolgreich bestätigt",
+		"rejected": " wurde erfolgreich abgelehnt"
 	}
 }
