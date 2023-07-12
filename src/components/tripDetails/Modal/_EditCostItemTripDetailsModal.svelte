@@ -15,8 +15,13 @@
 	export let trip: TravelData;
 
 	$: involvedUsers = users.filter((user) => user.checked);
+	$: tripHasNotAccedptedUsers =
+		trip.participants.filter((user) => !user.hasAcceptedInvite).length > 0;
+
 	let tabSet = 0;
+
 	cost = { ...cost, splitEqually: isSplitEqually(users, cost) };
+
 	function changePaidBy(event: CustomEvent<any>) {
 		cost.creditor = event.detail.paidBy;
 		if ($costSplitType === 0) {
@@ -34,12 +39,18 @@
 		{#if tabSet === 0}
 			<TripDetailsEditCostItemDetails bind:cost bind:trip bind:users bind:involvedUsers />
 		{:else if tabSet === 1}
-			<TripDetailsEditCostItemPaidBy bind:users paidBy={cost.creditor} on:change={changePaidBy} />
+			<TripDetailsEditCostItemPaidBy
+				bind:users
+				paidBy={cost.creditor}
+				{tripHasNotAccedptedUsers}
+				on:change={changePaidBy}
+			/>
 		{:else if tabSet === 2}
 			<TripDetailsEditCostItemCostAllocation
 				bind:users
 				bind:cost
 				bind:usersInvolved={involvedUsers}
+				{tripHasNotAccedptedUsers}
 			/>
 		{/if}
 	</svelte:fragment>

@@ -11,12 +11,13 @@
 		validateCostAllocation
 	} from '$utils';
 	import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
-	import { Check, XMark } from '@steeze-ui/heroicons';
+	import { Check, ExclamationCircle, XMark } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
 
 	export let users: Array<CostPaidForUser>;
 	export let usersInvolved: Array<CostPaidForUser>;
 	export let cost: CostDateAsString;
+	export let tripHasNotAccedptedUsers: boolean;
 
 	$costSplitType = isSplitEqually(users, cost) ? 0 : 1;
 	$: costAllocationValid.set(validateCostAllocation(cost.amount, users));
@@ -98,6 +99,16 @@
 		</div>
 	</div>
 	<ol class="list">
+		{#if tripHasNotAccedptedUsers}
+			<li>
+				<span class="badge-icon variant-filled-primary w-4 h-4">
+					<Icon src={ExclamationCircle} class="w-6 h-6" />
+				</span>
+				<span class="flex-auto"
+					>Participants that have not accepted the invite cannot be included in costs</span
+				>
+			</li>
+		{/if}
 		<li>
 			{#if usersInvolved.length === 0}
 				<span class="badge-icon variant-filled-error w-4 h-4">

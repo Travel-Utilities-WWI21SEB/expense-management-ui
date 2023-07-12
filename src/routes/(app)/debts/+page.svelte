@@ -6,7 +6,6 @@
 	import { formatCostString, generateRandomColor, getErrorMessage } from '$utils';
 
 	export let data;
-	console.log(data);
 
 	const { error, errorCode, debts } = data;
 

@@ -125,6 +125,9 @@
 		involvedUsers = event.detail.involvedUsers;
 	};
 
+	$: tripHasNotAccedptedUsers =
+		trip.participants.filter((user) => !user.hasAcceptedInvite).length > 0;
+
 	function changePaidBy(event: CustomEvent<any>) {
 		cost.creditor = event.detail.paidBy;
 		if ($costSplitType) {
@@ -160,6 +163,7 @@
 				<TripDetailsEditCostItemPaidBy
 					bind:users={costPaidForUser}
 					paidBy={cost.creditor}
+					{tripHasNotAccedptedUsers}
 					on:change={changePaidBy}
 				/>
 			</Step>
@@ -170,6 +174,7 @@
 					{cost}
 					bind:users={costPaidForUser}
 					bind:usersInvolved={involvedUsers}
+					{tripHasNotAccedptedUsers}
 				/>
 			</Step>
 		</Stepper>
