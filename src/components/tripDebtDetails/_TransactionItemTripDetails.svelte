@@ -59,7 +59,7 @@
 	const onDeleteTransaction = async (transactionId: string, tripId: string) => {
 		const result = await deleteTransaction(transactionId, tripId);
 
-		let toastMessage = i('toast.transaction') + transactionId + i('toast.deleted');
+		let toastMessage = i('toast.transaction') + i('toast.deleted');
 		if (!$errorState) {
 			invalidateAll();
 			modalStore.close();
