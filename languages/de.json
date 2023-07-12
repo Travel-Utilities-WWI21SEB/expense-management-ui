@@ -281,14 +281,14 @@
 				"presenceEnd": "Anwesenheit bei Reise bis",
 				"acceptButton": "Annehmen",
 				"rejectButton": "Ablehnen"
-			},
+			}
+		},
 			"tripData": "Reisedaten",
 			"costCategories": "Kostenkategorien",
 			"participants": "Teilnehmer",
 			"closeButton": "Schließen",
 			"deleteButton": "Löschen",
 			"saveButton": "Speichern"
-		}
 	},
 	"costOverview": {
 		"headerTitle": "Dein Kostenüberblick",
