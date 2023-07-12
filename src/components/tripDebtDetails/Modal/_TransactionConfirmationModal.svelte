@@ -3,11 +3,13 @@
 	import type { Transaction } from '$tripDomain';
 	import { getErrorMessage } from '$utils';
 	import { type ToastSettings, toastStore, modalStore } from '@skeletonlabs/skeleton';
-	import { errorCode, errorState, loading } from '$stores';
+	import { currentTransaction, errorCode, errorState, loading } from '$stores';
 	import { i } from '@inlang/sdk-js';
 
 	export let transaction: Transaction;
 	export let parent: any;
+
+	currentTransaction.subscribe((currTransaction) => (transaction = currTransaction));
 
 	const postConfirmTransaction = async (tripId: string, transactionId: string) => {
 		loading.set(true);

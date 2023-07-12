@@ -1,9 +1,12 @@
 <script lang="ts">
+	import { currentTransaction } from '$stores';
 	import type { Transaction } from '$tripDomain';
 
 	export let transaction: Transaction;
 	export let parent: any;
 	export let abortTransaction: (transactionId: string, tripId: string) => void;
+
+	currentTransaction.subscribe((currTransaction) => (transaction = currTransaction));
 </script>
 
 <div class="card p-4 md:w-1/2">

@@ -14,13 +14,14 @@
 	import { invalidateAll } from '$app/navigation';
 	import { ArrowLongRight } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import { errorCode, errorState } from '$stores';
+	import { currentTransaction, errorCode, errorState } from '$stores';
 	import { i } from '@inlang/sdk-js';
 
 	export let transaction: Transaction;
 	export let needsConfirmation: boolean;
 
 	function selectListItem() {
+		currentTransaction.set(transaction);
 		const modal: ModalSettings = needsConfirmation
 			? {
 					type: 'component',
