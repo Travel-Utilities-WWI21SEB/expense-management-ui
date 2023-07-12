@@ -1,9 +1,9 @@
 {
-  "navbar":{
-		"costs": "비용",
-		"debts": "빚"
-	},
-    "errors": {
+  "navbar": {
+    "costs": "비용",
+    "debts": "빚"
+  },
+  "errors": {
     "EM-000": "알 수 없는 오류가 발생했습니다. 나중에 다시 시도해 주세요.",
     "EM-001": "업스트림 서비스를 사용할 수 없습니다. 나중에 다시 시도해 주세요.",
     "EM-002": "알 수 없는 서버 오류가 발생했습니다. 나중에 다시 시도해 주세요.",
@@ -469,7 +469,7 @@
     "received": "받은 돈",
     "paidBack": "갚은 빚",
     "coveredDebts": "적용 부채 비율",
-    "tripDistribution": "여행 분급", 
+    "tripDistribution": "여행 분급",
     "userDistribution": "사용자  분급",
     "hoverOverCoveredDebts": "적용되는 부채 백분율은 이미 상환한 총 부채의 백분율입니다. 이것은 당신이 누적한 부채 총액과 당신이 갚은 부채 총액을 기준으로 계산됩니다.",
     "openDebts": "채무",
