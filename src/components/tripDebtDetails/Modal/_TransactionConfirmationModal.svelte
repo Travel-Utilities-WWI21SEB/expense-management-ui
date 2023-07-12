@@ -112,7 +112,7 @@
 		</span>
 	</h3>
 	<p class="pl-4 pb-4">
-		{`Do you want to confirm that ${transaction.debtor.username} paid you ${transaction.amount} EUR?`}
+		{i("transactionsPage.wantToConfirm")} {transaction.debtor.username} {i("tripDetails.debtsTab.paidYou")} {transaction.amount}  EUR 
 	</p>
 	<footer class="modal-footer {parent.regionFooter}">
 		<button class="btn border-2 variant-filled" on:click={parent.onClose}>{i("transactionsPage.closeButton")}</button>

@@ -277,8 +277,8 @@
 			"acceptTrip": {
 				"acceptInvitation": "Accept Invitation",
 				"acceptText": "Accept your Trip Invitation!",
-				"presenceStart":"Presence in Trip starting from",
-				"presenceEnd":"Presence in Trip ending at",
+				"presenceStart": "Presence in Trip starting from",
+				"presenceEnd": "Presence in Trip ending at",
 				"acceptButton": "Accept",
 				"rejectButton": "Reject"
 			}
@@ -323,8 +323,8 @@
 		"confirmed": " was confirmed successfully",
 		"rejected": " was rejected successfully"
 	},
-	"homepage":{
-		"noData":{
+	"homepage": {
+		"noData": {
 			"tripOverview": "Trip Overview",
 			"costOverview": "Cost Overview",
 			"debtOverview": "Debt Overview",
@@ -348,7 +348,7 @@
 		"costsPerTrip": "Costs per Trip",
 		"costsPerCategory": "Costs per Category"
 	},
-	"tripDetails":{
+	"tripDetails": {
 		"costs": "Costs",
 		"noCosts": "This trip has no costs yet",
 		"debts": "Debts",
@@ -359,7 +359,7 @@
 		"deleteButton": "Delete",
 		"closesButton": "Close",
 		"saveButton": "Save",
-		"addCostModal":{
+		"addCostModal": {
 			"title": "Add New Cost Item",
 			"details": "Details",
 			"name": "Name",
@@ -396,7 +396,7 @@
 		"totalCosts": "Total Costs: ",
 		"zeroTotalCosts": "Total Costs: 0€",
 		"amountText": "Items",
-		"sortModal":{
+		"sortModal": {
 			"sortBy": "Sort By",
 			"startDate": "Start Date",
 			"endDate": "End Date",
@@ -409,7 +409,7 @@
 			"applyButton": "Apply",
 			"clearButton": "Clear"
 		},
-		"filterModal":{
+		"filterModal": {
 			"minimalStart": "Minimal Start Date",
 			"maximalStart": "Maximal Start Date",
 			"minimalEnd": "Minimal End Date",
@@ -417,11 +417,10 @@
 			"applyButton": "Apply",
 			"clearButton": "Clear"
 		},
-		"debtsTab":{
+		"debtsTab": {
 			"title": "Debts",
 			"noDebts": "This trip has no debts yet",
 			"transactions": "Transactions",
-
 			"noTransactions": "This trip does not yet have any transactions that affect you",
 			"addButton": "Add",
 			"youGet": "You Get",
@@ -434,11 +433,14 @@
 			"transactionValid": "New transaction is valid",
 			"transactionNotValid": "Please provide a valid transaction",
 			"closeButton": "Close",
-			"saveButton": "Save"
+			"saveButton": "Save",
+			"youPaid": "You Paid: ",
+			"notConfirmedYet": "This transaction is not confirmed by",
+			"paidYou": " paid you "
 		},
-		"timePresent" : "Time present in Trip"
+		"timePresent": "Time present in Trip"
 	},
-	"profile":{
+	"profile": {
 		"title": "Your Profile",
 		"editButton": "Edit",
 		"saveButton": "Save",
@@ -453,7 +455,7 @@
 		"email": "Email",
 		"location": "Location"
 	},
-	"debtsPage":{
+	"debtsPage": {
 		"title": "Your Debts Overview",
 		"noDebts": "You don't have any debts yet",
 		"noDebtsExplanation": "You can start accumulating debts by creating a trip and adding costs to it.",
@@ -473,7 +475,7 @@
 		"openCreditsAccouting": "Open Credit(s) Accounting To A Total Value Of",
 		"openDebtsAccouting": "Open Debts(s) Accounting To A Total Value Of"
 	},
-	"transactionsPage":{
+	"transactionsPage": {
 		"title": "Transaction History",
 		"noTransactions": "You don't have any transactions yet",
 		"noTransactionsExplanation": "To start look into your trips",
@@ -490,13 +492,17 @@
 		"confirmButton": "Confirm",
 		"closeButton": "Close",
 		"rejectButton": "Reject",
-		"abortButton": "Abort"
+		"abortButton": "Abort",
+		"trip": "Trip: ",
+		"created": "Created at: ",
+		"wantToConfirm": "Do you want to confirm this transaction? ",
+		"youOwe": "You owe ",
+		"owesYou": " owes you "
 	},
-	"error":{
+	"error": {
 		"pageNotFound": "Page Not Found",
 		"pageNotFoundExplanation": "Sorry, the page you are looking for doesn't exist.Here are some helpful links",
 		"goBack": "Go Back",
 		"takeHome": "Take Me Home"
 	}
-	
 }

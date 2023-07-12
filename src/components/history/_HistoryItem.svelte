@@ -6,6 +6,7 @@
 	import { language } from '@inlang/sdk-js';
 	import { ArrowLongRight } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
+	import { i } from '@inlang/sdk-js';
 
 	export let transaction: Transaction;
 
@@ -31,8 +32,8 @@
 	on:click={() => onTransactionClick()}
 >
 	<div class="grid grid-cols-3 pb-2">
-		<h1>{`Trip: ${transaction.trip.name}`}</h1>
-		<p>{`Created: ${creationDate}`}</p>
+		<h1>{i("transactionPage.trip")}{transaction.trip.name}</h1>
+		<p>{i("transactionPage.created ")}{creationDate}</p>
 	</div>
 	{#if transaction.isDebt}
 		<div class="outline outline-offset-2 outline-1 w-full">
