@@ -22,7 +22,7 @@
 
 	let filterOptions: Array<FilterOptions> = [
 		{
-			name: i("tripDetails.filterModal.minimalStart"),
+			name: i('tripDetails.filterModal.minimalStart'),
 			queryParam: 'minDeductionDate',
 			value: startDateTrip,
 			checked: false,
@@ -31,7 +31,7 @@
 			isMin: true
 		},
 		{
-			name: i("tripDetails.filterModal.maximalStart"),
+			name: i('tripDetails.filterModal.maximalStart'),
 			queryParam: 'maxDeductionDate',
 			value: endDateTrip,
 			checked: false,
@@ -40,7 +40,7 @@
 			isMin: false
 		},
 		{
-			name: i("tripDetails.filterModal.minimalEnd"),
+			name: i('tripDetails.filterModal.minimalEnd'),
 			queryParam: 'minEndDate',
 			value: startDateTrip,
 			checked: false,
@@ -49,7 +49,7 @@
 			isMin: true
 		},
 		{
-			name: i("tripDetails.filterModal.maximalEnd"),
+			name: i('tripDetails.filterModal.maximalEnd'),
 			queryParam: 'maxEndDate',
 			value: endDateTrip,
 			checked: false,
@@ -150,12 +150,12 @@
 			}
 		});
 		goto(`?${url.searchParams.toString()}`);
-	}}>{i("tripDetails.filterModal.applyButton")}</button
+	}}>{i('tripDetails.filterModal.applyButton')}</button
 >
 <button
 	type="button"
 	class="btn variant-outline my-2 w-full"
 	on:click={() => {
 		clearFilter();
-	}}>{i("tripDetails.filterModal.clearButton")}</button
+	}}>{i('tripDetails.filterModal.clearButton')}</button
 >

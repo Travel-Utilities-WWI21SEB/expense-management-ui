@@ -26,7 +26,9 @@
 
 <div class="grid grid-cols-1 gap-2">
 	<h3 class="h3 pb-4">
-		{i('tripDetails.addCostModal.totalCost')}  {cost.amount}  {cost.currency === '' ? '€' : cost.currency}
+		{i('tripDetails.addCostModal.totalCost')}
+		{cost.amount}
+		{cost.currency === '' ? '€' : cost.currency}
 	</h3>
 	<label class="label py-2">
 		<div class="flex justify-between">
@@ -39,8 +41,11 @@
 						users.length === usersInvolved.length
 							? deselectAllPeople(users)
 							: selectAllPeople(users, cost, $costSplitType);
-				}}>{users.length === usersInvolved.length ? i('tripDetails.addCostModal.deselectAll') : i('tripDetails.addCostModal.selectAll')} </button
-			>
+				}}
+				>{users.length === usersInvolved.length
+					? i('tripDetails.addCostModal.deselectAll')
+					: i('tripDetails.addCostModal.selectAll')}
+			</button>
 		</div>
 		<div class="flex overflow-auto">
 			{#each users as user}
@@ -74,9 +79,12 @@
 					bind:group={$costSplitType}
 					name="equally"
 					value={0}
-					on:change={() => (users = changeToEqual(users, cost, usersInvolved))}>{i('tripDetails.addCostModal.equally')}</RadioItem
+					on:change={() => (users = changeToEqual(users, cost, usersInvolved))}
+					>{i('tripDetails.addCostModal.equally')}</RadioItem
 				>
-				<RadioItem bind:group={$costSplitType} name="custom" value={1}>{i('tripDetails.addCostModal.custom')}</RadioItem>
+				<RadioItem bind:group={$costSplitType} name="custom" value={1}
+					>{i('tripDetails.addCostModal.custom')}</RadioItem
+				>
 			</RadioGroup>
 		</div>
 	</label>
@@ -104,7 +112,8 @@
 				<span class="badge-icon variant-filled-error w-4 h-4">
 					<Icon src={XMark} class="w-6 h-6" />
 				</span>
-				<span class="flex-auto">{i('tripDetails.addCostModal.allocationWarningNoOneInvolved')}</span>
+				<span class="flex-auto">{i('tripDetails.addCostModal.allocationWarningNoOneInvolved')}</span
+				>
 			{:else if !$costAllocationValid}
 				<span class="badge-icon variant-filled-error w-4 h-4">
 					<Icon src={XMark} class="w-6 h-6" />
@@ -124,7 +133,9 @@
 				</span>
 				<span class="flex-auto"
 					>{`${Math.abs(restAmount).toString()} € ${
-						restAmount > 0 ? i('tripDetails.addCostModal.allocationWarningStillLeft') : i('tripDetails.addCostModal.allocationWarningToMuch')
+						restAmount > 0
+							? i('tripDetails.addCostModal.allocationWarningStillLeft')
+							: i('tripDetails.addCostModal.allocationWarningToMuch')
 					}`}</span
 				>
 			{/if}

@@ -27,7 +27,7 @@
 
 <div class="card h-full p-4">
 	<div class="flex justify-between pt-4 px-4">
-		<h3 class="h3">{i("tripDetails.debtsTab.transactions")}</h3>
+		<h3 class="h3">{i('tripDetails.debtsTab.transactions')}</h3>
 		<button type="button" class="btn variant-filled" on:click={addNewTransaction}>
 			<span>
 				<Icon src={Plus} class="w-6 h-6" />
@@ -37,7 +37,7 @@
 	</div>
 	{#if transactions.confirmedTransactions.length === 0 && transactions.unconfirmedTransactions.length === 0}
 		<ImformationAlertWithAction
-			alertHeading= {i("tripDetails.debtsTab.noTransactions")}
+			alertHeading={i('tripDetails.debtsTab.noTransactions')}
 			class="variant-ghost-primary"
 			icon={Banknotes}
 		/>
@@ -45,7 +45,9 @@
 		<div class="grid grid-cols-1 gap-2">
 			<div>
 				{#if transactions.unconfirmedTransactions.length !== 0}
-					<span class="flex justify-center font-semibold">{i("tripDetails.debtsTab.transactionConfirm")}</span>
+					<span class="flex justify-center font-semibold"
+						>{i('tripDetails.debtsTab.transactionConfirm')}</span
+					>
 					<ul class="list p-2 max-h-[500px] overflow-auto">
 						{#each transactions.unconfirmedTransactions as transaction, i}
 							<li><TransactionItemTripDetails {transaction} needsConfirmation={true} /></li>
@@ -55,7 +57,9 @@
 			</div>
 			<div>
 				{#if transactions.confirmedTransactions.length !== 0}
-					<span class="flex justify-center font-semibold">{i("tripDetails.debtsTab.otherTransactions")}</span>
+					<span class="flex justify-center font-semibold"
+						>{i('tripDetails.debtsTab.otherTransactions')}</span
+					>
 					<ul class="list p-2 max-h-[500px] overflow-auto">
 						{#each transactions.confirmedTransactions as transaction, i}
 							<li><TransactionItemTripDetails {transaction} needsConfirmation={false} /></li>

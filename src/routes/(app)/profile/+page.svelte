@@ -40,16 +40,16 @@
 				<span
 					class="bg-gradient-to-br from-primary-800 to-primary-600 dark:from-primary-400 dark:to-primary-200 bg-clip-text text-transparent box-decoration-clone"
 				>
-					{i("profile.title")}
+					{i('profile.title')}
 				</span>
 			</h1>
 			<button class="btn variant-ghost-primary" on:click={() => (editMode = !editMode)}>
 				{#if editMode}
 					<span><Icon src={Check} class="w-6 h-6" /></span>
-					<span>{i("profile.saveButton")}</span>
+					<span>{i('profile.saveButton')}</span>
 				{:else}
 					<span><Icon src={Pencil} class="w-6 h-6" /></span>
-					<span>{i("profile.editButton")}</span>
+					<span>{i('profile.editButton')}</span>
 				{/if}
 			</button>
 		</header>
@@ -73,15 +73,15 @@
 						<div>
 							<span class="badge bg-primary-500">1</span>
 							<span class="flex-auto">
-								<dt>{i("profile.travellerSince")}</dt>
+								<dt>{i('profile.travellerSince')}</dt>
 								<dd>{creationDate}</dd>
 							</span>
 						</div>
 						<div>
 							<span class="badge bg-primary-500">2</span>
 							<span class="flex-auto">
-								<dt>{i("profile.description")}</dt>
-								<dd>{i("profile.descriptionExplanation")}</dd>
+								<dt>{i('profile.description')}</dt>
+								<dd>{i('profile.descriptionExplanation')}</dd>
 							</span>
 						</div>
 						<!-- ... -->
@@ -89,49 +89,64 @@
 				</footer>
 			</div>
 			<div class="flex-1 !bg-transparent border border-surface-500 rounded-lg shadow-xl p-8">
-				<h4 class="h4">{i("profile.personalInfo")}</h4>
+				<h4 class="h4">{i('profile.personalInfo')}</h4>
 				<ul class="mt-2">
 					<li class="flex border-y border-current py-2">
-						<span class="font-bold w-24">{i("profile.firstName")}</span>
+						<span class="font-bold w-24">{i('profile.firstName')}</span>
 						{#if editMode}
 							<input
 								type="text"
 								class="input"
 								bind:value={user.firstName}
-								placeholder={i("profile.firstName")}
+								placeholder={i('profile.firstName')}
 							/>
 						{:else}
 							<span>{user.firstName}</span>
 						{/if}
 					</li>
 					<li class="flex border-b border-current py-2">
-						<span class="font-bold w-24">{i("profile.lastName")}</span>
+						<span class="font-bold w-24">{i('profile.lastName')}</span>
 						{#if editMode}
-							<input type="text" class="input" bind:value={user.lastName} placeholder= {i("profile.lastName")} />
+							<input
+								type="text"
+								class="input"
+								bind:value={user.lastName}
+								placeholder={i('profile.lastName')}
+							/>
 						{:else}
 							<span>{user.lastName}</span>
 						{/if}
 					</li>
 					<li class="flex border-b border-current py-2">
-						<span class="font-bold w-24">{i("profile.birthDate")}</span>
+						<span class="font-bold w-24">{i('profile.birthDate')}</span>
 						{#if editMode}
-							<input type="date" class="input" bind:value={user.birthday} placeholder={i("profile.birthDate")} />
+							<input
+								type="date"
+								class="input"
+								bind:value={user.birthday}
+								placeholder={i('profile.birthDate')}
+							/>
 						{:else}
 							<span>{birthday}</span>
 						{/if}
 					</li>
 					<li class="flex border-b border-current py-2">
-						<span class="font-bold w-24">{i("profile.joinedAt")}</span>
+						<span class="font-bold w-24">{i('profile.joinedAt')}</span>
 						<span>{creationDate}</span>
 					</li>
 					<li class="flex border-b border-current py-2">
-						<span class="font-bold w-24">{i("profile.email")}</span>
+						<span class="font-bold w-24">{i('profile.email')}</span>
 						<span class="overflow-x-auto">{user.email}</span>
 					</li>
 					<li class="flex border-b border-current py-2">
-						<span class="font-bold w-24">{i("profile.location")}</span>
+						<span class="font-bold w-24">{i('profile.location')}</span>
 						{#if editMode}
-							<input type="text" class="input" bind:value={user.location} placeholder={i("profile.location")} />
+							<input
+								type="text"
+								class="input"
+								bind:value={user.location}
+								placeholder={i('profile.location')}
+							/>
 						{:else}
 							<span>{user.location}</span>
 						{/if}

@@ -18,7 +18,10 @@
 				<UserPaymentOverview {trip} />
 			{:else}
 				<div class="m-8">
-					<AlertWithAction alertHeading={i("tripOverview.tripCard.acceptTrip.acceptInvitation")} class="variant-ghost-warning" />
+					<AlertWithAction
+						alertHeading={i('tripOverview.tripCard.acceptTrip.acceptInvitation')}
+						class="variant-ghost-warning"
+					/>
 				</div>
 			{/if}
 			<Participants participants={trip.participants} justifyCenter={true} />

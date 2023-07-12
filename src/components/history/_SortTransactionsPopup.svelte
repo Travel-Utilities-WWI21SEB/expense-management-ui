@@ -24,7 +24,7 @@
 </script>
 
 <label class="label col-span-1">
-	<span>{i("transactionsPage.sortBy")}</span>
+	<span>{i('transactionsPage.sortBy')}</span>
 	<select
 		class="select"
 		value={sortBy}
@@ -32,13 +32,13 @@
 			changeSortBy(e);
 		}}
 	>
-		<option value="createdAt">{i("transactionsPage.creationDate")}</option>
-		<option value="amount">{i("transactionsPage.amount")}</option>
+		<option value="createdAt">{i('transactionsPage.creationDate')}</option>
+		<option value="amount">{i('transactionsPage.amount')}</option>
 	</select>
 </label>
 
 <label class="label col-span-1">
-	<span>{i("transactionsPage.order")}</span>
+	<span>{i('transactionsPage.order')}</span>
 	<select
 		class="select"
 		value={orderBy}
@@ -46,8 +46,8 @@
 			changeOrderBy(e);
 		}}
 	>
-		<option value="desc">{i("transactionsPage.descending")}</option>
-		<option value="asc">{i("transactionsPage.ascending")}</option>
+		<option value="desc">{i('transactionsPage.descending')}</option>
+		<option value="asc">{i('transactionsPage.ascending')}</option>
 	</select>
 </label>
 
@@ -59,5 +59,5 @@
 		setQueryParameter(url, 'sortBy', sortBy);
 		setQueryParameter(url, 'sortOrder', orderBy);
 		goto(`?${url.searchParams.toString()}`);
-	}}>{i("transactionsPage.applyButton")}</button
+	}}>{i('transactionsPage.applyButton')}</button
 >

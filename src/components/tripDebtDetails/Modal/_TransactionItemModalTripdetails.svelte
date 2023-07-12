@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Transaction } from '$tripDomain';
-	import {i} from '@inlang/sdk-js';
+	import { i } from '@inlang/sdk-js';
 
 	export let transaction: Transaction;
 	export let parent: any;
@@ -23,13 +23,15 @@
 		</h3>
 	{/if}
 	<footer class="modal-footer {parent.regionFooter}">
-		<button class="btn border-2" on:click={parent.onClose}>{i("transactionsPage.closeButton")}</button>
+		<button class="btn border-2" on:click={parent.onClose}
+			>{i('transactionsPage.closeButton')}</button
+		>
 		{#if !transaction.isConfirmed}
 			<button
 				type="button"
 				class="btn border-2 variant-filled-error"
 				on:click={() => abortTransaction(transaction.transactionId, transaction.trip.tripId)}
-				>{i("transactionsPage.abortButton")}</button
+				>{i('transactionsPage.abortButton')}</button
 			>
 		{/if}
 	</footer>

@@ -57,7 +57,10 @@
 		class="col-span-2 font-semibold"
 		name="Time Period"
 		bind:checked
-		on:change={() => changeTimeToggle()}>{!checked ? i('tripDetails.addCostModal.oneTimeCost') : i('tripDetails.addCostModal.periodCost')}</SlideToggle
+		on:change={() => changeTimeToggle()}
+		>{!checked
+			? i('tripDetails.addCostModal.oneTimeCost')
+			: i('tripDetails.addCostModal.periodCost')}</SlideToggle
 	>
 	<label class="label col-span-2 {checked ? 'sm:col-span-1' : 'sm:col-span-2'}">
 		<span class="font-semibold">{i('tripDetails.addCostModal.startDate')}</span>

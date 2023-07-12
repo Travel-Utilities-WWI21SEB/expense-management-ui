@@ -277,17 +277,17 @@
 			"acceptTrip": {
 				"acceptInvitation": "Einladung annehmen",
 				"acceptText": "Nimm deine Reiseeinladung an!",
-				"presenceStart":"Anwesenheit bei Reise ab",
-				"presenceEnd":"Anwesenheit bei Reise bis",
+				"presenceStart": "Anwesenheit bei Reise ab",
+				"presenceEnd": "Anwesenheit bei Reise bis",
 				"acceptButton": "Annehmen",
 				"rejectButton": "Ablehnen"
-				},
-		"tripData": "Reisedaten",
-		"costCategories": "Kostenkategorien",
-		"participants": "Teilnehmer",
-		"closeButton": "Schließen",
-		"deleteButton": "Löschen",
-		"saveButton": "Speichern"
+			},
+			"tripData": "Reisedaten",
+			"costCategories": "Kostenkategorien",
+			"participants": "Teilnehmer",
+			"closeButton": "Schließen",
+			"deleteButton": "Löschen",
+			"saveButton": "Speichern"
 		}
 	},
 	"costOverview": {
@@ -323,8 +323,8 @@
 		"confirmed": " wurde erfolgreich bestätigt",
 		"rejected": " wurde erfolgreich abgelehnt"
 	},
-	"homepage":{
-		"noData":{
+	"homepage": {
+		"noData": {
 			"tripOverview": "Reiseübersicht",
 			"costOverview": "Kostenübersicht",
 			"debtOverview": "Schuldenübersicht",
@@ -348,7 +348,7 @@
 		"costsPerTrip": "Kosten pro Reise",
 		"costsPerCategory": "Kosten pro Kategorie"
 	},
-	"tripDetails":{
+	"tripDetails": {
 		"costs": "Kosten",
 		"noCosts": "Diese Reise hat noch keine Kosten",
 		"debts": "Schulden",
@@ -359,7 +359,7 @@
 		"deleteButton": "Löschen",
 		"closesButton": "Schließen",
 		"saveButton": "Speichern",
-		"addCostModal":{
+		"addCostModal": {
 			"title": "Neuen Kostenpunkt hinzufügen",
 			"details": "Details",
 			"name": "Name",
@@ -396,7 +396,7 @@
 		"totalCosts": "Gesamtkosten: ",
 		"zeroTotalCosts": "Gesamtkosten: 0€",
 		"amountText": "Elemente",
-		"sortModal":{
+		"sortModal": {
 			"sortBy": "Sortieren nach",
 			"startDate": "Anfangsdatum",
 			"endDate": "Enddatum",
@@ -409,7 +409,7 @@
 			"applyButton": "Anwenden",
 			"clearButton": "Zurücksetzen"
 		},
-		"filterModal":{
+		"filterModal": {
 			"minimalStart": "Minimales Anfangsdatum",
 			"maximalStart": "Maximales Anfangsdatum",
 			"minimalEnd": "Minimales Enddatum",
@@ -417,7 +417,7 @@
 			"applyButton": "Anwenden",
 			"clearButton": "Zurücksetzen"
 		},
-		"debtsTab":{
+		"debtsTab": {
 			"title": "Schulden",
 			"noDebts": "Diese Reise hat noch keine Schulden",
 			"transactions": "Transaktionen",
@@ -435,9 +435,9 @@
 			"closeButton": "Schließen",
 			"saveButton": "Speichern"
 		},
-		"timePresent" : "Anwesenheitszeitraum bei Reise"
+		"timePresent": "Anwesenheitszeitraum bei Reise"
 	},
-	"profile":{
+	"profile": {
 		"title": "Dein Profil",
 		"editButton": "Bearbeiten",
 		"saveButton": "Speichern",
@@ -452,7 +452,7 @@
 		"email": "E-Mail",
 		"location": "Wohnort"
 	},
-	"debtsPage":{
+	"debtsPage": {
 		"title": "Dein Schuldenüberblick",
 		"noDebts": "Du hast noch keine Schulden (Glückwunsch!)",
 		"noDebtsExplanation": "Du kannst mit dem Sammeln von Schulden beginnen, indem du eine Reise erstellst und ihr Kosten hinzufügst.",
@@ -472,7 +472,7 @@
 		"openCreditsAccouting": "Offene Gutschrift(en) mit einem Gesamtwert von",
 		"openDebtsAccouting": "Offene Schulden mit einem Gesamtwert von"
 	},
-	"transactionsPage":{
+	"transactionsPage": {
 		"title": "Transaktionsverlauf",
 		"noTransactions": "Sie haben noch keine Transaktionen",
 		"noTransactionsExplanation": "Um zu beginnen, schaue dir deine Reisen an",
@@ -491,7 +491,7 @@
 		"rejectButton": "Ablehnen",
 		"abortButton": "Abbrechen"
 	},
-	"error":{
+	"error": {
 		"pageNotFound": "Seite nicht gefunden",
 		"pageNotFoundExplanation": "Die von Ihnen gesuchte Seite existiert leider nicht, hier sind einige hilfreiche Links",
 		"goBack": "Zurück",

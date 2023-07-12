@@ -27,9 +27,11 @@
 </script>
 
 <TabGroup>
-	<Tab bind:group={tabSet} name="Details" value={0}>{i("tripDetails.addCostModal.details")}</Tab>
-	<Tab bind:group={tabSet} name="PaidyBy" value={1}>{i("tripDetails.addCostModal.paidBy")}</Tab>
-	<Tab bind:group={tabSet} name="CostAllocation" value={2}>{i("tripDetails.addCostModal.costAllocation")}</Tab>
+	<Tab bind:group={tabSet} name="Details" value={0}>{i('tripDetails.addCostModal.details')}</Tab>
+	<Tab bind:group={tabSet} name="PaidyBy" value={1}>{i('tripDetails.addCostModal.paidBy')}</Tab>
+	<Tab bind:group={tabSet} name="CostAllocation" value={2}
+		>{i('tripDetails.addCostModal.costAllocation')}</Tab
+	>
 	<!-- Tab Panels --->
 	<svelte:fragment slot="panel">
 		{#if tabSet === 0}
