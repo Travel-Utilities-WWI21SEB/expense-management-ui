@@ -1,4 +1,8 @@
 {
+	"navbar":{
+		"costs": "Kosten",
+		"debts": "Schulden"
+	},
 	"errors": {
 		"EM-000": "Es ist ein unbekannter Fehler aufgetreten. Bitte versuche es später erneut.",
 		"EM-001": "Ein Upstream-Dienst ist nicht verfügbar. Bitte versuche es später erneut.",
@@ -23,7 +27,8 @@
 	"header": {
 		"languages": {
 			"en": "Englisch",
-			"de": "Deutsch"
+			"de": "Deutsch",
+			"kor": "Koreanisch"
 		},
 		"logout": "Abmelden",
 		"search": "Durchsuche deine Reisen..."
@@ -283,12 +288,12 @@
 				"rejectButton": "Ablehnen"
 			}
 		},
-			"tripData": "Reisedaten",
-			"costCategories": "Kostenkategorien",
-			"participants": "Teilnehmer",
-			"closeButton": "Schließen",
-			"deleteButton": "Löschen",
-			"saveButton": "Speichern"
+		"tripData": "Reisedaten",
+		"costCategories": "Kostenkategorien",
+		"participants": "Teilnehmer",
+		"closeButton": "Schließen",
+		"deleteButton": "Löschen",
+		"saveButton": "Speichern"
 	},
 	"costOverview": {
 		"headerTitle": "Dein Kostenüberblick",

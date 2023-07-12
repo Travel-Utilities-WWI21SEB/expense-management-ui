@@ -30,7 +30,7 @@
 	let isCostsPage = $page.url.pathname.includes('costs');
 
 	$: buttonInfo = {
-		text: $page.url.pathname.includes('debts') ? 'Costs' : 'Debts',
+		text: $page.url.pathname.includes('debts') ? i('sidebar.overview.costs') : i('sidebar.overview.debts') ,
 		pathParam: $page.url.pathname.includes('debts') ? 'costs' : 'debts'
 	};
 

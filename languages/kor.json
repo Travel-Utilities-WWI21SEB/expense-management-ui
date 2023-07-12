@@ -1,0 +1,512 @@
+{
+  "navbar":{
+		"costs": "비용",
+		"debts": "빚"
+	},
+    "errors": {
+    "EM-000": "알 수 없는 오류가 발생했습니다. 나중에 다시 시도해 주세요.",
+    "EM-001": "업스트림 서비스를 사용할 수 없습니다. 나중에 다시 시도해 주세요.",
+    "EM-002": "알 수 없는 서버 오류가 발생했습니다. 나중에 다시 시도해 주세요.",
+    "EM-003": "요청한 리소스가 없습니다. URL을 확인하십시오.",
+    "EM-004": "리소스의 현재 상태와 충돌하여 요청을 완료할 수 없습니다. 지원팀에 문의하여 도움을 요청합니다.",
+    "EM-005": "잘못된 요청으로 인해 요청을 완료할 수 없습니다. 지원팀에 문의하여 도움을 요청합니다.",
+    "EM-006": "리소스에 액세스하는 데 사용된 인증 토큰이 잘못되었거나 만료되었습니다. 이제 로그인 페이지로 리디렉션됩니다.",
+    "EM-007": "제공된 암호가 잘못되었습니다. 다시 시도하십시오.",
+    "EM-008": "인증된 사용자의 권한이 부족하여 요청을 완료할 수 없습니다.",
+    "EM-009": "제공된 전자 메일 주소를 가진 사용자를 찾을 수 없습니다. 이메일 주소를 확인하고 다시 시도하십시오.",
+    "EM-010": "대상 여행이 없거나 리소스에 액세스할 수 있는 권한이 없습니다.",
+    "EM-011": "대상 비용 항목이 없거나 리소스에 액세스할 수 있는 권한이 없습니다.",
+    "EM-012": "제공한 전자 메일 또는 사용자 이름이 이미 사용 중이므로 등록하지 못했습니다.",
+    "EM-013": "계정이 아직 활성화되지 않았습니다. 이메일을 확인하고 이 메시지 옆에 있는 버튼을 눌러 활성화 코드를 입력하십시오.",
+    "EM-014": "요청이 성공적으로 처리되었지만 전자 메일을 보낼 수 없습니다.",
+    "EM-015": "계정이 이미 활성화되었습니다. 로그인하십시오.",
+    "EM-016": "당신은 이미 이 여행의 초대를 수락했습니다.",
+    "EM-017": "제공한 전자 메일이 이미 사용 중입니다.",
+    "EM-018": "제공한 사용자 이름이 이미 사용 중입니다."
+  },
+  "header": {
+    "languages": {
+      "en": "엉어",
+      "de": "독일어",
+      "kor": "한국어"
+    },
+    "logout": "로그아웃",
+    "search": "여행 겁색..."
+  },
+  "footer": {
+    "followUs": {
+      "title": "팔로우"
+    },
+    "legal": {
+      "title": "합법",
+      "imprint": "각인"
+    },
+    "imprint": {
+      "title": "각인",
+      "close": "닫기",
+      "general": {
+        "title": "일반 정보",
+        "content": "§ 5 TMG에 따른 정보",
+        "name": "Kevin Kemal Rieger",
+        "address": "Schulzenstraße 4, 68259 Mannheim"
+      },
+      "represented_by": {
+        "title": "Kevin Kemal Rieger",
+        "name": "로 표시됨"
+      },
+      "contact": {
+        "title": "연락",
+        "phone": "전화",
+        "phone_number": "+49 152 09707882",
+        "email": "이메일",
+        "email_address": "team@mail.costventures.works"
+      },
+      "disclaimer": {
+        "title": "부인",
+        "content_1": "내용책임",
+        "content_1_description": "저희 페이지의 내용은 세심하게 작성되었습니다. 그러나 콘텐츠의 정확성, 완성도, 적시성은 보장할 수 없습니다. 당사는 서비스 제공자로서 § 7 para.1 TMG (독일 텔레미디어법) 및 일반법에 따라 이 페이지의 자체 콘텐츠에 대한 책임이 있습니다. 제8조 내지 제10조 TMG에 따르면, 당사는 전송 또는 저장된 제3자 정보를 모니터링하거나 불법 행위를 나타내는 상황을 조사할 의무가 없습니다. 일반법에 따라 정보의 사용을 제거하거나 차단해야 하는 의무는 영향을 받지 않습니다. 그러나 이와 관련된 책임은 당사가 특정 침해를 인지한 시점부터 가능합니다. 이러한 법적 위반 사항을 알게 되면 즉시 해당 내용을 삭제할 것입니다.",
+        "content_2": "리으크 책임",
+        "content_2_description": "당사의 제안에는 당사가 영향을 미치지 않는 컨텐츠에 대한 제3자의 외부 웹 사이트에 대한 링크가 포함되어 있습니다. 따라서 우리는 이러한 외부 내용에 대해 어떠한 책임도 질 수 없습니다. 연결된 페이지의 해당 공급자 또는 운영자는 항상 해당 내용에 대해 책임을 집니다. 연결된 페이지는 연결 시 법적 위반 가능성이 있는지 확인했습니다. 링크 당시에는 불법 콘텐츠를 식별할 수 없었습니다. 그러나 링크된 페이지에 대한 영구적인 콘텐츠 제어는 침해의 구체적인 증거 없이는 합리적이지 않습니다. 법적 위반 사항을 알게 되면 즉시 해당 링크를 제거할 것입니다.",
+        "content_3": "데이터 보호",
+        "content_3_description": "당사 웹사이트의 이용은 일반적으로 개인정보를 제공하지 않아도 가능합니다. 당사 웹 사이트에서 개인 데이터(예: 이름, 주소 또는 전자 메일 주소)를 수집하는 경우, 가능하면 항상 자발적으로 수집됩니다. 이 데이터는 사용자의 명시적인 동의 없이 제3자에게 공개되지 않습니다. 인터넷을 통한 데이터 전송(예: 이메일에 의한 통신)은 보안 취약성을 가질 수 있음을 지적하고자 합니다. 타사의 액세스로부터 데이터를 완벽하게 보호할 수 없습니다. 이로써 제3자가 원치 않는 광고 및 정보 자료를 전송하기 위해 인쇄 의무의 범위 내에서 게시한 연락처 데이터를 사용하는 것은 명시적으로 금지됩니다. 페이지 운영자는 스팸 메일 등의 홍보 정보를 무단으로 전송하는 경우 법적 조치를 취할 수 있는 권한을 명시적으로 보유하고 있습니다."
+      }
+    }
+  },
+  "forms": {
+    "step": "단계",
+    "signup": {
+      "title": "등록",
+      "steps": {
+        "email": {
+          "title": "전자 메일 선택",
+          "invalidEmail": "올바른 이메일을 제공하십시오",
+          "validEmail": "이메일이 유효합니다",
+          "initialValidation": "가용성을 확인하려면 올바른 전자 메일 주소를 제공하십시오",
+          "ongoingValidation": "가용성을 확인하는 중...",
+          "available": "이메일을 사용할 수 있습니다",
+          "unavailable": "전자 메일 주소는 이미 사용되었습니다",
+          "nextStep": "다음"
+        },
+        "username": {
+          "title": "사용자명 선택",
+          "word": "사용자명",
+          "invalidUsername": "사용자명은 4자에서 15자 사이여야 합니다",
+          "validUsername": "사용자명이 유효합니다",
+          "initialValidation": "가용성을 확인하려면 올바른 사용자명을 제공하십시오",
+          "ongoingValidation": "가용성을 확인하는 중...",
+          "available": "사용자명을 사용할 수 있습니다",
+          "unavailable": "사용자명은 이미 사용되었습니다",
+          "nextStep": "다음"
+        },
+        "data": {
+          "title": "개인 데이터 입력",
+          "firstName": "이름",
+          "lastName": "성",
+          "location": "위치",
+          "birthDate": "생년월일",
+          "nextStep": "다음"
+        },
+        "profilePicture": {
+          "title": "프로필 사진 선택",
+          "imageDescription": "프로필 사진을 업로드하지 않으려면 기본 아바타를 사용합니다.",
+          "uploadMessage": "프로필 사진을 업로드하거나 여기에 끌어다 놓습니다.",
+          "uploadDescription": "JPG 및 PNG 파일은 최대 5MB까지 지원합니다",
+          "fileType": "파일 형태가 지원되지 않습니다",
+          "fileSize": "파일 사이즈가 너무 큽니다",
+          "nextStep": "다음"
+        },
+        "password": {
+          "title": "암호 선택",
+          "word": "암호",
+          "wordRepeat": "암호 반복",
+          "invalidPassword": "암호는 8자 이상이어야 합니다",
+          "validPassword": "최소 길이 충족",
+          "passwordsDontMatch": "암호가 일치하지 않음",
+          "passwordsMatch": "암호가 일치",
+          "nextStep": "등록"
+        },
+        "token": {
+          "title": "이메일 확인",
+          "description": "이메일로 받은 토큰을 입력해주세요!",
+          "initialValidation": "유효성 검사를 시작하려면 토큰을 입력하십시오",
+          "ongoingValidation": "확인 중...",
+          "correctToken": "토큰이 정확합니다",
+          "incorrectToken": "토큰이 잘못되었습니다",
+          "receiveCodeMessage": "코드를 받지 못했나요?",
+          "resendCode": "새 코드를 가져옵니다",
+          "alertHeading": "뭔가 잘못됐어요!",
+          "alertMessage": "다시 해보세요.",
+          "successMessage": "확인에 성공했습니다!",
+          "successAction": "Costventures을 믿어주셔서 감사합니다. 오른쪽 버튼을 클릭하시면 자동으로 로그인하여 홈페이지로 이동할 수 있습니다.",
+          "successActionLink": "로그인",
+          "seconds": "초"
+        }
+      },
+      "alreadyRegistered": "이미 등록하셨습니까?",
+      "alreadyRegisteredAction": "로그인"
+    },
+    "signin": {
+      "title": "로그인",
+      "componentTitle": "계정에 로그인합니다",
+      "password": "암호",
+      "forgotPassword": {
+        "title": "암호를 잊으셨습니까?",
+        "abort": "중단",
+        "steps": {
+          "email": {
+            "title": "이메일 주소가 어떻게 되세요?",
+            "invalidEmail": "올바른 이메일을 제공하십시오",
+            "validEmail": "이메일이 유효합니다",
+            "nextStep": "리셋 코드 수신"
+          },
+          "token": {
+            "alertHeading": "뭔가 잘못됐어요!",
+            "alertMessage": "다시 시도",
+            "nextStep": "새 암호 입력"
+          },
+          "password": {
+            "title": "새 암호 설정",
+            "alertHeading": "뭔가 잘못됐어요!",
+            "alertMessage": "중단",
+            "nextStep": "암호 설정"
+          }
+        }
+      },
+      "rememberMe": "나를 기억해줘요",
+      "noAccount": "아직 계정이 없습니까?",
+      "noAccountAction": "등록",
+      "submit": "등록"
+    }
+  },
+  "sidebar": {
+    "homepage": {
+      "title": "홈페이지",
+      "home": "홈"
+    },
+    "trips": {
+      "title": "여행",
+      "trips": "여행",
+      "costs": "비용",
+      "history": "기록"
+    },
+    "account": {
+      "title": "계정",
+      "profile": "프로필"
+    }
+  },
+  "landingPage": {
+    "banner": {
+      "catchPhrase": {
+        "first": "여행.",
+        "second": "지출.",
+        "third": "나눔."
+      }
+    },
+    "register": {
+      "title": "무료 계정을 생성하여 지금 Costventures를 시작하십시오.",
+      "button": "등록"
+    },
+    "features": {
+      "redirectMessage": "자세히 알아봅시다",
+      "travel": {
+        "title": "여행",
+        "description": "친구, 가족과 함께 세계를 여행하세요. 여행을 만들고 친구를 초대합니다. 당신의 여행을 함께 계획하고 비용을 공유하세요."
+      },
+      "spend": {
+        "title": "지출",
+        "description": "돈을 현명하게 쓰세요. 여행을 위한 예산을 작성하고 지출 내역을 기록합니다. 당신이 얼마나 썼는지, 얼마나 남았는지 보세요."
+      },
+      "divide": {
+        "title": "나눔",
+        "description": "여행 비용을 나누세요. 당신의 지출을 더해서 당신이 얼마나 빚지고 있는지 또는 당신이 얼마나 빚지고 있는지 확인하세요. 빚을 청산하고 여행을 즐기세요."
+      }
+    },
+    "reviews": {
+      "aleks": "이것은 우리의 피트니스 앱보다 훨씬 낫습니다",
+      "thomas": "화, 좋다!",
+      "nico": "이제야 내가 얼마나 빈털터리인지 알 것 같아요"
+    },
+    "stats": {
+      "users": "사용자",
+      "subscribers": "구독자",
+      "investors": "투자자",
+      "team": "재능 있는 팀"
+    },
+    "contactBox": {
+      "title": "연락",
+      "message": "질문이나 제안 사항이 있으시면 말씀해 주시기 바랍니다. 안 뭅니다. :)",
+      "invalidName": "올바른 이름(3자 이상)을 입력하십시오",
+      "invalidEmail": "올바른 전자 메일 주소(예: max@mustermann.de )를 입력하십시오",
+      "label": "메세지",
+      "placeholder": "당신이 하고 싶은 말은...",
+      "button": "보냄"
+    }
+  },
+  "tripOverview": {
+    "errorCode": "404",
+    "noTripsText": "당신은 아직 여행이 없습니다",
+    "noTripsExplanation": "오른쪽 상단 모서리에 있는 버튼을 클릭하여 트립 추가를 시작하십시오",
+    "headerTitle": "당신의 여행",
+    "addTripButton": "여행 추가",
+    "addTripModal": {
+      "title": "새 여행 추가",
+      "tripDetailsTitle": "여행 세부 정보",
+      "headline": "",
+      "nameFieldTitle": "여행 이름",
+      "nameInField": "이름 입력...",
+      "locationFieldTitle": "위치",
+      "locationInField": "위치 입력...",
+      "startDateFieldTitle": "시작 날짜",
+      "endDateFieldTitle": "종료 날짜",
+      "backButton": "뒤로",
+      "nextButton": "다음",
+      "costCategoriesTitle": "비용 카테고리 추가",
+      "costCategoriesInField": "자체 비용 카테고리 만들기",
+      "colorChangeExplanation": "카테고리를 클릭하여 색상을 변경할 수 있습니다!",
+      "foodCategory": "음식",
+      "mobilityCategory": "이동",
+      "completeButton": "완료",
+      "iviteParticitpatsTitle": "참가자 초대",
+      "iviteParticitpatsInField": "이메일 또는 사용자명 입력...",
+      "noResultsMessage": "결과 없음"
+    },
+    "tripCard": {
+      "totalCost": "총 비용: ",
+      "location": "위치:",
+      "nothingToGet": "얻을 돈 없음",
+      "youGet": "받을 금액:  ",
+      "nothingToPay": "갚을 것 없음",
+      "youPay": "갚아야 할 금액: ",
+      "members": "멤버",
+      "noAccessMessage": "데이터에 액세스할 수 없음",
+      "acceptTrip": {
+        "acceptInvitation": "초대 수락",
+        "acceptText": "여행 초대에 수락합니다!",
+        "presenceStart": "당신 여행 시작일",
+        "presenceEnd": "당신 여행 종료일",
+        "acceptButton": "수락",
+        "rejectButton": "거부"
+      }
+    },
+    "tripData": "여행 데이터",
+    "costCategories": "비용 카테고리",
+    "participants": "참가자",
+    "closeButton": "닫기",
+    "deleteButton": "삭제",
+    "saveButton": "저장"
+  },
+  "costOverview": {
+    "headerTitle": "당신의 비용",
+    "noCostsYet": {
+      "errorCode": "404",
+      "noCostsText": "당신은 아직 비용이 없습니다",
+      "noCostsExplanation": "여행을 만들고 여행에 비용을 추가하여 비용을 추가할 수 있습니다.",
+      "createTripButton": "여행 만들기"
+    },
+    "totalCosts": "총 비용",
+    "averageCosts": "평균 여행 비용",
+    "across": "그리고 ",
+    "averageContributionToolTip": "각 여행에 기여하는 비용의 평균 백분율로, 총 기여액을 기준으로 계산됩니다.",
+    "trip": "번의 여행",
+    "ending": "",
+    "averageContribution": "평균 기여율",
+    "costDistribution": "비용 분급",
+    "tripDistribution": "여행 분급",
+    "mostExpensiveTrip": "제일 비싼 여행",
+    "leastExpensiveTrip": "제일 싼 여행"
+  },
+  "toast": {
+    "error": "오류: ",
+    "sentMessage": "메시지가 성공적으로 전송되었습니다!",
+    "resetPassword": "암호가 성공적으로 재설정되었습니다!",
+    "costItem": "비용항목은 ",
+    "trip": "여행은 ",
+    "transaction": "거래는",
+    "deleted": " 성공적으로 삭제되었습니다",
+    "created": " 성공적으로 생성되었습니다",
+    "saved": " 성공적으로 저정되었습니다",
+    "confirmed": " 성공적으로 확인되었습니다",
+    "rejected": " 성공적으로 거부되었습니다"
+  },
+  "homepage": {
+    "noData": {
+      "tripOverview": "당신의 여행",
+      "costOverview": "당신의 비용",
+      "debtOverview": "당신의 빚",
+      "noTrips": "아직 여행이 없음",
+      "noCosts": "아직 비용이 없음",
+      "noDebts": "아직 빚이 없음",
+      "addTrip": "여기를 클릭하여 여행을 추가할 수 있습니다",
+      "addCost": "여기를 클릭하여 비용을 추가할 수 있습니다",
+      "addDebt": "그런 식으로 유지하려고 노력하세요"
+    },
+    "tripsJoined": "번의 참가한 여행",
+    "daysSpentTravelling": "일간의 여행",
+    "travelledWith": "총 ",
+    "people": "명과 함께  여행함",
+    "receiveInFront": "총계로 받은 돈 ",
+    "paidInFront": "모두 갚은 돈 ",
+    "receiveBack": "€",
+    "paidBackBack": "€",
+    "partOfUs": "일부가 되는 시간 ",
+    "days": "일",
+    "costsPerTrip": "여행당 비용",
+    "costsPerCategory": "카테고리당 비용"
+  },
+  "tripDetails": {
+    "costs": "비용",
+    "noCosts": "비용이 아직 없음",
+    "debts": "빚",
+    "addButton": "추가",
+    "sortButton": "정렬",
+    "filterButton": "필터",
+    "editButton": "편집",
+    "deleteButton": "삭제",
+    "closesButton": "닫기",
+    "saveButton": "저장",
+    "addCostModal": {
+      "title": "새 비용 항목 추가",
+      "details": "세부 사항",
+      "name": "이름",
+      "periodCost": "기간 비용",
+      "oneTimeCost": "일회성 비용",
+      "startDate": "시작 날짜",
+      "endDate": "종료 날짜",
+      "amount": "금액",
+      "category": "카테고리",
+      "costWarning": "올바른 비용 세부 정보를 제공하십시오",
+      "costAllowed": "비용 세부 정보가 유효",
+      "backButton": "뒤로",
+      "nextButton": "다음",
+      "paidBy": "지불함",
+      "paidByWarning": "올바른 지불함을 입력하십시오",
+      "paidByAllowed": "유효함",
+      "costAllocation": "비용배분",
+      "totalCost": "총 비용:",
+      "peopleInvolved": "관련자: ",
+      "deselectAll": "모두 선택 취소",
+      "selectAll": "모두 선택",
+      "split": "분열",
+      "equally": "동등하게 분할",
+      "custom": "지정으로 분할",
+      "allocationWarningNotValid": "올바른 배분을 제공하십시오",
+      "allocationWarningNoOneInvolved": "비용에는 아무도 관여하지 않습니다",
+      "allocationWarningToMuch": "유로가 너무 많이 나누어져 있습니다",
+      "allocationWarningStillLeft": "유로는 나눠야 합니다",
+      "allocationAllowed": "배분유효함",
+      "completeButton": "완료",
+      "step": "단계"
+    },
+    "dashboard": "대시보드",
+    "totalCosts": "총 비용: ",
+    "zeroTotalCosts": "총 비용: 0€",
+    "amountText": "항목",
+    "sortModal": {
+      "sortBy": "정렬 기준",
+      "startDate": "시작 날짜",
+      "endDate": "종료 날짜",
+      "amount": "금액",
+      "costCategory": "비용 카테고리",
+      "name": "이름",
+      "order": "순서",
+      "ascending": "오름차순",
+      "descending": "내림차순",
+      "applyButton": "적용",
+      "clearButton": "지우기"
+    },
+    "filterModal": {
+      "minimalStart": "최소 시작 날짜",
+      "maximalStart": "최대 시작 날짜",
+      "minimalEnd": "최소 종료 날짜",
+      "maximalEnd": "최대 종료  날짜",
+      "applyButton": "적용",
+      "clearButton": "지우기"
+    },
+    "debtsTab": {
+      "title": "빚",
+      "noDebts": "여행은 아직 빚이 없음",
+      "transactions": "거래",
+      "noTransactions": "여행에는 아직 귀하에게 영향을 미치는 거래가 없습니다",
+      "addButton": "추가",
+      "youGet": "받을 돈",
+      "youOwe": "빚진 돈",
+      "transactionConfirm": "확인할 수 있는 거래",
+      "otherTransactions": "기타 거래",
+      "addTransaction": "새 거래 추가",
+      "sendMoney": "돈 받은 사람",
+      "amount": "금액",
+      "transactionValid": "새 거래가 유효함",
+      "transactionNotValid": "올바른 거래를 제공하십시오",
+      "closeButton": "닫기",
+      "saveButton": "저장",
+      "youPaid": "지불된 돈: ",
+      "notConfirmedYet": "거래가 아직 확인되지 않은 사람",
+      "paidYou": " 보냄 "
+    },
+    "timePresent": "여행참가한 시간"
+  },
+  "profile": {
+    "title": "프로필",
+    "editButton": "편집",
+    "saveButton": "저장",
+    "travellerSince": "이후의 여행자",
+    "description": "설명",
+    "descriptionExplanation": "여기에 당신에 대한 간단한 설명이 있을 수 있지만, 우리는 그것을 구현하기가 너무 게을렀습니다. :)",
+    "personalInfo": "개인 정보",
+    "firstName": "이름",
+    "lastName": "성",
+    "birthDate": "생년월일",
+    "joinedAt": "결합일",
+    "email": "이메이",
+    "location": "위치"
+  },
+  "debtsPage": {
+    "title": "당신의 빚",
+    "noDebts": "아직 빚이 없음",
+    "noDebtsExplanation": "여행을 만들고 비용을 추가하여 부채를 축적할 수 있습니다.",
+    "noDebtsButton": "여행 만들기",
+    "totalDebts": "총부채",
+    "received": "받은 돈",
+    "paidBack": "갚은 빚",
+    "coveredDebts": "적용 부채 비율",
+    "tripDistribution": "여행 분급", 
+    "userDistribution": "사용자  분급",
+    "hoverOverCoveredDebts": "적용되는 부채 백분율은 이미 상환한 총 부채의 백분율입니다. 이것은 당신이 누적한 부채 총액과 당신이 갚은 부채 총액을 기준으로 계산됩니다.",
+    "openDebts": "채무",
+    "openCredits": "미수금",
+    "youHave": "있는 돈 ",
+    "tripCarousel": "여행 회전목마",
+    "openCreditsAccouting": "총 가치에 대한 공개 신용 계정:",
+    "openDebtsAccouting": "총 가치에 대한 미지급 부채 회계"
+  },
+  "transactionsPage": {
+    "title": "거래 기록",
+    "noTransactions": "아직 거래가 없음",
+    "noTransactionsExplanation": "시작하려면 여행 검색",
+    "goToTrips": "여행으로 이동",
+    "sortButton": "정렬",
+    "sortBy": "정렬 기준",
+    "creationDate": "작성 날짜",
+    "amount": "금액",
+    "order": "순서",
+    "ascending": "오름차순",
+    "descending": "내림차순",
+    "applyButton": "적용",
+    "confirmOrReject": "거래 확인 또는 거부",
+    "confirmButton": "확인",
+    "closeButton": "닫기",
+    "rejectButton": "거부",
+    "abortButton": "중단",
+    "trip": "여행: ",
+    "created": "작성된 날짜: ",
+    "wantToConfirm": "거래를 확인하시겠습니까? ",
+    "youOwe": "빚진 것 ",
+    "owesYou": "당신에게 있는 빚 "
+  },
+  "error": {
+    "pageNotFound": "페이지를 찾을 수 없음",
+    "pageNotFoundExplanation": "죄송합니다, 찾으시는 페이지가 없습니다. 다음은 몇 가지 유용한 링크입니다.",
+    "goBack": "되로 이동",
+    "takeHome": "홈으로 이동"
+  }
+}

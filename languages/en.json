@@ -1,4 +1,8 @@
 {
+	"navbar":{
+		"costs": "Costs",
+		"debts": "Debts"
+	},
 	"errors": {
 		"EM-000": "An unknown error occurred. Please try again later.",
 		"EM-001": "An upstream service is not available. Please try again later.",
@@ -23,6 +27,7 @@
 	"header": {
 		"languages": {
 			"en": "English",
+			"kor": "Korean",
 			"de": "German"
 		},
 		"logout": "Logout",
