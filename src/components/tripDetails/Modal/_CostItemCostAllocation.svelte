@@ -11,7 +11,7 @@
 		validateCostAllocation
 	} from '$utils';
 	import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
-	import { Check, ExclamationCircle, XMark } from '@steeze-ui/heroicons';
+	import { Check, InformationCircle, XMark } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
 
 	export let users: Array<CostPaidForUser>;
@@ -101,8 +101,8 @@
 	<ol class="list">
 		{#if tripHasNotAccedptedUsers}
 			<li>
-				<span class="badge-icon variant-filled-primary w-4 h-4">
-					<Icon src={ExclamationCircle} class="w-6 h-6" />
+				<span class="badge-icon variant-filled-warning w-4 h-4">
+					<Icon src={InformationCircle} class="w-4 h-4" />
 				</span>
 				<span class="flex-auto"
 					>Participants that have not accepted the invite cannot be included in costs</span
