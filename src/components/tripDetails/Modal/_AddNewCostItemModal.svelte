@@ -49,7 +49,7 @@
 		currency: 'EUR',
 		costCategory: { name: '', totalCost: 0, color: '', icon: '', costCategoryId: '' },
 		creationDate: new Date(),
-		endDate: '',
+		endDate: trip.startDate.toISOString().slice(0, 10),
 		creditor: trip.participants[0].username,
 		contributors: costPaidForUser,
 		startDate: trip.startDate.toISOString().slice(0, 10)
