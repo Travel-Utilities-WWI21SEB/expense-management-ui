@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import {
-		AlertWithAction,
+		ImformationAlertWithAction,
 		TripDetailsAddNewCostItem,
 		TripDetailsCostItem,
 		TripDetailsFilterPopUp,
@@ -79,13 +79,13 @@
 		>
 	</div>
 	{#if costs.length === 0 && $page.url.searchParams.size === 0}
-		<AlertWithAction
+		<ImformationAlertWithAction
 			alertHeading="This trip has no costs yet"
 			class="variant-ghost-primary"
 			icon={Banknotes}
 		/>
 	{:else if costs.length === 0 && $page.url.searchParams.size > 0}
-		<AlertWithAction
+		<ImformationAlertWithAction
 			alertHeading="No costs match your filter criteria"
 			class="variant-ghost-primary"
 			icon={Banknotes}

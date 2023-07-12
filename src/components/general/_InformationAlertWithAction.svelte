@@ -7,7 +7,7 @@
 	export let icon: IconSource = XMark;
 </script>
 
-<aside class="alert {$$props.class} w-full">
+<aside class="alert {$$props.class} w-full m-2">
 	<!-- Icon -->
 	<div>
 		<span class="badge-icon w-15 h-15">
