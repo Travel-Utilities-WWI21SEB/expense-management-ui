@@ -14,6 +14,8 @@
 	} from '@skeletonlabs/skeleton';
 	import { i } from '@inlang/sdk-js';
 
+	export let parent: any;
+
 	$: newCostCategoryElements = newCostCategories.filter((category) => category.isNew);
 	$: existingCostCategoryElements = newCostCategories.filter((category) => !category.isNew);
 
@@ -116,6 +118,9 @@
 					>{i('tripOverview.addTripModal.tripDetailsTitle')}</svelte:fragment
 				>
 				<NewTripStep bind:newTrip />
+				<svelte:fragment slot="navigation">
+					<button class="btn border-2" on:click={parent.onClose}>Close</button>
+				</svelte:fragment>
 			</Step>
 			<Step>
 				<svelte:fragment slot="header"

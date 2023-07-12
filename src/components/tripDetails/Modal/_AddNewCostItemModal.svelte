@@ -27,6 +27,7 @@
 	import { i } from '@inlang/sdk-js';
 
 	export let trip: TravelData;
+	export let parent: any;
 
 	let costPaidForUser: Array<CostPaidForUser> = trip.participants
 		.filter((user) => user.hasAcceptedInvite)
@@ -150,6 +151,9 @@
 					bind:users={costPaidForUser}
 					{involvedUsers}
 				/>
+				<svelte:fragment slot="navigation">
+					<button class="btn border-2" on:click={parent.onClose}>Close</button>
+				</svelte:fragment>
 			</Step>
 			<Step locked={!$costPaidByValid}>
 				<svelte:fragment slot="header">Paid by</svelte:fragment>
