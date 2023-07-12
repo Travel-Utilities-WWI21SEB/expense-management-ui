@@ -66,7 +66,12 @@
 				/>
 			{:else}
 				<div class="input-group input-group-divider grid-cols-[auto_1fr_auto] my-2">
-					<input type="search" bind:value={category.name} placeholder="Change category..." />
+					<input
+						class="w-32"
+						type="search"
+						bind:value={category.name}
+						placeholder="Change category..."
+					/>
 					<div>
 						<input
 							id={`nativeColorPicker${id}`}

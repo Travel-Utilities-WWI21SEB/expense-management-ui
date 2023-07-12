@@ -421,7 +421,6 @@
 			"title": "Debts",
 			"noDebts": "This trip has no debts yet",
 			"transactions": "Transactions",
-
 			"noTransactions": "This trip does not yet have any transactions that affect you",
 			"addButton": "Add",
 			"youGet": "You Get",

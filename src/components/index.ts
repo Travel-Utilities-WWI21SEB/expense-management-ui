@@ -61,7 +61,7 @@ export { default as DebtItemModalTripDetails } from './tripDebtDetails/Modal/_De
 export { default as ParticipantIconDebt } from './tripDebtDetails/_ParticipantIconDebt.svelte';
 export { default as TransactionOverviewTripDetails } from './tripDebtDetails/_TransactionOverviewTripDetails.svelte';
 export { default as AddNewTransactionModal } from './tripDebtDetails/Modal/_AddNewTransactionModal.svelte';
-export { default as ImformationAlertWithAction } from './general/_InformationAlertWithAction.svelte';
+export { default as InformationAlertWithAction } from './general/_InformationAlertWithAction.svelte';
 export { default as TransactionItemTripDetails } from './tripDebtDetails/_TransactionItemTripDetails.svelte';
 export { default as TransactionItemModalTripDetails } from './tripDebtDetails/Modal/_TransactionItemModalTripdetails.svelte';
 

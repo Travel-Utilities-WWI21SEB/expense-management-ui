@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ImformationAlertWithAction, TransactionItemTripDetails } from '$components';
+	import { InformationAlertWithAction, TransactionItemTripDetails } from '$components';
 	import type { TravelData, UserTransactions } from '$tripDomain';
 	import { modalStore, type ModalComponent, type ModalSettings } from '@skeletonlabs/skeleton';
 	import { AddNewTransactionModal } from '$components';
@@ -36,7 +36,7 @@
 		</button>
 	</div>
 	{#if transactions.confirmedTransactions.length === 0 && transactions.unconfirmedTransactions.length === 0}
-		<ImformationAlertWithAction
+		<InformationAlertWithAction
 			alertHeading={i('tripDetails.debtsTab.noTransactions')}
 			class="variant-ghost-primary"
 			icon={Banknotes}
