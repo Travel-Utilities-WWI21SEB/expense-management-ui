@@ -34,8 +34,6 @@
 	$: startDate = calculateDate(cost.startDate, dateFormat, 'medium');
 	$: endDate = cost.endDate ? calculateDate(cost.endDate, dateFormat, 'medium') : '';
 
-	console.log(cost);
-
 	const dispatch = createEventDispatcher();
 
 	function selectListItem(i: number) {

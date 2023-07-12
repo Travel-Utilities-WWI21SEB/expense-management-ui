@@ -17,7 +17,8 @@
 	export let users: Array<CostPaidForUser>;
 	export let involvedUsers: Array<CostPaidForUser>;
 
-	$: costDetailsValid.set(validateDetails(cost, checked));
+	$: costDetailsValid.set(validateDetails(cost, checked) && !costAmountTooHigh);
+	$: costAmountTooHigh = cost.amount > 50000;
 	let checked: boolean = cost.endDate !== cost.startDate ? true : false;
 	const endDateTrip = trip.endDate.toISOString().slice(0, 10);
 	const startDateTrip = trip.startDate.toISOString().slice(0, 10);
@@ -123,6 +124,14 @@
 				<span class="flex-auto">Please provide valid cost details</span>
 			{/if}
 		</li>
+		{#if costAmountTooHigh}
+			<li>
+				<span class="badge-icon variant-filled-error w-4 h-4">
+					<Icon src={XMark} class="w-6 h-6" />
+				</span>
+				<span class="flex-auto">Maximum amount per cost is 50000</span>
+			</li>
+		{/if}
 	</ol>
 </div>
 

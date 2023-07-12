@@ -61,7 +61,6 @@
 	};
 
 	const onFormSubmit = async () => {
-		console.log(newTransaction);
 		await createTransaction(newTransaction);
 
 		let toastMessage = i('toast.transaction') + i('toast.deleted');
