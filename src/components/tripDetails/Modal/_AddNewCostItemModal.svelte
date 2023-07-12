@@ -138,12 +138,18 @@
 			<span
 				class="bg-gradient-to-br from-primary-800 to-primary-300 bg-clip-text text-transparent box-decoration-clone"
 			>
-				{i("tripDetails.addCostModal.title")}
+				{i('tripDetails.addCostModal.title')}
 			</span>
 		</h3>
-		<Stepper on:complete={() => onFormSubmit()} buttonBackLabel={i('tripDetails.addCostModal.backButton')} buttonNextLabel={i('tripDetails.addCostModal.nextButton')} buttonCompleteLabel={i('tripDetails.addCostModal.completeButton')} stepTerm={i('tripDetails.addCostModal.step')}>
+		<Stepper
+			on:complete={() => onFormSubmit()}
+			buttonBackLabel={i('tripDetails.addCostModal.backButton')}
+			buttonNextLabel={i('tripDetails.addCostModal.nextButton')}
+			buttonCompleteLabel={i('tripDetails.addCostModal.completeButton')}
+			stepTerm={i('tripDetails.addCostModal.step')}
+		>
 			<Step locked={!$costDetailsValid}>
-				<svelte:fragment slot="header">{i("tripDetails.addCostModal.details")}</svelte:fragment>
+				<svelte:fragment slot="header">{i('tripDetails.addCostModal.details')}</svelte:fragment>
 				<TripDetailsEditCostItemDetails
 					bind:cost
 					{trip}
@@ -152,7 +158,7 @@
 				/>
 			</Step>
 			<Step locked={!$costPaidByValid}>
-				<svelte:fragment slot="header">{i("tripDetails.addCostModal.paidBy")}</svelte:fragment>
+				<svelte:fragment slot="header">{i('tripDetails.addCostModal.paidBy')}</svelte:fragment>
 				<TripDetailsEditCostItemPaidBy
 					bind:users={costPaidForUser}
 					paidBy={cost.creditor}
@@ -160,7 +166,9 @@
 				/>
 			</Step>
 			<Step locked={!$costAllocationValid}>
-				<svelte:fragment slot="header">{i("tripDetails.addCostModal.costAllocation")}</svelte:fragment>
+				<svelte:fragment slot="header"
+					>{i('tripDetails.addCostModal.costAllocation')}</svelte:fragment
+				>
 				<TripDetailsEditCostItemCostAllocation
 					on:message={(e) => handleCostAllocationMessage(e)}
 					{cost}

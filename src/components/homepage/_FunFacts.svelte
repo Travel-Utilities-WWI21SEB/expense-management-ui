@@ -49,26 +49,26 @@
 >
 	<a class="logo-item" href="/">
 		<span><Icon src={GlobeAlt} class="w-8 h-8" /></span>
-		<span>{tripsJoined} {i("homepage.tripsJoined")}</span>
+		<span>{tripsJoined} {i('homepage.tripsJoined')}</span>
 	</a>
 	<a class="logo-item" href="/">
 		<span><Icon src={User} class="w-8 h-8" /></span>
-		<span>{travelledFor} {i("homepage.daysSpentTravelling")}</span>
+		<span>{travelledFor} {i('homepage.daysSpentTravelling')}</span>
 	</a>
 	<a class="logo-item" href="/">
 		<span><Icon src={UserGroup} class="w-8 h-8" /></span>
-		<span>{i("homepage.travelledWith")} {personAmount} {i("homepage.people")}</span>
+		<span>{i('homepage.travelledWith')} {personAmount} {i('homepage.people')}</span>
 	</a>
 	<a class="logo-item" href="/">
 		<span><Icon src={Banknotes} class="w-8 h-8" /></span>
-		<span>{i("homepage.receiveInFront")} {data.debts.totalSpent}{i("homepage.receiveBack")}</span>
+		<span>{i('homepage.receiveInFront')} {data.debts.totalSpent}{i('homepage.receiveBack')}</span>
 	</a>
 	<a class="logo-item" href="/">
 		<span><Icon src={CreditCard} class="w-8 h-8" /></span>
-		<span>{i("homepage.paidInFront")} {data.debts.totalSpent}{i("homepage.paidBackBack")}</span>
+		<span>{i('homepage.paidInFront')} {data.debts.totalSpent}{i('homepage.paidBackBack')}</span>
 	</a>
 	<a class="logo-item" href="/">
 		<span><Icon src={GlobeAlt} class="w-8 h-8" /></span>
-		<span>{i("homepage.partOfUs")} {joinedDays} {i("homepage.days")}</span>
+		<span>{i('homepage.partOfUs')} {joinedDays} {i('homepage.days')}</span>
 	</a>
 </div>

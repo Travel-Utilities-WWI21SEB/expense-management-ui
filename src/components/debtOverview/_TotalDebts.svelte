@@ -12,7 +12,10 @@
 
 <div class="card rounded-lg shadow-md">
 	<header class="card-header flex justify-center">
-		<h4 class="h4">{i("debtsPage.totalDebts")} {received ? i("debtsPage.received") : i("debtsPage.paidBack")}</h4>
+		<h4 class="h4">
+			{i('debtsPage.totalDebts')}
+			{received ? i('debtsPage.received') : i('debtsPage.paidBack')}
+		</h4>
 	</header>
 	<hr class="!border-t-2 mt-2" />
 	<section class="p-4">

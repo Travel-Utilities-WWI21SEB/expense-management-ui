@@ -21,7 +21,7 @@
 
 <div class="card rounded-lg shadow-md">
 	<header class="card-header flex justify-center">
-		<h4 class="h4">{i("debtsPage.tripCarousel")}</h4>
+		<h4 class="h4">{i('debtsPage.tripCarousel')}</h4>
 	</header>
 	<hr class="!border-t-2 mt-2" />
 	<section class="p-4">
@@ -64,14 +64,17 @@
 						<a class="logo-item variant-ghost-success" href="/">
 							<span><Icon src={Banknotes} class="w-8 h-8" /></span>
 							<span
-								>{mappedTrip.amountOpenCredits} {i("debtsPage.openCreditsAccouting")}
+								>{mappedTrip.amountOpenCredits}
+								{i('debtsPage.openCreditsAccouting')}
 								{mappedTrip.openCredit}€</span
 							>
 						</a>
 						<a class="logo-item variant-ghost-warning" href="/">
 							<span><Icon src={CreditCard} class="w-8 h-8" /></span>
 							<span
-								>{mappedTrip.amountOpenDebts} {i("debtsPage.openDebtsAccouting")} {mappedTrip.openDebt}€</span
+								>{mappedTrip.amountOpenDebts}
+								{i('debtsPage.openDebtsAccouting')}
+								{mappedTrip.openDebt}€</span
 							>
 						</a>
 					</div>

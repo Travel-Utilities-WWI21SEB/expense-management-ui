@@ -110,12 +110,12 @@
 			labels: mappedTrips.map((entry) => entry.tripName),
 			datasets: [
 				{
-					label: i("debtsPage.openDebts"),
+					label: i('debtsPage.openDebts'),
 					data: mappedTrips.map((entry) => entry.openDebt),
 					backgroundColor: openDebtsColors
 				},
 				{
-					label: i("debtsPage.openCredits"),
+					label: i('debtsPage.openCredits'),
 					data: mappedTrips.map((entry) => entry.openCredit),
 					backgroundColor: openCreditsColors
 				}
@@ -126,12 +126,12 @@
 			labels: mappedDebtData.map((entry) => entry.debtor),
 			datasets: [
 				{
-					label: i("debtsPage.openDebts"),
+					label: i('debtsPage.openDebts'),
 					data: mappedDebtData.map((entry) => entry.openDebt),
 					backgroundColor: openDebtsColors
 				},
 				{
-					label: i("debtsPage.openCredits"),
+					label: i('debtsPage.openCredits'),
 					data: mappedDebtData.map((entry) => entry.openCredit),
 					backgroundColor: openCreditsColors
 				}
@@ -146,7 +146,7 @@
 			<span
 				class="bg-gradient-to-br from-primary-800 to-primary-600 dark:from-primary-400 dark:to-primary-200 bg-clip-text text-transparent box-decoration-clone"
 			>
-				{i("debtsPage.title")}
+				{i('debtsPage.title')}
 			</span>
 		</h1>
 	</div>
@@ -166,15 +166,16 @@
 					<p
 						class="mb-4 text-3xl tracking-tight font-bold text-gray-900 md:text-4xl dark:text-white"
 					>
-						{i("debtsPage.noDebts")}
+						{i('debtsPage.noDebts')}
 					</p>
 					<p class="mb-4 text-lg font-light text-gray-500 dark:text-gray-400">
-						{i("debtsPage.noDebtsExplanation")}
-					<a
-						href="trips"
-						class="inline-flex text-white bg-primary-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-primary-900 my-4"
-						>{i("debtsPage.noDebtsButton")}</a
-					>
+						{i('debtsPage.noDebtsExplanation')}
+						<a
+							href="trips"
+							class="inline-flex text-white bg-primary-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-primary-900 my-4"
+							>{i('debtsPage.noDebtsButton')}</a
+						>
+					</p>
 				</div>
 			</div>
 		</section>
@@ -198,7 +199,7 @@
 			<div class="row-start-5 row-span-3 col-span-12 md:col-span-6 lg:row-start-4 md:row-span-6">
 				<div class="card rounded-lg shadow-md flex flex-col items-center">
 					<header class="card-header">
-						<h4 class="h4">{i("debtsPage.tripDistribution")}</h4>
+						<h4 class="h4">{i('debtsPage.tripDistribution')}</h4>
 					</header>
 					<div class="lg:w-10/12 p-3 flex justify-center">
 						<BarChart data={tripDebtChartData} />
@@ -210,7 +211,7 @@
 			>
 				<div class="card rounded-lg shadow-md flex flex-col items-center">
 					<header class="card-header">
-						<h4 class="h4">{i("debtsPage.userDistribution")}</h4>
+						<h4 class="h4">{i('debtsPage.userDistribution')}</h4>
 					</header>
 					<div class="lg:w-10/12 p-3 flex justify-center">
 						<BarChart data={debtChartData} />
