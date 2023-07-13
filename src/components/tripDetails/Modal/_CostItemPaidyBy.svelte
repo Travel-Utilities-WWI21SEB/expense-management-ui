@@ -9,10 +9,9 @@
 
 	export let users: Array<CostPaidForUser>;
 	export let paidBy: string;
-	export let tripHasNotAccedptedUsers: boolean;
 
 	$: costPaidByValid.set(validatePaidBy());
-	$: isAnyPartisipentNotAccepted = users.some((user) => !user.hasAcceptedInvite);
+	$: isAnyParticipentNotAccepted = users.some((user) => !user.hasAcceptedInvite);
 	const dispatch = createEventDispatcher();
 
 	function changeSelectedValue(event: any) {
@@ -38,7 +37,7 @@
 	</select>
 </label>
 <ol class="list">
-	{#if tripHasNotAccedptedUsers}
+	{#if isAnyParticipentNotAccepted}
 		<li>
 			<span class="badge-icon variant-filled-warning w-4 h-4">
 				<Icon src={InformationCircle} class="w-6 h-6" />

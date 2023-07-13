@@ -157,7 +157,7 @@
 		</div>
 		<div class="col-span-4 sm:col-span-2 grid content-center px-2 pb-2 sm:p-2">
 			<div class="text-clip font-semibold overflow-hidden w-full text-rigth text-error-500">
-				{cost.amount + ' ' + (cost.currency === '' ? '€' : cost.currency)}
+				{cost.amount + ' ' + (cost.currency === '' ? 'EUR' : cost.currency)}
 			</div>
 		</div>
 	</div>

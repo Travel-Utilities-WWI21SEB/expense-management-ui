@@ -74,6 +74,7 @@
 	},
 	"forms": {
 		"step": "단계",
+		"email": "이메일",
 		"signup": {
 			"title": "등록",
 			"steps": {
@@ -279,6 +280,7 @@
 			"youPay": "갚아야 할 금액: ",
 			"members": "멤버",
 			"noAccessMessage": "데이터에 액세스할 수 없음",
+			"noCostsSpecified": "비용이 명시되지 않음",
 			"acceptTrip": {
 				"acceptInvitation": "초대 수락",
 				"acceptText": "여행 초대에 수락합니다!",
@@ -346,14 +348,15 @@
 		"people": "명과 함께  여행함",
 		"receiveInFront": "총계로 받은 돈 ",
 		"paidInFront": "모두 갚은 돈 ",
-		"receiveBack": "€",
-		"paidBackBack": "€",
+		"receiveBack": "EUR",
+		"paidBackBack": "EUR",
 		"partOfUs": "일부가 되는 시간 ",
 		"days": "일",
 		"costsPerTrip": "여행당 비용",
 		"costsPerCategory": "카테고리당 비용"
 	},
 	"tripDetails": {
+		"maxAmountReached": "비용 항목당 최대 금액은 50000입니다",
 		"costs": "비용",
 		"noCosts": "비용이 아직 없음",
 		"debts": "빚",
@@ -362,7 +365,7 @@
 		"filterButton": "필터",
 		"editButton": "편집",
 		"deleteButton": "삭제",
-		"closesButton": "닫기",
+		"closeButton": "닫기",
 		"saveButton": "저장",
 		"addCostModal": {
 			"title": "새 비용 항목 추가",
@@ -386,6 +389,7 @@
 			"peopleInvolved": "관련자: ",
 			"deselectAll": "모두 선택 취소",
 			"selectAll": "모두 선택",
+			"clearFilters": "필터 지우기",
 			"split": "분열",
 			"equally": "동등하게 분할",
 			"custom": "지정으로 분할",
@@ -394,12 +398,13 @@
 			"allocationWarningToMuch": "유로가 너무 많이 나누어져 있습니다",
 			"allocationWarningStillLeft": "유로는 나눠야 합니다",
 			"allocationAllowed": "배분유효함",
+			"notAcceptedWarning": "초대를 수락하지 않은 참가자는 비용에 관여할 수 없습니다",
 			"completeButton": "완료",
 			"step": "단계"
 		},
 		"dashboard": "대시보드",
 		"totalCosts": "총 비용: ",
-		"zeroTotalCosts": "총 비용: 0€",
+		"zeroTotalCosts": "총 비용: 0EUR",
 		"amountText": "항목",
 		"sortModal": {
 			"sortBy": "정렬 기준",
@@ -424,7 +429,7 @@
 		},
 		"debtsTab": {
 			"title": "빚",
-			"noDebts": "여행은 아직 빚이 없음",
+			"noDebts": "여행에은 아직 빚이 없음",
 			"transactions": "거래",
 			"noTransactions": "여행에는 아직 귀하에게 영향을 미치는 거래가 없습니다",
 			"addButton": "추가",
@@ -443,7 +448,10 @@
 			"notConfirmedYet": "거래가 아직 확인되지 않은 사람",
 			"paidYou": " 보냄 "
 		},
-		"timePresent": "여행참가한 시간"
+		"timePresent": "여행참가한 시간",
+		"filterCategoryAlert": "Bro keine Ahnung kann kein koreanisch",
+		"invitationPending": "초대 대기 중",
+		"invitationAccepted": "초대 수락됨"
 	},
 	"profile": {
 		"title": "프로필",

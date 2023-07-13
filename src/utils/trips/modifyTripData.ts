@@ -49,7 +49,7 @@ export function modifyTrip(trip: TravelDataAPI, userData: User): TravelData {
 		convertedTrip.data = tripChartData;
 	} else {
 		convertedTrip.data = {
-			labels: ['no cost specified'],
+			labels: ['No Costs Specified'],
 			datasets: [{ data: [-1], backgroundColor: ['#808080'] }]
 		};
 	}

@@ -108,7 +108,7 @@
 			<div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
 				<input type="number" bind:value={newTransaction.amount} />
 				<select bind:value={newTransaction.currencyCode}>
-					<option value="EUR">€</option>
+					<option value="EUR">EUR</option>
 				</select>
 			</div>
 		</label>

@@ -42,12 +42,7 @@
 		{#if tabSet === 0}
 			<TripDetailsEditCostItemDetails bind:cost bind:trip bind:users bind:involvedUsers />
 		{:else if tabSet === 1}
-			<TripDetailsEditCostItemPaidBy
-				bind:users
-				paidBy={cost.creditor}
-				{tripHasNotAccedptedUsers}
-				on:change={changePaidBy}
-			/>
+			<TripDetailsEditCostItemPaidBy bind:users paidBy={cost.creditor} on:change={changePaidBy} />
 		{:else if tabSet === 2}
 			<TripDetailsEditCostItemCostAllocation
 				bind:users

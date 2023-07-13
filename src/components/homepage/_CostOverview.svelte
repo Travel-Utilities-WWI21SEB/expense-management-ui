@@ -94,21 +94,27 @@
 							<Icon src={ArrowRight} class="w-4 h-4 md:w-6 md:h-6" />
 						</button>
 					</div>
-					<div class="pt-2 pb-2 flex flex-col items-center">
+					<button
+						on:click={() => goto('/costs')}
+						class="card-hover pt-2 pb-2 flex flex-col items-center"
+					>
 						<h4 class="h4 hidden md:block">{i('homepage.costsPerTrip')}</h4>
 						<PieChart data={tripChartData} />
-					</div>
-					<div class="pt-2 pb-2 flex flex-col items-center">
+					</button>
+					<button
+						on:click={() => goto('/costs')}
+						class="card-hover pt-2 pb-2 flex flex-col items-center"
+					>
 						<h4 class="h4 hidden md:block">{i('homepage.costsPerCategory')}</h4>
 						<PieChart data={costChartData} />
-					</div>
+					</button>
 				</Carousel>
 			{:else}
 				<section class="mt-4">
 					<div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
 						<div class="mx-auto max-w-screen-sm text-center">
 							<h1
-								class="mb-4 text-7xl tracking-tight font-extrabold lg:text-3xl text-primary-600 dark:text-primary-500"
+								class="mb-4 text-2xl tracking-tight font-extrabold lg:text-3xl text-primary-600 dark:text-primary-500"
 							>
 								{i('homepage.noData.noCosts')}
 							</h1>

@@ -40,7 +40,7 @@
 							>
 								{trip.tripName}
 							</h6>
-							<span class="flex-auto">{formattedCostString} €</span>
+							<span class="flex-auto">{formattedCostString} EUR</span>
 						</a>
 					</li>
 				</ul>

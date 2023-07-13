@@ -29,7 +29,7 @@
 	<h3 class="h3 pb-4">
 		{i('tripDetails.addCostModal.totalCost')}
 		{cost.amount}
-		{cost.currency === '' ? '€' : cost.currency}
+		{cost.currency === '' ? 'EUR' : cost.currency}
 	</h3>
 	<label class="label py-2">
 		<div class="flex justify-between">
@@ -113,9 +113,7 @@
 				<span class="badge-icon variant-filled-warning w-4 h-4">
 					<Icon src={InformationCircle} class="w-4 h-4" />
 				</span>
-				<span class="flex-auto"
-					>Participants that have not accepted the invite cannot be included in costs</span
-				>
+				<span class="flex-auto">{i('tripDetails.addCostModal.notAcceptedWarning')}</span>
 			</li>
 		{/if}
 		<li>
@@ -143,7 +141,7 @@
 					<Icon src={XMark} class="w-6 h-6" />
 				</span>
 				<span class="flex-auto"
-					>{`${Math.abs(restAmount).toString()} € ${
+					>{`${Math.abs(restAmount).toString()} EUR ${
 						restAmount > 0
 							? i('tripDetails.addCostModal.allocationWarningStillLeft')
 							: i('tripDetails.addCostModal.allocationWarningToMuch')

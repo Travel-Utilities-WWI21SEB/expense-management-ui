@@ -87,7 +87,7 @@
 		<div class="p-6 space-y-4 md:space-y-6 sm:p-8">
 			<form novalidate on:keydown={keydownHandler}>
 				<label class="label">
-					<span>Email</span>
+					<span>{i('forms.email')}</span>
 					<input
 						class="input"
 						title="inputEmail"

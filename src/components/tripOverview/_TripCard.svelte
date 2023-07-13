@@ -37,8 +37,8 @@
 			{#if trip.data && trip.hasAcceptedInvite}
 				<h6 class="h6 p-4 flex justify-center">
 					{trip.totalCost
-						? i('tripOverview.tripCard.totalCost') + trip.totalCost + ' €'
-						: i('tripOverview.tripCard.totalCost') + ' 0€'}
+						? i('tripOverview.tripCard.totalCost') + trip.totalCost + ' EUR'
+						: i('tripOverview.tripCard.totalCost') + ' 0EUR'}
 				</h6>
 				<DonutChart data={trip.data} />
 			{:else}

@@ -82,7 +82,12 @@
 	});
 </script>
 
-<Stepper class="p-3 m-3 h-full" on:next={nextStepHandler} stepTerm={i('forms.step')}>
+<Stepper
+	class="p-3 m-3 h-full"
+	on:next={nextStepHandler}
+	stepTerm={i('forms.step')}
+	buttonBackLabel={i('tripOverview.addTripModal.backButton')}
+>
 	<EmailStep {changeTab} />
 	<UsernameStep />
 	<ProfilePictureStep />

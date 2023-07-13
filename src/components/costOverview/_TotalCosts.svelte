@@ -22,7 +22,7 @@
 				<span
 					class="bg-gradient-to-br from-primary-800 to-primary-600 dark:from-primary-400 dark:to-primary-200 bg-clip-text text-transparent box-decoration-clone"
 				>
-					{formattedCost} €
+					{formattedCost} EUR
 				</span>
 			</h4>
 		</div>

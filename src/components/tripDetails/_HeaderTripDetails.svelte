@@ -152,15 +152,17 @@
 		<span slot="actions">
 			<div class="h-full flex items-center justify-center">
 				<button
-					class="btn variant-filled w-24 m-4"
+					class="btn variant-filled w-32 m-4"
 					on:click={() => {
 						modalStore.trigger(tripModal);
 					}}
 				>
-					<Icon src={Pencil} class="w-6 h-6" />
+					<span><Icon src={Pencil} class="w-6 h-6" /></span>
+					<span>{i('profile.editButton')}</span>
 				</button>
 			</div>
 		</span>
+
 		<span slot="toggle">
 			<div class="h-full flex items-center justify-center">
 				<TabGroup justify="justify-center">

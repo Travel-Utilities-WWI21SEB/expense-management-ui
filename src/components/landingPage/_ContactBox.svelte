@@ -106,7 +106,7 @@
 				</div>
 				<div class="p-2 w-1/2">
 					<div class="relative">
-						<label for="email" class="leading-7 text-sm">Email</label>
+						<label for="email" class="leading-7 text-sm">{i('forms.email')}</label>
 						<input
 							type="email"
 							id="email"

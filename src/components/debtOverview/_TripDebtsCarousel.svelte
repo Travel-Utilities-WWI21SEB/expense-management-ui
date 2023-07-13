@@ -66,7 +66,7 @@
 							<span
 								>{mappedTrip.amountOpenCredits}
 								{i('debtsPage.openCreditsAccouting')}
-								{mappedTrip.openCredit}€</span
+								{mappedTrip.openCredit}EURUR</span
 							>
 						</a>
 						<a class="logo-item variant-ghost-warning" href="/">
@@ -74,7 +74,7 @@
 							<span
 								>{mappedTrip.amountOpenDebts}
 								{i('debtsPage.openDebtsAccouting')}
-								{mappedTrip.openDebt}€</span
+								{mappedTrip.openDebt}EUR</span
 							>
 						</a>
 					</div>

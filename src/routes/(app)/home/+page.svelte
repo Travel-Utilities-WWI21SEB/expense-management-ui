@@ -1,11 +1,8 @@
 <script lang="ts">
-	import CostOverview from '$components/homepage/_CostOverview.svelte';
-	import DebtOverview from '$components/homepage/_DebtOverview.svelte';
-	import FunFacts from '$components/homepage/_FunFacts.svelte';
 	import type { CostDistribution, TripDistribution } from '$costDomain';
 	import { errorCode, errorState } from '$stores';
 	import { getErrorMessage } from '$utils';
-	import TripCarousel from '../../../components/homepage/_TripCarousel.svelte';
+	import { TripCarousel, FunFacts, DebtOverview, CostOverview } from '$components';
 
 	export let data;
 
