@@ -161,7 +161,9 @@
 					{involvedUsers}
 				/>
 				<svelte:fragment slot="navigation">
-					<button class="btn border-2" on:click={parent.onClose}>{i("tripDetails.closeButton")}</button>
+					<button class="btn border-2" on:click={parent.onClose}
+						>{i('tripDetails.closeButton')}</button
+					>
 				</svelte:fragment>
 			</Step>
 			<Step locked={!$costPaidByValid}>
@@ -169,7 +171,6 @@
 				<TripDetailsEditCostItemPaidBy
 					bind:users={costPaidForUser}
 					paidBy={cost.creditor}
-					{tripHasNotAccedptedUsers}
 					on:change={changePaidBy}
 				/>
 			</Step>

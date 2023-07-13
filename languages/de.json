@@ -448,7 +448,10 @@
 			"notConfirmedYet": "Diese Transaktion wurde noch nicht bestätigt von: ",
 			"paidYou": " zahlte dir "
 		},
-		"timePresent": "Anwesenheitszeitraum bei Reise"
+		"timePresent": "Anwesenheitszeitraum bei Reise",
+		"filterCategoryAlert": "Es gibt keine Kosten zu diesen Filter-Einstellungen",
+		"invitationPending": "Einladung: Laufend",
+		"invitationAccepted": "Einladung: Angenommen"
 	},
 	"profile": {
 		"title": "Dein Profil",

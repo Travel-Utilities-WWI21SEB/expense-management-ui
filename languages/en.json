@@ -448,7 +448,10 @@
 			"notConfirmedYet": "This transaction is not confirmed by",
 			"paidYou": " paid you "
 		},
-		"timePresent": "Time present in Trip"
+		"timePresent": "Time present in Trip",
+		"filterCategoryAlert": "No costs match your filter criteria",
+		"invitationPending": "Invitation: Pending",
+		"invitationAccepted": "Invitation: Accepted"
 	},
 	"profile": {
 		"title": "Your Profile",

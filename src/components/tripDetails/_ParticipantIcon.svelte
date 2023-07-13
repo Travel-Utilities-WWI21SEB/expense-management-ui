@@ -41,7 +41,9 @@
 			? 'dark:text-secondary-300 text-secondary-800'
 			: 'dark:text-warning-400 text-warning-800 '}"
 	>
-		{participant.hasAcceptedInvite ? 'Invitation accepted' : 'Invitation: pending'}
+		{participant.hasAcceptedInvite
+			? i('tripDetails.invitationAccepted')
+			: i('tripDetails.invitationPending')}
 	</p>
 </div>
 <!-- POPUP-->

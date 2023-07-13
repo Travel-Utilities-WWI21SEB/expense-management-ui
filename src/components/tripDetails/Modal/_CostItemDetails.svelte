@@ -36,6 +36,9 @@
 	}
 
 	function changeStartDate(e: any) {
+		if (!checked) {
+			cost.endDate = e.target.value;
+		}
 		{
 			if (checked && cost.endDate && !isEndDateAfterStartDate(e.target.value, cost.endDate)) {
 				if (new Date(e.target.value).toDateString() === new Date(endDateTrip).toDateString()) {
@@ -133,7 +136,7 @@
 				<span class="badge-icon variant-filled-error w-4 h-4">
 					<Icon src={XMark} class="w-6 h-6" />
 				</span>
-				<span class="flex-auto">{i("tripDetails.maxAmountReached")}</span>
+				<span class="flex-auto">{i('tripDetails.maxAmountReached')}</span>
 			</li>
 		{/if}
 	</ol>

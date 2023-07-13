@@ -86,3 +86,10 @@ export { default as TripAssociation } from './costOverview/_TripAssociation.svel
 //History
 export { default as HistoryItem } from './history/_HistoryItem.svelte';
 export { default as SortTransactionsPopup } from './history/_SortTransactionsPopup.svelte';
+//Homepage
+export { default as BarChart } from './homepage/_BarChart.svelte';
+export { default as CostOverview } from './homepage/_CostOverview.svelte';
+export { default as DebtOverview } from './homepage/_DebtOverview.svelte';
+export { default as FunFacts } from './homepage/_FunFacts.svelte';
+export { default as LineChart } from './homepage/_LineChart.svelte';
+export { default as TripCarousel } from './homepage/_TripCarousel.svelte';

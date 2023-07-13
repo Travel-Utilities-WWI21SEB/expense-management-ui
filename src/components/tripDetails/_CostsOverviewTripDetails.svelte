@@ -93,7 +93,7 @@
 		{#if $page.url.searchParams.size > 0}
 			<button type="button" class="btn btn-sm variant-ghost mx-1" on:click={clearFilters}>
 				<Icon src={XMark} class="w-4 h-4" />
-				<span>{i("tripDetails.addCostModal.clearFilters")}</span>
+				<span>{i('tripDetails.addCostModal.clearFilters')}</span>
 			</button>
 		{/if}
 	</div>
@@ -105,7 +105,7 @@
 		/>
 	{:else if costs.length === 0 && $page.url.searchParams.size > 0}
 		<InformationAlertWithAction
-			alertHeading="No costs match your filter criteria"
+			alertHeading={i('tripDetails.filterCategoryAlert')}
 			class="variant-ghost-primary"
 			icon={Banknotes}
 		/>

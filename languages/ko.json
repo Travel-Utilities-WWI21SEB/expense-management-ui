@@ -448,7 +448,10 @@
 			"notConfirmedYet": "거래가 아직 확인되지 않은 사람",
 			"paidYou": " 보냄 "
 		},
-		"timePresent": "여행참가한 시간"
+		"timePresent": "여행참가한 시간",
+		"filterCategoryAlert": "Bro keine Ahnung kann kein koreanisch",
+		"invitationPending": "초대 대기 중",
+		"invitationAccepted": "초대 수락됨"
 	},
 	"profile": {
 		"title": "프로필",
