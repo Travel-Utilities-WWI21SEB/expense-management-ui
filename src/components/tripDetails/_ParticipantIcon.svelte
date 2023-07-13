@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { User } from '$userDomain';
 	import { calculateDate } from '$utils';
-	import { language } from '@inlang/sdk-js';
+	import { i, language } from '@inlang/sdk-js';
 	import { Avatar, popup, type PopupSettings } from '@skeletonlabs/skeleton';
 
 	export let participant: User;
@@ -31,7 +31,7 @@
 <div class="card p-4 w-72 shadow-xl text-center" data-popup="popup{participant.username}">
 	<h4 class="p-2">{participant.username}</h4>
 	<p class="p-2">
-		Time present in Trip: <br />
+		{i('tripDetails.timePresent')} <br />
 		{`${startDate} - ${endDate}`}
 	</p>
 	<p

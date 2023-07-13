@@ -13,6 +13,7 @@
 	import { Paginator, modalStore, popup } from '@skeletonlabs/skeleton';
 	import { Banknotes, Plus, XMark } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
+	import { i } from '@inlang/sdk-js';
 
 	export let costs: Array<Cost>;
 	export let trip: TravelData;
@@ -74,20 +75,20 @@
 
 <div class="card h-full p-4">
 	<div class="flex justify-between pt-4 px-4">
-		<h3 class="h3">Costs</h3>
+		<h3 class="h3">{i('tripDetails.costs')}</h3>
 		<button type="button" class="btn variant-filled" on:click={addNewCostItem}>
 			<span>
 				<Icon src={Plus} class="w-6 h-6" />
 			</span>
-			<span>Add</span>
+			<span>{i('tripDetails.addButton')}</span>
 		</button>
 	</div>
 	<div class="flex p-2">
 		<button type="button" class="btn btn-sm variant-filled mx-1" use:popup={popUpSorting}
-			>Sort</button
+			>{i('tripDetails.sortButton')}</button
 		>
 		<button type="button" class="btn btn-sm variant-filled mx-1" use:popup={popUpFiltering}
-			>Filter</button
+			>{i('tripDetails.filterButton')}</button
 		>
 		{#if $page.url.searchParams.size > 0}
 			<button type="button" class="btn btn-sm variant-ghost mx-1" on:click={clearFilters}>
@@ -98,7 +99,7 @@
 	</div>
 	{#if costs.length === 0 && $page.url.searchParams.size === 0}
 		<ImformationAlertWithAction
-			alertHeading="This trip has no costs yet"
+			alertHeading={i('tripDetails.noCosts')}
 			class="variant-ghost-primary"
 			icon={Banknotes}
 		/>
@@ -130,6 +131,7 @@
 				showFirstLastButtons={false}
 				showPreviousNextButtons={true}
 				justify="justify-center"
+				amountText={i('tripDetails.amountText')}
 			/>
 		{/key}
 	{/if}

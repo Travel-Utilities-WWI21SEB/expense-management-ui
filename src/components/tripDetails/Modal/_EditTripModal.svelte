@@ -143,9 +143,13 @@
 <div class="card p-4 md:w-1/2">
 	<div class="p-4">
 		<TabGroup>
-			<Tab bind:group={tabSet} name="Trip Data" value={0}>Trip Data</Tab>
-			<Tab bind:group={tabSet} name="Cost Categories" value={1}>Cost Categories</Tab>
-			<Tab bind:group={tabSet} name="Participants" value={2}>Participants</Tab>
+			<Tab bind:group={tabSet} name={i('tripOverview.tripData')} value={0}
+				>{i('tripOverview.tripData')}</Tab
+			>
+			<Tab bind:group={tabSet} name="Cost Categories" value={1}
+				>{i('tripOverview.costCategories')}</Tab
+			>
+			<Tab bind:group={tabSet} name="Participants" value={2}>{i('tripOverview.participants')}</Tab>
 			<!-- Tab Panels --->
 			<svelte:fragment slot="panel">
 				{#if tabSet === 0}
@@ -164,7 +168,7 @@
 		</TabGroup>
 	</div>
 	<footer class="modal-footer {parent.regionFooter}">
-		<button class="btn border-2" on:click={parent.onClose}>Close</button>
+		<button class="btn border-2" on:click={parent.onClose}>{i('tripOverview.closeButton')}</button>
 		<button
 			class="btn variant-filled-error"
 			on:click={() => {
@@ -172,7 +176,7 @@
 			}}
 		>
 			<Icon src={Trash} class="w-6 h-6" />
-			<span>Delete</span>
+			<span>{i('tripOverview.deleteButton')}</span>
 		</button>
 		<button
 			class="btn variant-filled"
@@ -180,7 +184,7 @@
 				onSaveClick();
 			}}
 		>
-			Save
+			{i('tripOverview.saveButton')}
 		</button>
 	</footer>
 </div>

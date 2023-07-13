@@ -1,19 +1,20 @@
 # Node Base Image
-FROM node:19.9.0-alpine3.17 AS build
+FROM node:20.4.0-alpine3.17 AS build
 
 RUN corepack enable
 
 WORKDIR /svelte/app
 
 # Install app dependencies
-COPY .npmrc package.json pnpm-lock.yaml ./
-RUN pnpm install --frozen-lockfile
+COPY .npmrc package.json ./
+RUN pnpm install
 
 COPY . .
 RUN pnpm run build
+RUN pnpm prune --prod
 
 # Serve the app with a minimal node image
-FROM node:19.9.0-slim AS serve
+FROM node:20.4.0-alpine3.17 AS serve
 
 WORKDIR /svelte/app
 # Copy the app from the build stage

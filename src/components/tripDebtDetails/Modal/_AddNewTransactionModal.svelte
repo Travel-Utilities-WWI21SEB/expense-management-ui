@@ -63,7 +63,7 @@
 	const onFormSubmit = async () => {
 		await createTransaction(newTransaction);
 
-		let toastMessage = i('toast.transaction') + i('toast.deleted');
+		let toastMessage = i('toast.transaction') + i('toast.created');
 		if (!$errorState) {
 			invalidateAll();
 			modalStore.close();
@@ -85,11 +85,11 @@
 			<span
 				class="bg-gradient-to-br from-primary-800 to-primary-300 bg-clip-text text-transparent box-decoration-clone"
 			>
-				Add new Transaction
+				{i('tripDetails.debtsTab.addNewTransaction')}
 			</span>
 		</h3>
 		<label class="label pb-2">
-			<span class="font-semibold">Send money to</span>
+			<span class="font-semibold">{i('tripDetails.debtsTab.sendMoney')}</span>
 			<select
 				class="select"
 				on:change={(e) => {
@@ -104,7 +104,7 @@
 			</select>
 		</label>
 		<label class="label">
-			<span class="font-semibold">Amount</span>
+			<span class="font-semibold">{i('tripDetails.debtsTab.amount')}</span>
 			<div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
 				<input type="number" bind:value={newTransaction.amount} />
 				<select bind:value={newTransaction.currencyCode}>
@@ -117,17 +117,19 @@
 		<li>
 			{#if !validData}
 				<span class="badge-icon variant-filled-error w-4 h-4"> <Icon src={XCircle} /> </span>
-				<span class="flex-auto">Please provide a valid transaction</span>
+				<span class="flex-auto">{i('tripDetails.debtsTab.transactionNotValid')}</span>
 			{:else}
 				<span class="badge-icon variant-filled-success w-4 h-4">
 					<Icon src={Check} />
 				</span>
-				<span class="flex-auto">New Transaction is valid</span>
+				<span class="flex-auto">{i('tripDetails.debtsTab.transactionValid')}</span>
 			{/if}
 		</li>
 	</ol>
 	<footer class="modal-footer {parent.regionFooter}">
-		<button class="btn border-2" on:click={parent.onClose}>Close</button>
+		<button class="btn border-2" on:click={parent.onClose}
+			>{i('tripDetails.debtsTab.closeButton')}</button
+		>
 		<button
 			class="btn variant-filled"
 			disabled={!validData}
@@ -135,7 +137,7 @@
 				onFormSubmit();
 			}}
 		>
-			Save
+			{i('tripDetails.debtsTab.saveButton')}
 		</button>
 	</footer>
 </div>

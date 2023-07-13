@@ -6,7 +6,7 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 
 	export let debt: Debt;
-	export let i: number;
+	export let index: number;
 	export let isDebt: boolean;
 
 	function selectListItem(i: number) {
@@ -26,7 +26,7 @@
 {#if isDebt}
 	<button
 		class="card card-hover hover:bg-error-100 hover:dark:text-error-900 w-full"
-		on:click={() => selectListItem(i)}
+		on:click={() => selectListItem(index)}
 	>
 		<div class="grid grid-cols-12 md:gap-2">
 			<div class="col-span-4 flex justify-center items-center text-error-700 dark:text-error-500">
@@ -47,7 +47,7 @@
 {:else}
 	<button
 		class="card card-hover hover:bg-success-100 hover:dark:text-success-900 w-full"
-		on:click={() => selectListItem(i)}
+		on:click={() => selectListItem(index)}
 	>
 		<div class="grid grid-cols-12 md:gap-2">
 			<div class="col-span-4">

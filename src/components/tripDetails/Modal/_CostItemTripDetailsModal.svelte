@@ -144,7 +144,7 @@
 		{/if}
 	</div>
 	<footer class="modal-footer {parent.regionFooter}">
-		<button class="btn border-2" on:click={parent.onClose}>Close</button>
+		<button class="btn border-2" on:click={parent.onClose}>{i('tripDetails.closeButton')}</button>
 		{#if isEditing}
 			<button
 				class="btn variant-filled-error"
@@ -153,7 +153,7 @@
 				}}
 			>
 				<Icon src={Trash} class="w-6 h-6" />
-				<span>Delete</span>
+				<span>{i('tripDetails.deleteButton')}</span>
 			</button>
 			<button
 				class="btn variant-filled"
@@ -162,7 +162,7 @@
 					onFormSubmit();
 				}}
 			>
-				Save
+				{i('tripDetails.saveButton')}
 			</button>
 		{:else}
 			<button
@@ -174,7 +174,7 @@
 				<span>
 					<Icon src={Pencil} class="w-4 h-4" />
 				</span>
-				<span>Edit</span>
+				<span>{i('tripDetails.editButton')}</span>
 			</button>
 		{/if}
 	</footer>

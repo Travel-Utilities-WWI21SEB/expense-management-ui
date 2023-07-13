@@ -2,6 +2,7 @@
 	import { formatCostString } from '$utils';
 	import { CreditCard } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
+	import { i } from '@inlang/sdk-js';
 
 	export let totalDebts: string;
 	export let received: boolean;
@@ -11,7 +12,10 @@
 
 <div class="card rounded-lg shadow-md">
 	<header class="card-header flex justify-center">
-		<h4 class="h4">Total debts {received ? 'received' : 'paid back'}</h4>
+		<h4 class="h4">
+			{i('debtsPage.totalDebts')}
+			{received ? i('debtsPage.received') : i('debtsPage.paidBack')}
+		</h4>
 	</header>
 	<hr class="!border-t-2 mt-2" />
 	<section class="p-4">

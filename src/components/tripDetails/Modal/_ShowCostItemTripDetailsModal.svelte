@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { CostDateAsString } from '$tripDomain';
 	import { calculateDate, pickTextColorBasedOnBgColorSimple } from '$utils';
-	import { language } from '@inlang/sdk-js';
+	import { language, i } from '@inlang/sdk-js';
 
 	export let cost: CostDateAsString;
 
@@ -55,7 +55,7 @@
 	</div>
 
 	<div class="flex align-center">
-		<h3 class="h3 pr-2 font-semibold">{`Paid by: `}</h3>
+		<h3 class="h3 pr-2 font-semibold">{i('tripDetails.addCostModal.name')}</h3>
 		<h3 class="h3 font-semibold dark:text-primary-500 text-primary-600 truncate">
 			{cost.creditor}
 		</h3>

@@ -4,6 +4,7 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import type { DebtOverview } from '../../domain/debt/DebtOverview';
 	import BarChart from './_BarChart.svelte';
+	import { i } from '@inlang/sdk-js';
 
 	export let debts: DebtOverview;
 
@@ -51,12 +52,12 @@
 			labels: mappedDebtData.map((entry) => entry.debtor),
 			datasets: [
 				{
-					label: 'Open debts',
+					label: i('debtsPage.openDebts'),
 					data: mappedDebtData.map((entry) => entry.openDebt),
 					backgroundColor: openDebtsColors
 				},
 				{
-					label: 'Open credits',
+					label: i('debtsPage.openCredits'),
 					data: mappedDebtData.map((entry) => entry.openCredit),
 					backgroundColor: openCreditsColors
 				}
@@ -70,7 +71,7 @@
 		<h1 class="h1 col-start-1 flex justify-center pt-2">
 			<span
 				class="bg-gradient-to-br from-primary-800 to-primary-400 bg-clip-text text-transparent box-decoration-clone"
-				>Debt overview</span
+				>{i('homepage.noData.debtOverview')}</span
 			>
 		</h1>
 		<hr class="mt-2" />
@@ -82,11 +83,17 @@
 					>
 						<a class="logo-item variant-ghost-warning" href="/">
 							<span><Icon src={Minus} class="w-12 h-12" /></span>
-							<span>You have {debts.openDebtAmount * -1}€ open debts</span>
+							<span
+								>{i('debtsPage.youHave')}
+								{debts.openDebtAmount * -1}€ {i('debtsPage.openDebts')}</span
+							>
 						</a>
 						<a class="logo-item variant-ghost-success" href="/">
 							<span><Icon src={Plus} class="w-12 h-12" /></span>
-							<span>You have {debts.openCreditAmount}€ open credits</span>
+							<span
+								>{i('debtsPage.youHave')}
+								{debts.openCreditAmount}€ {i('debtsPage.openCredits')}</span
+							>
 						</a>
 					</div>
 				</div>
@@ -100,10 +107,10 @@
 							<h1
 								class="mb-4 text-7xl tracking-tight font-extrabold lg:text-3xl text-primary-600 dark:text-primary-500"
 							>
-								You don't have any debts yet
+								{i('homepage.noData.noDebts')}
 							</h1>
 							<p class="mb-4 text-lg font-light text-gray-500 dark:text-gray-400">
-								Try to keep it this way
+								{i('homepage.noData.addDebt')}
 							</p>
 						</div>
 					</div>

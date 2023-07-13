@@ -4,6 +4,7 @@
 	import { Banknotes, CreditCard, GlobeAlt, User, UserGroup } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import type { DebtOverview } from '../../domain/debt/DebtOverview';
+	import { i } from '@inlang/sdk-js';
 
 	export let data: {
 		error: boolean;
@@ -48,26 +49,26 @@
 >
 	<a class="logo-item" href="/">
 		<span><Icon src={GlobeAlt} class="w-8 h-8" /></span>
-		<span>{tripsJoined} Trips joined</span>
+		<span>{tripsJoined} {i('homepage.tripsJoined')}</span>
 	</a>
 	<a class="logo-item" href="/">
 		<span><Icon src={User} class="w-8 h-8" /></span>
-		<span>{travelledFor} days spent travelling</span>
+		<span>{travelledFor} {i('homepage.daysSpentTravelling')}</span>
 	</a>
 	<a class="logo-item" href="/">
 		<span><Icon src={UserGroup} class="w-8 h-8" /></span>
-		<span>Travelled with a total of {personAmount} persons</span>
+		<span>{i('homepage.travelledWith')} {personAmount} {i('homepage.people')}</span>
 	</a>
 	<a class="logo-item" href="/">
 		<span><Icon src={Banknotes} class="w-8 h-8" /></span>
-		<span>Received a total of {data.debts.totalReceived}€ in debts</span>
+		<span>{i('homepage.receiveInFront')} {data.debts.totalSpent}{i('homepage.receiveBack')}</span>
 	</a>
 	<a class="logo-item" href="/">
 		<span><Icon src={CreditCard} class="w-8 h-8" /></span>
-		<span>Paid back a total of {data.debts.totalSpent}€ in debts</span>
+		<span>{i('homepage.paidInFront')} {data.debts.totalSpent}{i('homepage.paidBackBack')}</span>
 	</a>
 	<a class="logo-item" href="/">
 		<span><Icon src={GlobeAlt} class="w-8 h-8" /></span>
-		<span>Been a part of us for {joinedDays} days</span>
+		<span>{i('homepage.partOfUs')} {joinedDays} {i('homepage.days')}</span>
 	</a>
 </div>

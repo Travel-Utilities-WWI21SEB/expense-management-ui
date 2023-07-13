@@ -5,6 +5,7 @@
 	import { ArrowLeft, ArrowRight } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import Carousel from 'svelte-carousel';
+	import { i } from '@inlang/sdk-js';
 
 	export let trips: TravelData[];
 
@@ -19,7 +20,7 @@
 		<h1 class="h1 col-start-1 flex justify-center pt-2">
 			<span
 				class="bg-gradient-to-br from-primary-800 to-primary-400 bg-clip-text text-transparent box-decoration-clone"
-				>Trip overview</span
+				>{i('homepage.noData.tripOverview')}</span
 			>
 		</h1>
 		<hr class="mt-2" />
@@ -62,14 +63,14 @@
 						<h1
 							class="mb-4 text-7xl tracking-tight font-extrabold lg:text-3xl text-primary-600 dark:text-primary-500"
 						>
-							You don't have any trips yet
+							{i('homepage.noData.noTrips')}
 						</h1>
 						<button
 							type="button"
 							class="btn variant-ghost-primary mb-4 text-lg font-light text-gray-500 dark:text-gray-400"
 							on:click={() => goto('/trips')}
 						>
-							You can add a trip by clicking me
+							{i('homepage.noData.addTrip')}
 						</button>
 					</div>
 				</div>

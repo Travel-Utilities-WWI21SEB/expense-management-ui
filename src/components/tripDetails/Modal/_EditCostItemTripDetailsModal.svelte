@@ -9,6 +9,7 @@
 		TripDetailsEditCostItemCostAllocation
 	} from '$components';
 	import { Tab, TabGroup } from '@skeletonlabs/skeleton';
+	import { i } from '@inlang/sdk-js';
 
 	export let cost: CostDateAsString;
 	export let users: Array<CostPaidForUser>;
@@ -31,9 +32,11 @@
 </script>
 
 <TabGroup>
-	<Tab bind:group={tabSet} name="Details" value={0}>Details</Tab>
-	<Tab bind:group={tabSet} name="PaidyBy" value={1}>Paid By</Tab>
-	<Tab bind:group={tabSet} name="CostAllocation" value={2}>Cost allocation</Tab>
+	<Tab bind:group={tabSet} name="Details" value={0}>{i('tripDetails.addCostModal.details')}</Tab>
+	<Tab bind:group={tabSet} name="PaidyBy" value={1}>{i('tripDetails.addCostModal.paidBy')}</Tab>
+	<Tab bind:group={tabSet} name="CostAllocation" value={2}
+		>{i('tripDetails.addCostModal.costAllocation')}</Tab
+	>
 	<!-- Tab Panels --->
 	<svelte:fragment slot="panel">
 		{#if tabSet === 0}

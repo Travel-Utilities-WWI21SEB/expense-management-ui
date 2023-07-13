@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
+	import { i } from '@inlang/sdk-js';
 
 	$: sortBy = $page.url.searchParams.get('sortBy') ?? 'createdAt';
 	$: orderBy = $page.url.searchParams.get('sortOrder') ?? 'desc';
@@ -23,7 +24,7 @@
 </script>
 
 <label class="label col-span-1">
-	<span>Sort by</span>
+	<span>{i('transactionsPage.sortBy')}</span>
 	<select
 		class="select"
 		value={sortBy}
@@ -31,13 +32,13 @@
 			changeSortBy(e);
 		}}
 	>
-		<option value="createdAt">Creation Date</option>
-		<option value="amount">Amount</option>
+		<option value="createdAt">{i('transactionsPage.creationDate')}</option>
+		<option value="amount">{i('transactionsPage.amount')}</option>
 	</select>
 </label>
 
 <label class="label col-span-1">
-	<span>Order</span>
+	<span>{i('transactionsPage.order')}</span>
 	<select
 		class="select"
 		value={orderBy}
@@ -45,8 +46,8 @@
 			changeOrderBy(e);
 		}}
 	>
-		<option value="desc">Descending</option>
-		<option value="asc">Ascending</option>
+		<option value="desc">{i('transactionsPage.descending')}</option>
+		<option value="asc">{i('transactionsPage.ascending')}</option>
 	</select>
 </label>
 
@@ -58,5 +59,5 @@
 		setQueryParameter(url, 'sortBy', sortBy);
 		setQueryParameter(url, 'sortOrder', orderBy);
 		goto(`?${url.searchParams.toString()}`);
-	}}>Apply</button
+	}}>{i('transactionsPage.applyButton')}</button
 >
