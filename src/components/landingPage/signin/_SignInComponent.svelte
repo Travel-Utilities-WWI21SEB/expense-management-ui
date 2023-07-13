@@ -128,7 +128,7 @@
 			<hr class="w-16 h-1 bg-primary-500 rounded-full" />
 			<form class="space-y-4 md:space-y-6" novalidate on:keydown={keydownHandler}>
 				<label class="label">
-					<span>Email</span>
+					<span>{i('forms.email')}</span>
 					<input
 						class="input"
 						title="email"

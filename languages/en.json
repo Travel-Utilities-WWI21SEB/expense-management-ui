@@ -74,6 +74,7 @@
 	},
 	"forms": {
 		"step": "Step",
+		"email": "Email",
 		"signup": {
 			"title": "Sign up",
 			"steps": {
@@ -279,6 +280,7 @@
 			"youPay": "You still need to pay ",
 			"members": "Members",
 			"noAccessMessage": "No Access To Data",
+			"noCostsSpecified": "No Costs Specified",
 			"acceptTrip": {
 				"acceptInvitation": "Accept Invitation",
 				"acceptText": "Accept your Trip Invitation!",
@@ -346,14 +348,15 @@
 		"people": " people",
 		"receiveInFront": "Received A Total Of ",
 		"paidInFront": "Paid Back A Total Of ",
-		"receiveBack": "€ In Debts",
-		"paidBackBack": "€ In Debts",
+		"receiveBack": "EUR In Debts",
+		"paidBackBack": "EUR In Debts",
 		"partOfUs": "Been part of us for ",
 		"days": " days",
 		"costsPerTrip": "Costs per Trip",
 		"costsPerCategory": "Costs per Category"
 	},
 	"tripDetails": {
+		"maxAmountReached": "Maximum Amount Per Cost Item Is 50000",
 		"costs": "Costs",
 		"noCosts": "This trip has no costs yet",
 		"debts": "Debts",
@@ -362,7 +365,7 @@
 		"filterButton": "Filter",
 		"editButton": "Edit",
 		"deleteButton": "Delete",
-		"closesButton": "Close",
+		"closeButton": "Close",
 		"saveButton": "Save",
 		"addCostModal": {
 			"title": "Add New Cost Item",
@@ -386,6 +389,7 @@
 			"peopleInvolved": "People Involved",
 			"deselectAll": "Deselect All",
 			"selectAll": "Select All",
+			"clearFilters": "Clear Filters",
 			"split": "Split",
 			"equally": "Equally",
 			"custom": "Custom",
@@ -393,13 +397,14 @@
 			"allocationWarningNoOneInvolved": "No one is involved in this cost",
 			"allocationWarningToMuch": " are split to much",
 			"allocationWarningStillLeft": " are left to split",
+			"notAcceptedWarning": "Participants that have not accepted the invite cannot be included in costs",
 			"allocationAllowed": "Allocation is valid",
 			"completeButton": "Complete",
 			"step": "Step"
 		},
 		"dashboard": "Dashboard",
 		"totalCosts": "Total Costs: ",
-		"zeroTotalCosts": "Total Costs: 0€",
+		"zeroTotalCosts": "Total Costs: 0EUR",
 		"amountText": "Items",
 		"sortModal": {
 			"sortBy": "Sort By",

@@ -161,7 +161,7 @@
 					{involvedUsers}
 				/>
 				<svelte:fragment slot="navigation">
-					<button class="btn border-2" on:click={parent.onClose}>Close</button>
+					<button class="btn border-2" on:click={parent.onClose}>{i("tripDetails.closeButton")}</button>
 				</svelte:fragment>
 			</Step>
 			<Step locked={!$costPaidByValid}>

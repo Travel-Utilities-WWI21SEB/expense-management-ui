@@ -74,6 +74,7 @@
 	},
 	"forms": {
 		"step": "Schritt",
+		"email": "E-Mail",
 		"signup": {
 			"title": "Registrieren",
 			"steps": {
@@ -279,6 +280,7 @@
 			"youPay": "Noch zu zahlen sind:  ",
 			"members": "Teilnehmer",
 			"noAccessMessage": "Kein Datenzugriff",
+			"noCostsSpecified": "Keine Kosten angegeben",
 			"acceptTrip": {
 				"acceptInvitation": "Einladung annehmen",
 				"acceptText": "Nimm deine Reiseeinladung an!",
@@ -345,8 +347,8 @@
 		"travelledWith": "Gereist mit insgesamt ",
 		"receiveInFront": "Insgesamt ",
 		"paidInFront": "Insgesamt ",
-		"receiveBack": "€ an Schulden erhalten",
-		"paidBackBack": "€ an Schulden zurückgezahlt",
+		"receiveBack": "EUR an Schulden erhalten",
+		"paidBackBack": "EUR an Schulden zurückgezahlt",
 		"people": " Personen",
 		"partOfUs": "Teil von uns seit",
 		"days": " Tagen",
@@ -354,6 +356,7 @@
 		"costsPerCategory": "Kosten pro Kategorie"
 	},
 	"tripDetails": {
+		"maxAmountReached": "Der Höchstbetrag pro Kostenpunkt beträgt 50000",
 		"costs": "Kosten",
 		"noCosts": "Diese Reise hat noch keine Kosten",
 		"debts": "Schulden",
@@ -362,7 +365,7 @@
 		"filterButton": "Filtern",
 		"editButton": "Bearbeiten",
 		"deleteButton": "Löschen",
-		"closesButton": "Schließen",
+		"closeButton": "Schließen",
 		"saveButton": "Speichern",
 		"addCostModal": {
 			"title": "Neuen Kostenpunkt hinzufügen",
@@ -386,6 +389,7 @@
 			"peopleInvolved": "Beteiligte Personen",
 			"deselectAll": "Gesamtauswahl aufheben",
 			"selectAll": "Alle auswählen",
+			"clearFilters": "Filter aufheben",
 			"split": "Aufteilung",
 			"equally": "Gleichmäßig",
 			"custom": "Benutzerdefiniert",
@@ -394,12 +398,13 @@
 			"allocationWarningToMuch": "zu viel aufgeteilt",
 			"allocationWarningStillLeft": "müssen noch aufgeteilt werden",
 			"allocationAllowed": "Aufteilung ist gültig",
+			"notAcceptedWarning": "Teilnehmer, die die Einladung noch nicht angenommen haben, können nicht an den Kosten beteiligt werden.",
 			"completeButton": "Abschließen",
 			"step": "Schritt"
 		},
 		"dashboard": "Dashboard",
 		"totalCosts": "Gesamtkosten: ",
-		"zeroTotalCosts": "Gesamtkosten: 0€",
+		"zeroTotalCosts": "Gesamtkosten: 0EUR",
 		"amountText": "Elemente",
 		"sortModal": {
 			"sortBy": "Sortieren nach",

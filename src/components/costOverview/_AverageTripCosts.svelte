@@ -23,7 +23,7 @@
 				<span
 					class="bg-gradient-to-br from-primary-800 to-primary-600 dark:from-primary-400 dark:to-primary-200 bg-clip-text text-transparent box-decoration-clone"
 				>
-					{formattedCost} € {i('costOverview.across')}
+					{formattedCost} EUR {i('costOverview.across')}
 					{costOverview.tripDistribution.length}
 					{i('costOverview.trip')}{costOverview.tripDistribution.length > 1 ||
 					costOverview.tripDistribution.length === 0

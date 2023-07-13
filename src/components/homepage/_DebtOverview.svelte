@@ -85,14 +85,14 @@
 							<span><Icon src={Minus} class="w-12 h-12" /></span>
 							<span
 								>{i('debtsPage.youHave')}
-								{debts.openDebtAmount * -1}€ {i('debtsPage.openDebts')}</span
+								{debts.openDebtAmount * -1}EUR {i('debtsPage.openDebts')}</span
 							>
 						</a>
 						<a class="logo-item variant-ghost-success" href="/">
 							<span><Icon src={Plus} class="w-12 h-12" /></span>
 							<span
 								>{i('debtsPage.youHave')}
-								{debts.openCreditAmount}€ {i('debtsPage.openCredits')}</span
+								{debts.openCreditAmount}EUR {i('debtsPage.openCredits')}</span
 							>
 						</a>
 					</div>

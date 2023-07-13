@@ -90,7 +90,7 @@
 	<label class="label col-span-2 sm:col-span-1">
 		<span class="font-semibold">{i('tripDetails.addCostModal.amount')}</span>
 		<div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
-			<div class="input-group-shim">{cost.currency === 'EUR' ? '€' : '$'}</div>
+			<div class="input-group-shim">{cost.currency === 'EUR' ? 'EUR' : '$'}</div>
 			<input
 				type="number"
 				bind:value={cost.amount}
@@ -133,7 +133,7 @@
 				<span class="badge-icon variant-filled-error w-4 h-4">
 					<Icon src={XMark} class="w-6 h-6" />
 				</span>
-				<span class="flex-auto">Maximum amount per cost is 50000</span>
+				<span class="flex-auto">{i("tripDetails.maxAmountReached")}</span>
 			</li>
 		{/if}
 	</ol>

@@ -23,6 +23,6 @@
 		</h3>
 	{/if}
 	<footer class="modal-footer {parent.regionFooter}">
-		<button class="btn border-2" on:click={parent.onClose}>{i('tripDetails.closesButton')}</button>
+		<button class="btn border-2" on:click={parent.onClose}>{i('tripDetails.closeButton')}</button>
 	</footer>
 </div>

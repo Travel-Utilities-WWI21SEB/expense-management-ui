@@ -52,7 +52,7 @@
 	<div class="flex">
 		<h3 class="h3 pr-2 font-semibold">{`Amount: `}</h3>
 		<h3 class="h3 font-semibold dark:text-error-500 text-error-500">
-			{` ${cost.amount} ${cost.currency === '' ? '€' : cost.currency}`}
+			{` ${cost.amount} ${cost.currency === '' ? 'EUR' : cost.currency}`}
 		</h3>
 	</div>
 
@@ -69,7 +69,7 @@
 			{#each cost.contributors as user}
 				<div class="label space-x-2 px-4">
 					<span class="truncate font-semibold">{user.username}</span>
-					<div class="chip variant-outline-surface rounded-full">{`${user.amount} €`}</div>
+					<div class="chip variant-outline-surface rounded-full">{`${user.amount} EUR`}</div>
 				</div>
 			{/each}
 		</div>
