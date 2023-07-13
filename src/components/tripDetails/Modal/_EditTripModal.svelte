@@ -143,7 +143,9 @@
 <div class="card p-4 md:w-1/2">
 	<div class="p-4">
 		<TabGroup>
-			<Tab bind:group={tabSet} name="Trip Data" value={0}>{i('tripOverview.tripData')}</Tab>
+			<Tab bind:group={tabSet} name={i('tripOverview.tripData')} value={0}
+				>{i('tripOverview.tripData')}</Tab
+			>
 			<Tab bind:group={tabSet} name="Cost Categories" value={1}
 				>{i('tripOverview.costCategories')}</Tab
 			>

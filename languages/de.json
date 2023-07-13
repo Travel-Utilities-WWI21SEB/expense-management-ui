@@ -1,4 +1,8 @@
 {
+	"navbar": {
+		"costs": "Kosten",
+		"debts": "Schulden"
+	},
 	"errors": {
 		"EM-000": "Es ist ein unbekannter Fehler aufgetreten. Bitte versuche es später erneut.",
 		"EM-001": "Ein Upstream-Dienst ist nicht verfügbar. Bitte versuche es später erneut.",
@@ -23,7 +27,8 @@
 	"header": {
 		"languages": {
 			"en": "Englisch",
-			"de": "Deutsch"
+			"de": "Deutsch",
+			"kor": "Koreanisch"
 		},
 		"logout": "Abmelden",
 		"search": "Durchsuche deine Reisen..."
@@ -281,14 +286,14 @@
 				"presenceEnd": "Anwesenheit bei Reise bis",
 				"acceptButton": "Annehmen",
 				"rejectButton": "Ablehnen"
-			},
-			"tripData": "Reisedaten",
-			"costCategories": "Kostenkategorien",
-			"participants": "Teilnehmer",
-			"closeButton": "Schließen",
-			"deleteButton": "Löschen",
-			"saveButton": "Speichern"
-		}
+			}
+		},
+		"tripData": "Reisedaten",
+		"costCategories": "Kostenkategorien",
+		"participants": "Teilnehmer",
+		"closeButton": "Schließen",
+		"deleteButton": "Löschen",
+		"saveButton": "Speichern"
 	},
 	"costOverview": {
 		"headerTitle": "Dein Kostenüberblick",
@@ -433,7 +438,10 @@
 			"transactionValid": "Neue Transaktion ist gültig",
 			"transactionNotValid": "Bitte eine gültige Transaktion angeben",
 			"closeButton": "Schließen",
-			"saveButton": "Speichern"
+			"saveButton": "Speichern",
+			"youPaid": "Du zahltest ",
+			"notConfirmedYet": "Diese Transaktion wurde noch nicht bestätigt von: ",
+			"paidYou": " zahlte dir "
 		},
 		"timePresent": "Anwesenheitszeitraum bei Reise"
 	},
@@ -489,7 +497,12 @@
 		"confirmButton": "Bestätigen",
 		"closeButton": "Schließen",
 		"rejectButton": "Ablehnen",
-		"abortButton": "Abbrechen"
+		"abortButton": "Abbrechen",
+		"trip": "Reise: ",
+		"created": "Erstellt am: ",
+		"wantToConfirm": "Möchtest du diese Transaktion bestätigen? ",
+		"youOwe": "Du schuldest ",
+		"owesYou": " schuldet dir "
 	},
 	"error": {
 		"pageNotFound": "Seite nicht gefunden",

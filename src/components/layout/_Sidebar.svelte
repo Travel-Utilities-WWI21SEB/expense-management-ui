@@ -73,7 +73,7 @@
 					<span class="badge">
 						<Icon src={Banknotes} theme="solid" class="w-8 h-8 mx-auto" />
 					</span>
-					<span class="flex-auto">{i('sidebar.overview.costs') || 'Costs'}</span>
+					<span class="flex-auto">{i('sidebar.overview.costs') || i('navbar.costs')}</span>
 				</a>
 			</li>
 			<li>
@@ -86,7 +86,7 @@
 					<span class="badge">
 						<Icon src={CreditCard} theme="solid" class="w-8 h-8 mx-auto" />
 					</span>
-					<span class="flex-auto">{i('sidebar.overview.debts') || 'Debts'}</span>
+					<span class="flex-auto">{i('sidebar.overview.debts') || i('navbar.debts')}</span>
 				</a>
 			</li>
 			<li>
