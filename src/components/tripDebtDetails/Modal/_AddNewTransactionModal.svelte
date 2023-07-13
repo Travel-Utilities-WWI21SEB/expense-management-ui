@@ -128,7 +128,9 @@
 		</li>
 	</ol>
 	<footer class="modal-footer {parent.regionFooter}">
-		<button class="btn border-2" on:click={parent.onClose}>{i('tripDetails.debtsTab.closeButton')}</button>
+		<button class="btn border-2" on:click={parent.onClose}
+			>{i('tripDetails.debtsTab.closeButton')}</button
+		>
 		<button
 			class="btn variant-filled"
 			disabled={!validData}

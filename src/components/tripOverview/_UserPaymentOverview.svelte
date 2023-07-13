@@ -13,8 +13,8 @@
 	</strong> <br />
 	<strong class="h6 {trip.userDebt && trip.userDebt > 0 ? 'text-error-500' : 'text-success-500'}">
 		{trip.userDebt && trip.userDebt > 0
-			? i("tripOverview.tripCard.youPay")+ trip.userDebt + ' €'
-			: i("tripOverview.tripCard.nothingToPay")}
+			? i('tripOverview.tripCard.youPay') + trip.userDebt + ' €'
+			: i('tripOverview.tripCard.nothingToPay')}
 	</strong>
 </div>
 

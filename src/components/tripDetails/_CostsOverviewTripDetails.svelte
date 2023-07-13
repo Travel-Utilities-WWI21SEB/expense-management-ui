@@ -63,25 +63,25 @@
 
 <div class="card h-full p-4">
 	<div class="flex justify-between pt-4 px-4">
-		<h3 class="h3">{i("tripDetails.costs")}</h3>
+		<h3 class="h3">{i('tripDetails.costs')}</h3>
 		<button type="button" class="btn variant-filled" on:click={addNewCostItem}>
 			<span>
 				<Icon src={Plus} class="w-6 h-6" />
 			</span>
-			<span>{i("tripDetails.addButton")}</span>
+			<span>{i('tripDetails.addButton')}</span>
 		</button>
 	</div>
 	<div class="flex p-2">
 		<button type="button" class="btn btn-sm variant-filled mx-1" use:popup={popUpSorting}
-			>{i("tripDetails.sortButton")}</button
+			>{i('tripDetails.sortButton')}</button
 		>
 		<button type="button" class="btn btn-sm variant-filled mx-1" use:popup={popUpFiltering}
-			>{i("tripDetails.filterButton")}</button
+			>{i('tripDetails.filterButton')}</button
 		>
 	</div>
 	{#if costs.length === 0 && $page.url.searchParams.size === 0}
 		<AlertWithAction
-			alertHeading={i("tripDetails.noCosts")}
+			alertHeading={i('tripDetails.noCosts')}
 			class="variant-ghost-primary"
 			icon={Banknotes}
 		/>
@@ -112,7 +112,7 @@
 			showFirstLastButtons={false}
 			showPreviousNextButtons={true}
 			justify="justify-center"
-			amountText={i("tripDetails.amountText")}
+			amountText={i('tripDetails.amountText')}
 		/>
 	{/if}
 </div>

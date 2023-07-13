@@ -15,7 +15,7 @@
 
 <div class="card h-full p-4">
 	<div class="flex justify-between pt-4 px-4">
-		<h3 class="h3">{i("tripDetails.debtsTab.title")}</h3>
+		<h3 class="h3">{i('tripDetails.debtsTab.title')}</h3>
 	</div>
 	{#if debts.creditorDebts.length === 0 && debts.debitorDebts.length === 0}
 		<ImformationAlertWithAction
@@ -27,7 +27,7 @@
 		<div class="grid grid-cols-1 gap-2">
 			<div>
 				{#if debts.creditorDebts.length !== 0}
-					<span class="flex justify-center font-semibold">{i("tripDetails.debtsTab.youGet")}</span>
+					<span class="flex justify-center font-semibold">{i('tripDetails.debtsTab.youGet')}</span>
 					<ul class="list p-2 max-h-[500px] overflow-auto">
 						{#each debts.creditorDebts as debt, index}
 							<li>
@@ -39,7 +39,7 @@
 			</div>
 			<div>
 				{#if debts.debitorDebts.length !== 0}
-					<span class="flex justify-center font-semibold">{i("tripDetails.debtsTab.youOwe")}</span>
+					<span class="flex justify-center font-semibold">{i('tripDetails.debtsTab.youOwe')}</span>
 					<ul class="list p-2 max-h-[500px] overflow-auto">
 						{#each debts.debitorDebts as debt, index}
 							<li>

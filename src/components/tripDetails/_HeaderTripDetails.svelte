@@ -30,7 +30,9 @@
 	let isCostsPage = $page.url.pathname.includes('costs');
 
 	$: buttonInfo = {
-		text: $page.url.pathname.includes('debts') ? i('sidebar.overview.costs') : i('sidebar.overview.debts') ,
+		text: $page.url.pathname.includes('debts')
+			? i('sidebar.overview.costs')
+			: i('sidebar.overview.debts'),
 		pathParam: $page.url.pathname.includes('debts') ? 'costs' : 'debts'
 	};
 
@@ -166,13 +168,13 @@
 						href="/trips/{trip.tripId}/costs"
 						selected={$page.url.pathname.includes('costs')}
 					>
-						<span>{i("tripDetails.costs")}</span>
+						<span>{i('tripDetails.costs')}</span>
 					</TabAnchor>
 					<TabAnchor
 						href="/trips/{trip.tripId}/debts"
 						selected={$page.url.pathname.includes('debts')}
 					>
-						<span>{i("tripDetails.debts")}</span>
+						<span>{i('tripDetails.debts')}</span>
 					</TabAnchor>
 				</TabGroup>
 			</div>

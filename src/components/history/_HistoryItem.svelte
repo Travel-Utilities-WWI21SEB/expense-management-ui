@@ -32,8 +32,8 @@
 	on:click={() => onTransactionClick()}
 >
 	<div class="grid grid-cols-3 pb-2">
-		<h1>{i("transactionPage.trip")}{transaction.trip.name}</h1>
-		<p>{i("transactionPage.created ")}{creationDate}</p>
+		<h1>{i('transactionPage.trip')}{transaction.trip.name}</h1>
+		<p>{i('transactionPage.created ')}{creationDate}</p>
 	</div>
 	{#if transaction.isDebt}
 		<div class="outline outline-offset-2 outline-1 w-full">

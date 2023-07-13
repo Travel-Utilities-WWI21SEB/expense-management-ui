@@ -31,7 +31,7 @@
 <div class="card p-4 w-72 shadow-xl text-center" data-popup="popup{participant.username}">
 	<h4 class="p-2">{participant.username}</h4>
 	<p class="p-2">
-		{i("tripDetails.timePresent")} <br />
+		{i('tripDetails.timePresent')} <br />
 		{`${startDate} - ${endDate}`}
 	</p>
 	<p

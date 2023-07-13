@@ -108,17 +108,24 @@
 	<h3 class="h3 p-4">
 		<span
 			class="bg-gradient-to-br from-primary-800 to-primary-300 bg-clip-text text-transparent box-decoration-clone"
-			>{i("transactionsPage.confirmOrReject")}
+			>{i('transactionsPage.confirmOrReject')}
 		</span>
 	</h3>
 	<p class="pl-4 pb-4">
-		{i("transactionsPage.wantToConfirm")} {transaction.debtor.username} {i("tripDetails.debtsTab.paidYou")} {transaction.amount}  EUR 
+		{i('transactionsPage.wantToConfirm')}
+		{transaction.debtor.username}
+		{i('tripDetails.debtsTab.paidYou')}
+		{transaction.amount} EUR
 	</p>
 	<footer class="modal-footer {parent.regionFooter}">
-		<button class="btn border-2 variant-filled" on:click={parent.onClose}>{i("transactionsPage.closeButton")}</button>
-		<button class="btn border-2 variant-filled-error" on:click={rejectTransaction}>{i("transactionsPage.rejectButton")}</button>
+		<button class="btn border-2 variant-filled" on:click={parent.onClose}
+			>{i('transactionsPage.closeButton')}</button
+		>
+		<button class="btn border-2 variant-filled-error" on:click={rejectTransaction}
+			>{i('transactionsPage.rejectButton')}</button
+		>
 		<button class="btn border-2 variant-filled-success" on:click={confirmTransaction}
-			>{i("transactionsPage.confirmButton")}</button
+			>{i('transactionsPage.confirmButton')}</button
 		>
 	</footer>
 </div>

@@ -24,7 +24,7 @@
 </script>
 
 <label class="label col-span-1">
-	<span>{i("tripDetails.sortModal.sortBy")}</span>
+	<span>{i('tripDetails.sortModal.sortBy')}</span>
 	<select
 		class="select"
 		value={sortBy}
@@ -32,16 +32,16 @@
 			changeSortBy(e);
 		}}
 	>
-		<option value="deducted_at">{i("tripDetails.sortModal.startDate")}</option>
-		<option value="end_date">{i("tripDetails.sortModal.endDate")}</option>
-		<option value="amount">{i("tripDetails.sortModal.amount")}</option>
-		<option value="id_cost_category">{i("tripDetails.sortModal.costCategory")}</option>
-		<option value="description">{i("tripDetails.sortModal.name")}</option>
+		<option value="deducted_at">{i('tripDetails.sortModal.startDate')}</option>
+		<option value="end_date">{i('tripDetails.sortModal.endDate')}</option>
+		<option value="amount">{i('tripDetails.sortModal.amount')}</option>
+		<option value="id_cost_category">{i('tripDetails.sortModal.costCategory')}</option>
+		<option value="description">{i('tripDetails.sortModal.name')}</option>
 	</select>
 </label>
 
 <label class="label col-span-1">
-	<span>{i("tripDetails.sortModal.order")}</span>
+	<span>{i('tripDetails.sortModal.order')}</span>
 	<select
 		class="select"
 		value={orderBy}
@@ -49,8 +49,8 @@
 			changeOrderBy(e);
 		}}
 	>
-		<option value="desc">{i("tripDetails.sortModal.descending")}</option>
-		<option value="asc">{i("tripDetails.sortModal.ascending")}</option>
+		<option value="desc">{i('tripDetails.sortModal.descending')}</option>
+		<option value="asc">{i('tripDetails.sortModal.ascending')}</option>
 	</select>
 </label>
 
@@ -62,7 +62,7 @@
 		setQueryParameter(url, 'sortBy', sortBy);
 		setQueryParameter(url, 'sortOrder', orderBy);
 		goto(`?${url.searchParams.toString()}`);
-	}}>{i("tripDetails.sortModal.applyButton")}</button
+	}}>{i('tripDetails.sortModal.applyButton')}</button
 >
 <button
 	type="button"
@@ -72,7 +72,7 @@
 		url.searchParams.delete('sortBy');
 		url.searchParams.delete('sortOrder');
 		goto(`?${url.searchParams.toString()}`);
-	}}>{i("tripDetails.sortModal.clearButton")}</button
+	}}>{i('tripDetails.sortModal.clearButton')}</button
 >
 
 <!-- //Clear Button -->

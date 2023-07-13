@@ -7,7 +7,7 @@
 	import { ArrowLeft, ArrowRight } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import Carousel from 'svelte-carousel';
-	import {i} from '@inlang/sdk-js'
+	import { i } from '@inlang/sdk-js';
 
 	export let tripDistribution: TripDistribution[];
 	export let costDistribution: CostDistribution[];
@@ -63,7 +63,7 @@
 		<h1 class="h1 col-start-1 flex justify-center pt-2">
 			<span
 				class="bg-gradient-to-br from-primary-800 to-primary-400 bg-clip-text text-transparent box-decoration-clone"
-				>{i("homepage.noData.costOverview")}</span
+				>{i('homepage.noData.costOverview')}</span
 			>
 		</h1>
 		<hr class="mt-2" />
@@ -95,11 +95,11 @@
 						</button>
 					</div>
 					<div class="pt-2 pb-2 flex flex-col items-center">
-						<h4 class="h4 hidden md:block">{i("homepage.costsPerTrip")}</h4>
+						<h4 class="h4 hidden md:block">{i('homepage.costsPerTrip')}</h4>
 						<PieChart data={tripChartData} />
 					</div>
 					<div class="pt-2 pb-2 flex flex-col items-center">
-						<h4 class="h4 hidden md:block">{i("homepage.costsPerCategory")}</h4>
+						<h4 class="h4 hidden md:block">{i('homepage.costsPerCategory')}</h4>
 						<PieChart data={costChartData} />
 					</div>
 				</Carousel>
@@ -110,14 +110,14 @@
 							<h1
 								class="mb-4 text-7xl tracking-tight font-extrabold lg:text-3xl text-primary-600 dark:text-primary-500"
 							>
-								{i("homepage.noData.noCosts")}
+								{i('homepage.noData.noCosts')}
 							</h1>
 							<button
 								type="button"
 								class="btn variant-ghost-primary mb-4 text-lg font-light text-gray-500 dark:text-gray-400"
 								on:click={() => goto('/trips')}
 							>
-								{i("homepage.noData.addCost")} 
+								{i('homepage.noData.addCost')}
 							</button>
 						</div>
 					</div>
