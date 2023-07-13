@@ -28,7 +28,7 @@
 </script>
 
 <!-- POPUP -->
-<div class="card p-4 w-72 shadow-xl text-center" data-popup="popup{participant.username}">
+<div class="card p-4 w-72 shadow-xl text-center z-50" data-popup="popup{participant.username}">
 	<h4 class="p-2">{participant.username}</h4>
 	<p class="p-2">
 		{i('tripDetails.timePresent')} <br />

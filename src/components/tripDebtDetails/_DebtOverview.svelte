@@ -1,16 +1,10 @@
 <script lang="ts">
-	import { ImformationAlertWithAction, DebtItemTripDetails } from '$components';
+	import { InformationAlertWithAction, DebtItemTripDetails } from '$components';
 	import { Banknotes } from '@steeze-ui/heroicons';
 	import type { SortedDebts } from '$tripDomain';
 	import { i } from '@inlang/sdk-js';
 
 	export let debts: SortedDebts;
-
-	let selectionIndex = -1;
-
-	const handleSelectItem = (event: CustomEvent<any>) => {
-		selectionIndex = event.detail.index;
-	};
 </script>
 
 <div class="card h-full p-4">
@@ -18,7 +12,7 @@
 		<h3 class="h3">{i('tripDetails.debtsTab.title')}</h3>
 	</div>
 	{#if debts.creditorDebts.length === 0 && debts.debitorDebts.length === 0}
-		<ImformationAlertWithAction
+		<InformationAlertWithAction
 			alertHeading="This trip has no debts yet"
 			class="variant-ghost-primary"
 			icon={Banknotes}
