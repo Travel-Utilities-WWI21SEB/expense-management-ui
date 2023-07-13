@@ -1,8 +1,14 @@
 <script lang="ts">
-	import { DonutChart, Participants, TripInfos, UserPaymentOverview } from '$components';
+	import {
+		DonutChart,
+		Participants,
+		TripInfos,
+		UserPaymentOverview,
+		InformationAlertWithAction
+	} from '$components';
 	import type { TravelData } from '$tripDomain';
-	import AlertWithAction from '../general/_AlertWithAction.svelte';
 	import { i } from '@inlang/sdk-js';
+	import { Envelope } from '@steeze-ui/heroicons';
 
 	export let trip: TravelData;
 </script>
@@ -18,7 +24,8 @@
 				<UserPaymentOverview {trip} />
 			{:else}
 				<div class="m-8">
-					<AlertWithAction
+					<InformationAlertWithAction
+						icon={Envelope}
 						alertHeading={i('tripOverview.tripCard.acceptTrip.acceptInvitation')}
 						class="variant-ghost-warning"
 					/>
@@ -35,7 +42,9 @@
 				</h6>
 				<DonutChart data={trip.data} />
 			{:else}
-				<h6 class="h6 p-4">{i('tripOverview.tripCard.noAccessMesage')}</h6>
+				<div class="flex justify-center">
+					<h6 class="h6 p-4">{i('tripOverview.tripCard.noAccessMessage')}</h6>
+				</div>
 				<div class="flex justify-center">
 					<div class="mx-6 placeholder-circle w-72 animate-pulse" />
 				</div>

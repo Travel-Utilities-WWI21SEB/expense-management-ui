@@ -35,7 +35,7 @@
 	let options: AutocompleteOption[] = [];
 
 	function onSelection(event: any): void {
-		if (selectedUsers.indexOf(event.detail.label) === -1)
+		if (!selectedUsers.find((user) => user.name === event.detail.label))
 			selectedUsers = [...selectedUsers, { name: event.detail.label, isNew: true }];
 	}
 

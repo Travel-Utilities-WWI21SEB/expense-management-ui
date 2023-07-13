@@ -26,7 +26,7 @@
 			>{i('transactionsPage.sortButton')}</button
 		>
 	</div>
-	{#if data.transactionHistory}
+	{#if data.transactionHistory.length !== 0}
 		<ul class="list p-2 max-h-[500px] overflow-auto">
 			{#each data.transactionHistory as transaction}
 				<li>
