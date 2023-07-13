@@ -1,11 +1,8 @@
 <script lang="ts">
-	import { i } from '@inlang/sdk-js';
-	import { ArrowLongRight, type IconSource } from '@steeze-ui/heroicons';
-	import { Icon } from '@steeze-ui/svelte-icon';
+	import { Icon, type IconSource } from '@steeze-ui/svelte-icon';
 
 	export let title: string;
 	export let content: string;
-	export let path: string;
 	export let icon: IconSource;
 </script>
 
@@ -20,11 +17,5 @@
 		<p class="leading-relaxed text-base">
 			{content}
 		</p>
-		<a
-			href={`/${path}`}
-			class="mt-3 text-tertiary-800 dark:text-tertiary-400 inline-flex items-center"
-			>{i('landingPage.features.redirectMessage')}
-			<Icon src={ArrowLongRight} class="w-6 h-6" />
-		</a>
 	</div>
 </div>

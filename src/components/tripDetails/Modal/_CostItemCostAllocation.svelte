@@ -113,9 +113,7 @@
 				<span class="badge-icon variant-filled-warning w-4 h-4">
 					<Icon src={InformationCircle} class="w-4 h-4" />
 				</span>
-				<span class="flex-auto"
-					>{i("tripDetails.addCostModal.notAcceptedWarning")}</span
-				>
+				<span class="flex-auto">{i('tripDetails.addCostModal.notAcceptedWarning')}</span>
 			</li>
 		{/if}
 		<li>

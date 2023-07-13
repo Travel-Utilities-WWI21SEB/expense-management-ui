@@ -87,19 +87,16 @@
 		<LandingPageFeatureBoxLeft
 			title={i('landingPage.features.travel.title')}
 			content={i('landingPage.features.travel.description')}
-			path="features/travel"
 			icon={GlobeEuropeAfrica}
 		/>
 		<LandingPageFeatureBoxRight
 			title={i('landingPage.features.spend.title')}
 			content={i('landingPage.features.spend.description')}
-			path="features/spend"
 			icon={CreditCard}
 		/>
 		<LandingPageFeatureBoxLeft
 			title={i('landingPage.features.divide.title')}
 			content={i('landingPage.features.divide.description')}
-			path="features/divide"
 			icon={Users}
 		/>
 	</div>

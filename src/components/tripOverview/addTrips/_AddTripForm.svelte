@@ -119,7 +119,9 @@
 				>
 				<NewTripStep bind:newTrip />
 				<svelte:fragment slot="navigation">
-					<button class="btn border-2" on:click={parent.onClose}>{i("tripDetails.closeButton")}</button>
+					<button class="btn border-2" on:click={parent.onClose}
+						>{i('tripDetails.closeButton')}</button
+					>
 				</svelte:fragment>
 			</Step>
 			<Step>

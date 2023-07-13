@@ -13,7 +13,7 @@
 	</div>
 	{#if debts.creditorDebts.length === 0 && debts.debitorDebts.length === 0}
 		<InformationAlertWithAction
-			alertHeading="{i('tripDetails.debtsTab.noDebts')}"
+			alertHeading={i('tripDetails.debtsTab.noDebts')}
 			class="variant-ghost-primary"
 			icon={Banknotes}
 		/>

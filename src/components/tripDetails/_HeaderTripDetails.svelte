@@ -162,7 +162,7 @@
 				</button>
 			</div>
 		</span>
-		
+
 		<span slot="toggle">
 			<div class="h-full flex items-center justify-center">
 				<TabGroup justify="justify-center">
