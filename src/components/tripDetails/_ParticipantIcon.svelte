@@ -10,9 +10,11 @@
 		[key: string]: string;
 		en: string;
 		de: string;
+		ko: string;
 	} = {
 		en: 'en-US',
-		de: 'de-de'
+		de: 'de-de',
+		ko: 'ko-KR'
 	};
 
 	// get the date format based on the current language

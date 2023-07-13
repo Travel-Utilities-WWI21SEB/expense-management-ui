@@ -3,10 +3,9 @@
 	import { ParticipantIconDebt } from '$components';
 	import type { Transaction } from '$tripDomain';
 	import { calculateDate } from '$utils';
-	import { language } from '@inlang/sdk-js';
+	import { i, language } from '@inlang/sdk-js';
 	import { ArrowLongRight } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import { i } from '@inlang/sdk-js';
 
 	export let transaction: Transaction;
 
@@ -18,9 +17,11 @@
 		[key: string]: string;
 		en: string;
 		de: string;
+		ko: string;
 	} = {
 		en: 'en-US',
-		de: 'de-de'
+		de: 'de-de',
+		ko: 'ko-KR'
 	};
 
 	$: dateFormat = dateFormats[language];

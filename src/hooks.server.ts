@@ -18,7 +18,8 @@ const unauthorizedRoutes = [
 	'/api/users/verify-reset-token', // Verify reset token API
 	'/api/users/reset-password', // Reset password API
 	'/inlang/en.json', // Inlang API for English
-	'/inlang/de.json' // Inlang API for German
+	'/inlang/de.json', // Inlang API for German
+	'/inlang/ko.json' // Inlang API for Korean
 ];
 
 export const handle: Handle = async ({ event, resolve }) => {
@@ -94,7 +95,7 @@ export const handleFetch: HandleFetch = ({ event, request, fetch }) => {
 	console.log(`Outgoing request to ${url}`);
 
 	if (PUBLIC_BASE_URL === url.origin) {
-		request.headers.set('Authorization', event.request.headers.get('Authorization') || '');
+		request.headers.set('Authorization', event.request.headers.get('Authorization') ?? '');
 	}
 
 	return fetch(request);

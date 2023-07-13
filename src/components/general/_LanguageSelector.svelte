@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { i, language, loadResource, switchLanguage } from '@inlang/sdk-js';
 	import { ListBox, ListBoxItem, popup, type PopupSettings } from '@skeletonlabs/skeleton';
-	import { De, Us, Kr } from 'svelte-flag-icons';
+	import { De, Kr, Us } from 'svelte-flag-icons';
 
 	let languages = [
 		{ id: 'en', title: i('header.languages.en'), icon: Us },
-		{ id: 'kor', title: i('header.languages.kor'), icon: Kr },
+		{ id: 'ko', title: i('header.languages.ko'), icon: Kr },
 		{ id: 'de', title: i('header.languages.de'), icon: De }
 	];
 
@@ -29,6 +29,7 @@
 
 	const switchLanguageHandler = async (e: MouseEvent) => {
 		const value = (e.target as HTMLButtonElement).value;
+		console.log(`Switching language to: ${value}`);
 		await switchLanguage(value);
 
 		// Switch language titles for the current language

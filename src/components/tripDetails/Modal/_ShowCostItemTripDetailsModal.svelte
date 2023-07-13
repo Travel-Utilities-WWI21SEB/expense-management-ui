@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { CostDateAsString } from '$tripDomain';
 	import { calculateDate, pickTextColorBasedOnBgColorSimple } from '$utils';
-	import { language, i } from '@inlang/sdk-js';
+	import { i, language } from '@inlang/sdk-js';
 
 	export let cost: CostDateAsString;
 
@@ -9,9 +9,11 @@
 		[key: string]: string;
 		en: string;
 		de: string;
+		ko: string;
 	} = {
 		en: 'en-US',
-		de: 'de-de'
+		de: 'de-de',
+		ko: 'ko-KR'
 	};
 
 	// get the date format based on the current language

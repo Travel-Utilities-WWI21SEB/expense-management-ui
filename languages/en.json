@@ -27,7 +27,7 @@
 	"header": {
 		"languages": {
 			"en": "English",
-			"kor": "Korean",
+			"ko": "Korean",
 			"de": "German"
 		},
 		"logout": "Logout",
