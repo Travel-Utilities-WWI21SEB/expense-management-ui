@@ -38,3 +38,4 @@ export {
 	costSplitType,
 	currentCost
 } from './costStore';
+export { currentTransaction } from './transactionStore';

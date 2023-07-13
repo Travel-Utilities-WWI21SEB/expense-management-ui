@@ -150,7 +150,7 @@
 				{cost.name}
 				<br />
 				{startDate}
-				{#if cost.endDate} - {endDate} {/if}
+				{#if endDate !== startDate} - {endDate} {/if}
 			</div>
 		</div>
 		<div class="col-span-4 sm:col-span-2 grid content-center px-2 pb-2 sm:p-2">

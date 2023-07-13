@@ -7,7 +7,6 @@
 	import { i } from '@inlang/sdk-js';
 
 	export let data;
-	console.log(data);
 
 	const { error, errorCode, debts } = data;
 

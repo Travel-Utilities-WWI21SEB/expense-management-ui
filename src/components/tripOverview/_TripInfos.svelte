@@ -21,7 +21,7 @@
 </script>
 
 <p>
-	{`${startDate} - ${endDate}`}
+	{`${startDate} ${endDate !== startDate && endDate ? ` - ${endDate}` : ''}`}
 </p>
 <p>
 	{i('tripOverview.tripCard.location')}

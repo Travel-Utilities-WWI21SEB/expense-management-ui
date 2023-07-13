@@ -14,13 +14,14 @@
 	import { invalidateAll } from '$app/navigation';
 	import { ArrowLongRight } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import { errorCode, errorState } from '$stores';
+	import { currentTransaction, errorCode, errorState } from '$stores';
 	import { i } from '@inlang/sdk-js';
 
 	export let transaction: Transaction;
 	export let needsConfirmation: boolean;
 
 	function selectListItem() {
+		currentTransaction.set(transaction);
 		const modal: ModalSettings = needsConfirmation
 			? {
 					type: 'component',
@@ -59,7 +60,7 @@
 	const onDeleteTransaction = async (transactionId: string, tripId: string) => {
 		const result = await deleteTransaction(transactionId, tripId);
 
-		let toastMessage = i('toast.transaction') + transactionId + i('toast.deleted');
+		let toastMessage = i('toast.transaction') + i('toast.deleted');
 		if (!$errorState) {
 			invalidateAll();
 			modalStore.close();

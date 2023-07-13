@@ -12,6 +12,7 @@ export interface CostPaidForUser {
 	currencyCode: string;
 	user?: User;
 	checked?: boolean;
+	hasAcceptedInvite?: boolean;
 }
 
 export interface CostPaidForUserGet {

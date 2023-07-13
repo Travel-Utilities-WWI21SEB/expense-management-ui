@@ -1,7 +1,8 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 	import {
-		AlertWithAction,
+		InformationAlertWithAction,
 		TripDetailsAddNewCostItem,
 		TripDetailsCostItem,
 		TripDetailsFilterPopUp,
@@ -10,7 +11,7 @@
 	import type { Cost, TravelData } from '$tripDomain';
 	import type { ModalComponent, ModalSettings, PopupSettings } from '@skeletonlabs/skeleton';
 	import { Paginator, modalStore, popup } from '@skeletonlabs/skeleton';
-	import { Banknotes, Plus } from '@steeze-ui/heroicons';
+	import { Banknotes, Plus, XMark } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { i } from '@inlang/sdk-js';
 
@@ -59,6 +60,17 @@
 		target: 'FilteringPopUp',
 		placement: 'bottom'
 	};
+
+	const clearFilters = () => {
+		let url = new URL($page.url);
+		url.searchParams.delete('sortBy');
+		url.searchParams.delete('sortOrder');
+		url.searchParams.delete('minDeductionDate');
+		url.searchParams.delete('maxDeductionDate');
+		url.searchParams.delete('minEndDate');
+		url.searchParams.delete('maxEndDate');
+		goto(url.toString());
+	};
 </script>
 
 <div class="card h-full p-4">
@@ -78,22 +90,28 @@
 		<button type="button" class="btn btn-sm variant-filled mx-1" use:popup={popUpFiltering}
 			>{i('tripDetails.filterButton')}</button
 		>
+		{#if $page.url.searchParams.size > 0}
+			<button type="button" class="btn btn-sm variant-ghost mx-1" on:click={clearFilters}>
+				<Icon src={XMark} class="w-4 h-4" />
+				<span>Clear Filters</span>
+			</button>
+		{/if}
 	</div>
 	{#if costs.length === 0 && $page.url.searchParams.size === 0}
-		<AlertWithAction
+		<InformationAlertWithAction
 			alertHeading={i('tripDetails.noCosts')}
 			class="variant-ghost-primary"
 			icon={Banknotes}
 		/>
 	{:else if costs.length === 0 && $page.url.searchParams.size > 0}
-		<AlertWithAction
+		<InformationAlertWithAction
 			alertHeading="No costs match your filter criteria"
 			class="variant-ghost-primary"
 			icon={Banknotes}
 		/>
 	{:else}
-		<ul class="list p-2 max-h-[500px] overflow-auto">
-			{#key paginatedCosts}
+		{#key paginatedCosts}
+			<ul class="list p-2 max-h-[500px] overflow-auto">
 				{#each paginatedCosts as cost, idx}
 					<li>
 						<TripDetailsCostItem
@@ -105,15 +123,17 @@
 						/>
 					</li>
 				{/each}
-			{/key}
-		</ul>
-		<Paginator
-			bind:settings={paginationSettings}
-			showFirstLastButtons={false}
-			showPreviousNextButtons={true}
-			justify="justify-center"
-			amountText={i('tripDetails.amountText')}
-		/>
+			</ul>
+		{/key}
+		{#key costs}
+			<Paginator
+				bind:settings={paginationSettings}
+				showFirstLastButtons={false}
+				showPreviousNextButtons={true}
+				justify="justify-center"
+				amountText={i('tripDetails.amountText')}
+			/>
+		{/key}
 	{/if}
 </div>
 

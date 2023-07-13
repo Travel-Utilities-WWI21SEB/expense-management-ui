@@ -27,6 +27,7 @@
 	import { i } from '@inlang/sdk-js';
 
 	export let trip: TravelData;
+	export let parent: any;
 
 	let costPaidForUser: Array<CostPaidForUser> = trip.participants
 		.filter((user) => user.hasAcceptedInvite)
@@ -48,7 +49,7 @@
 		currency: 'EUR',
 		costCategory: { name: '', totalCost: 0, color: '', icon: '', costCategoryId: '' },
 		creationDate: new Date(),
-		endDate: '',
+		endDate: trip.startDate.toISOString().slice(0, 10),
 		creditor: trip.participants[0].username,
 		contributors: costPaidForUser,
 		startDate: trip.startDate.toISOString().slice(0, 10)
@@ -124,6 +125,9 @@
 		involvedUsers = event.detail.involvedUsers;
 	};
 
+	$: tripHasNotAccedptedUsers =
+		trip.participants.filter((user) => !user.hasAcceptedInvite).length > 0;
+
 	function changePaidBy(event: CustomEvent<any>) {
 		cost.creditor = event.detail.paidBy;
 		if ($costSplitType) {
@@ -156,12 +160,16 @@
 					bind:users={costPaidForUser}
 					{involvedUsers}
 				/>
+				<svelte:fragment slot="navigation">
+					<button class="btn border-2" on:click={parent.onClose}>Close</button>
+				</svelte:fragment>
 			</Step>
 			<Step locked={!$costPaidByValid}>
 				<svelte:fragment slot="header">{i('tripDetails.addCostModal.paidBy')}</svelte:fragment>
 				<TripDetailsEditCostItemPaidBy
 					bind:users={costPaidForUser}
 					paidBy={cost.creditor}
+					{tripHasNotAccedptedUsers}
 					on:change={changePaidBy}
 				/>
 			</Step>
@@ -174,6 +182,7 @@
 					{cost}
 					bind:users={costPaidForUser}
 					bind:usersInvolved={involvedUsers}
+					{tripHasNotAccedptedUsers}
 				/>
 			</Step>
 		</Stepper>

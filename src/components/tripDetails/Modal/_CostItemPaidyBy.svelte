@@ -2,15 +2,17 @@
 	import { costPaidByValid } from '$stores';
 	import type { CostPaidForUser } from '$userDomain';
 	import { validatePaidBy } from '$utils';
-	import { Check, XMark } from '@steeze-ui/heroicons';
+	import { Check, InformationCircle, XMark } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { createEventDispatcher } from 'svelte';
 	import { i } from '@inlang/sdk-js';
 
 	export let users: Array<CostPaidForUser>;
 	export let paidBy: string;
+	export let tripHasNotAccedptedUsers: boolean;
 
 	$: costPaidByValid.set(validatePaidBy());
+	$: isAnyPartisipentNotAccepted = users.some((user) => !user.hasAcceptedInvite);
 	const dispatch = createEventDispatcher();
 
 	function changeSelectedValue(event: any) {
@@ -36,6 +38,16 @@
 	</select>
 </label>
 <ol class="list">
+	{#if tripHasNotAccedptedUsers}
+		<li>
+			<span class="badge-icon variant-filled-warning w-4 h-4">
+				<Icon src={InformationCircle} class="w-6 h-6" />
+			</span>
+			<span class="flex-auto"
+				>Participants that have not accepted the invite cannot be included in costs</span
+			>
+		</li>
+	{/if}
 	<li>
 		{#if $costPaidByValid}
 			<span class="badge-icon variant-filled-success w-4 h-4">
