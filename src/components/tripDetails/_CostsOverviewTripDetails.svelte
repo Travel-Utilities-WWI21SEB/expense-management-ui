@@ -2,7 +2,7 @@
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 	import {
-		ImformationAlertWithAction,
+		InformationAlertWithAction,
 		TripDetailsAddNewCostItem,
 		TripDetailsCostItem,
 		TripDetailsFilterPopUp,
@@ -98,13 +98,13 @@
 		{/if}
 	</div>
 	{#if costs.length === 0 && $page.url.searchParams.size === 0}
-		<ImformationAlertWithAction
+		<InformationAlertWithAction
 			alertHeading={i('tripDetails.noCosts')}
 			class="variant-ghost-primary"
 			icon={Banknotes}
 		/>
 	{:else if costs.length === 0 && $page.url.searchParams.size > 0}
-		<ImformationAlertWithAction
+		<InformationAlertWithAction
 			alertHeading="No costs match your filter criteria"
 			class="variant-ghost-primary"
 			icon={Banknotes}
