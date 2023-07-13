@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { i, language, loadResource, switchLanguage } from '@inlang/sdk-js';
 	import { ListBox, ListBoxItem, popup, type PopupSettings } from '@skeletonlabs/skeleton';
-	import { De, Us } from 'svelte-flag-icons';
+	import { De, Us, Kr } from 'svelte-flag-icons';
 
 	let languages = [
 		{ id: 'en', title: i('header.languages.en'), icon: Us },
+		{ id: 'kor', title: i('header.languages.kor'), icon: Kr },
 		{ id: 'de', title: i('header.languages.de'), icon: De }
 	];
 

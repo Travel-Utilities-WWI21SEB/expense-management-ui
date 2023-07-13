@@ -1,4 +1,8 @@
 {
+	"navbar": {
+		"costs": "Costs",
+		"debts": "Debts"
+	},
 	"errors": {
 		"EM-000": "An unknown error occurred. Please try again later.",
 		"EM-001": "An upstream service is not available. Please try again later.",
@@ -23,6 +27,7 @@
 	"header": {
 		"languages": {
 			"en": "English",
+			"kor": "Korean",
 			"de": "German"
 		},
 		"logout": "Logout",
@@ -421,7 +426,6 @@
 			"title": "Debts",
 			"noDebts": "This trip has no debts yet",
 			"transactions": "Transactions",
-
 			"noTransactions": "This trip does not yet have any transactions that affect you",
 			"addButton": "Add",
 			"youGet": "You Get",
@@ -434,7 +438,10 @@
 			"transactionValid": "New transaction is valid",
 			"transactionNotValid": "Please provide a valid transaction",
 			"closeButton": "Close",
-			"saveButton": "Save"
+			"saveButton": "Save",
+			"youPaid": "You Paid: ",
+			"notConfirmedYet": "This transaction is not confirmed by",
+			"paidYou": " paid you "
 		},
 		"timePresent": "Time present in Trip"
 	},
@@ -490,7 +497,12 @@
 		"confirmButton": "Confirm",
 		"closeButton": "Close",
 		"rejectButton": "Reject",
-		"abortButton": "Abort"
+		"abortButton": "Abort",
+		"trip": "Trip: ",
+		"created": "Created at: ",
+		"wantToConfirm": "Do you want to confirm this transaction? ",
+		"youOwe": "You owe ",
+		"owesYou": " owes you "
 	},
 	"error": {
 		"pageNotFound": "Page Not Found",
