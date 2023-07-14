@@ -22,6 +22,17 @@ const unauthorizedRoutes = [
 	'/inlang/ko.json' // Inlang API for Korean
 ];
 
+const resetCookieResponse = () => {
+	const response = new Response('Redirect', { status: 303, headers: { Location: '/login' } });
+	response.headers.set('Set-Cookie', 'token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT');
+	response.headers.set(
+		'Set-Cookie',
+		'refreshToken=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT'
+	);
+
+	return response;
+};
+
 export const handle: Handle = async ({ event, resolve }) => {
 	console.log(`Internal request: ${event.url.pathname}, ${Date.now()}}`);
 
@@ -92,15 +103,4 @@ export const handleFetch: HandleFetch = async ({ event, request, fetch }) => {
 
 	const response = await fetch(request);
 	return response.status === 401 ? resetCookieResponse() : response;
-};
-
-const resetCookieResponse = () => {
-	const response = new Response('Redirect', { status: 303, headers: { Location: '/login' } });
-	response.headers.set('Set-Cookie', 'token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT');
-	response.headers.set(
-		'Set-Cookie',
-		'refreshToken=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT'
-	);
-
-	return response;
 };
