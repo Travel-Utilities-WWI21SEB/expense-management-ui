@@ -10,10 +10,10 @@
 		selectAllPeople,
 		validateCostAllocation
 	} from '$utils';
+	import { i } from '@inlang/sdk-js';
 	import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
 	import { Check, InformationCircle, XMark } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import { i } from '@inlang/sdk-js';
 
 	export let users: Array<CostPaidForUser>;
 	export let usersInvolved: Array<CostPaidForUser>;

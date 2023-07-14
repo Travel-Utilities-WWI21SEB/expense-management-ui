@@ -2,16 +2,17 @@
 	import { costPaidByValid } from '$stores';
 	import type { CostPaidForUser } from '$userDomain';
 	import { validatePaidBy } from '$utils';
+	import { i } from '@inlang/sdk-js';
 	import { Check, InformationCircle, XMark } from '@steeze-ui/heroicons';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { createEventDispatcher } from 'svelte';
-	import { i } from '@inlang/sdk-js';
 
 	export let users: Array<CostPaidForUser>;
 	export let paidBy: string;
 
 	$: costPaidByValid.set(validatePaidBy());
-	$: isAnyParticipentNotAccepted = users.some((user) => !user.hasAcceptedInvite);
+	$: isAnyParticipentNotAccepted =
+		users.length !== 1 && users.some((user) => !user.hasAcceptedInvite);
 	const dispatch = createEventDispatcher();
 
 	function changeSelectedValue(event: any) {
