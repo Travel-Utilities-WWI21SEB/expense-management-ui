@@ -29,7 +29,6 @@
 
 	const switchLanguageHandler = async (e: MouseEvent) => {
 		const value = (e.target as HTMLButtonElement).value;
-		console.log(`Switching language to: ${value}`);
 		await switchLanguage(value);
 
 		// Switch language titles for the current language
@@ -42,7 +41,6 @@
 	// TODO: This is not working yet, why the fuck does Skeleton not propagate the hover event for listitems??????
 	const preloadLanguageHandler = async (e: CustomEvent) => {
 		const language = (e.target as HTMLButtonElement).value;
-		console.log(`Preloading language: ${language}`);
 		await loadResource(language);
 	};
 </script>

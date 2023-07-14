@@ -21,6 +21,9 @@ const config = {
 			precompress: true,
 			polyfill: false
 		}),
+		csrf: {
+			checkOrigin: false
+		},
 		alias: {
 			$components: './src/components',
 			$icons: './src/icons',

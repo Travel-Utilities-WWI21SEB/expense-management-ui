@@ -3,7 +3,6 @@
 	import { ProgressRadial, popup, type PopupSettings } from '@skeletonlabs/skeleton';
 
 	export let coveredDebtsPercentage: string;
-	console.log(coveredDebtsPercentage);
 
 	const popupHover: PopupSettings = {
 		event: 'hover',

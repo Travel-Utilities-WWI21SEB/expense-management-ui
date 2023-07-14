@@ -41,7 +41,8 @@
 
 			// Fetch the image as a Blob object and append it to the form data
 			if ($imageUrl !== '') {
-				const blob = await fetch($imageUrl).then((r) => r.blob());
+				const blobPromise = await fetch($imageUrl);
+				const blob = await blobPromise.blob();
 				formData.append('profilePicture', blob);
 			}
 
