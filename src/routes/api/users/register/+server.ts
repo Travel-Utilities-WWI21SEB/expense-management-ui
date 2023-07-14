@@ -2,6 +2,11 @@ import { PUBLIC_BASE_URL } from '$env/static/public';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
+interface ResponseType {
+	errorMessage: string;
+	errorCode: string;
+}
+
 export const POST: RequestHandler = async ({ fetch, request }) => {
 	// Get multipart form data
 	const formData = await request.formData();
@@ -18,9 +23,10 @@ export const POST: RequestHandler = async ({ fetch, request }) => {
 			return json({ error: false, errorCode: '' });
 		}
 
-		const body = await response.json();
+		const body = (await response.json()) as ResponseType;
 		return json({ error: true, errorCode: body.errorCode });
 	} catch (exception) {
+		console.error(exception);
 		return json({ error: true, errorCode: 'EM-000' });
 	}
 };

@@ -5,8 +5,6 @@
 	import { calculateDate } from '$utils';
 	import { i, language } from '@inlang/sdk-js';
 	import { Avatar } from '@skeletonlabs/skeleton';
-	import { Check, Pencil } from '@steeze-ui/heroicons';
-	import { Icon } from '@steeze-ui/svelte-icon';
 
 	export let data;
 
@@ -45,6 +43,7 @@
 					{i('profile.title')}
 				</span>
 			</h1>
+			<!--
 			<button class="btn variant-ghost-primary" on:click={() => (editMode = !editMode)}>
 				{#if editMode}
 					<span><Icon src={Check} class="w-6 h-6" /></span>
@@ -54,6 +53,7 @@
 					<span>{i('profile.editButton')}</span>
 				{/if}
 			</button>
+			-->
 		</header>
 		<section class="p-4 flex xl:flex-row flex-col gap-5">
 			<div class="flex-1 card !bg-transparent shadow-xl p-4 border border-surface-500">

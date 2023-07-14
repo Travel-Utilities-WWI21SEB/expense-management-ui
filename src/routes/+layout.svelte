@@ -21,3 +21,5 @@ Please do not delete it (inlang will recreate it if needed). -->
 	// Set floating ui defaults
 	storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
 </script>
+
+<slot />

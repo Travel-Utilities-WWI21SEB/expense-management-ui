@@ -22,6 +22,17 @@ const unauthorizedRoutes = [
 	'/inlang/ko.json' // Inlang API for Korean
 ];
 
+const resetCookieResponse = () => {
+	const response = new Response('Redirect', { status: 303, headers: { Location: '/login' } });
+	response.headers.set('Set-Cookie', 'token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT');
+	response.headers.set(
+		'Set-Cookie',
+		'refreshToken=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT'
+	);
+
+	return response;
+};
+
 export const handle: Handle = async ({ event, resolve }) => {
 	console.log(`Internal request: ${event.url.pathname}, ${Date.now()}}`);
 
@@ -64,14 +75,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 	if (!refreshTokenResponse.ok) {
 		// Delete the cookies and redirect to login page
-		const response = new Response('Redirect', { status: 303, headers: { Location: '/login' } });
-		response.headers.set('Set-Cookie', 'token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT');
-		response.headers.set(
-			'Set-Cookie',
-			'refreshToken=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT'
-		);
-
-		return response;
+		return resetCookieResponse();
 	}
 
 	const { token: newToken, refreshToken: newRefreshToken } = await refreshTokenResponse.json();
@@ -80,23 +84,23 @@ export const handle: Handle = async ({ event, resolve }) => {
 	event.cookies.set('refreshToken', newRefreshToken, { path: '/' });
 
 	token = newToken;
-
 	event.request.headers.set('Authorization', `Bearer ${token}`);
-	const response = await resolve(event);
 
-	return response;
+	const response = await resolve(event);
+	return response.status === 401 ? resetCookieResponse() : response;
 };
 
 // By default SvelteKit does not send the Authorization header to the API
 // since it is not a same-origin request. This hook will add the Authorization
 // header to the request if the request is going to the API. (rip 1 hour of my time)
-export const handleFetch: HandleFetch = ({ event, request, fetch }) => {
+export const handleFetch: HandleFetch = async ({ event, request, fetch }) => {
 	const url = new URL(request.url);
 	console.log(`Outgoing request to ${url}`);
 
-	if (PUBLIC_BASE_URL === url.origin) {
+	if (PUBLIC_BASE_URL === url.origin && !unauthorizedRoutes.includes(url.pathname)) {
 		request.headers.set('Authorization', event.request.headers.get('Authorization') ?? '');
 	}
 
-	return fetch(request);
+	const response = await fetch(request);
+	return response.status === 401 ? resetCookieResponse() : response;
 };
