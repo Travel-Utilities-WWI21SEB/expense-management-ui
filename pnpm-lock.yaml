@@ -9,8 +9,8 @@ dependencies:
     specifier: ^1.4.4
     version: 1.4.5
   '@steeze-ui/svelte-icon':
-    specifier: 1.4.1
-    version: 1.4.1(svelte@3.59.2)
+    specifier: 1.5.0
+    version: 1.5.0(svelte@3.59.2)
   chart.js:
     specifier: 4.3.0
     version: 4.3.0
@@ -573,10 +573,10 @@ packages:
     resolution: {integrity: sha512-bv4YK375U9TDS50SmJ5VdFy2UmMhgKbJCCbo6IUU3qs2luEj2VX6sQoDy96j8AIKttxMd62ih1j0lZj7CTjIfA==}
     dev: true
 
-  /@steeze-ui/svelte-icon@1.4.1(svelte@3.59.2):
-    resolution: {integrity: sha512-O8KiL+1rjdhVzdBC5AKzDbc/NLZehOVU+nBj24t6BK22mWCe4o5YDbb04LesN9mBgB8NRRlaV6T81zLGY8xZHQ==}
+  /@steeze-ui/svelte-icon@1.5.0(svelte@3.59.2):
+    resolution: {integrity: sha512-Y0S7Qk2kO6byzOlD5SQGbOF2ZaKXJgfTkH78QUPcq579wiWMQJ5H14zL4XwtsPJ0DfkoL5qa3WaIdYkWb9A6AA==}
     peerDependencies:
-      svelte: ^3.54.0
+      svelte: ^4.0.0
     dependencies:
       svelte: 3.59.2
     dev: false
