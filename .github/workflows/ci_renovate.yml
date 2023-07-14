@@ -1,4 +1,4 @@
-name: Continious Integration
+name: Continious Integration for Renovate Bot CI
 
 on:
   pull_request:
@@ -6,8 +6,8 @@ on:
 
 jobs:
   verify:
-    if: github.actor != 'renovate[bot]'
-    runs-on: self-hosted
+    if: github.actor == 'renovate[bot]'
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
