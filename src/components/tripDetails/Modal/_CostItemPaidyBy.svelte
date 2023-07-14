@@ -42,9 +42,7 @@
 			<span class="badge-icon variant-filled-warning w-4 h-4">
 				<Icon src={InformationCircle} class="w-6 h-6" />
 			</span>
-			<span class="flex-auto"
-				>Participants that have not accepted the invite cannot be included in costs</span
-			>
+			<span class="flex-auto">{i('tripDetails.addCostModal.notAcceptedWarning')}</span>
 		</li>
 	{/if}
 	<li>

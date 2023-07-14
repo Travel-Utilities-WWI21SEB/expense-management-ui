@@ -55,7 +55,7 @@
 				{/if}
 			</button>
 		</header>
-		<section class="p-4 flex md:flex-row flex-col gap-5">
+		<section class="p-4 flex xl:flex-row flex-col gap-5">
 			<div class="flex-1 card !bg-transparent shadow-xl p-4 border border-surface-500">
 				<header class="card-header flex flex-col items-center mb-2">
 					<Avatar
