@@ -29,8 +29,8 @@ dependencies:
 
 devDependencies:
   '@inlang/sdk-js':
-    specifier: ^0.8.1
-    version: 0.8.1(@sveltejs/kit@1.22.3)(esbuild@0.18.11)(svelte@3.59.2)
+    specifier: ^0.11.0
+    version: 0.11.0(@sveltejs/kit@1.22.3)(esbuild@0.18.11)(svelte@3.59.2)
   '@skeletonlabs/skeleton':
     specifier: 1.9.0
     version: 1.9.0(svelte@3.59.2)
@@ -417,8 +417,8 @@ packages:
       - esbuild
     dev: true
 
-  /@inlang/sdk-js@0.8.1(@sveltejs/kit@1.22.3)(esbuild@0.18.11)(svelte@3.59.2):
-    resolution: {integrity: sha512-qivuSBuRFXmjusR/leWilVO4lYc11FYhDB3C4Wi4uqMroGEqopeRwOgI60vC7IBte3SeJYBnttNoUp6hEP/uIQ==}
+  /@inlang/sdk-js@0.11.0(@sveltejs/kit@1.22.3)(esbuild@0.18.11)(svelte@3.59.2):
+    resolution: {integrity: sha512-trqj7jfTav51gw2aVcQDaoAWgfXWRZw/TLV2N10i2IfgxhMwL92Wp1pAKPXW9539reIY9zHJ49dOVPhW0e5eBA==}
     engines: {node: '>=18'}
     peerDependencies:
       '@sveltejs/kit': ^1.0.0
